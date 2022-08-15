@@ -1,0 +1,1237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<title>Talon Tales Calculator (PvM)</title>
+	<link rel="shortcut icon" href="favicon.png">
+	<script type="text/javascript"><!--
+		Lang = 0;
+		Taijin=0;
+		// -->
+	</script>
+	<script type="text/javascript" src="js/head.js?v=11"></script>
+	<script type="text/javascript" src="js/item.js?v=11"></script>
+	<script type="text/javascript" src="js/etc.js?v=11"></script>
+	<script type="text/javascript" src="js/skill.js?v=11"></script>
+	<script type="text/javascript" src="js/libs/base64.js"></script>
+	<script type="text/javascript" src="js/libs/rawinflate.js"></script>
+	<script type="text/javascript" src="js/libs/rawdeflate.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="js/style.css">
+
+</head>
+
+<body>
+<div id="ubernavi" align="left" style="margin-left: 7px;">
+<span class="navititle">Quick Navigation:</span> [<a href="index.html">PvM Calc</a>] [<a href="pvp.html">PvP Calc</a>] [<a href="https://github.com/kutsuru/ttcalculator/issues" target="_blank">Bug Report/Requests</a>]
+</div>
+<form name="calcForm">
+
+<div class="topic-main" align="left">
+<div align="left" style="margin-left: 6.5px;margin-top: 6.5px;">
+  <strong style="color:#F00">NOTE: the calculator while quite accurate, it is not a 100% representation of Talon Tales' gameplay. It is highly discouraged to base in-game purchases on results obtained through this calculator.</strong>
+</div>
+<div class="topic">
+	<h3>CHANGELOG</h3>
+	<div class="pad">
+		<span><a href="https://github.com/kutsuru/ttcalculator/releases/tag/2.2.1">August 2022 Update : <b>Release 2.2.1</b></a></span>
+	</div>
+</div>
+
+<div class="topic" style="margin-left: 6.5px;">
+<h3 style="font-size:15px">Character Simulator</h3>
+<table><tbody>
+<tr><td>&nbsp;</td><td>
+
+<select name="A_SaveSlot"></select>
+<input name="A_SlotName" value="Build name/description" defaultValue="Build name/description" type="text" required minlength="4" maxlength="48" size="50">
+<input value="Save" onclick="SaveCookie()" type="button">
+<input value="Load" onclick="LoadCookie()" type="button">
+<span id="DELHTML"><font size="2"><a href="del.html">[delete saved data]</a></font></span><br>
+<input value="Save as URL" onclick="URLOUT()" type="button">
+<input value="Copy" onclick="CopyToClipboard()" type="button">
+<input name="URL_TEXT" size="130" type="text">
+<table>
+<tbody>
+	<tr>
+		<td valign="top">
+			<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+				<tbody>
+						<tr>
+							<td colspan="6" class="subheader" bgcolor="#DDDDFF">
+								<div style="float: left; padding: 3px;">
+									<span id="nm01">Base Stats</span>
+								</div>
+								<div style="float: right; padding-right: 3px;">
+									<input id="lab0" name="vanilla" onclick="VanillaCard()|VanillaArmor()|StAllCalc()|KakutyouKansuu2()" type="checkbox">
+									<label for="lab0"><span id="nm079">Vanilla</span></label> /
+									<input id="lab1" name="A_youshi" onclick="calc()" type="checkbox">
+									<label for="lab1"><span id="nm078">Adopted</span></label> /
+									<input id="lab2" name="BLVauto" type="checkbox">
+									<label for="lab2"><span id="nm02">Auto Adjust Base Level</span></label>
+								</div>
+								<div style="clear: both;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td id="nm03">LV</td><td><select name="A_BaseLV" onchange="StCalc(1)|StAllCalc()"></select></td>
+							<td id="nm04">JobLV</td><td><select name="A_JobLV" onchange="StAllCalc()"></select></td>
+							<td id="nm05">Class</td><td><select name="A_JOB" onchange="ClickJob(this[this.selectedIndex].value) | StAllCalc() | StCalc()"></select></td>
+					</tr>
+					<tr>
+						<td id="nm06">STR</td><td><select name="A_STR" onchange="StCalc() | StAllCalc()"></select><span id="A_STRp">+0</span></td>
+						<td id="nm07">AGI</td><td><select name="A_AGI" onchange="StCalc() | StAllCalc()"></select><span id="A_AGIp">+0</span></td>
+						<td id="nm08">VIT</td><td><select name="A_VIT" onchange="StCalc() | StAllCalc()"></select><span id="A_VITp">+0</span></td>
+					</tr>
+					<tr>
+						<td id="nm010">INT</td><td><select name="A_INT" onchange="StCalc() | StAllCalc()"></select><span id="A_INTp">+0</span></td>
+						<td id="nm09">DEX</td><td><select name="A_DEX" onchange="StCalc() | StAllCalc()"><</select><span id="A_DEXp">+0</span></td>
+						<td id="nm011">LUK</td><td><select name="A_LUK" onchange="StCalc() | StAllCalc()"></select><span id="A_LUKp">+0</span></td>
+					</tr>
+				</tbody>
+			</table><br>
+			<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+				<tbody>
+					<tr>
+						<td>
+							<span id="nm012">Remaining Status Points</span></td><td><span id="A_STPOINT">48</span>
+							</td>
+					</tr>
+				</tbody>
+			</table>
+		</td>
+		<td valign="top">
+			<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+				<tbody>
+					<tr>
+						<td class="subheader" bgcolor="#DDDDFF">
+							<div style="float: left; padding: 3px;"><span id="nm013">Extended Info</span></div>
+								<div style="float: right; padding-right: 3px;">
+									<select name="A_Kakutyou" onchange="KakutyouKansuu2() | calc()"></select>
+								</div>
+								<div style="clear: both;"></div>
+							</td>
+				</tr>
+				<tr>
+					<td>
+							<span id="A_KakutyouSel"></span>
+							<span id="A_KakutyouData"></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</td>
+</tr>
+</tbody>
+</table>
+<br>
+<table border="0">
+	<tbody>
+		<tr>
+			<td id="nm014" class="title" style="width: 7.5%;">Max HP</td>
+			<td id="nm015" class="title" style="width: 7.5%;">Max SP</td>
+			<td id="nm016" class="title" style="width: 7.5%;">DEF</td>
+			<td id="nm017" class="title" style="width: 7.5%;">MDEF</td>
+			<td id="nm018" class="title" style="width: 7.5%;">HIT</td>
+			<td id="nm019" class="title" style="width: 7.5%;">FLEE</td>
+			<td id="nm020" class="title" style="width: 10%;">Perfect Dodge</td>
+			<td id="nm021" class="title" style="width: 7.5%;">Critical</td>
+			<td id="nm085" class="title" style="width: 7.5%;">ATK</td>
+			<td id="nm022" class="title" style="width: 7.5%;">MATK</td>
+			<td id="nm023" class="title" style="width: 7.5%;">ASPD</td>
+			<td id="nm024" class="title" style="width: 7.5%;">HP Regen</td>
+			<td id="nm025" class="title" style="width: 7.5%;">SP Regen</td>
+		</tr>
+		<tr>
+			<td class="data" id="A_MaxHP" align="right"> 40</td>
+			<td class="data" id="A_MaxSP" align="right"> 11</td>
+			<td class="data" id="A_totalDEF" align="right">0+1</td>
+			<td class="data" id="A_MDEF" align="right">0+1<br><b>WOE: </b>0+1</td>
+			<td class="data" id="A_HIT" align="right">2</td>
+			<td class="data" id="A_FLEE" align="right">2<br><b>WOE: </b>1</td>
+			<td class="data" id="A_LUCKY" align="right">1.1</td>
+			<td class="data" id="A_CRI" align="right">1.3</td>
+			<td class="data" id="A_ATK2" align="right">1+0<br><b>WOE: </b>1+0</td>
+			<td class="data" id="A_MATK" align="right">1~1</td>
+			<td class="data" id="A_ASPD" align="right">150.2</td>
+			<td class="data" id="A_HPR" align="right">1</td>
+			<td class="data" id="A_SPR" align="right">1</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+
+<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+<tbody>
+	<tr><td colspan="3" class="subheader">
+		<div style="float: left; padding: 3px;">Weapon Settings</div><div style="clear: left;"></div>
+	</td></tr>
+<tr>
+	<td>
+		<span id="nm026">Speed Potion: </span>
+			<select name="A_SpeedPOT" onchange="StAllCalc()">
+				<option selected="selected" value="0">None</option>
+				<option value="1">Concentration Potion</option>
+				<option value="2">Awakening Potion(Lv40)</option>
+				<option value="3">-Special(Berserk Pitcher)(Lv85)</option>
+			</select>
+	</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;
+		<span id="nm027">Weapon Type: </span>
+		<select name="A_WeaponType" onchange="ClickWeaponType(this[this.selectedIndex].value) | StAllCalc()">
+			<option selected="selected" value="0">Unarmed</option>
+			<option value="1">Dagger</option>
+			<option value="2">Sword</option>
+			<option value="6">Axe</option>
+			<option value="8">Mace</option>
+			<option value="9">Rod</option>
+		</select>
+		<span id="A_SobWeaponName"></span>
+		<select name="A_Arrow" onchange="StAllCalc()" style="visibility:hidden">
+			<option selected="selected" value="0">Arrow</option>
+		</select>
+	</td>
+</tr>
+</tbody>
+</table>
+<br>
+
+<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;" onmouseover="FirstNovis()">
+	<tbody>
+		<tr>
+			<td colspan="4" class="subheader">
+				<div style="float: left; padding: 3px;">
+					<span id="nm028">Weapon &amp; Armor / Cards</span>
+				</div>
+				<div style="clear: left;"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="calc">
+				<span id="nm029">Weapon: </span>
+				<select name="A_weapon1" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)">
+					<option selected="selected" value="0">(Unarmed)</option>
+				</select>
+			</td>
+			<td class="calc">
+					<span id="A_seirenchi_name"></span>
+					<select name="A_Weapon_ATKplus" style="visibility:hidden" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="nm030">Attribute: </span>
+					<select name="A_Weapon_zokusei"></select>
+			</td>
+			<td class="calc">
+				<select name="A_cardshort" onchange="SetCardShort()|StAllCalc()|ActiveSkillSetPlus()"></select>
+			</td>
+		</tr>
+		<tr>
+			<td class="calc">
+				<span id="nm031">Cards: </span>
+				<select name="A_weapon1_card1" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_weapon1_card2" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_weapon1_card3" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_weapon1_card4" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+		</tr>
+		<tr style="display: none" id="T_KE1">
+			<td class="calc">
+				<span id="A_KEText11"></span>
+				<!-- <select name="A_KE11" style="visibility:hidden" onchange="StAllCalc()"></select> -->
+				<select name="A_KE11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_KEText12"></span>
+				<!-- <select name="A_KE12" style="visibility:hidden" onchange="StAllCalc()"></select> -->
+				<select name="A_KE12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr style="display: none" id="T_ME1">
+			<td class="calc">
+				<span id="A_METext11"></span>
+				<select name="A_ME11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_METext12"></span>
+				<select name="A_ME12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_BE1">
+			<td class="calc">
+				<span id="A_BEText11"></span>
+				<select name="A_BE11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_BEText12"></span>
+				<select name="A_BE12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr style="display: none" id="T_EE1">
+			<td class="calc">
+				<span id="A_EEText11"></span>
+				<select name="A_EE11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EEText12"></span>
+				<select name="A_EE12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EEText13"></span>
+				<select name="A_EE13" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_W2">
+			<td class="calc"><span id="spanA_weapon2"></span></td>
+			<td class="calc"><span id="spanA_weapon2seiren"></span></td>
+			<td class="calc"></td>
+			<td class="calc"><span id="spanA_weapon2_CardShort"></span></td>
+		</tr>
+		<tr style="display: none" id="T_WC2">
+			<td class="calc"><span id="nA_weapon2_c1"></span></td>
+			<td class="calc"><span id="nA_weapon2_c2"></span></td>
+			<td class="calc"><span id="nA_weapon2_c3"></span></td>
+			<td class="calc"><span id="nA_weapon2_c4"></span></td>
+		</tr>
+		<tr style="display: none" id="T_KE2">
+			<td class="calc">
+				<span id="A_KEText21"></span>
+				<!-- <select name="A_KE21" style="visibility:hidden" onchange="StAllCalc()"></select> -->
+				<select name="A_KE21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_KEText22"></span>
+				<!-- <select name="A_KE22" style="visibility:hidden" onchange="StAllCalc()"></select> -->
+				<select name="A_KE22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_ME2">
+			<td class="calc">
+				<span id="A_METext21"></span>
+				<select name="A_ME21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_METext22"></span>
+				<select name="A_ME22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_BE2">
+			<td class="calc">
+				<span id="A_BEText21"></span>
+				<select name="A_BE21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_BEText22"></span>
+				<select name="A_BE22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_EE2">
+			<td class="calc">
+				<span id="A_EEText21"></span>
+				<select name="A_EE21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EEText22"></span>
+				<select name="A_EE22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EEText23"></span>
+				<select name="A_EE23" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr>
+			<td class="calc"></td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr>
+			<td class="calc">
+			<select name="A_HEAD_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_head1" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_head1_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+
+			<!-- Biolab Enchant Headgear 1 -->
+			<td class="calc" style="display: none" id="T_BEH1">
+				<span id="A_BETextH1"></span>
+				<select name="A_BEH1" onchange="StAllCalc()"></select>
+			</td>
+			<!-- Eden Enchant Headgear -->
+			<td class="calc" style="display: none" id="T_EEH">
+				<span id="A_EETextH"></span>
+				<select name="A_EEH" onchange="StAllCalc()"></select>
+			</td>
+			<!-- Placeholder 1 -->
+			<td class="calc" id="T_HEAD1_TEMP"></td>
+
+			<!-- Biolab Enchant Headgear 2 -->
+			<td class="calc" style="display: none" id="T_BEH2">
+				<span id="A_BETextH2"></span>
+				<select name="A_BEH2" onchange="StAllCalc()"></select>
+			</td>
+			<!-- Eden Enchant Headgear 2 -->
+			<!--
+			<td class="calc" style="display: none" id="T_EEH2">
+				<span id="A_EETextH2"></span>
+				<select name="A_EEH2" onchange="StAllCalc()"></select>
+			</td>
+			-->
+			<!-- Placeholder 2 -->
+			<td class="calc" id="T_HEAD2_TEMP"></td>
+
+		</tr>
+
+		<tr>
+			<td class="calc">
+				<select style="margin-left: 51px" name="A_head2" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_head2_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr>
+			<td class="calc">
+				<select style="margin-left: 51px" name="A_head3" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr>
+			<td class="calc">
+				<select name="A_BODY_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_body" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_body_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_HSE" onchange="StAllCalc()">
+				</select>
+			</td>
+			<td style="visibility: hidden;" class="calc">
+				<select name="A_HSE_HEAD1" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_BEA" style="display: none">
+			<td class="calc">
+				<span id="A_BETextA1"></span>
+				<select name="A_BEA1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_BETextA2"></span>
+				<select name="A_BEA2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr id="T_EEA" style="display: none">
+			<td class="calc">
+				<span id="A_EETextA1"></span>
+				<select name="A_EEA1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EETextA2"></span>
+				<select name="A_EEA2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr id="T_MORAEA" style="display: none">
+			<td class="calc">
+				<span id="A_MORAETextA">Mora Armor</span>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextA1"></span>
+				<select name="A_MORAEA1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextA2"></span>
+				<select name="A_MORAEA2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextA3"></span>
+				<select name="A_MORAEA3" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="calc">
+				<select style="visibility: visible;" name="A_LEFT_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select style="visibility: visible;" name="A_left" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc" id="ID_C4">
+				<select style="visibility: visible;" name="A_left_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+
+			<td class="calc" style="display: none" id="T_BES1">
+				<span id="A_BETextS1"></span>
+				<select name="A_BES1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_BES1_TEMP"></td>
+			<td class="calc" style="display: none" id="T_BES2">
+				<span id="A_BETextS2"></span>
+				<select name="A_BES2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_BES2_TEMP"></td>
+		</tr>
+
+		<tr>
+			<td class="calc">
+				<select name="A_SHOULDER_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_shoulder" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_shoulder_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_acces1" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_acces1_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="calc" style="display: none" id="T_BEG1">
+				<span id="A_BETextG1"></span>
+				<select name="A_BEG1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" style="display: none" id="T_EEG1">
+				<span id="A_EETextG1"></span>
+				<select name="A_EEG1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_GAR1_TEMP"></td>
+			<td class="calc" style="display: none" id="T_BEG2">
+				<span id="A_BETextG2"></span>
+				<select name="A_BEG2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" style="display: none" id="T_EEG2">
+				<span id="A_EETextG2"></span>
+				<select name="A_EEG2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_GAR2_TEMP"></td>
+
+			<td class="calc" style="display: none" id="T_BEAC11">
+				<span id="A_BETextAC11"></span>
+				<select name="A_BEAC11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_ACC11_TEMP"></td>
+			<td class="calc" style="display: none" id="T_BEAC12">
+				<span id="A_BETextAC12"></span>
+				<select name="A_BEAC12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_ACC12_TEMP"></td>
+		</tr>
+
+		<tr id="T_MORAEG" style="display: none">
+			<td class="calc">
+				<span id="A_MORAETextG">Mora Garment</span>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextG1"></span>
+				<select name="A_MORAEG1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextG2"></span>
+				<select name="A_MORAEG2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextG3"></span>
+				<select name="A_MORAEG3" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDG" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextG">El Dicaste Garment</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextG1"></span>
+				<select name="A_EDG1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextG2"></span>
+				<select name="A_EDG2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextG3"></span>
+				<select name="A_EDG3" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDAC1" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextAC1">El Dicaste Accessory 1</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC11"></span>
+				<select name="A_EDAC11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC12"></span>
+				<select name="A_EDAC12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC13"></span>
+				<select name="A_EDAC13" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDLOED1" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextLOED1">Light of El Dicaste 1</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED11"></span>
+				<select name="A_EDLOED11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED12"></span>
+				<select name="A_EDLOED12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED13"></span>
+				<select name="A_EDLOED13" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="calc">
+				<select name="A_SHOES_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_shoes" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_shoes_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_acces2" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_acces2_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="calc" style="display: none" id="T_EEF1">
+				<span id="A_EETextF1"></span>
+				<select name="A_EEF1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_FOOT1_TEMP"></td>
+			<td class="calc" style="display: none" id="T_EEF2">
+				<span id="A_EETextF2"></span>
+				<select name="A_EEF2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_FOOT2_TEMP"></td>
+
+			<td class="calc" style="display: none" id="T_BEAC21">
+				<span id="A_BETextAC21"></span>
+				<select name="A_BEAC21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_ACC21_TEMP"></td>
+			<td class="calc" style="display: none" id="T_BEAC22">
+				<span id="A_BETextAC22"></span>
+				<select name="A_BEAC22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_ACC22_TEMP"></td>
+		</tr>
+
+		<tr id="T_EDF" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextF">El Dicaste Footgear</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextF1"></span>
+				<select name="A_EDF1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextF2"></span>
+				<select name="A_EDF2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextF3"></span>
+				<select name="A_EDF3" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDAC2" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextAC2">El Dicaste Accessory 2</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC21"></span>
+				<select name="A_EDAC21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC22"></span>
+				<select name="A_EDAC22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC23"></span>
+				<select name="A_EDAC23" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDLOED2" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextLOED2">Light of El Dicaste 2</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED21"></span>
+				<select name="A_EDLOED21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED22"></span>
+				<select name="A_EDLOED22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED23"></span>
+				<select name="A_EDLOED23" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_MORAEAC1" style="display: none">
+			<td class="calc">
+				<span id="A_MORAETextAC1">Mora Accessory 1</span>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC11"></span>
+				<select name="A_MORAEAC11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC12"></span>
+				<select name="A_MORAEAC12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC13"></span>
+				<select name="A_MORAEAC13" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+		<tr id="T_MORAEAC2" style="display: none">
+			<td class="calc">
+				<span id="A_MORAETextAC2">Mora Accessory 2</span>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC21"></span>
+				<select name="A_MORAEAC21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC22"></span>
+				<select name="A_MORAEAC22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC23"></span>
+				<select name="A_MORAEAC23" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+	</tbody>
+</table>
+<br />
+
+<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: 60%;">
+	<tbody>
+		<tr>
+			<td colspan="10" class="subheader">
+					<div style="float: left; padding: 3px;"><span id="nm080">Item Data</span></div>
+					<div style="float: right; padding-right: 3px;"><input id="lab3" name="ITEM_SW" onclick="ClickB_Item('SW')" type="checkbox"><label for="lab3"><span id="nm081">Show</span></label></div>
+			</td>
+		</tr>
+		<tr>
+			<td id="ITEM0" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_DATA" class="calc" width="7%"></td>
+			<td id="ITEM1" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_SLOT" class="calc" width="7%"></td>
+			<td id="ITEM2" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_W_LV" class="calc" width="7%"></td>
+			<td id="ITEM3" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_LV" class="calc" width="7%"></td>
+			<td id="ITEM4" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_WAIT" class="calc" width="7%"></td>
+		</tr>
+		<tr>
+			<td colspan="10" id="B_SETUMEI" class="calc"></td>
+		</tr>
+	</tbody>
+</table>
+<br />
+
+<table style="border-collapse: collapse;">
+	<tbody>
+		<tr>
+			<td style="width: 50%;padding-left:0px;" valign="top">
+				<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+					<tbody>
+						<tr>
+							<td colspan="4" class="subheader">
+								<div style="float: left; padding: 3px;">
+									<span id="nm033">Passive / Duration Skills</span>
+								</div>
+								<div style="clear: left;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td id="P_Skill0"></td><td id="P_Skill0s"></td>
+							<td id="P_Skill1"></td><td id="P_Skill1s"></td>
+						</tr><tr>
+							<td id="P_Skill2"></td><td id="P_Skill2s"></td>
+							<td id="P_Skill3"></td><td id="P_Skill3s"></td>
+						</tr><tr>
+							<td id="P_Skill4"></td><td id="P_Skill4s"></td>
+							<td id="P_Skill5"></td><td id="P_Skill5s"></td>
+						</tr><tr>
+							<td id="P_Skill6"></td><td id="P_Skill6s"></td>
+							<td id="P_Skill7"></td><td id="P_Skill7s"></td>
+						</tr><tr>
+							<td id="P_Skill8"></td><td id="P_Skill8s"></td>
+							<td id="P_Skill9"></td><td id="P_Skill9s"></td>
+						</tr><tr>
+							<td id="P_Skill10"></td><td id="P_Skill10s"></td>
+							<td id="P_Skill11"></td><td id="P_Skill11s"></td>
+					</tr><tr>
+							<td id="P_Skill12"></td><td id="P_Skill12s"></td>
+							<td id="P_Skill13"></td><td id="P_Skill13s"></td>
+						</tr><tr>
+							<td id="P_Skill14"></td><td id="P_Skill14s"></td>
+							<td id="P_Skill15"></td><td id="P_Skill15s"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td style="width: 50%;padding-right:0px;" valign="top">
+				<div id="SIENSKILL">
+					<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+						<tbody>
+							<tr>
+								<td id="A2TD" colspan="4" class="subheader">
+									<div style="float: left; padding: 3px;">Supportive / Party Skills <span id="A2used"></span></div>
+									<div style="float: right; padding-right: 3px;">
+										<input id="lab4" name="A2_SKILLSW" onclick="Click_SkillSW()" type="checkbox"><label for="lab4"><span id="nm035">Show </span></label>
+									</div>
+									<div style="clear: both;"></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="topic" style="margin-left: 6.5px;">
+	<h3 style="font-size:15px">Monster Combat Simulator</h3>
+	<table>
+		<tbody>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<br />
+					<span id="nm036">Attack Skills: </span>
+					<select name="A_ActiveSkill" onchange="ClickActiveSkill()"><option selected="selected" value="0">Basic Attack</option></select>
+					<select name="A_ActiveSkillLV" style="visibility:hidden">
+						<option selected="selected" value="1">1</option></select>&nbsp;&nbsp;
+						<span id="AASkillName"></span><span id="AASkill"></span><br />
+						<input value="Calculate" onclick="calc()" type="button"><br /><br />
+						<table style="width: auto;" align="left">
+							<tbody>
+								<tr>
+									<td>
+										<!-- Monster picture -->
+										<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: 100%;">
+											<tbody>
+												<tr>
+													<td align="center" valign="middle" height="150" id="B_Enemy_picture" >
+														<img src="https://file5s.ratemyserver.net/mobs/1219.gif" alt="no picture available =(">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+											<tbody>
+												<tr>
+													<td class="subheader" bgcolor="#DDDDFF">
+														<span id="nm037" style="width: 20px;">Monster </span>
+													</td>
+													<td colspan="3" class="subheader" bgcolor="#DDDDFF">	
+														<select name="B_Enemy" onchange="reset_monster_stats()|KakutyouKansuu2()|calc()"></select>
+														<a id="B_Enemy_mobdb" href="https://file5s.ratemyserver.net/mobs/1219/" target="_blank" style="color:white;"><b>MobDB</b></a>
+													</td>
+												</tr>
+												<tr style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+													<td>
+														<label for="ENEMY_SORT" style="width: 20px;">Sort by</label>
+													</td>
+													<td>
+														<select id="ENEMY_SORT" name="ENEMY_SORT" onchange="sort_monsters_db()|calc()" style="width: 100%;">
+															<option selected="selected" value="0">Alphabetical</option>
+															<option value="3">By attribute</option>
+															<option value="2">By race</option>
+															<option value="8">By 100%Hit</option>
+															<option value="10">By 95%Flee</option>
+															<option value="16">By BaseExp</option>
+															<option value="17">By JobExp</option>
+															<option value="7">By MaxATK</option>
+														</select>
+													<td>
+														<input id="non_boss_filter" name="non_boss_filter" type="checkbox" onclick="manage_boss_property_sort(0)|sort_monsters_db()|calc()" checked>
+														<label for="non_boss_filter"><span id="non_boss_filter">Non-Boss</span></label>
+													</td>
+													<td>
+														<input id="boss_filter" name="boss_filter" type="checkbox" onclick="manage_boss_property_sort(1)|sort_monsters_db()|calc()" checked>
+														<label for="boss_filter"><span id="boss_filter">Boss</span></label>
+													</td>
+												</tr>
+												<tr>
+													<td id="nm038">HP</td>
+													<td id="B_6">36140</td>
+													<td id="nm039">BaseExp</td>
+													<td id="B_16">8469</td>
+												</tr>
+												<tr>
+													<td id="nm040">ATK</td>
+													<td><span id="B_12">1600</span><span id="nm041">~</span><span id="B_13">2150</span></td>
+													<td id="nm042">JobExp</td><td id="B_17">6268</td>
+												</tr>
+												<tr>
+													<td id="nm043">DEF</td>
+													<td><span id="B_14">55</span><span id="B_AA"> + </span><span id="B_23">64</span><span id="B_AC">~</span><span id="B_24">72</span></td>
+													<td id="nm044">Race</td>
+													<td id="B_2">Demi-Human</td>
+												</tr>
+												<tr>
+													<td id="nm045">MDEF</td>
+													<td><span id="B_15">50</span><span id="B_AB"> + </span><span id="B_25">57</span></td>
+													<td id="nm046">Element</td>
+													<td id="B_3"><b><font color="black">Shadow</font>4</b></td>
+												</tr>
+												<tr>
+													<td id="nm047">Perfect Hit</td>
+													<td id="B_21">167</td>
+													<td id="nm048">Size</td>
+													<td id="B_4">Large</td>
+												</tr>
+												<tr>
+													<td id="nm049">95% Dodge</td>
+													<td id="B_22">289</td>
+													<td id="B_26" colspan="2"></td>
+												</tr>
+												<tr>
+														<td class="subheader" bgcolor="#DDDDFF">By region</td>
+														<td colspan="3" class="subheader" bgcolor="#DDDDFF">
+															<select name="ENEMY_SORT2" onchange="sort_monsters_db()|calc()"></select>
+														</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table style="margin-top: 3px;border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+							<tbody>
+								<tr>
+									<td colspan="2" class="subheader" bgcolor="#DDDDFF">
+										<div style="float: left; padding: 3px;"><span id="nm052">Combat Results</span></div>
+									</td>
+								</tr>
+								<tr><td id="nm053">Hit Ratio</td><td><span id="BattleHIT">5</span><span id="nm067">%</span></td></tr>
+								<tr><td id="nm054">Dodge Ratio</td><td><span id="BattleFLEE">6.04</span><span id="nm068">%</span></td></tr>
+								<tr><td id="CRIATKname">Critical Damage</td><td id="CRIATK">1</td></tr>
+								<tr><td id="CRInumname">Critical Rate</td><td id="CRInum">0%</td></tr>
+								<tr><td id="bSUBname"></td><td id="bSUB"></td></tr>
+								<tr><td id="bSUB2name">Time/Hit<br></td><td id="bSUB2">0.996s<br></td></tr>
+								<tr><td id="nm055">Minimum Damage</td><td id="strID_0">1</td></tr>
+								<tr><td id="nm056">Average Damage</td><td id="strID_1">1</td></tr>
+								<tr><td id="nm057">Maximum Damage</td><td id="strID_2">1</td></tr>
+								<tr><td id="nm058">Damage Per Second</td><td id="AveSecondATK">0.05</td></tr>
+								<tr><td id="nm059">Minimum Number of Hits</td><td id="MinATKnum">Over 10000 Hits</td></tr>
+								<tr><td id="nm060">Average Number of Hits</td><td id="AveATKnum">Over 10000 Hits</td></tr>
+								<tr><td id="nm061">Maximum Number of Hits</td><td id="MaxATKnum"><font size="2">Infinite (no 100% Hit)</font></td></tr>
+								<tr><td id="nm062">Average Battle Duration</td><td id="BattleTime">Too High to Calculate</td></tr>
+								<tr><td id="average_sp_cost">Average SP Cost</td><td id="average_sp_cost_value">0</td></tr>
+								<tr><td id="average_zeny_cost"></td><td id="average_zeny_cost_value"></td></tr>
+								<tr><td id="nm063">Base Exp Per Hit</td><td id="AtkBaseExp">Immesurable</td></tr>
+								<tr><td id="nm064">Job Exp Per Hit</td><td id="AtkJobExp">Immesurable</td></tr>
+								<tr><td id="nm065">Average Damage Recieved</td><td id="B_AveAtk">1875 (1600~2150)</td></tr>
+								<tr><td id="nm066">Average Damage Recieved (w/dodge)</td><td id="B_Ave2Atk">1761.66 Damage</td></tr>
+								<tr><td id="nm086" colspan="2"><center>-- Special Skills --</center></td></tr>
+								<tr><td id="nm087">Earthquake</td><td id="B_EQ">Not Available</td></tr>
+								<tr><td id="nm088">Hell's Judgment</td><td id="B_HJ"></td></tr>
+							</tbody>
+						</table>
+						<table style="width: auto;" align="left">
+							<tbody>
+								<tr><td id="MONSTER_KYOUKA"><!--Monster Buffs-->
+									<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+										<tbody>
+											<tr>
+												<td id="AKTD" colspan="2" class="subheader" bgcolor="#DDDDFF">
+													<div style="float: left; padding: 3px; width: 100px;">Monster Buffs <span id="AKused"></span></div>
+													<div style="float: right; padding-right: 3px;"><input id="lab5" name="B_KYOUKASW" onclick="Click_EnemyKyoukaSW()" type="checkbox"><label for="lab5"><span id="nm084">Show</span></label></div>
+													<div style="clear: both;"></div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td id="MONSTER_IJYOU"><!--Monster Debuffs-->
+									<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+										<tbody>
+											<tr>
+												<td id="AITD" colspan="6" class="subheader" bgcolor="#DDDDFF">
+													<div style="float: left; padding: 3px; width: 100px;">Monster Debuffs <span id="AIused"></span></div><input id="lab6" name="B_IJYOUSW" onclick="Click_IjyouSW()" type="checkbox"><label for="lab6"><span id="nm051">Show</span></label>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td id="MONSTER_SKILLS"><!--Monster Skills-->
+									<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+										<tbody>
+											<tr>
+												<td colspan="6" class="subheader" bgcolor="#DDDDFF">
+													<div style="float: left; padding: 3px; width: 100px;">Monster Skills</div><input id="lab7" name="B_ENSKSW" onclick="Click_EnemySkillsSW()" type="checkbox">	<label for="lab7"><span id="nm090">Show</span></label>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td id="monster_stats"><!--Monster Stats-->
+									<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+										<tbody>
+											<tr>
+												<td colspan="6" class="subheader" bgcolor="#DDDDFF">
+													<div style="float: left; padding: 3px; width: 100px;">Monster Stats</div><input id="monster_stats_check" name="monster_stats_check" onclick="display_monster_stats()" type="checkbox">	<label for="monster_stats_check"><span id="monster_stats_check_label">Show</span></label>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td id="monster_status"><!--Monster Status-->
+									<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+										<tbody>
+											<tr>
+												<td colspan="6" class="subheader" bgcolor="#DDDDFF">
+													<div style="float: left; padding: 3px; width: 100px;">Monster Status</div><input id="monster_status_check" name="monster_status_check" onclick="display_monster_status()" type="checkbox">	<label for="monster_status_check"><span id="monster_status_check_label">Show</span></label>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!--Buffs, Items-->
+<div class="topic" style="margin-left: 6.5px;">
+	<h3 style="font-size:15px">Buffs, items and other stuff</h3>
+	<table>
+		<tbody>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<div style="clear: both;"></div>
+					<center>--<span id="nm082"><font size="2"><b>Anything below this line will only be saved via URL</b></font></span>--</center><br />
+					<div id="SP_SIEN04" style="float: left;">
+						<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+							<tbody>
+								<tr>
+									<td style="background-image: url(&quot;images/th.png&quot;);" id="A6TD" colspan="6" class="subheader" bgcolor="#DDDDFF">
+										<div style="float: left; padding: 3px;">Miscellaneous Effects <span id="A6used"></span></div>
+										<div style="float: right; padding-right: 3px;"><input lab="13" name="A6_SKILLSW" onclick="Click_Skill6SW()" type="checkbox"><label for="lab13">Show</label></div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="SP_SIEN02" style="float: left;">
+						<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+							<tbody>
+								<tr>
+									<td style="background-image: url(&quot;images/th.png&quot;);" id="A4TD" colspan="4" class="subheader" bgcolor="#DDDDFF">
+										<div style="float: left; padding: 3px;">Guild Skills <span id="A4used"></span></div>
+										<div style="float: right; padding-right: 3px;">
+											<input id="lab8" name="A4_SKILLSW" onclick="Click_Skill4SW()" type="checkbox"><label for="lab8">Show</label>
+										</div>
+										<div style="clear: both;"></div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="SP_SIEN03" style="float: left;">
+						<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+							<tbody>
+									<tr>
+										<td style="background-image: url(&quot;images/th.png&quot;);" id="A5TD" colspan="4" class="subheader" bgcolor="#DDDDFF">
+											<div style="float: left; padding: 3px;">Gospel Effects <span id="A5used"></span></div>
+											<div style="float: right; padding-right: 3px;">
+												<input id="lab9" name="A5_SKILLSW" onclick="Click_Skill5SW()" type="checkbox"><label for="lab9">Show</label>
+											</div>
+											<div style="clear: both;"></div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div style="clear: both;">
+							<div id="SP_SIEN01" style="float: left;">
+								<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+									<tbody>
+										<tr>
+											<td style="background-image: url(&quot;images/th.png&quot;);" id="A3TD" colspan="6" class="subheader" bgcolor="#DDDDFF">
+												<div style="float: left; padding: 3px;">Music and Dance Skills <span id="A3used"></span></div>
+												<div style="float: right; padding-right: 3px;">
+													<input id="lab10" name="A3_SKILLSW" onclick="Click_Skill3SW()" type="checkbox"><label for="lab10">Show</label>
+												</div>
+												<div style="clear: both;"></div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div id="SP_SIEN05" style="float: left;">
+								<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+									<tbody>
+											<tr>
+												<td style="background-image: url(&quot;images/th.png&quot;);" id="A7TD" colspan="6" class="subheader" bgcolor="#DDDDFF">
+													<div style="float: left; padding: 3px;">Items (Food / Etc.) <span id="A7used"></span></div>
+													<div style="float: right; padding-right: 3px;">
+														<input id="lab11" name="A7_SKILLSW" onclick="Click_Skill7SW()" type="checkbox"><label for="lab11">Show</label>
+													</div>
+													<div style="clear: both;"></div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div style="clear: both;">
+									<div id="ID_SQI_Bonus">
+										<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+											<tbody>
+												<tr>
+													<td style="background-image: url(&quot;images/th.png&quot;);" id="SQI_Bonus_TD" colspan="1" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">SQI-Bonus<span id="SQI_Bonus_used"></span></div><div style="float: right; padding-right: 3px;"><input id="lab15" name="SQI_Bonus_SW" onclick="Click_SQI_Bonus_SW()" type="checkbox"><label for="lab15">Show</label></div><div style="clear: both;"></div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div><br /> <hr />
+									<center><font size="2">--<span id="nm100"><b>NOTHING below this line will be saved!</b></span>--</font></center><br />
+									<div id="ID_ETC">
+										<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+											<tbody>
+												<tr>
+													<td style="background-image: url(&quot;images/th.png&quot;);" id="A8TD" colspan="2" class="subheader" bgcolor="#DDDDFF">
+														<div style="float: left; padding: 3px;">Additional Effects <span id="A8used"></span></div>
+														<div style="float: right; padding-right: 3px;">
+															<input id="lab14" name="A8_SKILLSW" onclick="Click_Skill8SW()" type="checkbox"><label for="lab14">Show</label>
+														</div>
+														<div style="clear: both;"></div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div id="ID_ARG">
+										<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+											<tbody>
+												<tr>
+													<td style="background-image: url(&quot;images/th.png&quot;);" id="A9_TD" colspan="1" class="subheader" bgcolor="#DDDDFF">
+														<div style="float: left; padding: 3px;">Manual Edits<span id="A9_used"></span></div>
+														<div style="float: right; padding-right: 3px;">
+															<input id="lab12" name="A9_SKILLSW" onclick="Click_Skill9SW()" type="checkbox"><label for="lab12">Show</label>
+														</div>
+														<div style="clear: both;"></div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div><br /><hr />
+									<font size="2"><span id="nm077">Minimum Delay Between Active Skills:</span></font>
+									<input type='text' onChange='calc()' name='minimum_skill_delay' value='0.23'>s</td>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="footer" align="right" style="margin-left: 6.5px"><div style="margin-right: 5px;line-height: 165%;">
+			Original simulator created by <a href="http://roratorio.2-d.jp/ro/">ROratorio</a><br />
+			Translated and adapted by <a href="http://rode.doddlercon.com/">Doddler</a><br />
+			Adjusted to Talon Tales by [FlynnQ, Kato, ZoneSoldier, NattWara, Loa, Hatfun and Kutsuru]
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/monster.js?v=11"></script>
+<script type="text/javascript" src="js/card.js?v=11"></script>
+<script type="text/javascript" src="js/foot.js?v=11"></script>
+</form>
+		<script type="text/javascript">
+			function Toogle(x,t){
+				if (document.getElementById(x).style.display === "none") {
+        	document.getElementById(x).style.display = "block";
+					t.innerHTML = "Hide";
+		    } else {
+		    	document.getElementById(x).style.display = "none";
+					t.innerHTML = "Show";
+		    }
+			}
+		</script>
+</body></html>

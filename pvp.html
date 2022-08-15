@@ -1,0 +1,1163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>TalonRO Calculator (PvP-BETA)</title>
+<link rel="shortcut icon" href="favicon.png">
+<script type="text/javascript"><!--
+Lang = 0;
+Taijin=1;
+// --></script>
+<script type="text/javascript" src="js/head.js?v=9"></script>
+<script type="text/javascript" src="js/item.js?v=9"></script>
+<script type="text/javascript" src="js/etc.js?v=9"></script>
+<script type="text/javascript" src="js/skill.js?v=9"></script>
+<script type="text/javascript" src="js/libs/base64.js"></script>
+<script type="text/javascript" src="js/libs/rawinflate.js"></script>
+<script type="text/javascript" src="js/libs/rawdeflate.js"></script>
+
+<link rel="stylesheet" type="text/css" href="js/style.css">
+<style type="text/css">
+<!--
+div#ubernavi {
+	background: url(images/th.png) repeat-x;
+	border-bottom: 1px solid #999;
+	border-right: 1px solid #999;
+	border-left: 1px solid #999;
+	display:inline-block;
+	top:0;
+	padding: 0.5em;
+	margin-left: 3px;
+	line-height: 100%;
+
+}
+div#ubernavi a {
+	text-decoration: none;
+	color:#000;
+}
+div#ubernavi a:hover {
+	text-decoration: underline;
+}
+span.navititle {
+
+	font-weight:bold;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<div id="ubernavi" align="left" style="margin-left: 7px;">
+<span class="navititle">Quick Navigation:</span> [<a href="index.html">PvM Calc</a>] [<a href="pvp.html">PvP Calc</a>] [<a href="https://github.com/kutsuru/ttcalculator/issues" target="_blank">Bug Report/Requests</a>]
+</div>
+
+<form name="calcForm">
+
+<div class="topic-main" align="left">
+<div class="topic" align="left" style="margin-left: 6.5px;margin-top: 6.5px;">
+<h3>Changelog <span style="font-size:0.8em;">[<span onclick="SaveCookieChangelogDisplay();" style="cursor:pointer">hide/show</span>]</span></h3>
+<div style="margin-left: 5px;">
+<div id="ChangelogDisplay" style="display:inline;line-height: 165%;">
+Be aware that this PVP calc is in beta status!
+I would like all of you to test this calc and compare it to the actual PVP damage.
+</div>
+</div></div>
+
+
+<div class="topic" style="margin-left: 6.5px;">
+<h3 style="font-size:15px">Character Simulator</h3>
+<table><tbody>
+<tr><td>&nbsp;</td><td>
+
+<select name="A_SaveSlot"></select>
+<input name="A_SlotName" value="Build name/description" defaultValue="Build name/description" type="text" required minlength="4" maxlength="48" size="50">
+<input value="Save" onclick="SaveCookie()" type="button">
+<input value="Load" onclick="LoadCookie()" type="button">
+<span id="DELHTML"><font size="2"><a href="del.html">[delete saved data]</a></font></span><br>
+<input value="Save as URL" onclick="URLOUT()" type="button">
+<input value="Copy" onclick="CopyToClipboard()" type="button">
+<input name="URL_TEXT" size="130" type="text">
+<table>
+<tbody>
+	<tr>
+		<td valign="top">
+			<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+				<tbody>
+						<tr>
+							<td colspan="6" class="subheader" bgcolor="#DDDDFF">
+								<div style="float: left; padding: 3px;">
+									<span id="nm01">Base Stats</span>
+								</div>
+								<div style="float: right; padding-right: 3px;">
+									<input id="lab0" name="vanilla" onclick="VanillaCard()|VanillaArmor()|StAllCalc()|KakutyouKansuu2()" type="checkbox">
+									<label for="lab0"><span id="nm079">Vanilla</span></label> /
+									<input id="lab1" name="A_youshi" onclick="calc()" type="checkbox">
+									<label for="lab1"><span id="nm078">Adopted</span></label> /
+									<input id="lab2" name="BLVauto" checked="checked" type="checkbox">
+									<label for="lab2"><span id="nm02">Auto Adjust Base Level</span></label>
+								</div>
+								<div style="clear: both;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td id="nm03">LV</td><td><select name="A_BaseLV" onchange="StCalc(1)|StAllCalc()"></select></td>
+							<td id="nm04">JobLV</td><td><select name="A_JobLV" onchange="StAllCalc()"></select></td>
+							<td id="nm05">Class</td><td><select name="A_JOB" onchange="ClickJob(this[this.selectedIndex].value) | StAllCalc() | StCalc()"></select></td>
+					</tr>
+					<tr>
+						<td id="nm06">STR</td><td><select name="A_STR" onchange="StCalc() | StAllCalc()"></select><span id="A_STRp">+0</span></td>
+						<td id="nm07">AGI</td><td><select name="A_AGI" onchange="StCalc() | StAllCalc()"></select><span id="A_AGIp">+0</span></td>
+						<td id="nm08">VIT</td><td><select name="A_VIT" onchange="StCalc() | StAllCalc()"></select><span id="A_VITp">+0</span></td>
+					</tr>
+					<tr>
+						<td id="nm010">INT</td><td><select name="A_INT" onchange="StCalc() | StAllCalc()"></select><span id="A_INTp">+0</span></td>
+						<td id="nm09">DEX</td><td><select name="A_DEX" onchange="StCalc() | StAllCalc()"><</select><span id="A_DEXp">+0</span></td>
+						<td id="nm011">LUK</td><td><select name="A_LUK" onchange="StCalc() | StAllCalc()"></select><span id="A_LUKp">+0</span></td>
+					</tr>
+				</tbody>
+			</table><br>
+			<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+				<tbody>
+					<tr>
+						<td>
+							<span id="nm012">Remaining Status Points</span></td><td><span id="A_STPOINT">48</span>
+							</td>
+					</tr>
+				</tbody>
+			</table>
+		</td>
+		<td valign="top">
+			<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+				<tbody>
+					<tr>
+						<td class="subheader" bgcolor="#DDDDFF">
+							<div style="float: left; padding: 3px;"><span id="nm013">Extended Info</span></div>
+								<div style="float: right; padding-right: 3px;">
+									<select name="A_Kakutyou" onchange="KakutyouKansuu2() | StAllCalc()"></select>
+								</div>
+								<div style="clear: both;"></div>
+							</td>
+				</tr>
+				<tr>
+					<td>
+							<span id="A_KakutyouSel"></span>
+							<span id="A_KakutyouData"></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</td>
+</tr>
+</tbody>
+</table>
+<br>
+<table border="0">
+	<tbody>
+		<tr>
+			<td id="nm014" class="title" style="width: 7.5%;">Max HP</td>
+			<td id="nm015" class="title" style="width: 7.5%;">Max SP</td>
+			<td id="nm016" class="title" style="width: 7.5%;">DEF</td>
+			<td id="nm017" class="title" style="width: 7.5%;">MDEF</td>
+			<td id="nm018" class="title" style="width: 7.5%;">HIT</td>
+			<td id="nm019" class="title" style="width: 7.5%;">FLEE</td>
+			<td id="nm020" class="title" style="width: 10%;">Perfect Dodge</td>
+			<td id="nm021" class="title" style="width: 7.5%;">Critical</td>
+			<td id="nm085" class="title" style="width: 7.5%;">ATK</td>
+			<td id="nm022" class="title" style="width: 7.5%;">MATK</td>
+			<td id="nm023" class="title" style="width: 7.5%;">ASPD</td>
+			<td id="nm024" class="title" style="width: 7.5%;">HP Regen</td>
+			<td id="nm025" class="title" style="width: 7.5%;">SP Regen</td>
+		</tr>
+		<tr>
+			<td class="data" id="A_MaxHP" align="right"> 40</td>
+			<td class="data" id="A_MaxSP" align="right"> 11</td>
+			<td class="data" id="A_totalDEF" align="right">0+1</td>
+			<td class="data" id="A_MDEF" align="right">0+1<br><b>WOE: </b>0+1</td>
+			<td class="data" id="A_HIT" align="right">2</td>
+			<td class="data" id="A_FLEE" align="right">2<br><b>WOE: </b>1</td>
+			<td class="data" id="A_LUCKY" align="right">1.1</td>
+			<td class="data" id="A_CRI" align="right">1.3</td>
+			<td class="data" id="A_ATK2" align="right">1+0<br><b>WOE: </b>1+0</td>
+			<td class="data" id="A_MATK" align="right">1~1</td>
+			<td class="data" id="A_ASPD" align="right">150.2</td>
+			<td class="data" id="A_HPR" align="right">1</td>
+			<td class="data" id="A_SPR" align="right">1</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+
+<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+<tbody>
+	<tr><td colspan="3" class="subheader">
+		<div style="float: left; padding: 3px;">Weapon Settings</div><div style="clear: left;"></div>
+	</td></tr>
+<tr>
+	<td>
+		<span id="nm026">Speed Potion: </span>
+			<select name="A_SpeedPOT" onchange="StAllCalc()">
+				<option selected="selected" value="0">None</option>
+				<option value="1">Concentration Potion</option>
+				<option value="2">Awakening Potion(Lv40)</option>
+				<option value="3">-Special(Berserk Pitcher)(Lv85)</option>
+			</select>
+	</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;
+		<span id="nm027">Weapon Type: </span>
+		<select name="A_WeaponType" onchange="ClickWeaponType(this[this.selectedIndex].value) | StAllCalc()">
+			<option selected="selected" value="0">Unarmed</option>
+			<option value="1">Dagger</option>
+			<option value="2">Sword</option>
+			<option value="6">Axe</option>
+			<option value="8">Mace</option>
+			<option value="9">Rod</option>
+		</select>
+		<span id="A_SobWeaponName"></span>
+		<select name="A_Arrow" onchange="StAllCalc()" style="visibility:hidden">
+			<option selected="selected" value="0">Arrow</option>
+			<option value="1">Silver Arrow</option>
+			<option value="2">Fire Arrow</option>
+			<option value="3">Iron Arrow</option>
+			<option value="4">Stone Arrow</option>
+			<option value="5">Crystal Arrow</option>
+			<option value="6">Arrow of Wind</option>
+			<option value="7">Arrow of Shadow</option>
+			<option value="8">Immaterial Arrow</option>
+			<option value="9">Rusty Arrow</option>
+			<option value="10">Steel Arrow</option>
+			<option value="11">Oridecon Arrow</option>
+			<option value="12">Arrow of Counter Evil</option>
+			<option value="13">Frozen Arrow</option>
+			<option value="14">Poison Arrow</option>
+			<option value="15">Sharp Arrow</option>
+			<option value="16">Holy Arrow</option>
+		</select>
+	</td>
+</tr>
+</tbody>
+</table>
+<br>
+
+<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;" onmouseover="FirstNovis()">
+	<tbody>
+		<tr>
+			<td colspan="4" class="subheader">
+				<div style="float: left; padding: 3px;">
+					<span id="nm028">Weapon &amp; Armor / Cards</span>
+				</div>
+				<div style="clear: left;"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="calc">
+				<span id="nm029">Weapon: </span>
+				<select name="A_weapon1" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)">
+					<option selected="selected" value="0">(Unarmed)</option>
+				</select>
+			</td>
+			<td class="calc">
+					<span id="A_seirenchi_name"></span>
+					<select name="A_Weapon_ATKplus" style="visibility:hidden" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="nm030">Attribute: </span>
+					<select name="A_Weapon_zokusei"></select>
+			</td>
+			<td class="calc">
+				<select name="A_cardshort" onchange="SetCardShort()|StAllCalc()|ActiveSkillSetPlus()"></select>
+			</td>
+		</tr>
+		<tr>
+			<td class="calc">
+				<span id="nm031">Cards: </span>
+				<select name="A_weapon1_card1" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_weapon1_card2" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_weapon1_card3" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_weapon1_card4" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+		</tr>
+		<tr style="display: none" id="T_KE1">
+			<td class="calc">
+				<span id="A_KEText11"></span>
+				<!-- <select name="A_KE11" style="visibility:hidden" onchange="StAllCalc()"></select> -->
+				<select name="A_KE11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_KEText12"></span>
+				<!-- <select name="A_KE12" style="visibility:hidden" onchange="StAllCalc()"></select> -->
+				<select name="A_KE12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr style="display: none" id="T_ME1">
+			<td class="calc">
+				<span id="A_METext11"></span>
+				<select name="A_ME11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_METext12"></span>
+				<select name="A_ME12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_BE1">
+			<td class="calc">
+				<span id="A_BEText11"></span>
+				<select name="A_BE11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_BEText12"></span>
+				<select name="A_BE12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr style="display: none" id="T_EE1">
+			<td class="calc">
+				<span id="A_EEText11"></span>
+				<select name="A_EE11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EEText12"></span>
+				<select name="A_EE12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EEText13"></span>
+				<select name="A_EE13" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_W2">
+			<td class="calc"><span id="spanA_weapon2"></span></td>
+			<td class="calc"><span id="spanA_weapon2seiren"></span></td>
+			<td class="calc"></td>
+			<td class="calc"><span id="spanA_weapon2_CardShort"></span></td>
+		</tr>
+		<tr style="display: none" id="T_WC2">
+			<td class="calc"><span id="nA_weapon2_c1"></span></td>
+			<td class="calc"><span id="nA_weapon2_c2"></span></td>
+			<td class="calc"><span id="nA_weapon2_c3"></span></td>
+			<td class="calc"><span id="nA_weapon2_c4"></span></td>
+		</tr>
+		<tr style="display: none" id="T_KE2">
+			<td class="calc">
+				<span id="A_KEText21"></span>
+				<!-- <select name="A_KE21" style="visibility:hidden" onchange="StAllCalc()"></select> -->
+				<select name="A_KE21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_KEText22"></span>
+				<!-- <select name="A_KE22" style="visibility:hidden" onchange="StAllCalc()"></select> -->
+				<select name="A_KE22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_ME2">
+			<td class="calc">
+				<span id="A_METext21"></span>
+				<select name="A_ME21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_METext22"></span>
+				<select name="A_ME22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_BE2">
+			<td class="calc">
+				<span id="A_BEText21"></span>
+				<select name="A_BE21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_BEText22"></span>
+				<select name="A_BE22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr style="display: none" id="T_EE2">
+			<td class="calc">
+				<span id="A_EEText21"></span>
+				<select name="A_EE21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EEText22"></span>
+				<select name="A_EE22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EEText23"></span>
+				<select name="A_EE23" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr>
+			<td class="calc"></td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+
+		<tr>
+			<td class="calc">
+			<select name="A_HEAD_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_head1" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_head1_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+
+			<!-- Biolab Enchant Headgear 1 -->
+			<td class="calc" style="display: none" id="T_BEH1">
+				<span id="A_BETextH1"></span>
+				<select name="A_BEH1" onchange="StAllCalc()"></select>
+			</td>
+			<!-- Eden Enchant Headgear -->
+			<td class="calc" style="display: none" id="T_EEH">
+				<span id="A_EETextH"></span>
+				<select name="A_EEH" onchange="StAllCalc()"></select>
+			</td>
+			<!-- Placeholder 1 -->
+			<td class="calc" id="T_HEAD1_TEMP"></td>
+
+			<!-- Biolab Enchant Headgear 2 -->
+			<td class="calc" style="display: none" id="T_BEH2">
+				<span id="A_BETextH2"></span>
+				<select name="A_BEH2" onchange="StAllCalc()"></select>
+			</td>
+			<!-- Eden Enchant Headgear 2 -->
+			<!--
+			<td class="calc" style="display: none" id="T_EEH2">
+				<span id="A_EETextH2"></span>
+				<select name="A_EEH2" onchange="StAllCalc()"></select>
+			</td>
+			-->
+			<!-- Placeholder 2 -->
+			<td class="calc" id="T_HEAD2_TEMP"></td>
+
+		</tr>
+
+		<tr>
+			<td class="calc">
+				<select style="margin-left: 51px" name="A_head2" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_head2_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr>
+			<td class="calc">
+				<select style="margin-left: 51px" name="A_head3" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr>
+			<td class="calc">
+				<select name="A_BODY_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_body" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_body_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_HSE" onchange="StAllCalc()">
+				</select>
+			</td>
+			<td style="visibility: hidden;" class="calc">
+				<select name="A_HSE_HEAD1" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_BEA" style="display: none">
+			<td class="calc">
+				<span id="A_BETextA1"></span>
+				<select name="A_BEA1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_BETextA2"></span>
+				<select name="A_BEA2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr id="T_EEA" style="display: none">
+			<td class="calc">
+				<span id="A_EETextA1"></span>
+				<select name="A_EEA1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EETextA2"></span>
+				<select name="A_EEA2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc"></td>
+			<td class="calc"></td>
+		</tr>
+		<tr id="T_MORAEA" style="display: none">
+			<td class="calc">
+				<span id="A_MORAETextA">Mora Armor</span>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextA1"></span>
+				<select name="A_MORAEA1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextA2"></span>
+				<select name="A_MORAEA2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextA3"></span>
+				<select name="A_MORAEA3" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="calc">
+				<select style="visibility: visible;" name="A_LEFT_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select style="visibility: visible;" name="A_left" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc" id="ID_C4">
+				<select style="visibility: visible;" name="A_left_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+
+			<td class="calc" style="display: none" id="T_BES1">
+				<span id="A_BETextS1"></span>
+				<select name="A_BES1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_BES1_TEMP"></td>
+			<td class="calc" style="display: none" id="T_BES2">
+				<span id="A_BETextS2"></span>
+				<select name="A_BES2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_BES2_TEMP"></td>
+		</tr>
+
+		<tr>
+			<td class="calc">
+				<select name="A_SHOULDER_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_shoulder" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_shoulder_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_acces1" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_acces1_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="calc" style="display: none" id="T_BEG1">
+				<span id="A_BETextG1"></span>
+				<select name="A_BEG1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" style="display: none" id="T_EEG1">
+				<span id="A_EETextG1"></span>
+				<select name="A_EEG1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_GAR1_TEMP"></td>
+			<td class="calc" style="display: none" id="T_BEG2">
+				<span id="A_BETextG2"></span>
+				<select name="A_BEG2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" style="display: none" id="T_EEG2">
+				<span id="A_EETextG2"></span>
+				<select name="A_EEG2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_GAR2_TEMP"></td>
+
+			<td class="calc" style="display: none" id="T_BEAC11">
+				<span id="A_BETextAC11"></span>
+				<select name="A_BEAC11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_ACC11_TEMP"></td>
+			<td class="calc" style="display: none" id="T_BEAC12">
+				<span id="A_BETextAC12"></span>
+				<select name="A_BEAC12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_ACC12_TEMP"></td>
+		</tr>
+
+		<tr id="T_MORAEG" style="display: none">
+			<td class="calc">
+				<span id="A_MORAETextG">Mora Garment</span>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextG1"></span>
+				<select name="A_MORAEG1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextG2"></span>
+				<select name="A_MORAEG2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextG3"></span>
+				<select name="A_MORAEG3" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDG" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextG">El Dicaste Garment</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextG1"></span>
+				<select name="A_EDG1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextG2"></span>
+				<select name="A_EDG2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextG3"></span>
+				<select name="A_EDG3" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDAC1" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextAC1">El Dicaste Accessory 1</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC11"></span>
+				<select name="A_EDAC11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC12"></span>
+				<select name="A_EDAC12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC13"></span>
+				<select name="A_EDAC13" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDLOED1" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextLOED1">Light of El Dicaste 1</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED11"></span>
+				<select name="A_EDLOED11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED12"></span>
+				<select name="A_EDLOED12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED13"></span>
+				<select name="A_EDLOED13" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="calc">
+				<select name="A_SHOES_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_shoes" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_shoes_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_acces2" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<select name="A_acces2_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="calc" style="display: none" id="T_EEF1">
+				<span id="A_EETextF1"></span>
+				<select name="A_EEF1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_FOOT1_TEMP"></td>
+			<td class="calc" style="display: none" id="T_EEF2">
+				<span id="A_EETextF2"></span>
+				<select name="A_EEF2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_FOOT2_TEMP"></td>
+
+			<td class="calc" style="display: none" id="T_BEAC21">
+				<span id="A_BETextAC21"></span>
+				<select name="A_BEAC21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_ACC21_TEMP"></td>
+			<td class="calc" style="display: none" id="T_BEAC22">
+				<span id="A_BETextAC22"></span>
+				<select name="A_BEAC22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc" id="T_ACC22_TEMP"></td>
+		</tr>
+
+		<tr id="T_EDF" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextF">El Dicaste Footgear</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextF1"></span>
+				<select name="A_EDF1" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextF2"></span>
+				<select name="A_EDF2" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextF3"></span>
+				<select name="A_EDF3" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDAC2" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextAC2">El Dicaste Accessory 2</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC21"></span>
+				<select name="A_EDAC21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC22"></span>
+				<select name="A_EDAC22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextAC23"></span>
+				<select name="A_EDAC23" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_EDLOED2" style="display: none">
+			<td class="calc">
+				<span id="A_EDTextLOED2">Light of El Dicaste 2</span>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED21"></span>
+				<select name="A_EDLOED21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED22"></span>
+				<select name="A_EDLOED22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_EDTextLOED23"></span>
+				<select name="A_EDLOED23" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+		<tr id="T_MORAEAC1" style="display: none">
+			<td class="calc">
+				<span id="A_MORAETextAC1">Mora Accessory 1</span>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC11"></span>
+				<select name="A_MORAEAC11" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC12"></span>
+				<select name="A_MORAEAC12" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC13"></span>
+				<select name="A_MORAEAC13" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+		<tr id="T_MORAEAC2" style="display: none">
+			<td class="calc">
+				<span id="A_MORAETextAC2">Mora Accessory 2</span>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC21"></span>
+				<select name="A_MORAEAC21" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC22"></span>
+				<select name="A_MORAEAC22" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="A_MORAETextAC23"></span>
+				<select name="A_MORAEAC23" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
+
+	</tbody>
+</table>
+<br />
+
+<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: 60%;">
+	<tbody>
+		<tr>
+			<td colspan="10" class="subheader">
+					<div style="float: left; padding: 3px;"><span id="nm080">Item Data</span></div>
+					<div style="float: right; padding-right: 3px;"><input id="lab3" name="ITEM_SW" onclick="ClickB_Item('SW')" type="checkbox"><label for="lab3"><span id="nm081">Show</span></label></div>
+			</td>
+		</tr>
+		<tr>
+			<td id="ITEM0" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_DATA" class="calc" width="7%"></td>
+			<td id="ITEM1" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_SLOT" class="calc" width="7%"></td>
+			<td id="ITEM2" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_W_LV" class="calc" width="7%"></td>
+			<td id="ITEM3" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_LV" class="calc" width="7%"></td>
+			<td id="ITEM4" class="calc" bgcolor="#DDDDFF" width="13%"></td>
+			<td id="ITEM_WAIT" class="calc" width="7%"></td>
+		</tr>
+		<tr>
+			<td colspan="10" id="B_SETUMEI" class="calc"></td>
+		</tr>
+	</tbody>
+</table>
+<br />
+
+<table style="border-collapse: collapse;">
+	<tbody>
+		<tr>
+			<td style="width: 50%;padding-left:0px;" valign="top">
+				<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+					<tbody>
+						<tr>
+							<td colspan="4" class="subheader">
+								<div style="float: left; padding: 3px;">
+									<span id="nm033">Passive / Duration Skills</span>
+								</div>
+								<div style="clear: left;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td id="P_Skill0"></td><td id="P_Skill0s"></td>
+							<td id="P_Skill1"></td><td id="P_Skill1s"></td>
+						</tr><tr>
+							<td id="P_Skill2"></td><td id="P_Skill2s"></td>
+							<td id="P_Skill3"></td><td id="P_Skill3s"></td>
+						</tr><tr>
+							<td id="P_Skill4"></td><td id="P_Skill4s"></td>
+							<td id="P_Skill5"></td><td id="P_Skill5s"></td>
+						</tr><tr>
+							<td id="P_Skill6"></td><td id="P_Skill6s"></td>
+							<td id="P_Skill7"></td><td id="P_Skill7s"></td>
+						</tr><tr>
+							<td id="P_Skill8"></td><td id="P_Skill8s"></td>
+							<td id="P_Skill9"></td><td id="P_Skill9s"></td>
+						</tr><tr>
+							<td id="P_Skill10"></td><td id="P_Skill10s"></td>
+							<td id="P_Skill11"></td><td id="P_Skill11s"></td>
+					</tr><tr>
+							<td id="P_Skill12"></td><td id="P_Skill12s"></td>
+							<td id="P_Skill13"></td><td id="P_Skill13s"></td>
+						</tr><tr>
+							<td id="P_Skill14"></td><td id="P_Skill14s"></td>
+							<td id="P_Skill15"></td><td id="P_Skill15s"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td style="width: 50%;padding-right:0px;" valign="top">
+				<div id="SIENSKILL">
+					<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse;">
+						<tbody>
+							<tr>
+								<td id="A2TD" colspan="4" class="subheader">
+									<div style="float: left; padding: 3px;">Supportive / Party Skills <span id="A2used"></span></div>
+									<div style="float: right; padding-right: 3px;">
+										<input id="lab4" name="A2_SKILLSW" onclick="Click_SkillSW()" type="checkbox"><label for="lab4"><span id="nm035">Show </span></label>
+									</div>
+									<div style="clear: both;"></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
+<div class="topic" style="margin-left: 6.5px;">
+<h3 style="font-size:15px">Enemy Combat Simulator</h3>
+	<table style="">
+	<tbody>
+		<tr>
+		<td>&nbsp;</td>
+		<td>
+			<br>
+			<span id="nm036">Attack Skills: </span><select name="A_ActiveSkill" onchange="ClickActiveSkill()"><option selected="selected" value="0">Basic Attack</option></select>
+			<select name="A_ActiveSkillLV" style="visibility:hidden">
+				<option selected="selected" value="1">1</option></select>
+			&nbsp;&nbsp;<span id="AASkillName"></span><span id="AASkill"></span><br>
+
+			<input value="Calculate" onclick="calc()" type="button">
+			<br>
+			<br>
+			<table style="width: auto;" align="left">
+			<tbody>
+				<tr>
+				<td>
+					<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: 300px;">
+					<tbody>
+						<tr>
+							<td colspan="4" class="subheader" bgcolor="#DDDDFF">
+								<div style="float: left; padding: 3px;"><span id="nm037">Enemy: </span><select name="B_Enemy" onchange="tPlusEnemyClick()|calc()"><option selected="selected" value="0">Knight</option><option value="1">Assassin</option><option value="2">Priest</option><option value="3">Hunter</option><option value="4">Wizard</option><option value="5">Blacksmith</option><option value="6">Crusader</option><option value="7">Rogue</option><option value="8">Monk</option><option value="9">Barde</option><option value="10">Dancer</option><option value="11">Sage</option><option value="12">Alchemist</option><option value="13">Super Novice</option><option value="14">Lord Knight</option><option value="15">Assassin Cross</option><option value="16">High Priest</option><option value="17">Sniper</option><option value="18">High Wizard</option><option value="19">Whitesmith</option><option value="20">Paladin</option><option value="21">Stalker</option><option value="22">Champion</option><option value="23">Clown</option><option value="24">Gypsy</option><option value="25">Scholar</option><option value="26">Creator</option><option value="27">Novice</option><option value="28">Swordsman</option><option value="29">Thief</option><option value="30">Acolyte</option><option value="31">Archer</option><option value="32">Mage</option><option value="33">Merchant</option><option value="34">High Novice</option><option value="35">High Swordsman</option><option value="36">High Thief</option><option value="37">High Acolyte</option><option value="38">High Archer</option><option value="39">High Mage</option><option value="40">High Merchant</option></select></div><div style="float: right; padding-right: 3px;"><input name="B_Ses" onclick="calc()" checked="checked" type="checkbox"><span id="nm063">WoE-Reduction</span></div><div style="clear: both;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><span id="nm038">HP</span></td><td><span id="B_HP">11966</span></td>
+							<td><span id="nm039">LV</span></td><td><select name="B_LV"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option selected="selected" value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option></select></td>
+						</tr>
+						<tr>
+							<td><span id="nm040">DEF</span></td><td><select name="B_DEF"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option selected="selected" value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option></select></td>
+							<td><span id="nm041">VIT</span></td><td><select name="B_VIT"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option selected="selected" value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option><option value="101">101</option><option value="102">102</option><option value="103">103</option><option value="104">104</option><option value="105">105</option><option value="106">106</option><option value="107">107</option><option value="108">108</option><option value="109">109</option><option value="110">110</option><option value="111">111</option><option value="112">112</option><option value="113">113</option><option value="114">114</option><option value="115">115</option><option value="116">116</option><option value="117">117</option><option value="118">118</option><option value="119">119</option><option value="120">120</option><option value="121">121</option><option value="122">122</option><option value="123">123</option><option value="124">124</option><option value="125">125</option><option value="126">126</option><option value="127">127</option><option value="128">128</option><option value="129">129</option><option value="130">130</option><option value="131">131</option><option value="132">132</option><option value="133">133</option><option value="134">134</option><option value="135">135</option><option value="136">136</option><option value="137">137</option><option value="138">138</option><option value="139">139</option><option value="140">140</option><option value="141">141</option><option value="142">142</option><option value="143">143</option><option value="144">144</option><option value="145">145</option><option value="146">146</option><option value="147">147</option><option value="148">148</option><option value="149">149</option><option value="150">150</option></select></td>
+						</tr>
+						<tr>
+							<td><span id="nm042">MDEF</span></td><td><select name="B_MDEF"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option selected="selected" value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option></select></td>
+							<td><span id="nm043">INT</span></td><td><select name="B_INT"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option selected="selected" value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option><option value="101">101</option><option value="102">102</option><option value="103">103</option><option value="104">104</option><option value="105">105</option><option value="106">106</option><option value="107">107</option><option value="108">108</option><option value="109">109</option><option value="110">110</option><option value="111">111</option><option value="112">112</option><option value="113">113</option><option value="114">114</option><option value="115">115</option><option value="116">116</option><option value="117">117</option><option value="118">118</option><option value="119">119</option><option value="120">120</option><option value="121">121</option><option value="122">122</option><option value="123">123</option><option value="124">124</option><option value="125">125</option><option value="126">126</option><option value="127">127</option><option value="128">128</option><option value="129">129</option><option value="130">130</option><option value="131">131</option><option value="132">132</option><option value="133">133</option><option value="134">134</option><option value="135">135</option><option value="136">136</option><option value="137">137</option><option value="138">138</option><option value="139">139</option><option value="140">140</option><option value="141">141</option><option value="142">142</option><option value="143">143</option><option value="144">144</option><option value="145">145</option><option value="146">146</option><option value="147">147</option><option value="148">148</option><option value="149">149</option><option value="150">150</option></select></td>
+						</tr>
+						<tr>
+							<td><span id="nm044">AGI</span></td><td><select name="B_AGI"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option selected="selected" value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option><option value="101">101</option><option value="102">102</option><option value="103">103</option><option value="104">104</option><option value="105">105</option><option value="106">106</option><option value="107">107</option><option value="108">108</option><option value="109">109</option><option value="110">110</option><option value="111">111</option><option value="112">112</option><option value="113">113</option><option value="114">114</option><option value="115">115</option><option value="116">116</option><option value="117">117</option><option value="118">118</option><option value="119">119</option><option value="120">120</option><option value="121">121</option><option value="122">122</option><option value="123">123</option><option value="124">124</option><option value="125">125</option><option value="126">126</option><option value="127">127</option><option value="128">128</option><option value="129">129</option><option value="130">130</option><option value="131">131</option><option value="132">132</option><option value="133">133</option><option value="134">134</option><option value="135">135</option><option value="136">136</option><option value="137">137</option><option value="138">138</option><option value="139">139</option><option value="140">140</option><option value="141">141</option><option value="142">142</option><option value="143">143</option><option value="144">144</option><option value="145">145</option><option value="146">146</option><option value="147">147</option><option value="148">148</option><option value="149">149</option><option value="150">150</option></select></td>
+							<td><span id="nm045">LUK</span></td><td><select name="B_LUK"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option selected="selected" value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option><option value="101">101</option><option value="102">102</option><option value="103">103</option><option value="104">104</option><option value="105">105</option><option value="106">106</option><option value="107">107</option><option value="108">108</option><option value="109">109</option><option value="110">110</option><option value="111">111</option><option value="112">112</option><option value="113">113</option><option value="114">114</option><option value="115">115</option><option value="116">116</option><option value="117">117</option><option value="118">118</option><option value="119">119</option><option value="120">120</option><option value="121">121</option><option value="122">122</option><option value="123">123</option><option value="124">124</option><option value="125">125</option><option value="126">126</option><option value="127">127</option><option value="128">128</option><option value="129">129</option><option value="130">130</option><option value="131">131</option><option value="132">132</option><option value="133">133</option><option value="134">134</option><option value="135">135</option><option value="136">136</option><option value="137">137</option><option value="138">138</option><option value="139">139</option><option value="140">140</option><option value="141">141</option><option value="142">142</option><option value="143">143</option><option value="144">144</option><option value="145">145</option><option value="146">146</option><option value="147">147</option><option value="148">148</option><option value="149">149</option><option value="150">150</option></select></td>
+						</tr>
+						<tr>
+							<td><span id="nm046">Race</span></td><td><span id="nm032">Demi-Human</span></td>
+							<td><span id="nm047">Element</span></td><td><select name="B_ZOKUSEI"><option selected="selected" value="1">Neutral1</option><option value="11">Water1</option><option value="21">Earth1</option><option value="31">Fire1</option><option value="41">Wind1</option><option value="51">Poison1</option><option value="61">Holy1</option><option value="71">Dark1</option><option value="81">Ghost1</option><option value="91">Undead1</option></select></td>
+						</tr>
+						<tr>
+							<td><span id="nm048">Size</span></td><td><span id="nm049">Medium Size</span></td><td></td><td></td>
+						</tr>
+					</tbody>
+					</table>
+
+			<!-- NEWWW -->
+					<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: 300px;">
+					<tbody>
+						<tr><td colspan="2" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">Enemy Extras</div></td></tr>
+						<tr><td>Flee+</td>
+						<td><input onchange="calc()" name="B_TAISEI7" value="0" size="3" type="text"></td></tr>
+						<tr><td>Perfect Dodge+</td>
+						<td><input onchange="calc()" name="B_TAISEI6" value="0" size="3" type="text"></td></tr>
+						<tr><td>Demi-Human Resistance</td>
+						<td><input onchange="calc()" name="B_TAISEI0" value="0" size="3" type="text">%</td></tr>
+						<tr><td>Long-range Resistance</td>
+						<td><input onchange="calc()" name="B_TAISEI1" value="0" size="3" type="text">%</td></tr>
+						<tr><td>Elemental Resistance</td>
+						<td>
+						<select name="B_TAISEI2_1" onchange="calc()"><option selected="selected" value="0">Neutral</option><option value="1">Water</option><option value="2">Earth</option><option value="3">Fire</option><option value="4">Wind</option><option value="5">Poison</option><option value="6">Holy</option><option value="7">Dark</option><option value="8">Ghost</option><option value="9">Undead</option></select>
+						<input onchange="calc()" name="B_TAISEI2_2" value="0" size="3" type="text">%</td></tr>
+						<tr><td>Elemental Resistance</td>
+						<td>
+						<select name="B_TAISEI3_1" onchange="calc()"><option selected="selected" value="0">Neutral</option><option value="1">Water</option><option value="2">Earth</option><option value="3">Fire</option><option value="4">Wind</option><option value="5">Poison</option><option value="6">Holy</option><option value="7">Dark</option><option value="8">Ghost</option><option value="9">Undead</option></select>
+						<input onchange="calc()" name="B_TAISEI3_2" value="0" size="3" type="text">%</td></tr>
+						<tr><td>Angelus</td>
+						<td><select name="B_TAISEI4" onchange="calc()"><option selected="selected" value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr>
+						<tr><td>Defending Aura</td>
+						<td><select name="B_TAISEI5" onchange="calc()"><option selected="selected" value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td></tr>
+						<tr><td>Auto Guard</td>
+						<td><select name="B_TAISEI10" onchange="calc()"><option selected="selected" value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr>
+						<tr><td>Max HP +</td>
+						<td><input onchange="calc()" name="B_TAISEI11" value="0" size="4" type="text"></td></tr>
+						<tr><td>Max HP% +</td>
+						<td><input onchange="calc()" name="B_TAISEI12" value="0" size="3" type="text"></td></tr>
+						<tr><td>Energy Coat</td>
+						<td><select name="B_TAISEI13" onchange="calc()"><option selected="selected" value="0">0</option><option value="1">6% Reduction</option><option value="2">12% Reduction</option><option value="3">18% Reduction</option><option value="4">24% Reduction</option><option value="5">30% Reduction</option></select></td></tr>
+						<tr><td>Shield Reflect</td>
+						<td><select name="B_TAISEI14" onchange="calc()"><option selected="selected" value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr>
+						<tr><td>Additional Reflect (Equip/Card)</td>
+						<td><input onchange="calc()" name="B_TAISEI15" value="0" size="3" type="text">%</td></tr>
+					</tbody>
+					</table>
+
+			<!-- /NEWWW -->
+				</td>
+				</tr>
+			</tbody>
+			</table>
+			<table style="margin-top: 3px;border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+			<tbody><tr><td colspan="2" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;"><span id="nm052">Combat Results</span></div></td></tr>
+				<tr>
+				<td><span id="nm053">Hit Ratio</span></td><td><span id="BattleHIT">6</span><span id="nm067">%</span></td>
+				</tr><tr>
+				<td><span id="CRIATKname">Critical Damage</span></td><td><span id="CRIATK">0</span></td>
+				</tr><tr>
+				<td><span id="CRInumname">Critical Rate</span></td><td><span id="CRInum">0%</span></td>
+				</tr><tr>
+				<td><span id="bSUBname"></span></td><td><span id="bSUB"></span></td>
+				</tr><tr>
+				<td><span id="bSUB2name">Time/Hit<br></span></td><td><span id="bSUB2">0.996s<br></span></td>
+				</tr><tr>
+				<td><span id="nm055">Minimum Damage</span></td><td><span id="strID_0">0</span></td>
+				</tr><tr>
+				<td><span id="nm056">Average Damage</span></td><td><span id="strID_1">0</span></td>
+				</tr><tr>
+				<td><span id="nm057">Maximum Damage</span></td><td><span id="strID_2">0</span></td>
+				</tr><tr>
+				<td><span id="nm058">Damage Per Second</span></td><td><span id="AveSecondATK">0</span></td>
+				</tr><tr>
+				<td><span id="nm059">Minimum Number of Hits</span></td><td><span id="MinATKnum">Over 10000 Hits</span></td>
+				</tr><tr>
+				<td><span id="nm060">Average Number of Hits</span></td><td><span id="AveATKnum">Over 10000 Hits</span></td>
+				</tr><tr>
+				<td><span id="nm061">Maximum Number of Hits</span></td><td><span id="MaxATKnum"><font size="2">Infinite (no 100% Hit)</font></span></td>
+				</tr><tr>
+				<td><span id="nm062">Average Battle Duration</span></td><td><span id="BattleTime">Too High to Calculate</span></td>
+				</tr>
+				<tr><td id="average_sp_cost">Average SP Cost</td><td id="average_sp_cost_value">0</td></tr>
+				<tr><td id="average_zeny_cost"></td><td id="average_zeny_cost_value"></td></tr>
+				<tr style="display:none">
+				<td id="nm086" colspan="2"><center>-- Special Skills --</center></td>
+				</tr><tr style="display:none">
+				<td id="nm087">Earthquake</td><td id="B_EQ">Not Available</td>
+				</tr><tr style="display:none">
+				<td id="nm088">Hell's Judgment</td><td id="B_HJ"></td>
+				</tr>
+			</tbody>
+			</table>
+			<table style="width: auto;" align="left">
+			<tbody>
+				<tr>
+				<td id="MONSTER_IJYOU">
+					<!--Enemy Debuffs-->
+					<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;">
+					<tbody>
+						<tr><td colspan="2" class="subheader" bgcolor="#DDDDFF">
+						<div style="float: left; padding: 3px;"><span id="nm050">Enemy Debuffs</span></div>
+						<input name="B_IJYOUSW" onclick="Click_IjyouSW()" type="checkbox">
+						<span id="nm051">Show</span>
+						<div style="clear: both;"></div>
+						</td></tr>
+					</tbody>
+					</table>
+				</td>
+				</tr>
+				<tr>
+				<td id="MONSTER_KYOUKA">
+					<!--Enemy Buffs-->
+					<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+					<tbody>
+						<tr><td colspan="2" class="subheader" bgcolor="#DDDDFF">
+						<div style="float: left; padding: 3px;"><span id="nm083">Enemy Buffs</span></div>
+						<input name="B_KYOUKASW" onclick="Click_EnemyKyoukaSW()" type="checkbox">
+						<span id="nm084">Show</span>
+						<div style="clear: both;"></div>
+						</td></tr>
+					</tbody>
+					</table>
+				</td>
+				</tr>
+				<tr>
+					<td id="monster_status"><!--Enemy Status-->
+						<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;" align="left">
+							<tbody>
+								<tr>
+									<td colspan="6" class="subheader" bgcolor="#DDDDFF">
+										<div style="float: left; padding: 3px; width: 100px;">Enemy Status</div><input id="monster_status_check" name="monster_status_check" onclick="display_monster_status()" type="checkbox">	<label for="monster_status_check"><span id="monster_status_check_label">Show</span></label>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<!--Buffs e Items-->
+<div class="topic" style="margin-left: 6.5px;">
+	<h3 style="font-size:15px">Buffs, items and other stuff</h3>
+	<table style="">
+	<tbody>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<div style="clear: both;"></div>
+				<center>--<span id="nm082"><font size="2"><b>Anything below this line will only be saved via URL</b></font></span>--</center><br>
+
+				<div id="SP_SIEN04" style="float: left;">
+				<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;"><tbody><tr><td style="background-image: url(&quot;images/th.png&quot;);" id="A6TD" colspan="6" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">Miscellaneous Effects <span id="A6used"></span></div><div style="float: right; padding-right: 3px;"><input name="A6_SKILLSW" onclick="Click_Skill6SW()" type="checkbox">Show</div></td></tr></tbody></table>
+				</div>
+
+				<div id="SP_SIEN02" style="float: left;">
+				<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;"><tbody><tr><td style="background-image: url(&quot;images/th.png&quot;);" id="A4TD" colspan="4" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">Guild Skills <span id="A4used"></span></div><div style="float: right; padding-right: 3px;"><input name="A4_SKILLSW" onclick="Click_Skill4SW()" type="checkbox">Show</div><div style="clear: both;"></div></td></tr></tbody></table>
+				</div>
+
+				<div id="SP_SIEN03" style="float: left;">
+				<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;"><tbody><tr><td style="background-image: url(&quot;images/th.png&quot;);" id="A5TD" colspan="4" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">Gospel Effects <span id="A5used"></span></div><div style="float: right; padding-right: 3px;"><input name="A5_SKILLSW" onclick="Click_Skill5SW()" type="checkbox">Show</div><div style="clear: both;"></div></td></tr></tbody></table>
+				</div>
+				<div style="clear: both;">
+					<div id="SP_SIEN01" style="float: left;">
+					<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;"><tbody><tr><td style="background-image: url(&quot;images/th.png&quot;);" id="A3TD" colspan="6" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">Music and Dance Skills <span id="A3used"></span></div><div style="float: right; padding-right: 3px;"><input name="A3_SKILLSW" onclick="Click_Skill3SW()" type="checkbox">Show</div><div style="clear: both;"></div></td></tr></tbody></table>
+					</div>
+					<div id="SP_SIEN05" style="float: left;">
+					<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;"><tbody><tr><td style="background-image: url(&quot;images/th.png&quot;);" id="A7TD" colspan="6" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">Items (Food / Etc.) <span id="A7used"></span></div><div style="float: right; padding-right: 3px;"><input name="A7_SKILLSW" onclick="Click_Skill7SW()" type="checkbox">Show</div><div style="clear: both;"></div></td></tr></tbody></table>
+					</div>
+
+					<div style="clear: both;">
+						<div id="ID_SQI_Bonus">
+						<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;"><tbody><tr><td style="background-image: url(&quot;images/th.png&quot;);" id="SQI_Bonus_TD" colspan="1" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">SQI-Bonus<span id="SQI_Bonus_used"></span></div><div style="float: right; padding-right: 3px;"><input id="lab15" name="SQI_Bonus_SW" onclick="Click_SQI_Bonus_SW()" type="checkbox"><label for="lab15">Show</label></div><div style="clear: both;"></div></td></tr></tbody></table>
+						</div>
+						<br>
+						<hr>
+						<font size="2"></font><center><font size="2">--<span id="nm100"><b>NOTHING below this line will be saved!</b></span>--</font></center><br>
+						<div id="ID_ETC">
+							<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;"><tbody><tr><td style="background-image: url(&quot;images/th.png&quot;);" id="A8TD" colspan="2" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">Additional Effects <span id="A8used"></span></div><div style="float: right; padding-right: 3px;"><input name="A8_SKILLSW" onclick="Click_Skill8SW()" type="checkbox">Show</div><div style="clear: both;"></div></td></tr></tbody></table>
+						</div>
+						<div id="ID_ARG">
+							<table style="border: 1px solid rgb(153, 153, 153); border-collapse: collapse; width: auto;"><tbody><tr><td style="background-image: url(&quot;images/th.png&quot;);" id="A9_TD" colspan="1" class="subheader" bgcolor="#DDDDFF"><div style="float: left; padding: 3px;">Manual Edits<span id="A9_used"></span></div><div style="float: right; padding-right: 3px;"><input name="A9_SKILLSW" onclick="Click_Skill9SW()" type="checkbox">Show</div><div style="clear: both;"></div></td></tr></tbody></table>
+						</div>
+						<br>
+						<hr>
+						<font size="2"><span id="nm077">Minimum Delay Between Active Skills:</span></font>
+						<input type='text' onChange='calc()' name='minimum_skill_delay' value='0.23'>s</td>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+<div class="topic" align="right" style="margin-left: 6.5px"><div style="margin-right: 5px;line-height: 165%;">
+Original simulator created by <a href="http://roratorio.2-d.jp/ro/">ROratorio</a><br>
+Translated and adapted by <a href="http://rode.doddlercon.com/">Doddler</a><br>
+Old updates/translations by <a href="http://calcx.wushuang.ws/pvp.html">Gandi</a><br>
+Remade/Updated by <a href="http://games4nerds.comuf.com/RMS/RMS%20Non-Official%20RO%20Calc.html">Triper</a><br>
+Adjusted to Talon Tales by FlynnQ
+</div></div>
+</div>
+<script type="text/javascript" src="js/monster1.js"></script>
+<script type="text/javascript" src="js/card.js?v=9"></script>
+<script type="text/javascript" src="js/foot.js?v=9"></script>
+</form>
+		<script type="text/javascript">
+		</script>
+</body>
+</html>

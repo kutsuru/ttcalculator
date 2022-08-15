@@ -1,0 +1,588 @@
+Effect list:
+	1: STR + [value]
+	2: AGI + [value]
+	3: VIT + [value]
+	4: INT + [value]
+	5: DEX + [value]
+	6: LUK + [value]
+	7: All Stats + [value]
+	8 : HIT + [value]
+	9 : FLEE + [value]
+	10: CRIT + [value]
+	11: Perfect Dodge + [value]
+	12: ASPD + [value]%
+	13: Max HP + [value] (flat)
+	14: Max SP + [value] (flat)
+	15: Max HP + [value]%
+	16: Max SP + [value]%
+	17: ATK + [value] (flat)
+	18: DEF + [value]
+	19: MDEF + [value]
+	20: When [value] == 0, Neutral Element Weapon
+	20: When [value] == 1, Water Element Weapon
+	20: When [value] == 2, Earth Element Weapon
+	20: When [value] == 3, Fire Element Weapon
+	20: When [value] == 4, Wind Element Weapon
+	20: When [value] == 5, Poison Element Weapon
+	20: When [value] == 6, Holy Element Weapon
+	20: When [value] == 7, Shadow Element Weapon
+	20: When [value] == 8, Ghost Element Weapon
+	20: When [value] == 9, Undead Element Weapon
+	21: Ignore [Normal] class monsters defense by [value]%
+	22: Ignore [Boss] class monsters defense by [value]%
+	23: Enemy's DEF and VIT increases damage (//custom Talon Tales fix ignore effects on left/offhand like Ice Pick or Weeder Knife)
+	24: Reduces your defence by 1/[value]
+	25: Increases ranged damage by [value]%
+	26: Increases physical damage against bosstype monsters by [value]%
+	27: Increases physical damage against [Small] size monsters by [value]%
+	28: Increases physical damage against [Medium] size monsters by [value]%
+	29: Increases physical damage against [Large] size monsters by [value]%
+	30: When [value] > 0, Increases physical damage against [Formless] race monsters by [value]%
+	30: When [value] < 0, Decreases physical damage against [Formless] race monsters by [value]%
+	31: When [value] > 0, Increases physical damage against [Undead] race monsters by [value]%
+	31: When [value] < 0, Decreases physical damage against [Undead] race monsters by [value]%
+	32: When [value] > 0, Increases physical damage against [Brute] race monsters by [value]%
+	32: When [value] < 0, Decreases physical damage against [Brute] race monsters by [value]%
+	33: When [value] > 0, Increases physical damage against [Plant] race monsters by [value]%
+	33: When [value] < 0, Decreases physical damage against [Plant] race monsters by [value]%
+	34: When [value] > 0, Increases physical damage against [Insect] race monsters by [value]%
+	34: When [value] < 0, Decreases physical damage against [Insect] race monsters by [value]%
+	35: When [value] > 0, Increases physical damage against [Fish] race monsters by [value]%
+	35: When [value] < 0, Decreases physical damage against [Fish] race monsters by [value]%
+	36: When [value] > 0, Increases physical damage against [Demon] race monsters by [value]%
+	36: When [value] < 0, Decreases physical damage against [Demon] race monsters by [value]%
+	37: When [value] > 0, Increases physical damage against [Demi-Human] race monsters by [value]%
+	37: When [value] < 0, Decreases physical damage against [Demi-Human] race monsters by [value]%
+	38: When [value] > 0, Increases physical damage against [Angel] race monsters by [value]%
+	38: When [value] < 0, Decreases physical damage against [Angel] race monsters by [value]%
+	39: When [value] > 0, Increases physical damage against [Dragon] race monsters by [value]%
+	39: When [value] < 0, Decreases physical damage against [Dragon] race monsters by [value]%
+	40: Increases physical damage against [Neutral] element monsters by [value]%
+	41: Increases physical damage against [Water] element monsters by [value]%
+	42: Increases physical damage against [Earth] element monsters by [value]%
+	43: Increases physical damage against [Fire] element monsters by [value]%
+	44: Increases physical damage against [Wind] element monsters by [value]%
+	45: Increases physical damage against [Poison] element monsters by [value]%
+	46: Increases physical damage against [Holy] element monsters by [value]%
+	47: Increases physical damage against [Shadow] element monsters by [value]%
+	48: Increases physical damage against [Ghost] element monsters by [value]%
+	49: Increases physical damage against [Undead] element monsters by [value]%
+	50: When [value] > 0, Decreases damage from [Formless] race monsters by [value]%
+	50: When [value] < 0, Increases damage from [Formless] race monsters by [value]%
+	51: When [value] > 0, Decreases damage from [Undead] race monsters by [value]%
+	51: When [value] < 0, Increases damage from [Undead] race monsters by [value]%
+	52: When [value] > 0, Decreases damage from [Brute] race monsters by [value]%
+	52: When [value] < 0, Increases damage from [Brute] race monsters by [value]%
+	53: When [value] > 0, Decreases damage from [Plant] race monsters by [value]%
+	53: When [value] < 0, Increases damage from [Plant] race monsters by [value]%
+	54: When [value] > 0, Decreases damage from [Insect] race monsters by [value]%
+	54: When [value] < 0, Increases damage from [Insect] race monsters by [value]%
+	55: When [value] > 0, Decreases damage from [Fish] race monsters by [value]%
+	55: When [value] < 0, Increases damage from [Fish] race monsters by [value]%
+	56: When [value] > 0, Decreases damage from [Demon] race monsters by [value]%
+	56: When [value] < 0, Increases damage from [Demon] race monsters by [value]%
+	57: When [value] > 0, Decreases damage from [Demi-Human] race monsters by [value]%
+	57: When [value] < 0, Increases damage from [Demi-Human] race monsters by [value]%
+	58: When [value] > 0, Decreases damage from [Angel] race monsters by [value]%
+	58: When [value] < 0, Increases damage from [Angel] race monsters by [value]%
+	59: When [value] > 0, Decreases damage from [Dragon] race monsters by [value]%
+	59: When [value] < 0, Increases damage from [Dragon] race monsters by [value]%
+	60: [Neutral] element resistance + [value]%
+	61: [Water] element resistance + [value]%
+	62: [Earth] element resistance + [value]%
+	63: [Fire] element resistance + [value]%
+	64: [Wind] element resistance + [value]%
+	65: [Poison] element resistance + [value]%
+	66: [Holy] element resistance + [value]%
+	67: [Shadow] element resistance + [value]%
+	68: [Ghost] element resistance + [value]%
+	69: [Undead] element resistance + [value]%
+	70: Critical Damage +[value]%
+	71: Reflect Melee Physical Attacks by [value]%
+	72: If [value] > 0, SP Cost + [value]%
+	72: If [value] < 0, SP Cost - [value]%
+	73: If [value] > 0, Cast Time + [value]%
+	73: If [value] < 0, Cast Time - [value]%
+	74: If [value] > 0, Cast Delay -[value]%
+	74: If [value] < 0, Cast Delay +[value]%
+	75: HP Regen + [value]%
+	76: SP Regen + [value]%
+	77: Bosstype monster resistance + [value]%
+	78: Resistance against ranged attacks + [value]%
+	79: Resistance against normal monsters + [value]%
+	80: Physical damage + [value]% [versus Normal/Boss/Guardian]
+	81: Increase physical damage on Goblin monsters by + [value]%
+	82: Increase physical damage on Kobold monsters by + [value]%
+	83: Increase physical damage on Orc monsters by + [value]%
+	84: Increase physical damage on Golem monsters by + [value]%
+	85: Lowers your defence rate by [value]%
+	86: Increases your chance to hit all targets by a fixed [value]%
+	87: ATK + [value]%
+	88: Increases short range damage by [value]%
+	89: MATK + [value]%
+	90: Looks like it messes up with card set effect. [value] references the w_SC array index.
+	    However, it's not directly set as a item effect.
+	    90 is hijacked on card.js after the w_SC array initialization:
+	    for(var i=0;i<SC_MAXnum;i++){
+			for(var k=1;w_SC[i][k] != "NULL";k++){
+				for(var j=4;cardOBJ[w_SC[i][k]][j] != 0;j+=2);
+		Here->	cardOBJ[w_SC[i][k]][j]=90;
+				cardOBJ[w_SC[i][k]][j+1]=i;
+				cardOBJ[w_SC[i][k]][j+2]=0;
+			}
+		}
+	91: Heal effectiveness increased by + [value]%
+	92: Received heal effectiveness from [Heal] increased by + [value]%
+	93: Potion Pitcher effectiveness increased by + [value]%
+	94: Sanctuary effectiveness increased by + [value]%
+	95: Received heal effectiveness from [Sanctuary] increased by + [value]%
+	96: Increases magical damage against normal monsters by [value]%
+	97: Increases magical damage against bosstype monsters by [value]%
+	98: MATK + [value] (flat)
+	99: ASPD + [value] (flat)
+	100: Resistance against melee attacks + [value]%
+	101: Resistance against magic attacks + [value]%
+	102-109: (unused)
+	110: Increases the critical rate on [Formless] race monsters by + [value]
+	111: Increases the critical rate on [Undead] race monsters by + [value]
+	112: Increases the critical rate on [Brute] race monsters by + [value]
+	113: Increases the critical rate on [Plant] race monsters by + [value]
+	114: Increases the critical rate on [Insect] race monsters by + [value]
+	115: Increases the critical rate on [Fish] race monsters by + [value]
+	116: Increases the critical rate on [Demon] race monsters by + [value]
+	117: Increases the critical rate on [Demi-Human] race monsters by + [value]
+	118: Increases the critical rate on [Angel] race monsters by + [value]
+	119: Increases the critical rate on [Dragon] race monsters by + [value]
+	120: Experience gained from [Formless] race monsters + [value]%
+	121: Experience gained from [Undead] race monsters + [value]%
+	122: Experience gained from [Brute] race monsters + [value]%
+	123: Experience gained from [Plant] race monsters + [value]%
+	124: Experience gained from [Insect] race monsters + [value]%
+	125: Experience gained from [Fish] race monsters + [value]%
+	126: Experience gained from [Demon] race monsters + [value]%
+	127: Experience gained from [Demi-Human] race monsters + [value]%
+	128: Experience gained from [Angel] race monsters + [value]%
+	129: Experience gained from [Dragon] race monsters + [value]%
+	130: When attacking, adds a [value]% chance to inflict [Poison] on the enemy
+	131: When attacking, adds a [value]% chance to inflict [Stun] on the enemy
+	132: When attacking, adds a [value]% chance to inflict [Freeze] on the enemy
+	133: When attacking, adds a [value]% chance to inflict [Curse] on the enemy
+	134: When attacking, adds a [value]% chance to inflict [Blind] on the enemy
+	135: When attacking, adds a [value]% chance to inflict [Sleep] on the enemy
+	136: When attacking, adds a [value]% chance to inflict [Silence] on the enemy
+	137: When attacking, adds a [value]% chance to inflict [Confusion] on the enemy
+	138: When attacking, adds a [value]% chance to inflict [Bleeding] on the enemy
+	139: When attacking, adds a [value]% chance to inflict [Stone] on the enemy
+	140: When attacking, adds a [value]% chance to inflict [Weapon Break] on the enemy
+	141: When attacking, adds a [value]% chance to inflict [Armor Break] on the enemy
+	142-149: Unused, but reserved for similar debuff by chance
+	150: Status effect [Poison] resistance +[value]%
+	151: Status effect [Stun] resistance +[value]%
+	152: Status effect [Freeze] resistance +[value]%
+	153: Status effect [Curse] resistance +[value]%
+	154: Status effect [Blind] resistance +[value]%
+	155: Status effect [Sleep] resistance +[value]%
+	156: Status effect [Silence] resistance +[value]%
+	157: Status effect [Confusion] resistance +[value]%
+	158: Status effect [Bleeding] resistance +[value]%
+	159: Status effect [Stone] resistance +[value]%
+	160: Status effect [Weapon Break] resistance +[value]%
+	161: Status effect [Armor Break] resistance +[value]%
+	162-169: Unused, but reserved for similar status resistance
+	170: Increases magical damage against [Formless] race monsters by [value]%
+	171: Increases magical damage against [Undead] race monsters by [value]%
+	172: Increases magical damage against [Brute] race monsters by [value]%
+	173: Increases magical damage against [Plant] race monsters by [value]%
+	174: Increases magical damage against [Insect] race monsters by [value]%
+	175: Increases magical damage against [Fish] race monsters by [value]%
+	176: Increases magical damage against [Demon] race monsters by [value]%
+	177: Increases magical damage against [Demi-Human] race monsters by [value]%
+	178: Increases magical damage against [Angel] race monsters by [value]%
+	179: Increases magical damage against [Dragon] race monsters by [value]%
+	180: Ignore [Formless] race monsters defense by [value]%
+	181: Ignore [Undead] race monsters defense by [value]%
+	182: Ignore [Brute] race monsters defense by [value]%
+	183: Ignore [Plant] race monsters defense by [value]%
+	184: Ignore [Insect] race monsters defense by [value]%
+	185: Ignore [Fish] race monsters defense by [value]%
+	186: Ignore [Demon] race monsters defense by [value]%
+	187: Ignore [Demi-Human] race monsters defense by [value]%
+	188: Ignore [Angel] race monsters defense by [value]%
+	189: Ignore [Dragon] race monsters defense by [value]%
+	190: When [value] > 0, Decrease damage from [Small] size monsters by [value]%
+	190: When [value] < 0, Increase damage from [Small] size monsters by [value]%
+	191: When [value] > 0, Decrease damage from [Medium] size monsters by [value]%
+	191: When [value] < 0, Increase damage from [Medium] size monsters by [value]%
+	192: When [value] > 0, Decrease damage from [Large] size monsters by [value]%
+	192: When [value] > 0, Increase damage from [Large] size monsters by [value]%
+	193: Unrefinable
+	194: Cannot be broken
+	195: Two-Handed Staff
+	196: Experience gained from normal monsters + [value]%
+	197: Experience gained from bosstype monsters + [value]%
+	198: When [value] == 0, Armor becomes Neutral element
+	198: When [value] == 1, Armor becomes Water element
+	198: When [value] == 2, Armor becomes Earth element
+	198: When [value] == 3, Armor becomes Fire element
+	198: When [value] == 4, Armor becomes Wind element
+	198: When [value] == 5, Armor becomes Poison element
+	198: When [value] == 6, Armor becomes Holy element
+	198: When [value] == 7, Armor becomes Shadow element
+	198: When [value] == 8, Armor becomes Ghost element
+	198: When [value] == 9, Armor becomes Undead element
+	199: Received heal effectiveness from [Potion Pitcher] increased by + [value]%
+	200: Received heal effectiveness from [Slim Potion Pitcher] increased by + [value]%
+	201: Heal effectiveness from [Slim Potion Pitcher] increased by + [value]%
+	202-217: (unused)
+	218: Increases HP recovered by n% for healing items
+	218: Increases HP recovered by n% for healing item id ([id, n, g = 1 for group bonus])
+	219: Increases SP recovered by n% for healing items
+	219: Increases SP recovered by n% for healing item id ([id, n, g = 1 for group bonus])
+	220: Allows usage of the skill InsertSkill[value] (see below)
+	220: When [value] == 0, Allows usage of the skill [Basic Attack]Lv 0
+	220: When [value] == 1, Allows usage of the skill [Cold Bolt]Lv 3
+	220: When [value] == 2, Allows usage of the skill [Fire Bolt]Lv 3
+	220: When [value] == 3 Allows usage of the skill [Bash]Lv 5
+	220: When [value] == 4, Allows usage of the skill [Heal]Lv 3
+	220: When [value] == 5, Allows usage of the skill [Heal]Lv 1
+	220: When [value] == 6, Allows usage of the skill [Cure]Lv 1
+	220: When [value] == 7, Allows usage of the skill [Heal]Lv 5
+	220: When [value] == 8, Allows usage of the skill [Throw Tomahawk]Lv 1
+	220: When [value] == 9, Allows usage of the skill [Jupitel Thunder]Lv 1
+	220: When [value] == 10, Allows usage of the skill [Ruwach]Lv 1
+	220: When [value] == 11, Allows usage of the skill [Pierce]Lv 3
+	220: When [value] == 12, Allows usage of the skill [Angelus]Lv 1
+	220: When [value] == 13, Allows usage of the skill [Frost Diver]Lv 5
+	220: When [value] == 14, Allows usage of the skill [Meteor Storm]Lv 3
+	220: When [value] == 15, Allows usage of the skill [Spear Stab]Lv 5
+	220: When [value] == 16, Allows usage of the skill [Sight]Lv 1
+	220: When [value] == 17, Allows usage of the skill [Teleport]Lv 1
+	220: When [value] == 18, Allows usage of the skill [Lightning Bolt]Lv 1
+	220: When [value] == 19, Allows usage of the skill [Cloaking]Lv 1
+	220: When [value] == 20, Allows usage of the skill [Envenom]Lv 3
+	220: When [value] == 21, Allows usage of the skill [Magnum Break]Lv 3
+	220: When [value] == 22, Allows usage of the skill [Hiding]Lv 1
+	220: When [value] == 23, Allows usage of the skill [Teleport]Lv 1
+	220: When [value] == 24, Allows usage of the skill [Detoxify]Lv 1
+	220: When [value] == 25, Allows usage of the skill [Cure]Lv 1
+	220: When [value] == 26, Allows usage of the skill [Discount]Lv 5
+	220: When [value] == 27, Allows usage of the skill [Steal]Lv 1
+	220: When [value] == 28, Allows usage of the skill [Cloaking]Lv 3
+	220: When [value] == 29, Allows usage of the skill [Cast Cancel]Lv 1
+	220: When [value] == 30, Allows usage of the skill [Stone Curse]Lv 1
+	220: When [value] == 31, Allows usage of the skill [Find Stone]Lv 1
+	220: When [value] == 32, Allows usage of the skill [Throw Stone]Lv 1
+	220: When [value] == 33, Allows usage of the skill [Fire Bolt]Lv 5
+	220: When [value] == 34, Allows usage of the skill [Fire Ball]Lv 5
+	220: When [value] == 35, Allows usage of the skill [Fire Wall]Lv 5
+	220: When [value] == 36, Allows usage of the skill [Cold Bolt]Lv 5
+	220: When [value] == 37, Allows usage of the skill [Lightning Bolt]Lv 5
+	220: When [value] == 38, Allows usage of the skill [Earth Spike]Lv 5
+	220: When [value] == 39, Allows usage of the skill [Soul Strike]Lv 5
+	220: When [value] == 40, Allows usage of the skill [Ressurection]Lv 1
+	220: When [value] == 41, Allows usage of the skill [Flasher]Lv 1
+	220: When [value] == 42, Allows usage of the skill [Frost Nova]Lv 2
+	220: When [value] == 43, Allows usage of the skill [Magnum Break]Lv 5
+	220: When [value] == 44, Allows usage of the skill [Water Ball]Lv 3
+	220: When [value] == 45, Allows usage of the skill [Frost Nova]Lv 3
+	220: When [value] == 46, Allows usage of the skill [Water Ball]Lv 4
+	220: When [value] == 47, Allows usage of the skill [Fire Bolt]Lv 5
+	220: When [value] == 48, Allows usage of the skill [Fire Bolt]Lv 6
+	220: When [value] == 49, Allows usage of the skill [Jupitel Thunder]Lv 3
+	220: When [value] == 50, Allows usage of the skill [Magic Crasher]Lv 1
+	220: When [value] == 51, Allows usage of the skill [Frost Nova]Lv 10
+	220: When [value] == 52, Allows usage of the skill [Charge Attack]Lv 1
+	220: When [value] == 53, Allows usage of the skill [Strip Shield]Lv 3
+	220: When [value] == 54, Allows usage of the skill [Raid]Lv 1
+	220: When [value] == 55, Allows usage of the skill [Frost Nova]Lv 1
+	220: When [value] == 56, Allows usage of the skill [Earth Spike]Lv 3
+	220: When [value] == 57, Allows usage of the skill [Bash]Lv 1
+	220: When [value] == 58, Allows usage of the skill [Spell Breaker]Lv 1
+	220: When [value] == 59, Allows usage of the skill [Aqua Benedicta]Lv 1
+	220: When [value] == 60, Allows usage of the skill [Fire Wall]Lv 4
+	220: When [value] == 61, Allows usage of the skill [HP Recovery While Moving]Lv 1
+	221: When X, there's a Y chance to cast the skill Z (defined in AutoSpellSkill, see below)
+	     AutoSpellSkill array looks like this:
+	     [
+	     	ID, 
+	     	ADD_TO_LIST_OF_ATTACK_SKILLS, 
+	     	SkillOBJ_ID, 
+	     	SKILL_LVL, 
+	     	CHANCE_TO_CAST%, 
+	     	CONDITION_ID (based on wNAME99),
+	     	HIGH_MEDIUM_LOW_CHANCE (optional, overrides CHANCE_TO_CAST%, based on wNAME98),
+	     	NO_IDEA (used only once with AutoSpellSkill[130], can't find any reference to it. Bug?)
+	     ]
+	221: When [value] == 1, When performing a ATK based attack, there's a 10% chance to cast the skill [Cold Bolt] Lv3
+	221: When [value] == 2, When performing a ATK based attack, there's a 10% chance to cast the skill [Fire Bolt] Lv3
+	221: When [value] == 3, When performing a ATK based attack, there's a 1% chance to cast the skill [Stone Curse] Lv1
+	221: When [value] == 4, When performing a ATK based attack, there's a 10% chance to cast the skill [Thunder Storm] Lv3
+	221: When [value] == 5, When performing a ATK based attack, there's a 10% chance to cast the skill [Turn Undead] Lv3
+	221: When [value] == 6, When performing a ATK based attack, there's a 10% chance to cast the skill [Lightning Bolt] Lv3
+	221: When [value] == 7, When performing a ATK based attack, there's a 10% chance to cast the skill [Soul Strike] Lv3
+	221: When [value] == 8, When performing a ATK based attack, there's a 10% chance to cast the skill [Fire Ball] Lv3
+	221: When [value] == 9, When performing a ATK based attack, there's a chance to cast the skill [Jupitel Thunder] Lv1
+	221: When [value] == 10, When performing a ATK based attack, there's a 3% chance to cast the skill [Provoke] Lv3
+	221: When [value] == 11, When performing a ATK based attack, there's a 1% chance to cast the skill [Gloria] Lv1
+	221: When [value] == 12, When recieving ATK based damage, there's a 5% chance to cast the skill [Heal] Lv1
+	221: When [value] == 13, When performing a ATK based attack, there's a 1% chance to cast the skill [Heal] Lv1
+	221: When [value] == 14, When performing a ATK based attack, there's a 3% chance to cast the skill [Fire Ball] Lv5
+	221: When [value] == 15, When performing a ATK based attack, there's a chance to cast the skill [Increase AGI] Lv1
+	221: When [value] == 16, When performing a ATK based attack, there's a 1% chance to cast the skill [Water Ball] Lv3
+	221: When [value] == 17, When performing a ATK based attack, there's a 1% chance to cast the skill [Deluge] Lv2
+	221: When [value] == 18, When recieving ATK based damage, there's a 3% chance to cast the skill [Status Recovery] Lv1
+	221: When [value] == 19, When performing a ATK based attack, there's a 3% chance to cast the skill [Angelus] Lv5
+	221: When [value] == 20, When performing a ATK based attack, there's a 1% chance to cast the skill [Joint Beat] Lv3
+	221: When [value] == 21, When performing a ATK based attack, there's a 3% chance to cast the skill [Pierce] Lv5
+	221: When [value] == 22, When performing a ATK based attack, there's a chance to cast the skill [Pulse Strike [Temp]] Lv5
+	221: When [value] == 23, When performing a ATK based attack, there's a chance to cast the skill [Wind Blade] Lv5
+	221: When [value] == 24, When performing a ATK based attack, there's a 1% chance to cast the skill [Flame Launcher] Lv5
+	221: When [value] == 25, When performing a ATK based attack, there's a 1% chance to cast the skill [Frost Weapon] Lv5
+	221: When [value] == 26, When performing a ATK based attack, there's a 1% chance to cast the skill [Lightning Loader] Lv5
+	221: When [value] == 27, When performing a ATK based attack, there's a 1% chance to cast the skill [Seismic Weapon] Lv5
+	221: When [value] == 28, When performing a ATK based attack, there's a 5% chance to cast the skill [Jupitel Thunder] Lv3
+	221: When [value] == 29, When recieving ATK based damage, there's a 5% chance to cast the skill [Frost Nova] Lv3
+	221: When [value] == 30, When performing a ATK based attack, there's a 2% chance to cast the skill [Tracking] Lv5
+	221: When [value] == 31, When performing a ATK based attack, there's a chance to cast the skill [Spread Attack] Lv6
+	221: When [value] == 32, When performing a ATK based attack, there's a 15% chance to cast the skill [Fire Ball] Lv1
+	221: When [value] == 33, When performing a ATK based attack, there's a 2% chance to cast the skill [Bowling Bash] Lv5
+	221: When [value] == 34, When performing a ATK based attack, there's a 3% chance to cast the skill [Pressure] Lv2
+	221: When [value] == 35, When performing a ATK based attack, there's a 3% chance to cast the skill [Dangerous Soul Collect] Lv1
+	221: When [value] == 36, When performing a ATK based attack, there's a 1% chance to cast the skill [Critical Explosion] Lv1
+	221: When [value] == 37, When recieving ATK based damage, there's a 2% chance to cast the skill [Tarot Card of Fate] Lv5
+	221: When [value] == 38, When recieving ATK based damage, there's a 5% chance to cast the skill [Quagmire] Lv1
+	221: When [value] == 39, When recieving ATK based damage, there's a 2% chance to cast the skill [Assumptio] Lv3
+	221: When [value] == 40, When recieving ATK based damage, there's a 3% chance to cast the skill [Heal] Lv10
+	221: When [value] == 41, When recieving ATK based damage, there's a 2% chance to cast the skill [Venom Splasher] Lv10
+	221: When [value] == 42, When performing a ATK based attack, there's a 5% chance to cast the skill [Sonic Blow] Lv5
+	221: When [value] == 43, When performing a ATK based attack, there's a 5% chance to cast the skill [Meteor Assault] Lv2
+	221: When [value] == 44, When performing a ATK based attack, there's a 2% chance to cast the skill [Investigate] Lv5
+	221: When [value] == 45, When performing a ATK based attack, there's a 0.3% chance to cast the skill [Asura Strike] Lv1
+	221: When [value] == 46, When performing a ATK based attack, there's a 2% chance to cast the skill [Lex Aeterna] Lv1
+	221: When [value] == 47, When recieving ATK based damage, there's a 3% chance to cast the skill [Gloria] Lv1
+	221: When [value] == 48, When recieving ATK based damage, there's a 30% chance to cast the skill [First Aid] Lv1
+	221: When [value] == 49, When performing a ATK based attack, there's a chance to cast the skill [Signum Crusis] Lv1
+	221: When [value] == 50, When recieving ATK based or magical damage, there's a chance to cast the skill [Turn Undead] Lv1
+	221: When [value] == 51, When performing a ATK based attack, there's a 5% chance to cast the skill [Frost Nova] Lv5
+	221: When [value] == 52, When performing a ATK based attack, there's a 3% chance to cast the skill [Meteor Storm] Lv3
+	221: When [value] == 53, When recieving ATK based damage, there's a chance to cast the skill [Grand Cross] Lv3
+	221: When [value] == 54, When performing a ATK based attack, there's a 5% chance to cast the skill [Strip Weapon] Lv1
+	221: When [value] == 55, When performing a ATK based attack, there's a chance to cast the skill [Decrease AGI] Lv3
+	221: When [value] == 56, When recieving ATK based damage, there's a chance to cast the skill [Improve Concentration] Lv1
+	221: When [value] == 57, When recieving ATK based damage, there's a chance to cast the skill [Kyrie Eleison] Lv10
+	221: When [value] == 58, When recieving ATK based damage, there's a chance to cast the skill [Teleport] Lv1
+	221: When [value] == 59, When performing a ATK based attack, there's a chance to cast the skill [Sonic Blow] Lv1
+	221: When [value] == 60, When performing a ATK based attack, there's a chance to cast the skill [Frost Joker] Lv1
+	221: When [value] == 61, When performing a ATK based attack, there's a chance to cast the skill [Jupitel Thunder] Lv3
+	221: When [value] == 62, When recieving ATK based damage, there's a chance to cast the skill [Signum Crusis] Lv5
+	221: When [value] == 63, When performing a ATK based attack, there's a chance to cast the skill [Impositio Manus] Lv3
+	221: When [value] == 64, When performing a ATK based attack, there's a chance to cast the skill [Lex Aeterna] Lv1
+	221: When [value] == 65, When performing a ATK based attack, there's a chance to cast the skill [Envenom] Lv1
+	221: When [value] == 66, When recieving ATK based damage, there's a chance to cast the skill [Gloria] Lv1
+	221: When [value] == 67, When recieving ATK based damage, there's a chance to cast the skill [Auto-Guard] Lv3
+	221: When [value] == 68, When performing a ATK based attack, there's a chance to cast the skill [Intimidate] Lv1
+	221: When [value] == 69, When recieving ATK based damage, there's a chance to cast the skill [Blessing] Lv2
+	221: When [value] == 70, When performing a ATK based attack, there's a chance to cast the skill [Frost Diver] Lv3
+	221: When [value] == 71, When performing a ATK based attack, there's a chance to cast the skill [Storm Gust] Lv1
+	221: When [value] == 72, When recieving ATK based damage, there's a chance to cast the skill [Meteor Storm] Lv5
+	221: When [value] == 73, When performing a ATK based attack, there's a chance to cast the skill [Magnum Break] Lv10
+	221: When [value] == 74, When performing a ATK based attack, there's a chance to cast the skill [Heal] Lv5
+	221: When [value] == 75, When recieving ATK based damage, there's a chance to cast the skill [Quagmire] Lv1
+	221: When [value] == 76, When performing a ATK based attack, there's a chance to cast the skill [Meteor Storm] Lv1
+	221: When [value] == 77, When performing a ATK based attack, there's a 4% chance to cast the skill [Dispell] Lv1
+	221: When [value] == 78, When performing a ATK based attack, there's a chance to cast the skill [Bash] Lv1
+	221: When [value] == 79, When performing a ATK based attack, there's a chance to cast the skill [Fire Ball] Lv3
+	221: When [value] == 80, When performing a ATK based attack, there's a 5% chance to cast the skill [Strip Armor] Lv1
+	221: When [value] == 81, When recieving ATK based damage, there's a chance to cast the skill [Pneuma] Lv1
+	221: When [value] == 82, When performing a ATK based attack, there's a chance to cast the skill [Spell Breaker] Lv1
+	221: When [value] == 83, When recieving ATK based or magical damage, there's a chance to cast the skill [Assumptio] Lv1
+	221: When [value] == 84, When recieving magical damage, there's a 5% chance to cast the skill [Land Protector] Lv1
+	221: When [value] == 85, When recieving magical damage, there's a 15% chance to cast the skill [Lex Divina] Lv5
+	221: When [value] == 86, When performing a ATK based attack, there's a chance to cast the skill [Lightning Bolt] Lv5
+	221: When [value] == 87, When performing a ATK based attack, there's a chance to cast the skill [Weapon Perfection] Lv1
+	221: When [value] == 88, When performing a ATK based attack, there's a chance to cast the skill [Signum Crusis] Lv5
+	221: When [value] == 89, When recieving ATK based damage, there's a chance to cast the skill [Heal] Lv1
+	221: When [value] == 90, When recieving ATK based damage, there's a chance to cast the skill [Increase AGI] Lv1
+	221: When [value] == 91, When recieving ATK based damage, there's a 3% chance to cast the skill [Frost Nova] Lv5
+	221: When [value] == 92, When performing a ATK based attack, there's a chance to cast the skill [Fire Bolt] Lv5
+	221: When [value] == 93, When performing a ATK based attack, there's a chance to cast the skill [Fire Ball] Lv5
+	221: When [value] == 94, When performing a ATK based attack, there's a chance to cast the skill [Cold Bolt] Lv2
+	221: When [value] == 95, When performing a ATK based attack, there's a chance to cast the skill [Grand Cross] Lv5
+	221: When [value] == 96, When performing a ATK based attack, there's a chance to cast the skill [Bowling Bash] Lv5
+	221: When [value] == 97, When performing a ATK based attack, there's a 0.5% chance to cast the skill [Frost Weapon] Lv1
+	221: When [value] == 98, When performing a ATK based attack, there's a chance to cast the skill [Impositio Manus] Lv3
+	221: When [value] == 99, When recieving ATK based damage, there's a chance to cast the skill [Increase AGI] Lv5
+	221: When [value] == 100, When recieving ATK based damage, there's a chance to cast the skill [Scream] Lv5
+	221: When [value] == 101, When performing a short-range ATK based attack, there's a chance to cast the skill [Improve Concentration] Lv2
+	221: When [value] == 102, When recieving ATK based damage, there's a 1% chance to cast the skill [Heal] Lv1
+	221: When [value] == 103, When performing a ATK based attack, there's a 1% chance to cast the skill [Fire Bolt] Lv1
+	221: When [value] == 104, When performing a ATK based attack, there's a 1% chance to cast the skill [Cold Bolt] Lv1
+	221: When [value] == 105, When performing a ATK based attack, there's a 1% chance to cast the skill [Lightning Bolt] Lv1
+	221: When [value] == 106, When performing a ATK based attack, there's a chance to cast the skill [Lex Divina] Lv1
+	221: When [value] == 107, When performing a ATK based attack, there's a 5% chance to cast the skill [Scream] Lv1
+	221: When [value] == 108, When performing a ATK based attack, there's a chance to cast the skill [Investigate] Lv5
+	221: When [value] == 109, When performing a ATK based attack, there's a chance to cast the skill [Fire Bolt] Lv3
+	221: When [value] == 110, When performing a ATK based attack, there's a chance to cast the skill [Cold Bolt] Lv3
+	221: When [value] == 111, When performing a ATK based attack, there's a chance to cast the skill [Lightning Bolt] Lv3
+	221: When [value] == 112, When recieving ATK based or magical damage, there's a chance to cast the skill [Dark Strike] Lv5
+	221: When [value] == 113, When performing a ATK based attack, there's a chance to cast the skill [Spread Attack] Lv6
+	221: When [value] == 114, When performing a ATK based attack, there's a 10% chance to cast the skill [Fire Bolt] Lv5
+	221: When [value] == 115, When performing a ATK based attack, there's a 5% chance to cast the skill [Fire Bolt] Lv6
+	221: When [value] == 116, When performing a ATK based attack, there's a 3% chance to cast the skill [Stone Curse] Lv1
+	221: When [value] == 117, When performing a ATK based attack, there's a 20% chance to cast the skill [Strip Armor] Lv1
+	221: When [value] == 118, When recieving ATK based damage, there's a 3% chance to cast the skill [Lightning Bolt] Lv3
+	221: When [value] == 119, When performing a ATK based attack, there's a 1% chance to cast the skill [Earth Spike] Lv1
+	221: When [value] == 120, When performing a magical attack, there's a 2% chance to cast the skill [Sightrasher] Lv2
+	221: When [value] == 121, When performing a magical attack, there's a 3% chance to cast the skill [Sightrasher] Lv3
+	221: When [value] == 122, When performing a ATK based attack, there's a 10% chance to cast the skill [Heaven's Drive] Lv1
+	221: When [value] == 123, When performing a ATK based attack, there's a 10% chance to cast the skill [Investigate] Lv1
+	221: When [value] == 124, When performing a physical or magical attack, there's a 2% chance to cast the skill [Double Strafe] Lv5
+	221: When [value] == 125, When performing a ATK based attack, there's a 10% chance to cast the skill [Head Crush] Lv2
+	221: When [value] == 126, When performing a short-range ATK based attack, there's a 0.5% chance to cast the skill [Sonic Blow] Lv1
+	221: When [value] == 127, When performing a physical or magical attack, there's a 1% chance to cast the skill [Fire Bolt] Lv5
+	221: When [value] == 128, When performing a magical attack, there's a 5% chance to cast the skill [Increase AGI] Lv1
+	221: When [value] == 129, When performing a ATK based attack, there's a 5% chance to cast the skill [Increase AGI] Lv1
+	221: When [value] == 130, When performing a ATK based attack, there's a low chance to cast the skill [Wink of Charm] Lv1
+	221: When [value] == 131, When recieving ATK based damage, there's a low chance to cast the skill [Assumptio] Lv2
+	221: When [value] == 132, When performing a ATK based attack, there's a 1% chance to cast the skill [Storm Gust] Lv2
+	221: When [value] == 133, When performing a ATK based attack, there's a 3% chance to cast the skill [Fire Bolt] Lv3
+	221: When [value] == 134, When performing a ATK based attack, there's a 10% chance to cast the skill [Joint Beat] Lv1
+	221: When [value] == 135, When recieving ATK based damage, there's a 10% chance to cast the skill [Cold Bolt] Lv1
+	221: When [value] == 136, When recieving ATK based damage, there's a 1% chance to cast the skill [Fire Bolt] Lv5
+	221: When [value] == 137, When recieving ATK based damage, there's a 1% chance to cast the skill [Frost Nova] Lv1
+	221: When [value] == 138, When recieving ATK based damage, there's a 5% chance to cast the skill [Scream] Lv1
+	221: When [value] == 139, When performing a ATK based attack, there's a 1% chance to cast the skill [Bowling Bash] Lv5
+	221: When [value] == 140, When performing a ATK based attack, there's a 1% chance to cast the skill [Dangerous Soul Collect] Lv1
+	221: When [value] == 141, When performing a ATK based attack, there's a 5% chance to cast the skill [Dragon Fire Formation learned] Lv2
+	221: When [value] == 142, When performing a ATK based attack, there's a 2% chance to cast the skill [Water Ball] Lv2
+	221: When [value] == 143, When performing a ATK based attack, there's a 0.2 * staff refine level)% chance to cast the skill [Sightrasher] Lv2
+	222-279: (unused)
+	280: Ignore [Neutral] race monsters defense by [value]%
+	281: Ignore [Water] race monsters defense by [value]%
+	282: Ignore [Earth] race monsters defense by [value]%
+	283: Ignore [Wind] race monsters defense by [value]%
+	284: Ignore [Insect] race monsters defense by [value]%
+	285: Ignore [Poison] race monsters defense by [value]%
+	286: Ignore [Holy] race monsters defense by [value]%
+	287: Ignore [Shadow] race monsters defense by [value]%
+	288: Ignore [Ghost] race monsters defense by [value]%
+	289: Ignore [Undead] race monsters defense by [value]%
+	290-294: (unused)
+	295: On (all?) monsters, ignore [value]% MDEF
+	296: On Normal monsters, ignore [value]% MDEF
+	297: On Bosstype monsters, ignore [value]% MDEF
+	298-299: (unused)
+	300: Increases short range damage on [Neutral] monsters by [value]%
+	301: Increases short range damage on [Water] monsters by [value]%
+	302: Increases short range damage on [Earth] monsters by [value]%
+	303: Increases short range damage on [Fire] monsters by [value]%
+	304: Increases short range damage on [Wind] monsters by [value]%
+	305: Increases short range damage on [Poison] monsters by [value]%
+	306: Increases short range damage on [Holy] monsters by [value]%
+	307: Increases short range damage on [Shadow] monsters by [value]%
+	308: Increases short range damage on [Ghost] monsters by [value]%
+	309: Increases short range damage on [Undead] monsters by [value]%
+	310: On Formless race monsters, ignore [value]% MDEF
+	311: On Undead race monsters, ignore [value]% MDEF
+	312: On Brute race monsters, ignore [value]% MDEF
+	313: On Plant race monsters, ignore [value]% MDEF
+	314: On Insect race monsters, ignore [value]% MDEF
+	315: On Fish race monsters, ignore [value]% MDEF
+	316: On Demon race monsters, ignore [value]% MDEF
+	317: On Demi-Human race monsters, ignore [value]% MDEF
+	318: On Angel race monsters, ignore [value]% MDEF
+	319: On Dragon race monsters, ignore [value]% MDEF
+	320: On Formless race monster, +[value]% Critical Damage
+	321: On Undead race monster, +[value]% Critical Damage
+	322: On Brute race monster, +[value]% Critical Damage
+	323: On Plant race monster, +[value]% Critical Damage
+	324: On Insect race monster, +[value]% Critical Damage
+	325: On Fish race monster, +[value]% Critical Damage
+	326: On Demon race monster, +[value]% Critical Damage
+	327: On Demi-Human race monster, +[value]% Critical Damage
+	328: On Angel race monster, +[value]% Critical Damage
+	329: On Dragon race monster, +[value]% Critical Damage
+	330: + [value]% damage from Neutral element monsters
+	331: + [value]% damage from Water element monsters
+	332: + [value]% damage from Earth element monsters
+	333: + [value]% damage from Fire element monsters
+	334: + [value]% damage from Wind element monsters
+	335: + [value]% damage from Poison element monsters
+	336: + [value]% damage from Holy element monsters
+	337: + [value]% damage from Shadow element monsters
+	338: + [value]% damage from Ghost element monsters
+	339: + [value]% damage from Undead element monsters
+	340: Increases damage of [Neutral] magic by [value]%
+	341: Increases damage of [Water] magic by [value]%
+	342: Increases damage of [Earth] magic by [value]%
+	343: Increases damage of [Fire] magic by [value]%
+	344: Increases damage of [Wind] magic by [value]%
+	345: Increases damage of [Poison] magic by [value]%
+	346: Increases damage of [Holy] magic by [value]%
+	347: Increases damage of [Shadow] magic by [value]%
+	348: Increases damage of [Ghost] magic by [value]%
+	349: Increases damage of [Undead] magic by [value]%
+	350: Increases magical damage against [Neutral] element monsters by [value]%
+	351: Increases magical damage against [Water] element monsters by [value]%
+	352: Increases magical damage against [Earth] element monsters by [value]%
+	353: Increases magical damage against [Fire] element monsters by [value]%
+	354: Increases magical damage against [Wind] element monsters by [value]%
+	355: Increases magical damage against [Poison] element monsters by [value]%
+	356: Increases magical damage against [Holy] element monsters by [value]%
+	357: Increases magical damage against [Shadow] element monsters by [value]%
+	358: Increases magical damage against [Ghost] element monsters by [value]%
+	359: Increases magical damage against [Undead] element monsters by [value]%
+	360: Pierce MDEF of [Neutral] element monsters by [value]%
+	361: Pierce MDEF of [Water] element monsters by [value]%
+	362: Pierce MDEF of [Earth] element monsters by [value]%
+	363: Pierce MDEF of [Fire] element monsters by [value]%
+	364: Pierce MDEF of [Wind] element monsters by [value]%
+	365: Pierce MDEF of [Poison] element monsters by [value]%
+	366: Pierce MDEF of [Holy] element monsters by [value]%
+	367: Pierce MDEF of [Shadow] element monsters by [value]%
+	368: Pierce MDEF of [Ghost] element monsters by [value]%
+	369: Pierce MDEF of [Undead] element monsters by [value]%
+	370: Experience gained from [Neutral] elements monsters + [value]%
+	371: Experience gained from [Water] elements monsters + [value]%
+	372: Experience gained from [Earth] elements monsters + [value]%
+	373: Experience gained from [Fire] elements monsters + [value]%
+	374: Experience gained from [Wind] elements monsters + [value]%
+	375: Experience gained from [Poison] elements monsters + [value]%
+	376: Experience gained from [Holy] elements monsters + [value]%
+	377: Experience gained from [Shadow] elements monsters + [value]%
+	378: Experience gained from [Ghost] elements monsters + [value]%
+	379: Experience gained from [Undead] elements monsters + [value]%
+	380: Chance of drain HP.
+	381: Amount of drain HP.
+	382: Chance of drain SP.
+	383: Amount of drain SP.
+	384-389:
+	390: When receiving physical attacks, adds a [value]% chance to inflict [Poison] on the enemy
+	391: When receiving physical attacks, adds a [value]% chance to inflict [Stun] on the enemy
+	392: When receiving physical attacks, adds a [value]% chance to inflict [Freeze] on the enemy
+	393: When receiving physical attacks, adds a [value]% chance to inflict [Curse] on the enemy
+	394: When receiving physical attacks, adds a [value]% chance to inflict [Blind] on the enemy
+	395: When receiving physical attacks, adds a [value]% chance to inflict [Sleep] on the enemy
+	396: When receiving physical attacks, adds a [value]% chance to inflict [Silence] on the enemy
+	397: When receiving physical attacks, adds a [value]% chance to inflict [Confusion] on the enemy
+	398: When receiving physical attacks, adds a [value]% chance to inflict [Bleeding] on the enemy
+	399: When receiving physical attacks, adds a [value]% chance to inflict [Stone] on the enemy
+	400: When dealing magical attacks, adds a [value]% chance to inflict [Poison] on the enemy
+	401: When dealing magical attacks, adds a [value]% chance to inflict [Stun] on the enemy
+	402: When dealing magical attacks, adds a [value]% chance to inflict [Freeze] on the enemy
+	403: When dealing magical attacks, adds a [value]% chance to inflict [Curse] on the enemy
+	404: When dealing magical attacks, adds a [value]% chance to inflict [Blind] on the enemy
+	405: When dealing magical attacks, adds a [value]% chance to inflict [Sleep] on the enemy
+	406: When dealing magical attacks, adds a [value]% chance to inflict [Silence] on the enemy
+	407: When dealing magical attacks, adds a [value]% chance to inflict [Confusion] on the enemy
+	408: When dealing magical attacks, adds a [value]% chance to inflict [Bleeding] on the enemy
+	409: When dealing magical attacks, adds a [value]% chance to inflict [Stone] on the enemy
+	400-999: (unused)
+	1000-1999: + [value]% Physical damage inflicted against a specific monster (MonsterOBJ[ID - 1000])
+	2000-2999: + [value]% Physical damage reduction from specific monster (MonsterOBJ[ID - 2000])
+	3000-4999: (unused)
+	5000-6999: specific skill damage + [value]% (SkillOBJ[ID - 5000])
+	7000-7999: When [value] > 0, specific skill Cast Time -[value]% (SkillOBJ[ID - 7000])
+	7000-7999: When [value] < 0, specific skill Cast Time +[value]% (SkillOBJ[ID - 7000])
+	8000-8999: When [value] > 0, specific skill Cast Delay -[value]% (SkillOBJ[ID - 8000])
+	8000-8999: When [value] < 0, specific skill Cast Delay +[value]% (SkillOBJ[ID - 8000])

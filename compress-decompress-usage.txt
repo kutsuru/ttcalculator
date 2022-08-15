@@ -1,0 +1,15 @@
+var myStr = "helloworld";
+compressedString = Base64.toBase64(RawDeflate.deflate(myStr));
+originalString = Base64.btou(RawDeflate.inflate(Base64.fromBase64(compressedString)));
+
+//To Compress String
+//Perform compression
+wStr = Base64.toBase64(RawDeflate.deflate(wStr));
+//Remove '=' filler to save a bit more space when saving. [Optional]
+wStr = wStr.replace(/=/g, '');
+
+//To Decompress String
+//Add '=' filler so that wStr have length divisible by 4 [Optional]
+wStr += '='.repeat(4 - wStr.length % 4);
+//Then perform decompression
+wStr = Base64.btou(RawDeflate.inflate(Base64.fromBase64(wStr)));

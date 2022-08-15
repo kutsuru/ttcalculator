@@ -1,0 +1,77 @@
+<html><head>
+<title>TalonRO Calculator (ROratorio's CalcX)</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW"> 
+<script language="JavaScript"><!--
+JobName =
+["Novice","Swordsman","Thief","Acolyte","Archer","Magician","Merchant","Knight","Assassin","Priest","Hunter","Wizard","Blacksmith","Crusader","Rogue","Monk","Bard","Dancer","Sage","Alchemist",
+"Super Novice","Lord Knight","Assassin Cross","High Priest","Sniper","High Wizard","Whitesmith","Paladin","Stalker","Champion","Clown","Gypsy","Scholar","Creator",
+"High Novice","High Swordsman","High Thief","High Acolyte","High Archer","High Magician","High Merchant","Taekwon Kid","Taekwon Master","Soul Linker","Ninja","Gunslinger"];
+function DelData2()
+{
+		theName = document.delFORM.A_SaveSlot.value;
+		document.cookie = theName + "=;expires=Thu,01-Jan-70 00:00:01 GMT";
+		LoadCookie3();
+		document.delFORM.A_SaveSlot.value = theName;
+}
+// &#402;N&#402;b&#402;L&#129;[&#402;&#141;&#129;[&#402;h&#144;E&#8218;ð&#402;Z&#129;[&#402;u&#402;Z&#402;&#338;&#402;N&#402;g&#8218;É
+function LoadCookie3(){
+
+	SaveData = new Array();
+	//custom TalonRO adding char saves
+	//old
+	//for(k=1;k<=19;k++){
+	//new
+	for(k=1;k<=50;k++){
+		cookieNum = "num0"+ (k-1);
+		if(k == 9)
+			cookieNum = "num0"+ k;
+		if(k >= 10)
+			cookieNum = "num"+ k;
+		SaveData = document.cookie.split("; ");
+		wStr = "";
+
+		for(i=0;SaveData[i];i++){
+			if(SaveData[i].substr(0,6) == cookieNum +"="){
+				wStr = SaveData[i].substr(6,SaveData[i].length);
+				break;
+			}
+		}
+
+		if(wStr.substr(27,1) >= 1){
+			SaveData[0] = wStr.substr(0,2);
+			SaveData[0] = eval(SaveData[0]);
+		}else{
+			SaveData[0] = 998;
+		}
+		SaveData[63] = wStr.substr(132,1);
+
+		if(1<= SaveData[0] && SaveData[0] <=45){
+			if(SaveData[63]==0)
+				document.delFORM.A_SaveSlot.options[k-1] = new Option("Save"+k +": "+JobName[SaveData[0]],cookieNum);
+			else
+				document.delFORM.A_SaveSlot.options[k-1] = new Option("Save"+k +": Baby "+JobName[SaveData[0]],cookieNum);
+		}
+		else if(SaveData[0] == 999 || SaveData[0] == 0){// 999&#8218;Í&#8249;&#338;&#381;d&#8212;l
+			document.delFORM.A_SaveSlot.options[k-1] = new Option("Save"+k +": Novice",cookieNum);
+		}
+		else
+			document.delFORM.A_SaveSlot.options[k-1] = new Option("Save"+k +": No Data",cookieNum);
+	}
+}
+// --></script>
+</head><body>
+<font size="2">
+<br>Your personal character saves.<br>
+If you have the calculator page opened already, it's recommended to close it before you delete a save.</font>
+<form name="delFORM">
+<select name="A_SaveSlot">
+<option selected="selected" value="num00">Save1: No Data</option><option value="num01">Save2: No Data</option><option value="num02">Save3: No Data</option><option value="num03">Save4: No Data</option><option value="num04">Save5: No Data</option><option value="num05">Save6: No Data</option><option value="num06">Save7: No Data</option><option value="num07">Save8: No Data</option><option value="num09">Save9: No Data</option><option value="num10">Save10: No Data</option><option value="num11">Save11: No Data</option><option value="num12">Save12: No Data</option><option value="num13">Save13: No Data</option><option value="num14">Save14: No Data</option><option value="num15">Save15: No Data</option><option value="num16">Save16: No Data</option><option value="num17">Save17: No Data</option><option value="num18">Save18: No Data</option><option value="num19">Save19: No Data</option><option value="num20">Save20: No Data</option><option value="num21">Save21: No Data</option><option value="num22">Save22: No Data</option><option value="num23">Save23: No Data</option><option value="num24">Save24: No Data</option><option value="num25">Save25: No Data</option><option value="num26">Save26: No Data</option><option value="num27">Save27: No Data</option><option value="num28">Save28: No Data</option><option value="num29">Save29: No Data</option><option value="num30">Save30: No Data</option><option value="num31">Save31: No Data</option><option value="num32">Save32: No Data</option><option value="num33">Save33: No Data</option><option value="num34">Save34: No Data</option><option value="num35">Save35: No Data</option><option value="num36">Save36: No Data</option><option value="num37">Save37: No Data</option><option value="num38">Save38: No Data</option><option value="num39">Save39: No Data</option><option value="num40">Save40: No Data</option><option value="num41">Save41: No Data</option><option value="num42">Save42: No Data</option><option value="num43">Save43: No Data</option><option value="num44">Save44: No Data</option><option value="num45">Save45: No Data</option><option value="num46">Save46: No Data</option><option value="num47">Save47: No Data</option><option value="num48">Save48: No Data</option><option value="num49">Save49: No Data</option><option value="num50">Save50: No Data</option>
+</select>
+
+<input value="Delete" onclick="DelData2()" type="button"><br>
+<br>
+</form>
+<script language="JavaScript"><!--
+LoadCookie3();
+// --></script>
+</body></html>
