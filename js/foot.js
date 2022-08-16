@@ -6896,7 +6896,7 @@ function KakutyouKansuu(){
 		document.getElementById("outputPlayerDexStealCalc").innerHTML = "<b>Player DEX: </b> " + playerDex + "</b>";
 		document.getElementById("outputMonsterDexStealCalc").innerHTML = "<b>Monster DEX: </b> " + monsterDex + "</b>";
 		if (monsterStolen[23] != 0) {
-			document.getElementById("outputMonsterGifStealCalc").innerHTML = "<img src=\"https://file5s.ratemyserver.net/mobs/"+monsterStolen[23]+".gif\" alt=\"no picture available =(\">";
+			document.getElementById("outputMonsterGifStealCalc").innerHTML = "<img src=\"https://static.divine-pride.net/images/mobs/png/"+monsterStolen[23]+".png\" alt=\"no picture available =(\">";
 		} else {
 			document.getElementById("outputMonsterGifStealCalc").innerHTML = "<img src=\"\" alt=\"no picture available =(\">";
 		}
@@ -7001,7 +7001,7 @@ function KakutyouKansuu(){
 		}
 		
 		// Update refine header display
-		refine_header.rows[0].cells[2].innerHTML = "<a href=\"https://file5s.ratemyserver.net/items/small/" + selected_equipment + "/\" target=\"_blank\"><img src=\"https://file5s.ratemyserver.net/items/small/" + selected_equipment + ".gif\" alt=\"no picture available =(\" style='text-decoration: none;height: auto;width: 100%;'></a>";
+		refine_header.rows[0].cells[2].innerHTML = "<a href=\"https://www.divine-pride.net/database/item/" + selected_equipment + "/\" target=\"_blank\"><img src=\"https://www.divine-pride.net/img/items/item/kROS/" + selected_equipment + "\" alt=\"no picture available =(\" style='text-decoration: none;height: auto;width: 100%;'></a>";
 		refine_header.rows[1].cells[2].innerHTML = "<td> " + 	refine_catalysts[equipment_type] + " cost : </td>";
 		
 		// Update refine table display
@@ -7935,7 +7935,7 @@ function loadMonsterItemDropListStealCalc() {
 			if (i == 9) {
 				cell1.innerHTML = "Card";
 			}
-			cell2.innerHTML += " <a href=\"https://file5s.ratemyserver.net/items/small/"+dropItemId+"/\" target=\"_blank\"><img src=\"https://file5s.ratemyserver.net/items/small/"+dropItemId+".gif\" alt=\"no picture available =(\"></a>";
+			cell2.innerHTML += " <a href=\"https://www.divine-pride.net/database/item/"+dropItemId+"/\" target=\"_blank\"><img src=\"https://www.divine-pride.net/img/items/item/kROS/"+dropItemId+"\" alt=\"no picture available =(\"></a>";
 			cell3.innerHTML += (+dropPercentage).toFixed(2) + "%";
 		}
 	} else {

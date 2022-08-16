@@ -1445,7 +1445,7 @@ function Click_Card(CBI)
 	// Card IDs with links to Talon Tales Item Database - [Loa] - 2018-06-28
 	if(cardID[CBI][1] == 1 && cardID[CBI][2] != 0){
 		var itemLink = "";
-		itemLink = " <a class=\"linkW\" href=\"https://file5s.ratemyserver.net/items/small/"+ cardID[CBI][2] + "/\" target=\"_blank\"><b>" + cardID[CBI][2] + "</b></a>";
+		itemLink = " <a class=\"linkW\" href=\"https://www.divine-pride.net/database/item/"+ cardID[CBI][2] + "/\" target=\"_blank\"><b>" + cardID[CBI][2] + "</b></a>";
 		myInnerHtml("nm080",cardOBJ[CBI][2] + " # Item ID :" + itemLink,0);
 	}
 	else{
@@ -1558,7 +1558,7 @@ function SetCardName(SENw){
 			for(var j=1;w_SC[i][j] != "NULL";j++){
 				//if card id in cardID array, generate links
 				if(cardID[w_SC[i][j]][2]){
-					SENstr += "<a class=\"linkW\" href=\"https://file5s.ratemyserver.net/items/small/"+ cardID[w_SC[i][j]][2] + "/\" target=\"_blank\"><b>" + "<font color='blue'>["+ cardOBJ[w_SC[i][j]][2] +"]</font></b></a>";
+					SENstr += "<a class=\"linkW\" href=\"https://www.divine-pride.net/database/item/"+ cardID[w_SC[i][j]][2] + "/\" target=\"_blank\"><b>" + "<font color='blue'>["+ cardOBJ[w_SC[i][j]][2] +"]</font></b></a>";
 					if(w_SC[i][j+1] != "NULL")
 						SENstr += "+";
 				}

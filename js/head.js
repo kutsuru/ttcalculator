@@ -7182,8 +7182,8 @@ with(document.calcForm){
 		//check also monster.js row 686+687 (MonsterOBJ[i][23] = MonsterOBJ[i][21];)
 		//[Custom Talon Tales = 2016-06-04 - Fixed the database link for Panel][Kato]
 		if (MonsterOBJ[B_Enemy.value][23]!=0){
-			document.getElementById("B_Enemy_picture").innerHTML="<img src=\"https://file5s.ratemyserver.net/mobs/"+MonsterOBJ[B_Enemy.value][23]+".gif\" alt=\"no picture available =(\">";
-			document.getElementById("B_Enemy_mobdb").innerHTML="<a style='color:white;' href=\"https://file5s.ratemyserver.net/mobs/"+MonsterOBJ[B_Enemy.value][23]+"/\" target=\"_blank\">#"+MonsterOBJ[B_Enemy.value][23]+"</a>";
+			document.getElementById("B_Enemy_picture").innerHTML="<img src=\"https://static.divine-pride.net/images/mobs/png/"+MonsterOBJ[B_Enemy.value][23]+".png\" alt=\"no picture available =(\">";
+			document.getElementById("B_Enemy_mobdb").innerHTML="<a style='color:white;' href=\"https://www.divine-pride.net/database/monster/"+MonsterOBJ[B_Enemy.value][23]+"/\" target=\"_blank\">#"+MonsterOBJ[B_Enemy.value][23]+"</a>";
 		} else {
 			document.getElementById("B_Enemy_picture").innerHTML="<img src=\"\" alt=\"no picture available =(\">";
 			document.getElementById("B_Enemy_mobdb").innerHTML="<b>n/a</b>";
