@@ -749,7 +749,7 @@ sqi_bonus_db = {
 			,["Add a 25% chance to ignore ammo costs when using skills or attacking normally. Skills that consume more than 2 bullets only consume 2 bullets",0]
 			,["Rifle Equipped: 25% more damage with [Piercing Shot] and [Tracking]. 25% less cast time with [Tracking]",0]
 			,["Triple the duration of [Madness Canceller] and [Adjustment]",0]
-			,["15% Aftercast Reduction",74,15]
+			,["15% Aftercast Reduction",74,15,0]
 			,["Immunity to Blind Status. Base AGI >= 87: Immunity to Stun Status. Base VIT >= 87: Immunity to Sleep Status",154,100,0]],
 	// Sherwood Bow#1388
 	1388 : 	[["MaxSP + 10%. Add a 25% chance to ignore ammo costs when attacking normally or using skills",16,10,0]
