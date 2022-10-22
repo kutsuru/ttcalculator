@@ -629,7 +629,7 @@ cardOBJ = [
 ,[601,1,"1st Commander of Destruction","<b>[If Nibelungen Equipped]</b> [Brandish Spear] damage bonus is reduced to 40%.",8,5,5073,50,0]
 ,[602,1,"2nd Commander of Destruction", "<b>[If Two-Handed Spear Equipped]</b><br/> 50% more damage with [Holy Cross].",8,5,0]
 ,[603,4,"Corrupted Soul",0,18,5,19,5,393,10,399,10,0]
-,[604,2,"Amdarais","[Cart Termination] damage inflicted on [Ghost] Element monsters by 25%.<br>[Cart Termination] damage inflicted on [Neutral] Element monsters by 10%.",300,10,308,25,0]
+,[604,2,"Amdarais","[Cart Termination] damage inflicted on [Ghost] Element monsters by 25%.<br>[Cart Termination] damage inflicted on [Neutral] Element monsters by 15%.",300,15,308,25,0]
 // Eclage
 ,[605,1,"Menblatt",0,8,5,5394,50,5395,50,0]
 ,[606,5,"Petal","<b>[Every 10 Base LUK]</b> Critical Attack + 2%",0]
