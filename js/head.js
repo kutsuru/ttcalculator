@@ -1646,8 +1646,10 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==394){
+	else if(n_A_ActiveSkill==394){ // Throw Shuriken#394
 		n_Enekyori=1;
+		w_HIT = 100;
+		w_HIT_HYOUJI = 100;
 		not_use_card = 1;
 		ATKbai02(wbairitu,0);
 
