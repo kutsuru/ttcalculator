@@ -2905,7 +2905,8 @@ function BattleCalc998()
 			myInnerHtml("MaxATKnum",SubName[5],0);
 	}
 
-	damage_per_second = 1 / (wCast + wDelay) * w_DMG[1];
+	// amotion: n_Delay[1], cast time: wCast and minimum skil delay: n_Delay[4] are updating the canact tick at castbegin and not castend
+	damage_per_second = 1 / (Math.max(Math.max(0, wCast - n_Delay[1]), wCast - n_Delay[4]) + wDelay) * w_DMG[1];
 	
 	if (2 == n_Enekyori)
 	{
@@ -8877,16 +8878,16 @@ function CastAndDelay(){
 	if(n_A_ActiveSkill != 0 && n_A_ActiveSkill != 284)
 		n_Delay[4] = eval(document.calcForm.minimum_skill_delay.value);
 
-	if(n_Delay[4] > (wDelay + wCast)){
-		wDelay = n_Delay[4] - wCast;
+	if(n_Delay[4] > wDelay){
+		wDelay = n_Delay[4];
 		w = 4;
 	}
 	if(n_Delay[5] != 0){
 		wDelay = n_Delay[5];
 		w = 5;
 	}
-	if(n_Delay[6] > (wDelay + wCast)){
-		wDelay = n_Delay[6] - wCast;
+	if(n_Delay[6] > wDelay){
+		wDelay = n_Delay[6];
 		w = 6;
 	}
 
