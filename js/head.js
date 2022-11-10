@@ -9330,6 +9330,9 @@ function manage_left_hand_effect(flag)
 function calc_base_atk(base_atk, is_critical_attack, is_left_hand_active, is_dex_based)
 {
 	size_modifier = is_left_hand_active ? weaponsize[n_A_Weapon2Type][n_B[4]] : weaponsize[n_A_WeaponType][n_B[4]];
+	
+	if (SkillSearch(153) || n_A_PassSkill2[7]) // Weapon Perfection#153
+		size_modifier = 1;
 
 	atk_min = 0;
 	atk_max = n_A_Weapon_ATK;
