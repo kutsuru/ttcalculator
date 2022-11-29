@@ -9335,6 +9335,18 @@ function calc_base_atk(base_atk, is_critical_attack, is_left_hand_active, is_dex
 	if (SkillSearch(153) || n_A_PassSkill2[7]) // Weapon Perfection#153
 		size_modifier = 1;
 
+	// When Riding with spear, damage modifier to mid-class becomes same as versus large size.
+	if (SkillSearch(78) && (4 == n_A_WeaponType || 5 == n_A_WeaponType) && n_B[4] == 1)
+		size_modifier = 1;
+
+	// Asura Strike#197#321 ignores weapon size modifier
+	if (197 == n_A_ActiveSkill || 321 == n_A_ActiveSkill)
+		size_modifier = 1;
+
+	// Drake Card#32, Belmont Whip#1378 - Enable to do perfect damage on any size monster.
+	if (CardNumSearch(32) || 1378 == n_A_Equip[0])
+		size_modifier = 1;
+
 	atk_min = 0;
 	atk_max = n_A_Weapon_ATK;
 
