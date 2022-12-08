@@ -1449,13 +1449,6 @@ with(document.calcForm){
 			n_tok[177] += 15;
 			n_tok[317] += 20;
 		}
-		
-		// Aegis Shield#1376 - MATK + 5%, ASPD + 5% - [Every Refine Level] - ASPD + 2%
-		if (EquipNumSearch(1376))
-		{
-			n_tok[89] += 5;
-			n_tok[12] += 5 + 2 * n_A_Weapon_ATKplus;
-		}
 	}
 
 	// Apply flat MaxHP Bonus
