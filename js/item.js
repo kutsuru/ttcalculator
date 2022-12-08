@@ -3802,7 +3802,7 @@ function ClickB_Item(CBI)
 	if(ItemID[CBI][1] == 1){
 		var itemLink = "";
 		for(i = 2; i < ItemID[CBI].length; i++){
-		 itemLink += " <a class=\"linkW\" href=\"https://www.divine-pride.net/database/item/"+ ItemID[CBI][i] + "/\" target=\"_blank\"><b>" + ItemID[CBI][i] + "</b></a>";
+		 itemLink += " <a class=\"linkW\" href=\"https://talontales.com/panel/?module=item&action=view&id="+ ItemID[CBI][i] + "/\" target=\"_blank\"><b>" + ItemID[CBI][i] + "</b></a>";
 		}
 		myInnerHtml("nm080",ItemOBJ[CBI][8] + " # Item ID :" + itemLink,0);
 	}
@@ -4471,16 +4471,16 @@ function SetEquipName(SENw){
                if(slotsExceptList[k][1] == w_SE[i][j] && slotsExceptList[k][0] == w_SE[i][0]){
                   var slotVersion = slotsExceptList[k][2];
                   var slotNum = ItemOBJ[slotsExceptList[k][1]][5][slotVersion * 4];
-                  SENstr += "<a class=\"linkW\" href=\"https://www.divine-pride.net/database/item/"+ ItemID[slotsExceptList[k][1]][slotVersion + 2] + "/\" target=\"_blank\"><b>" + "<font color='blue'>["+ ItemOBJ[slotsExceptList[k][1]][8] +"][" + slotNum + "]</font></b></a>";
+                  SENstr += "<a class=\"linkW\" href=\"https://talontales.com/panel/?module=item&action=view&id="+ ItemID[slotsExceptList[k][1]][slotVersion + 2] + "/\" target=\"_blank\"><b>" + "<font color='blue'>["+ ItemOBJ[slotsExceptList[k][1]][8] +"][" + slotNum + "]</font></b></a>";
                exceptFound = 1;
                }
             }
             //create set item description normally
             if(exceptFound == 0){
                if(ItemID[w_SE[i][j]][1]==1){
-                  SENstr += "<a class=\"linkW\" href=\"https://www.divine-pride.net/database/item/"+ ItemID[w_SE[i][j]][2] + "/\" target=\"_blank\"><b>" + "<font color='blue'>["+ ItemOBJ[w_SE[i][j]][8] +"]</font></b></a>";
+                  SENstr += "<a class=\"linkW\" href=\"https://talontales.com/panel/?module=item&action=view&id="+ ItemID[w_SE[i][j]][2] + "/\" target=\"_blank\"><b>" + "<font color='blue'>["+ ItemOBJ[w_SE[i][j]][8] +"]</font></b></a>";
                   if(ItemID[w_SE[i][j]][3]){
-                     SENstr += "<a class=\"linkW\" href=\"https://www.divine-pride.net/database/item/"+ ItemID[w_SE[i][j]][3] + "/\" target=\"_blank\"><b>" + "<font color='blue'><sup>[1]</sup></font></b></a>"
+                     SENstr += "<a class=\"linkW\" href=\"https://talontales.com/panel/?module=item&action=view&id="+ ItemID[w_SE[i][j]][3] + "/\" target=\"_blank\"><b>" + "<font color='blue'><sup>[1]</sup></font></b></a>"
                   }
                }
                else{
