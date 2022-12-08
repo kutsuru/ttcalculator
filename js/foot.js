@@ -7032,6 +7032,11 @@ function KakutyouKansuu(){
 		
 		myInnerHtml("A_KakutyouData", "",0);
 	}
+	else if(wKK == 21) // homunculus Analysis
+	{
+		stat_density_matrice = [];
+		on_homunculus_change();
+	}
 }
 
 function manage_sqi_bonus()
@@ -7828,7 +7833,267 @@ function KakutyouKansuu2(){
 		
 		return;
 	}
+	if (wKK == 21) // homunculus Analysis
+	{
+		let homunculus_analysis_display = "";
+		homunculus_analysis_display += "<select name='homunculus_select' onChange='on_homunculus_change()' ></select>";
+		homunculus_analysis_display += "<select name='homunculus_level_select' onChange='update_homunculus_analysis()' style=''></select>";
+		homunculus_analysis_display += "<td><input type='checkbox' name='is_homunculus_evolved_check' onClick='update_homunculus_analysis()'/> Evolved</td>";
+
+		homunculus_analysis_display += "<table border=0 id='homunculus_analysis_table' name='homunculus_analysis_table'>";
+		
+		for (i in homunculus_stats)
+		{
+			homunculus_analysis_display += '<tr><td style="width: 10%"><b>' + homunculus_stats[i] + ':</b></td><td style="width: 5%"></td>' + '<td style="width: 10%">0</td>' + '<td style="width: 5%"> ~ </td>' + '<td><input type="number" onChange="update_homunculus_analysis(' + i + ')|KakutyouKansuu()" id="homunculus_' + homunculus_stats[i] + '_input" value="0" style="width: 70px;"></td>';
+			homunculus_analysis_display += '<td style="width: 5%"></td><td style="width: 5%"> ~ </td>' + '<td style="width: 10%">0</td>' + '<td style="width: 10%">[ 100% ]</td><td style="width: 10%">[ 0 ]</td><td style="width: 10%">[ 50% ]</td><td style="width: 30%"></td></tr>';
+		}
+		homunculus_analysis_display += "</table><br>";
+		
+		homunculus_analysis_display += "<table border=0 id='homunculus_computed_stats_table' name='homunculus_computed_stats_table'>";
+		
+		for (i in homunculus_computed_stats)
+			homunculus_analysis_display += '<tr><td style="width: 10%"><b>' + homunculus_computed_stats[i] + ':</b></td><td style="width: 5%"></td>' + '<td style="width: 85%"></td></tr>';
+		homunculus_analysis_display += "</table><br>";
+		
+		myInnerHtml("A_KakutyouSel", homunculus_analysis_display, 0);
+		
+		for (const [index, key] of Object.keys(homunculus_db).entries())
+			document.calcForm.homunculus_select.options[index] = new Option(key, key);
+		for (i = 1; i < 100 ; ++i)
+			document.calcForm.homunculus_level_select.options[i - 1] = new Option(i, i);
+		
+		return;
+	}
 	myInnerHtml("A_KakutyouSel","",0);
+}
+
+function initialize_homunculus_stat_density_matrice(stat)
+{
+	let homunculus_max_level = 99;
+	let homunculus_info = homunculus_db[document.calcForm.homunculus_select.value];
+	
+	// Retrieve max stat bonus per level up
+	let max_stat_growth = homunculus_info["gx" + stat]
+	
+	// Retrieve min stat bonus to compute the bonus growth repartition
+	let min_stat_growth = homunculus_info["gn" + stat]
+	let growth_repartition = get_weight_growth_repartition(min_stat_growth, max_stat_growth);
+	
+	let is_main_stat = ["STR", "AGI", "VIT", "INT", "DEX", "LUK"].findIndex(x => x == stat) > -1;
+	if (is_main_stat)
+		max_stat_growth = Math.floor(max_stat_growth / 10);
+	
+	let max_total_growth = homunculus_max_level * max_stat_growth;
+	
+	density_matrice = Array(max_total_growth + 1).fill().map(()=>Array(homunculus_max_level).fill());
+	
+	if (is_main_stat)
+		update_density_matrice(density_matrice, max_total_growth, homunculus_max_level, growth_repartition);
+	
+	return density_matrice;
+}
+
+function update_density_matrice(density_matrice, x, n, probability_law)
+{
+    if (x >= 0 || n > 0)
+	{
+        for (var stat_value = 0; stat_value < density_matrice.length; ++stat_value)
+		{
+            for (var level = 0; level < density_matrice[0].length; ++level)
+			{
+                if (level == 0)
+				{
+                    if (stat_value < probability_law.length)
+                        density_matrice[stat_value][level] = probability_law[stat_value];
+                    else
+                        density_matrice[stat_value][level] = 0;
+				}
+                else
+				{
+                    growth_probability = 0
+                    for (var stat_bonus = 0; stat_bonus < probability_law.length; ++stat_bonus)
+					{
+                        if (stat_value >= stat_bonus && level > 0)
+                            growth_probability += density_matrice[stat_value - stat_bonus][level - 1] * probability_law[stat_bonus];
+					}
+                    density_matrice[stat_value][level] = growth_probability;
+				}
+			}
+		}
+	}
+}
+
+function on_homunculus_change()
+{
+	stat_density_matrice = {
+		"HP"  : initialize_homunculus_stat_density_matrice("HP"),
+		"SP"  : initialize_homunculus_stat_density_matrice("SP"),
+		"STR" : initialize_homunculus_stat_density_matrice("STR"),
+		"AGI" : initialize_homunculus_stat_density_matrice("AGI"),
+		"VIT" : initialize_homunculus_stat_density_matrice("VIT"),
+		"INT" : initialize_homunculus_stat_density_matrice("INT"),
+		"DEX" : initialize_homunculus_stat_density_matrice("DEX"),
+		"LUK" : initialize_homunculus_stat_density_matrice("LUK")
+	}
+	update_homunculus_analysis();
+}
+
+function update_homunculus_stat(homunculus_info, homunculus_lv, current_stat, i, is_evolved)
+{
+	let stat_factor = 1;
+	let min_evo_bonus = 0;
+	let max_evo_bonus = 0;
+	let min_stat_growth = (homunculus_lv > 1) ? homunculus_info["gn" + current_stat] : 0;
+	let max_stat_growth = (homunculus_lv > 1) ? homunculus_info["gx" + current_stat] : 0;
+	let current_stat_density_matrice = stat_density_matrice[current_stat];
+	
+	let growth_interval = max_stat_growth - min_stat_growth + 1;
+	let growth_repartition = get_weight_growth_repartition(min_stat_growth, max_stat_growth);
+	
+	let is_main_stat = ["STR", "AGI", "VIT", "INT", "DEX", "LUK"].findIndex(x => x == current_stat) > -1;
+	if (is_main_stat)
+	{
+		stat_factor = 10;
+		min_stat_growth -= min_stat_growth % 10;
+		max_stat_growth -= max_stat_growth % 10;
+	}
+	
+	// At creation, factor 10 applied on base main stats from db
+	let base_stat = homunculus_info["base" + current_stat] * stat_factor;
+	
+	// No consistency, db is not including that factor 10 for evolution bonus
+	if (is_evolved)
+	{
+		min_evo_bonus = homunculus_info["en" + current_stat] * stat_factor;
+		max_evo_bonus = homunculus_info["ex" + current_stat] * stat_factor;
+	}
+	
+	min_stat_value = Math.floor((base_stat + min_stat_growth *(homunculus_lv - 1) + min_evo_bonus) / stat_factor);
+	max_stat_value = Math.floor((base_stat + max_stat_growth *(homunculus_lv - 1) + max_evo_bonus) / stat_factor);
+	current_stat_input = document.getElementById("homunculus_" + current_stat + "_input");
+	current_stat_input.value = Math.max(min_stat_value, Math.min(current_stat_input.value, max_stat_value));
+	
+	homunculus_analysis_table.rows[i].cells[2].innerHTML = "" + min_stat_value;
+	homunculus_analysis_table.rows[i].cells[7].innerHTML = "" + max_stat_value;
+	
+	// Compute stats % to maximum theoretical stats
+	if (min_stat_value != max_stat_value) // To avoid division by zero
+		homunculus_analysis_table.rows[i].cells[8].innerHTML = "[ " + ((current_stat_input.value - min_stat_value) / (max_stat_value - min_stat_value) * 100).toFixed(2) + "% ]";
+	else
+		homunculus_analysis_table.rows[i].cells[8].innerHTML = "[ 100% ]";
+	
+	// Compute average stat growth per level
+	let average_stat_growth_per_lv = (current_stat_input.value - homunculus_info["base" + current_stat]) / (Math.max(1, homunculus_lv - 1));
+	homunculus_analysis_table.rows[i].cells[9].innerHTML = "[ " + average_stat_growth_per_lv.toFixed(1) + " ]";
+	
+	// Compute stats % based on stat growth weight
+	if (is_main_stat && homunculus_lv > 1)
+	{
+		let probability_density_area = compute_probability_density_area(current_stat_density_matrice, current_stat_input.value - homunculus_info["base" + current_stat], homunculus_lv - 2);
+		homunculus_analysis_table.rows[i].cells[10].innerHTML = "[ " + (probability_density_area * 100).toFixed(2) + "% ]";
+	}
+	else
+		homunculus_analysis_table.rows[i].cells[10].innerHTML = "[ N/A ]";
+}
+
+function compute_probability_density_area(density_matrice, value, iteration)
+{
+	let probability_density_area = 0
+	if (density_matrice.length / 2 > value)
+	{
+		for (var i = 0; i <= value; ++i)
+			probability_density_area += density_matrice[i][iteration];
+	}
+	else
+	{
+		for (var i = value + 1; i < density_matrice.length; ++i)
+			probability_density_area += density_matrice[i][iteration];
+		probability_density_area = 1 - probability_density_area;
+	}
+	
+	return probability_density_area
+}
+
+function get_weight_growth_repartition(min, max)
+{
+	let growth_repartition = []
+	let min_index = Math.floor(min / 10);
+	growth_repartition[min_index] = 10 - (min % 10 + ((min % 10) ? 1 : 0));
+	
+	let max_index = Math.floor(max / 10);
+	growth_repartition[max_index] = max % 10 + 1;
+	
+	for (i = 0; i < min_index; ++i)
+		growth_repartition[i] = 0;
+	
+	for (i = min_index + 1; i < max_index; ++i)
+		growth_repartition[i] = 10;
+	
+	return growth_repartition.map(x => x / (max - min));
+}
+
+function update_homunculus_computed_stats(homunculus_info, homunculus_lv, current_stat, i)
+{
+	let stat_value = "";
+	let base_aspd = homunculus_info["baseASPD"];
+	let str = eval(document.getElementById("homunculus_STR_input").value);
+	let agi = eval(document.getElementById("homunculus_AGI_input").value);
+	let vit = eval(document.getElementById("homunculus_VIT_input").value);
+	let dex = eval(document.getElementById("homunculus_DEX_input").value);
+	let luk = eval(document.getElementById("homunculus_LUK_input").value);
+	let int_ = eval(document.getElementById("homunculus_INT_input").value);
+	
+	switch(current_stat)
+	{
+		case 'ASPD':
+			let attack_motion = Math.floor((1000 - 4 * agi - dex) * base_aspd / 1000);
+			let raw_aspd = (2000 - attack_motion) / 10;
+			stat_value = "" + Math.min(Math.floor(raw_aspd), 190);
+			break;
+		case 'ATK':
+			let base_attack = str + Math.floor(str / 10) * Math.floor(str / 10);
+			stat_value = "" + base_attack + " + " + (str + homunculus_lv);
+			break;
+		case 'MATK':
+			stat_value = "" + (int_ + Math.floor(int_ / 7) * Math.floor(int_ / 7)) + " ~ " + (int_ + Math.floor(int_ / 5) * Math.floor(int_ / 5));
+			break;
+		case 'DEF':
+			stat_value = "" + (Math.min(Math.floor(homunculus_lv / 10) + Math.floor(vit / 5), 99)) + " + " + vit;
+			break;
+		case 'MDEF':
+			stat_value = "" + (Math.min(Math.floor(homunculus_lv / 10) + Math.floor(int_ / 5), 99)) + " + " + (int_ + Math.floor(vit / 2));
+			break;
+		case 'FLEE':
+			stat_value = "" + (homunculus_lv + agi)
+			break;
+		case 'HIT':
+			stat_value = "" + (homunculus_lv + dex)
+			break;
+		case 'CRIT':
+			stat_value = "" + (1 + Math.floor(luk / 3));
+			break;
+		default:
+			break;
+	}
+	homunculus_computed_stats_table.rows[i].cells[2].innerHTML = stat_value;
+}
+
+function update_homunculus_analysis(stat_index = -1)
+{
+	let homunculus_info = homunculus_db[document.calcForm.homunculus_select.value];
+	let homunculus_lv = eval(document.calcForm.homunculus_level_select.value);
+	let is_evolved = document.calcForm.is_homunculus_evolved_check.checked;
+	
+	if (stat_index < 0)
+	{
+		for (i in homunculus_stats)
+			update_homunculus_stat(homunculus_info, homunculus_lv, homunculus_stats[i], i, is_evolved); 
+	}
+	else
+		update_homunculus_stat(homunculus_info, homunculus_lv, homunculus_stats[stat_index], stat_index, is_evolved);
+
+	for (i in homunculus_computed_stats)
+		update_homunculus_computed_stats(homunculus_info, homunculus_lv, homunculus_computed_stats[i], i);
 }
 
 function update_equipment_list()
