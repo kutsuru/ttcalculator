@@ -433,7 +433,7 @@ ITEM_SP_TIME_OBJ =[
 ,[3,"Atroce Card","ASPD+100%",2,463,12,100,0]
 ,[4,"Anolian Card","Activate level 1 [Attention Concentrate]",2,224,0]
 ,[5,"Alchemist Card Set","Adrenaline Rush",2,461,0]
-,[6,"Valorous Assassin Damascus","MATK + 10% and ASPD + 20%",1,898,73,20,89,10,0]
+,[6,"Valorous Assassin Damascus","MATK + 10% and ASPD + 20%",1,898,12,20,89,10,0]
 ,[7,"Ixion Wings","ASPD + 7%",1,821,12,7,0]
 ,[8,"Vanberk Card","CRIT + 100",2,471,10,100,0]
 ,[9,"Wolfheiden","Receive -20% Physical Damage, +20% Magical Damage[Stone Skin Lv1]",1,708,0]
