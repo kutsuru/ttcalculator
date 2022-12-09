@@ -1713,7 +1713,7 @@ function BattleCalc999()
 		ATKbai02(wbairitu,0);
 		for(var b=0;b<=2;b++){
 			w_DMG[b] = BattleCalc(n_A_DMG[b],b);
-			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);
+			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][n_A_Weapon_zokusei]);
 			if(wActiveHitNum > 1)
 				w_DMG[b] = Math.floor(w_DMG[b] / wActiveHitNum) * wActiveHitNum;
 
@@ -1724,7 +1724,7 @@ function BattleCalc999()
 
 		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0)* zokusei[n_B[3]][0] *(100-w_HIT))/100;
 
-		n_PerHIT_DMG = BattleCalc2(0) * zokusei[n_B[3]][0];
+		n_PerHIT_DMG = BattleCalc2(0) * zokusei[n_B[3]][n_A_Weapon_zokusei];
 
 		CastAndDelay();
 		BattleCalc998();
