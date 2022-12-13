@@ -2671,9 +2671,9 @@ with(document.calcForm){
 			n_tok[73] -= 5;
 	}
 	
-	// Glorious Gladius#1076 - [Rogue/Stalker or Ninja][Every Refine Level] - MATK + 3%
+	// Glorious Gladius#1076 - [Rogue/Stalker or Ninja][Every Refine Level] - MATK + 2%
 	if (EquipNumSearch(1076) && (n_A_JobSearch2() == 14 || n_A_JOB == 44))
-		n_tok[89] += 3 * n_A_Weapon_ATKplus;
+		n_tok[89] += 2 * n_A_Weapon_ATKplus;
 	
 	// Professor Celia Card#624
 	if (CardNumSearch(624))
