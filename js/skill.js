@@ -796,6 +796,7 @@ AutoSpellSkill = [
 [153,2,132,3,100,56],	//Upon casting [Lightning Bolt], there's a 100% chance to cast the skill [Earth Spike]Lv 3
 [154,1,54,6,20,1],		//When performing a ATK based attack, there's a 20% chance to cast the skill [Cold Bolt] Lv 6
 [155,1,161,10,20,1],	//When performing a ATK based attack, there's a 20% chance to cast the skill [Holy Cross] Lv 10
+[156,1,414,2,30,1],	//When performing a ATK based attack, there's a 30% chance to cast the skill [Lightning Jolt] Lv 2
 ];
 
 TRO_MAGICALSKILL_ELEMENTS = [

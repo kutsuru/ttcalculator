@@ -557,7 +557,7 @@ sqi_bonus_db = {
 			,["Spend 75% less zeny with all Zeny Skills",0]
 			,["Triple the duration of [Cart Boost] and [Melt Down]",0]
 			,["[Over-Thrust] won't break party member weapons. Enable [Full Adrenaline Rush] without [Blacksmith Spirit]",0]
-			,["MATK + 20%. 30% chance to auto-cast level 2 [Lightning Jolt] with 100% more damage when attacking normally",0]
+			,["MATK + 20%. 30% chance to auto-cast level 2 [Lightning Jolt] with 100% more damage when attacking normally",221,156,89,20,5414,100,0]
 			,["40% chance to auto-cast level 1 [Wide Silence] when using [Hammerfall]",0]
 			,["Enables use of level 1 [Charge Attack] and 30% less cast time with [Charge Attack]",220,52,7308,30,0]
 			,["+200% more damage with Throw Tomahawk, enables [Throw Tomahawk] to work together with the [Melt Down] status.",5302,200,0]
