@@ -3805,14 +3805,19 @@ function ClickActiveSkill(){
 with(document.calcForm){
 	n_A_ActiveSkill = eval(A_ActiveSkill.value);
 
-	additional_skill_lv_bonus = 0;
+	let additional_skill_lv_bonus = 0;
+	let current_class = n_A_JobSearch();
 				
-	// Rolling Thunder#1790 - [Every 2 Refine Level] - Increase [Thunderstorm] level by 1.
-	if (EquipNumSearch(1790))
+	// Rolling Thunder#1790 - [Every 2 Refine Level] - Increase [Thunderstorm#149] level by 1.
+	if (EquipNumSearch(1790) && 2149 == n_A_ActiveSkill)
 		additional_skill_lv_bonus = Math.floor(n_A_Weapon_ATKplus / 2);
 	
-	// Electric Guitar#1381#11th Bonus - Increase [Jupitel Thunder] to level 10
-	if (1381 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 11) > -1)
+	// Thunderstorm Cloud#1832 - Allows [Lightning Bolt#157] and [Thunderstorm#158] to level 10 for Mage/Suno classes.
+	if (EquipNumSearch(1832) && (2157 == n_A_ActiveSkill || 2158 == n_A_ActiveSkill) && (0 == current_class || 5 == current_class))
+		additional_skill_lv_bonus = 5;
+	
+	// Electric Guitar#1381#11th Bonus - Increase [Jupitel Thunder#49] to level 10
+	if (3049 == n_A_ActiveSkill && 1381 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 11) > -1)
 		additional_skill_lv_bonus = 7;
 
 	if(n_A_ActiveSkill >= 3000){

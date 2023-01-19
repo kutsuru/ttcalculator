@@ -1885,6 +1885,7 @@ ItemOBJ = [
 ,[1829,50,0,1,0,1,40,1,"Shaman Hat","",0,60,3,61,3,62,3,63,3,64,3,65,3,66,3,67,3,68,3,69,3,0]
 ,[1830,50,0,4,0,1,35,1,"Girl Sun Hat","","[Every 3 Refine Levels] INT + 2<br>A beautiful hat with a large flower to protect girls from the sun.",15,-3,0]
 ,[1831,64,0,0,0,1,10,10,"Gold Emblem","","An emblem showing off enormous courage.",2,2,3,2,5,1,6,2,12,1,72,-3,74,1,0]
+,[1832,50,0,2,0,0,30,30,"Thundercloud Storm","","If you have acquired a higher level of these skills, it will cast the skill at that level instead.\nThe level of your Lightning Bolt and Thunder Storm will increase the respective probability of casting by 0.2% per level.",193,1,221,157,221,158,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3750,6 +3751,7 @@ ItemID = [
 ,[1829,1,5665]
 ,[1830,1,18842]
 ,[1831,1,20128]
+,[1832,1,18523]
 ];
 
 /*
