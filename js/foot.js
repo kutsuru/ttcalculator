@@ -1650,6 +1650,9 @@ with(document.calcForm){
 	// Pitch Dark Evil Druid Hat#1714 - [For every refine] MDEF + 1
 	n_tok[19] += n_A_HEAD_DEF_PLUS * EquipNumSearch(1715);
 	
+	// Red Dress Hat#1833 - [For 2 every refines] MDEF + 1
+	n_tok[19] += Math.floor(n_A_HEAD_DEF_PLUS/2) * EquipNumSearch(1833);
+	
 	//Red Minstrel Hat [For Every Refine > 5] MDEF + 1, MSP + 10 - [Loa] - 2018-07-03
 	if(EquipNumSearch(1139) && n_A_HEAD_DEF_PLUS > 5){
 		w += (n_A_HEAD_DEF_PLUS - 5) * 10;
