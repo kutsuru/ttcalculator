@@ -142,7 +142,8 @@ Effect list:
 	99: ASPD + [value] (flat)
 	100: Resistance against melee attacks + [value]%
 	101: Resistance against magic attacks + [value]%
-	102-109: (unused)
+	102: Resistance against misc attacks + [value]%
+	103-109: (unused)
 	110: Increases the critical rate on [Formless] race monsters by + [value]
 	111: Increases the critical rate on [Undead] race monsters by + [value]
 	112: Increases the critical rate on [Brute] race monsters by + [value]

@@ -6012,6 +6012,9 @@ function KakutyouKansuu(){
 		CBIstr += "<tr><td><b>" + "Small Resistance</b></td><td><b>"+ n_tok[190] +" %" + "</b></td>";
 		CBIstr += "<td><b>" + "Medium Resistance</b></td><td><b>"+ n_tok[191] +" %" + "</b></td>";
 		CBIstr += "<td><b>" + "Large Resistance</b></td><td><b>"+ n_tok[192] +" %" + "</b></td></tr>";
+		CBIstr += "<tr><td><b>" + "Melee Resistance</b></td><td><b>"+ n_tok[100] +" %" + "</b></td>";
+		CBIstr += "<td><b>" + "Magic Resistance</b></td><td><b>"+ n_tok[101] +" %" + "</b></td>";
+		CBIstr += "<td><b>" + "Misc Resistance</b></td><td><b>"+ n_tok[102] +" %" + "</b></td></tr>";
 		CBIstr += "</table><center>----//----</center>";
 
 		CBIstr += "<table border=0>";

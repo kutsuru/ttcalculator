@@ -1403,7 +1403,7 @@ ItemOBJ = [
 ,[1376,61,113,8,0,1,400,0,"-Aegis Shield","","<font color='blue'>SQI</font>",1,3,3,5,4,3,19,10,194,1,61,10,62,10,63,10,64,10,0] //custom Talon Tales SQI
 ,[1377,10,110,200,4,3,150,0,"-Artemis Bow","","Enables use of level 4 [Safety Wall].<br><br><font color='blue'>SQI</font>",4,15,6,20,0] //custom Talon Tales SQI
 ,[1378,15,117,190,4,3,70,0,"-Belmont Whip","","Ignore [Adpation to Circumstances] delay<br>Enable to do perfect damage on any size monster<br>Enable to use Level 5 [Providence] and Level 5 [Aspersio]<br><br><font color='blue'>SQI</font>",2,10,5,15,12,13,20,3,0] //custom Talon Tales SQI
-,[1379,1,50,250,4,3,150,0,"-Blade of Angels","","Resistance against misc attacks + 20% (Traps, Tarot, Pressure, ...)<br><font color='blue'>SQI</font>",1,10,8,50,15,50,14,1250,89,25,100,20,101,20,78,20,0] //custom Talon Tales SQI
+,[1379,1,50,250,4,3,150,0,"-Blade of Angels","","<br><font color='blue'>SQI</font>",1,10,8,50,15,50,14,1250,89,25,100,20,101,20,102,20,78,20,0] //custom Talon Tales SQI
 ,[1380,6,119,350,4,3,400,0,"-Djinn","","<br><b>[Super Novice]</b><br>DEX + 5<br>LUK + 5<br><br><font color='blue'>SQI</font>",4,5,5,15,6,20,20,2,0] //custom Talon Tales SQI
 ,[1381,14,0,190,4,3,100,0,"-Electric Guitar","","Ignore [Adpation to Circumstances] delay.<br><br><font color='blue'>SQI</font>",4,4,3,4,5,15,20,4,89,15,220,49,0]
 ,[1382,8,109,250,4,3,150,0,"-Evangelist","","<br><b>[Super Novice]</b><br>INT + 5<br>DEX + 5<br>Allows usage of the skill [Magic Crasher]Lv 1<br><br><font color='blue'>SQI</font>",4,15,5,15,8,35,20,1,89,15,220,50,0] //custom Talon Tales SQI
@@ -4101,6 +4101,8 @@ function Item_Setumei(nC1,nC2)
 		CBIstr += "Resistance against melee attacks" + wIS + nC2 +"%<BR>";
 	if(101 == nC1)
 		CBIstr += "Resistance against magic attacks" + wIS + nC2 +"%<BR>";
+	if(102 == nC1)
+		CBIstr += "Resistance against misc attacks (Traps, Tarot, Pressure, ...)" + wIS + nC2 +"%<BR>";
   
     /*Increase Crital Rate on race by an amount.
       110 = Formless
