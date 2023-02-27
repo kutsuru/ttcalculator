@@ -559,7 +559,7 @@ cardOBJ = [
 ,[532,4,"Detale","-Add 5% chance of auto casting level 1 Land Protector around the user when the user receives Magical Damage<br /><br /><b>[ Aegir Helm, Aegir Cloak, Aegir Armor, Aegir Shoes Combo ] Gain full immunity against against Freeze status</b>",19,-10,152,50,0]
 ,[533,6,"Wild Rider","",2,1,221,128,221,129,0]
 ,[534,1,"Red Eruma",0,403,1.5,0]
-,[535,2,"Siorava","[Merchant and Merchant Upper Classes]<br />Every 3 refine on the compounded item adds LUK +1",6,3,0]
+,[535,2,"Siorava","[Merchant and Merchant Upper Classes]<br />Every 3 refine on the compounded item adds LUK +1",6,2,0]
 ,[536,2,"Parus","[Acolyte class]<br />Every 2 refine adds 1% heal effectiveness",91,3,0]
 ,[537,1,"Little Fatum",0,406,1.5,0]
 ,[538,7,"Miming",0,5056,25,7056,25,0]
