@@ -3067,6 +3067,7 @@ function BattleCalc998()
 		MS_ELEMENT = 1 - n_tok[330 + n_B[3]] / 100;	// Monster element reduction
 		MS_MAGIC = 1 - n_tok[101] / 100;			// Magic reduction
 		MS_MELEE = 1 - n_tok[100] / 100;			// Melee reduction
+		MS_SIZE = 1 - n_tok[190 + n_B[4]] / 100;	// Size reduction
 		MS_REGION = 1 - (MANUKU_MONSTER() && n_A_PassSkill8[24] ? 0.1 : 0) - (SUPURE_MONSTER() && n_A_PassSkill8[27] ? 0.1 : 0);
 		
 		// NPC_EARTHQUAKE Skill
@@ -3087,8 +3088,8 @@ function BattleCalc998()
 
 				MS_REDUCTION = MS_BOSS * MS_ELEMENT * MS_NEUTRAL * MS_RACE * MS_MAGIC * MS_REGION * (blossoming_geographer_cocktail ? 0.9 : 1);
 
-				EQ_MINDMG = Math.floor(Math.floor(Math.floor(n_B[12] * EQ_RATIO * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_EC * (is_range_attack ? MS_RANGE : MS_MELEE)) / EQ_TARGETS - n_A_INTMDEF);
-				EQ_MAXDMG = Math.floor(Math.floor(Math.floor(n_B[13] * EQ_RATIO * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_EC * (is_range_attack ? MS_RANGE : MS_MELEE)) / EQ_TARGETS - n_A_INTMDEF);
+				EQ_MINDMG = Math.floor(Math.floor(Math.floor(n_B[12] * EQ_RATIO * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_EC * MS_SIZE * (is_range_attack ? MS_RANGE : MS_MELEE)) / EQ_TARGETS - n_A_INTMDEF);
+				EQ_MAXDMG = Math.floor(Math.floor(Math.floor(n_B[13] * EQ_RATIO * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_EC * MS_SIZE * (is_range_attack ? MS_RANGE : MS_MELEE)) / EQ_TARGETS - n_A_INTMDEF);
 
 				EQ_POWER = Math.floor(EQ_MINDMG * HITS) + "~" + Math.floor(EQ_MAXDMG * HITS) + " (" + EQ_MINDMG + "~" + EQ_MAXDMG + " x " + HITS + " Hits)";
 			}
@@ -3104,8 +3105,8 @@ function BattleCalc998()
 			HJ_RATIO = HJ_LV;
 			MS_REDUCTION = MS_BOSS * (is_range_attack ? MS_RANGE : MS_MELEE) * MS_ELEMENT * MS_NEUTRAL * MS_RACE * (sting_slap_cocktail ? 0.9 : 1);
 			
-			HJ_MINDMG = Math.floor(Math.floor(Math.floor(n_B[12] * HJ_RATIO * (1 - n_A_DEF /100) - n_A_VITDEF[0]) * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_EC);
-			HJ_MAXDMG = Math.floor(Math.floor(Math.floor(n_B[13] * HJ_RATIO * (1 - n_A_DEF /100) - n_A_VITDEF[2]) * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_EC);
+			HJ_MINDMG = Math.floor(Math.floor(Math.floor(n_B[12] * HJ_RATIO * (1 - n_A_DEF /100) - n_A_VITDEF[0]) * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_SIZE * MS_EC);
+			HJ_MAXDMG = Math.floor(Math.floor(Math.floor(n_B[13] * HJ_RATIO * (1 - n_A_DEF /100) - n_A_VITDEF[2]) * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_SIZE * MS_EC);
 
 			HJ_POWER = Math.floor(HJ_MINDMG * HITS) + "~" + Math.floor(HJ_MAXDMG * HITS);
 		}
