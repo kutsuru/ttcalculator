@@ -2426,9 +2426,6 @@ with(document.calcForm){
 	// SC_TRUESIGHT
 	if (n_A_JOB == 24)
 		n_A_CRI += SkillSearch(270);
-
-	// SC_CLOAKING - CRIT * 2
-	n_A_CRI += n_A_CRI * Math.min(1, SkillSearch(82));
 	
 	n_tok[10] += n_tok[110+n_B[2]];
 	
@@ -2616,6 +2613,8 @@ with(document.calcForm){
 	
 	if (n_A_WeaponType == 11) // Katar CRIT bonus, only applied to LUK CRIT and above SC
 		n_A_CRI *= 2;
+	// SC_CLOAKING - CRIT * 2
+	n_A_CRI += n_A_CRI * Math.min(1, SkillSearch(82));
 
 	myInnerHtml("A_CRI",n_A_CRI,0);
 
