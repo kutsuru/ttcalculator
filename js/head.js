@@ -877,8 +877,9 @@ function BattleCalc999()
 			else
 				n_Delay[2] = 2.8;
 			n_Delay[3] = 2;
-		}else if(n_A_ActiveSkill==302){
+		}else if(n_A_ActiveSkill==302){ // Throw Tomahawk#302
 			n_Enekyori=1;
+			n_Delay[2] = 0.5;
 		}else if(n_A_ActiveSkill==303){
 			wbairitu += (n_A_ActiveSkillLV -1) * 1;
 		}else if(n_A_ActiveSkill==306){
