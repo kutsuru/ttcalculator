@@ -879,8 +879,6 @@ function BattleCalc999()
 			n_Delay[3] = 2;
 		}else if(n_A_ActiveSkill==302){
 			n_Enekyori=1;
-			not_use_card = 1;
-			n_A_Weapon_zokusei = 4;
 		}else if(n_A_ActiveSkill==303){
 			wbairitu += (n_A_ActiveSkillLV -1) * 1;
 		}else if(n_A_ActiveSkill==306){
