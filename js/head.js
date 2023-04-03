@@ -211,8 +211,8 @@ JobEquipItemOBJ = [
 [0, 1, 51, 61,113,127, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,999], //Paladin
 [0, 1, 52, 62,114,128, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,999], //Stalker
 [0, 1, 53, 63,115,129, 71, 73, 74,77,78,79,82,85,89,95,96,152,999], //Champion
-[0, 1, 54, 60,64,116,130, 74, 75, 76,79,82,83,89,153,92,999], //Clown
-[0, 1, 54, 60,64,117,131, 74, 75, 76,79,82,83,89,153,92,999], //Gypsy
+[0, 1, 54, 60,64,116,130, 74, 75, 76,79,82,83,89,153,92,134,999], //Clown
+[0, 1, 54, 60,64,117,131, 74, 75, 76,79,82,83,89,153,92,134,999], //Gypsy
 [0, 1, 55, 65,118,132, 71,77,79,82,89,152,96,999], //Professor
 [0, 1, 56, 66,119,133, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,999], //Creator
 [0],
@@ -317,6 +317,7 @@ JobEquipItemOBJ = [
 		131 = gypsy
 		132 = professor
 		133 = creator
+		134 = clown, gypsy
 
 		141 = taekwon ONLY
 		142 = star gladiator
@@ -3362,6 +3363,10 @@ function BattleMagicCalc(wBMC)
 	// Elemental Boots#1819 - [Refine Level +7 or Higher] 5% more damage with [Fire Bolt], [Cold Bolt], [Lightning Bolt], [Earth Spike].
 	if ((n_A_ActiveSkill == 51 || n_A_ActiveSkill == 54 || n_A_ActiveSkill == 56 || n_A_ActiveSkill == 132) && n_A_SHOES_DEF_PLUS > 6)
 		wX += 5;
+	
+	// Mental Stick#1508 - [Every Refine Level] 2% more damage with [Fire Bolt]#51, [Cold Bolt]#54, [Lightning Bolt]#56
+	if (n_A_ActiveSkill == 51 || n_A_ActiveSkill == 54 || n_A_ActiveSkill == 56)
+		wX += 2 * n_A_Weapon_ATKplus * EquipNumSearch(1508);
 	
 	// Yellow Lichtern Card#612 - [Ninja Class] - 25% more damage with [Wind Blade]
 	if (44 == n_A_JOB)
@@ -7769,6 +7774,9 @@ function calc()
 		
 		// Stalker Card#619 - [Rogue Class, Monk Class] - [Triple Attack] Rate + 10%
 		wBC3_3danHatudouRitu += 10 * CardNumSearch(619);
+		
+		// Sura's Rampage#1512 - [Triple Attack] Rate + 20%
+		wBC3_3danHatudouRitu += 20 * EquipNumSearch(1512);
 	}
 
 	// Manage [Double Attack]

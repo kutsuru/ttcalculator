@@ -1054,7 +1054,7 @@ ItemOBJ = [
 ,[1031,50,0,10,0,0,20,0,"Wings of Victory","","<b>Upper and Middle Headgear</b>",19,10,194,1,193,1,0]
 ,[1032,50,0,3,0,0,40,0,"Carmen Miranda Hat","","Add a 5% chance of auto casting Level 1 Wink Charm when the user receives Physical Damage",19,3,0]
 ,[1033,50,0,1,0,1,10,10,"Dokebi's Wig (ID:5298)","","<b>Upper and Middle Headgear</b>",60,5,61,-5,63,-5,0]
-,[1034,50,0,5,0,0,20,50,"Helm Of Dragon","","3% chance to cause a certain abnormal status to all enemies in 5x5 cell on physical attack",39,20,0]
+,[1034,50,0,5,0,1,20,50,"Helm Of Dragon","","3% chance to cause a certain abnormal status to all enemies in 5x5 cell on physical attack",39,20,0]
 ,[1035,50,0,2,0,0,10,30,"Wind Milestone","",0,2,2,220,23,0]
 ,[1036,50,0,3,0,0,80,0,"Parade Hat","","<b>[Refine Rate > 5]</b><br>Reduces Cast Time by an additional 5%",19,2,73,-5,0]
 ,[1037,51,0,1,0,0,10,50,"Darkness Eyes","",0,5,1,154,100,0]
@@ -1321,7 +1321,7 @@ ItemOBJ = [
 ,[1298,50,0,0,0,0,10,0,"Autumn Leaves [0]","",0,13,40,14,40,0]
 ,[1299,50,0,1,0,1,10,0,"Autumn Leaves [1]","",0,11,5,0]
 ,[1300,50,72,5,0,1,10,0,"Ayothaya King's Hat","",0,1,1,37,5,0]
-,[1301,50,0,3,0,1,10,0,"Baby Dragon Hat",0,0,0]
+,[1301,50,0,3,0,1,10,0,"Baby Dragon Hat","","<br><b>[Sage Class][Dragonology Mastered]</b><br>ATK + 5%<br>MATK + 5%<br>DEX + 5",59,10,129,5,0]
 ,[1302,52,0,0,0,0,10,0,"Bandit Beard",0,0,0]
 ,[1303,50,0,3,0,1,80,0,"Bandit Hat",0,0,1,2,63,10,0]
 ,[1304,51,1,2,0,0,20,20,"Injured Eyepatch","",0,0]
@@ -1334,7 +1334,7 @@ ItemOBJ = [
 ,[1311,100,0,0,0,0,0,0,"Dark Knight Set B",0,0,89,10,4,5,58,10,0]
 ,[1312,50,0,3,0,1,20,20,"Little Red Riding Hood Scarf","",0,10,6,0]
 ,[1313,52,0,1,0,0,10,90,"Spiked Scarf","","",3,1,0]  //custom Talon Tales removed: 37,1,57,1,
-,[1314,63,131,4,0,1,30,90,"Dance Shoes","",0,2,1,12,2,72,-10,0]
+,[1314,63,134,2,0,1,30,60,"Dance Shoes","","Fast Movement Speed all the time.<br><br>Doubles the duration of [Bard and Dancer Spirits]. <b>[Refine Level >= 8]</b> Triple duration instead.<br><b>[On Unequip]</b><br>Dispels Bard and Dancer Spirits on unequip.<br><br><b>[Every Refine]</b><br>Natural SP Recovery Rate + 3%.<br><br><b>[Every 2 Refines][Dancer]</b><br>AGI + 1<br>ASPD + 1%",0]
 ,[1315,5,121,150,4,1,475,93,"Gigantic Lance","","When using Spiral Pierce, knock back your enemies 4 cells<br>When unequipping, you lose 500 sp<br><b>For every refine > 4:</b><br>ASPD + 1%",12,-10,0]
 ,[1316,51,0,1,0,0,10,50,"Hockey Mask","","<b>Middle and Lower Headgear</b>",37,5,0]
 ,[1317,50,0,4,0,1,40,25,"Jaguar Hat","","Allows usage of the skill [Loud Exclamation]Lv 1<br><b>Upper, Middle and Lower Headgear</b>",19,2,0]
@@ -1415,7 +1415,7 @@ ItemOBJ = [
 ,[1388,10,114,225,4,3,150,0,"-Sherwood Bow","","Enable to use [Arrow Crafting]<BR>Additional Range + 6<br><font color='blue'>SQI</font>",2,20,5,15,9,15,89,15,0] //custom Talon Tales SQI
 ,[1389,9,111,250,4,3,50,0,"-Staff of Magi","","<br><br><b>[Super Novice]</b><br>INT + 5<br>DEX + 5<br>MATK + 20%<br><br><font color='blue'>SQI</font>",20,3,4,5,5,15,89,20,0] //custom Talon Tales SQI
 ,[1390,13,115,150,4,3,60,0,"-Suiken","","<font color='blue'>SQI</font>",20,1,1,10,5,10,8,40,12,13,0] //custom Talon Tales SQI
-,[1391,12,118,250,4,3,80,0,"-Tome of Ymir","","Ignore gemstone requirement.<font color='blue'>SQI</font>",4,4,5,15,12,13,89,20,0] //custom Talon Tales SQI
+,[1391,12,118,250,4,3,80,0,"-Tome of Ymir","","Ignore gemstone requirement.<br><font color='blue'>SQI</font>",4,4,5,15,12,13,89,20,0] //custom Talon Tales SQI
 //custom Talon Tales equip combos
 ,[1392,100,0,0,0,0,0,0,"Survivor's Manteau [Rental] set",0,0,60,25,89,5,0]
 //custom Talon Tales etc (low/mid-headgears)
@@ -1538,11 +1538,11 @@ ItemOBJ = [
 ,[1505,50,1152,3,0,1,60,60,"Diadem Of Bruenhild","","Creates a chance of casting Level 8 Endure when you receive Physical damage<br>Consumes 100 HP every 4 seconds",59,5,60,5,194,1,0]
 ,[1506,10,124,115,3,2,150,93,"Creeper Bow","","Has a chance of activating Fiber Lock while attacking",5,1,0]
 ,[1507,61,123,4,0,1,50,95,"Bible of Promise(2nd Vol.)","",0,19,5,91,5,94,5,0]
-,[1508,9,132,40,3,1,50,90,"Mental Stick","","<b>[Refine 6-10]</b><br>Each refine above 5 decreases SP usage by 1%",72,-5,73,-10,89,15,0]
-,[1509,64,1001,1,0,0,20,92,"Telekinetic Orb","","",4,3,14,30,19,1,221,120,0]
-,[1510,100,0,0,0,0,0,0,"Mental Stick & Telekinetic Orb combo",0,0,221,121,0] //Mental Stick & Telekinetic Orb combo
+,[1508,9,132,40,3,"1/2",50,60,"Mental Stick","","<b>[Every Refine]</b><br>Increases [Fire Bolt], [Cold Bolt], [Lightning Bolt] damage by 2%",73,-10,89,15,0]
+,[1509,64,1001,1,0,"0/1",20,60,"Telekinetic Orb","","",4,3,14,30,19,1,0]
+,[1510,100,0,0,0,0,0,0,"Mental Stick & Telekinetic Orb combo",0,"Increase Fire Ball AoE from 5×5 to 7×7.",5052,200,0] //Mental Stick & Telekinetic Orb combo
 ,[1511,9,123,30,4,1,40,91,"Recovery Light","","<b>For every refinement</b><br>Healing done by all skills +3%<br>The skill Heal costs 5 more SP",20,6,89,15,194,1,0]
-,[1512,13,129,142,3,1,50,90,"Sura's Rampage","","<b>[Refine 5-10]</b><br>Each refine above +4 decreases the SP cost of skills by 1%",72,5,221,122,221,123,5187,10,0]
+,[1512,13,0,130,3,"2/3",50,40,"Sura's Rampage","","Enable Combo Finish to inflict Splash Damage all the time without the Soul Link.<br><b>[Every Refine]</b><br>Adds 20% Combo Finish Splash damage",0]
 ,[1513,60,133,7,0,1,66,90,"Green Surgical Gown","","",5,1,14,30,0]
 ,[1514,100,0,0,0,0,0,0,"Green Surgical Gown set",0,"Has a chance when killing animal and demi-human type monsters to drop 'Immortal Heart' and 'Alcohol'<br>Higher armor refine rate increases the chance of item drop",0] //Green Surgical Gown & Mes combo
 ,[1515,10,128,135,4,2,110,90,"Catapult","","If you have a higher level of Double Strafing, use that instead",221,124,0]
@@ -1664,7 +1664,7 @@ ItemOBJ = [
 ,[1620,50,0,2,0,1,30,10,"Entweihen Hairband","","<b>For every refine > 4:<b><br>MATK + 1%",4,1,5,1,89,1,0]
 ,[1621,100,0,0,0,0,0,0,"Entweihen Hairband + Dark Thorn Staff","","<br><b>[Refine Rate 5~10]</b><br>For every refine, add +1% MATK.<br><br>When equipping [Entweihen Hairband]+[Dark Thorn Staff] at the same time:<br><b>[Refine Rate 5~10 Dark Thorn Staff]</b><br>For every 2 refines on the Dark Thorn Staff, add +10 MATK",0]
 ,[1622,15,131,150,4,0,100,92,"Rosevine","","A whip created from a magically enchanted rose that radiates the smell of roses.",7,2,10,5,89,10,221,130,0]
-,[1623,2,1070,180,3,0,220,90,"Chrome Metal Sword","","A cold blue dagger crafted from the other world mineral Bradium",2,1,15,-5,194,1,0]
+,[1623,2,1070,150,3,"2/3",200,75,"Chrome Metal Sword","","A cold blue dagger crafted from the other world mineral Bradium.<br><b>[Every Refine]</b><br>AGI + 1<br>ATK + 4",15,-5,194,1,0]
 ,[1624,1,1072,160,4,0,50,92,"Scarletto Nail","","[Stone] chance is increased by 0.5% for each refine level.",20,3,89,5,139,1,0]
 ,[1625,1,1072,160,4,0,50,92,"Aztoe Nail","","A dagger that shines blue and enchanted with binding magic.<Br>[Freeze] chance is increased by 0.5% for each refine level.",20,4,89,5,132,1,0]
 ,[1626,63,1001,3,0,1,50,85,"Enhanced Variant Shoes","","Shoes that seem to be wrong somewhere. The intention of the maker to perfect the shoes can be seen but it seems to be a failure.",15,12,16,12,0]

@@ -995,10 +995,11 @@ with(document.calcForm){
 		else if(n_A_JOB == 43)
 			n_tok[10] += 50; // CRIT + 50
 	}
-	//angra mantis [Loa] 2018-08-05
-	if(CardNumSearch(422) && n_A_JobSearch() == 2){
-		n_tok[70] += Math.floor(n_A_HEAD_DEF_PLUS / 2);
-	}
+	
+	// Angra Mantis Card#422 - [Thief Class][Every Refine] Critical Damage + 1%
+	if (CardNumSearch(422) && n_A_JobSearch() == 2)
+		n_tok[70] += n_A_HEAD_DEF_PLUS;
+	
 	// Elite Engineer Armor & Battle Greaves & Captain's Manteau Equip Set#972 - Increases the effectiveness of heal received from [Heal] and [Potion Pitcher] by 10%
 	if (EquipNumSearch(972))
 	{
@@ -3576,9 +3577,11 @@ with(document.calcForm){
 
 	w += SkillSearch(269) *3;
 
-	// Menblatt Wing Manteau#1696 [Every Refine Level] SP Recovery + 3%
-	if (EquipNumSearch(1696))
-		n_tok[76] += n_A_SHOULDER_DEF_PLUS;
+	// Menblatt Wing Manteau#1696 - [Every Refine Level] SP Recovery + 3%
+	n_tok[76] += 3 * n_A_SHOULDER_DEF_PLUS * EquipNumSearch(1696)
+
+	// Dance Shoes#1314 - [Every Refine Level] SP Recovery + 3%
+	n_tok[76] += 3 * n_A_SHOES_DEF_PLUS * EquipNumSearch(1314);
 	
 	w += n_tok[76];
 
@@ -4519,10 +4522,6 @@ with(document.calcForm){
 	// Green Whistle#1462 - [Every Refine Level > 6] - Reduce SP cost of all skills by 2%
 	n_tok[72] -= Math.max(0, n_A_Weapon_ATKplus - 6) * 2 * EquipNumSearch(1462);
 
-	// Mental Stick#1508 - [Every Refine Level > 5] - Reduce SP cost of all skills by 1%
-	// Note that SP cost will be increased if the refine rate is not high enough, no refine check in the script
-	n_tok[72] -= (n_A_Weapon_ATKplus - 5) * EquipNumSearch(1508);
-	
 	// Staff of Destruction#646 - [Every Refine Level] - Increase SP cost of all skills by 2%
 	n_tok[72] += n_A_Weapon_ATKplus * 2 * EquipNumSearch(646);
 
@@ -4532,9 +4531,6 @@ with(document.calcForm){
 	// Stem Whip# 1454 - [Every Refine Level > 6] - Reduce SP cost of all skills by 2%
 	n_tok[72] -= Math.max(0, n_A_Weapon_ATKplus - 6) * 2 * EquipNumSearch(1454);
 	
-	// Sura Rampage#1512 - [Every Refine Level > 4] - Reduce SP cost of all skills by 1%
-	n_tok[72] -= Math.max(0, n_A_Weapon_ATKplus - 4) * EquipNumSearch(1512);
-
 	// Rose Casquette#1741
 	if (EquipNumSearch(1741))
 	{
@@ -4573,6 +4569,27 @@ function StPlusCalc()
 	n_tok[4] += Math.round(SkillSearch(234) / 2);
 	
 	n_tok[5] += SkillSearch(38);
+	// Baby Dragon Hat#1301 - [Sage Class][Dragonology Mastered] ATK & MATK + 5% and DEX + 5"
+	if (5 == SkillSearch(234) && EquipNumSearch(1301))
+	{
+		n_tok[5] += 5;
+		n_tok[80] += 5;
+		n_tok[89] += 5;
+	}
+	
+	// Chrome Metal Sword#1623 - [Every Refine] AGI + 1, ATK + 4
+	if (EquipNumSearch(1623))
+	{
+		n_tok[2] = n_A_Weapon_ATKplus;
+		n_tok[17] = 4 * n_A_Weapon_ATKplus;
+	}
+	
+	// Dance Shoes#1314 - [Dancer][Every 2 Refines] AGI + 2, ASPD + 1%
+	if (17 == n_A_JobSearch2() && EquipNumSearch(1314))
+	{
+		n_tok[2] = Math.floor(n_A_SHOES_DEF_PLUS / 2);
+		n_tok[12] = Math.floor(n_A_SHOES_DEF_PLUS / 2);
+	}
 
 	if(SkillSearch(422)) // Increase Accuracy#422
 	{
@@ -5649,7 +5666,7 @@ function n_A_JobSearch2()
 	if(n_A_JOB == 16 || n_A_JOB == 30)
 		return 16;
 	if(n_A_JOB == 17 || n_A_JOB == 31)
-		return 16;
+		return 17;
 	if(n_A_JOB == 18 || n_A_JOB == 32)
 		return 18;
 	if(n_A_JOB == 19 || n_A_JOB == 33)
