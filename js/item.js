@@ -1888,6 +1888,7 @@ ItemOBJ = [
 ,[1832,50,0,2,0,0,30,30,"Thundercloud Storm","","If you have acquired a higher level of these skills, it will cast the skill at that level instead.\nThe level of your Lightning Bolt and Thunder Storm will increase the respective probability of casting by 0.2% per level.",193,1,221,157,221,158,0]
 ,[1833,50,0,2,0,1,20,20,"Red Dress Hat","","[Every 2 Refine Levels] MDEF + 1",19,7,0]
 ,[1834,51,0,1,0,0,70,50,"Demon Mask","","When being physically attacked there's 1% chance to get silence status.<br>Uses Lower and Middle Headgear location",38,5,178,5,0]
+,[1835,11,1001,140,4,"0/2",150,55,"Katar of Shiver","","Recovers 100 HP when killing an enemy.",20,8,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3756,6 +3757,7 @@ ItemID = [
 ,[1832,1,18523]
 ,[1833,1,5795]
 ,[1834,1,18524]
+,[1835,1,28039]
 ];
 
 /*
