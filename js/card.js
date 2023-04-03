@@ -441,7 +441,7 @@ cardOBJ = [
 ,[419,7,"Hydro",0,221,82,0]
 ,[420,4,"RSX 0806","Skills cannot push or move the user",3,3,0] //custom Talon Tales not unbreakable anymore
 ,[421,7,"High Priest",0,221,83,0] //custom Talon Tales diff position
-,[422,2,"Angra Mantis","<b>[Thief Class]</b><br>Every 2 refine adds 1% critical damage",70,2,0]
+,[422,2,"Angra Mantis","<b>[Thief Class]</b><br>[Every Refine] Critical Damage + 1%",70,2,0]
 ,[423,6,"General Egnigem Cenia","Regain 100 HP and 100 SP every 10 seconds",15,20,16,20,0] //custom Talon Tales better regenaration; +20% instead of +10% hp, +20% sp
 ,[424,2,"High Wizard",0,296,20,0] //custom Talon Tales ignore 20% mdef of non-boss; removed cast-time and spregen stuff
 ,[425,2,"Vesper",0,297,20,0] //custom Talon Tales ignores 20% instead of 30%
