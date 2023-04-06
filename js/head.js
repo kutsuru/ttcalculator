@@ -3059,7 +3059,10 @@ function BattleCalc998()
 		MS_EC = 1 - 6 * SkillSearch(58) / 100; // Energy Coat#58
 
 		MS_KAUPE = (document.calcForm.EQ_KP.checked) ? 1 : 0; // Kaupe prevents the first hit;
-
+		
+		let defender_lv = SkillSearch(165);
+		
+		MS_DEFENDER = 1 - ((defender_lv ? 5 + 15 * defender_lv : 0 + 10 * EquipNumSearch(1817)) / 100) 
 		MS_BOSS = 1 - n_tok[77] / 100; 				// Boss reduction
 		MS_RANGE = 1 - n_tok[78] / 100; 			// Range reduction
 		MS_NEUTRAL = 1 - n_tok[60] / 100; 			// Neutral reduction
@@ -3103,7 +3106,7 @@ function BattleCalc998()
 			HITS = 1 - MS_KAUPE;
 			
 			HJ_RATIO = HJ_LV;
-			MS_REDUCTION = MS_BOSS * (is_range_attack ? MS_RANGE : MS_MELEE) * MS_ELEMENT * MS_NEUTRAL * MS_RACE * (sting_slap_cocktail ? 0.9 : 1);
+			MS_REDUCTION = MS_BOSS * (is_range_attack ? MS_RANGE * MS_DEFENDER : MS_MELEE) * MS_ELEMENT * MS_NEUTRAL * MS_RACE * (sting_slap_cocktail ? 0.9 : 1);
 			
 			HJ_MINDMG = Math.floor(Math.floor(Math.floor(n_B[12] * HJ_RATIO * (1 - n_A_DEF /100) - n_A_VITDEF[0]) * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_SIZE * MS_EC);
 			HJ_MAXDMG = Math.floor(Math.floor(Math.floor(n_B[13] * HJ_RATIO * (1 - n_A_DEF /100) - n_A_VITDEF[2]) * MS_REDUCTION) * MS_WOF * MS_ASSUMPTIO * MS_SIZE * MS_EC);
