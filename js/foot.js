@@ -4580,15 +4580,15 @@ function StPlusCalc()
 	// Chrome Metal Sword#1623 - [Every Refine] AGI + 1, ATK + 4
 	if (EquipNumSearch(1623))
 	{
-		n_tok[2] = n_A_Weapon_ATKplus;
-		n_tok[17] = 4 * n_A_Weapon_ATKplus;
+		n_tok[2] += n_A_Weapon_ATKplus;
+		n_tok[17] += 4 * n_A_Weapon_ATKplus;
 	}
 	
 	// Dance Shoes#1314 - [Dancer][Every 2 Refines] AGI + 2, ASPD + 1%
 	if (17 == n_A_JobSearch2() && EquipNumSearch(1314))
 	{
-		n_tok[2] = Math.floor(n_A_SHOES_DEF_PLUS / 2);
-		n_tok[12] = Math.floor(n_A_SHOES_DEF_PLUS / 2);
+		n_tok[2] += Math.floor(n_A_SHOES_DEF_PLUS / 2);
+		n_tok[12] += Math.floor(n_A_SHOES_DEF_PLUS / 2);
 	}
 
 	if(SkillSearch(422)) // Increase Accuracy#422
