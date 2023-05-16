@@ -522,6 +522,10 @@ function BattleCalc999()
 				TyouEnkakuSousa3dan = -1;
 				wBC3_3danAtkBairitu = SkillSearch(187) * 0.2;
 				var san = [0,0,0];
+				// Force active skill to Triple Attack#187 during the damage computation
+				let previous_active_skill = n_A_ActiveSkill;
+				n_A_ActiveSkill = 187;
+				
 				for(var i=0;i<=2;i++){
 					san[i] = BattleCalc(n_A_DMG[i] * (wbairitu + wBC3_3danAtkBairitu),i) + EDP_DMG(i);
 					
@@ -530,6 +534,8 @@ function BattleCalc999()
 					if(n_B[19] == 5)
 						san[i] = 3;
 				}
+				
+				n_A_ActiveSkill = previous_active_skill;
 				str_bSUBname += "Raging Trifecta Blow Damage<BR>";
 				
 				// Gertie Card#619 - [Triple Attack#187] Rate + 10%
