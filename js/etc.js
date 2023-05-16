@@ -424,6 +424,8 @@ PET_OBJ = [[0,"No Pet",0,0]
 ,[169,"Empathizer [VIT +2, MATK +2%, Increases magical damage to DemiHuman monsters by 2%]",0,3,2,89,2,177,2,0]
 ,[170,"Child Admin Beta [DEX +1, AGI +2, INT +2, Increases effectiveness of Heal, Sanctuary and Potion Pitcher by 5%]",0,5,1,2,2,4,2,91,5,93,5,94,5,0]
 ,[171,"Creeper [STR +2, VIT +2, Wind element resistance increased by 2%]",0,1,2,3,2,64,2,0]
+,[172,"Phylla [ASPD +2%, Increase Physical against Water element monsters by 2%]",0,12,2,41,2,0]
+,[173,"Rhyncho [ASPD +1%, Increase Physical against Water element monsters by 2%]",0,12,1,41,2,0]
 ];
 
 ITEM_SP_TIME_OBJ =[
