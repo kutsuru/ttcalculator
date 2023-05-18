@@ -4338,7 +4338,14 @@ with(document.calcForm){
 		if(n_A_HEAD_DEF_PLUS >= 9) n_tok[97] += 5;
 	}
 	
-	// Mutating White Knight + Mutating Khalitzburg#638 - [Every Refine Level] Increases magical damage against [Medium] and [Large] size monsters by 2%
+	// White Knight + Khalitzburg Knight Combo#446 - [Every Refine Level] Increases physical damage against [Medium] and [Large] size monsters by 1%
+	if (CardNumSearch(446))
+	{
+		n_tok[28] += n_A_Weapon_ATKplus;
+		n_tok[29] += n_A_Weapon_ATKplus;
+	}
+	
+	// Mutating White Knight + Mutating Khalitzburg Combo#638 - [Every Refine Level] Increases magical damage against [Medium] and [Large] size monsters by 2%
 	if (CardNumSearch(638))
 	{
 		n_tok[104] += n_A_Weapon_ATKplus * 2;
