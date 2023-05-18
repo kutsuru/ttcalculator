@@ -751,7 +751,9 @@ function BattleCalc999()
 			wbairitu += n_A_ActiveSkillLV *0.2;
 		}else if(n_A_ActiveSkill==161){
 			wbairitu += n_A_ActiveSkillLV *0.35;
-			n_A_Weapon_zokusei = 6;
+			
+			// Cursed Butler#642 - [Holy Cross] element becomes Shadow
+			n_A_Weapon_zokusei = (CardNumSearch(642) ? 7 : 6);
 		}else if(n_A_ActiveSkill==171)
 			wbairitu += n_A_ActiveSkillLV *0.4;
 		else if(n_A_ActiveSkill==72){
@@ -2079,7 +2081,10 @@ function BattleCalc999()
 		else if(n_A_ActiveSkill==47) // Soul Strike#47
 		{
 			support_autospell = 1;
-			n_A_Weapon_zokusei = 8;
+			
+			// Cursed Butler#642 - [Soul Strike] element becomes Shadow
+			n_A_Weapon_zokusei = (CardNumSearch(642) ? 7 : 8);
+			
 			wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
 			wCast = 0.5;
 			if(n_A_ActiveSkillLV % 2 == 0)
@@ -8562,12 +8567,25 @@ function ApplySkillAtkBonus(dmg)
 	if (5 == n_A_WeaponType && 161 == n_A_ActiveSkill)
 		skill_atk_bonus_ratio += 50 * CardNumSearch(602);
 	
-	// Amdarais Card#604 - [Cart Termination] damage inflicted on Neutral Element monsters by 10%.
-	if (326 == n_A_ActiveSkill && n_B[3] < 5) // Neutral 0-4
-		skill_atk_bonus_ratio += 10 * CardNumSearch(604);
-	// Amdarais Card#604 - [Cart Termination] damage inflicted on Ghost Element monsters by 25%.
-	if (326 == n_A_ActiveSkill && n_B[3] > 80 && [3] < 85) // Ghost 81-84
-		skill_atk_bonus_ratio += 25 * CardNumSearch(604);
+	// Cart Termination#326 - [PvM Only] - Amdarais#604 + Phantom of Amdarais#632  Combo#633
+	if (326 == n_A_ActiveSkill && !Taijin)
+	{
+		if (n_B[3] < 5) // Neutral 0-4
+		{
+			// Amdarais Card#604 - [Cart Termination] damage inflicted on Neutral Element monsters by 15%.
+			skill_atk_bonus_ratio += 15 * CardNumSearch(604);
+			// Phantom of Amdarais + Amdarais Combo#633 - [Cart Termination] damage inflicted on Neutral Element monsters by 15%.
+			skill_atk_bonus_ratio += 15 * CardNumSearch(633);
+		}
+		
+		if (n_B[3] > 80 && [3] < 85) // Ghost 81-84
+		{
+			// Amdarais Card#604 - [Cart Termination] damage inflicted on Ghost Element monsters by 25%.
+			skill_atk_bonus_ratio += 25 * CardNumSearch(604);
+			// Phantom of Amdarais + Amdarais Combo#633 - [Cart Termination] damage inflicted on Neutral Element monsters by 25%.
+			skill_atk_bonus_ratio += 25 * CardNumSearch(633);
+		}
+	}
 	
 	// Elemental Huuma#1771#1772#1773 - 50% more damage with [Throw Kunai#395] when equipped with elemental kunais.
 	if (395 == n_A_ActiveSkill && ((EquipNumSearch(1771) && 2 == document.calcForm.SkillSubNum.value)

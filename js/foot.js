@@ -4338,6 +4338,13 @@ with(document.calcForm){
 		if(n_A_HEAD_DEF_PLUS >= 9) n_tok[97] += 5;
 	}
 	
+	// Mutating White Knight + Mutating Khalitzburg#638 - [Every Refine Level] Increases magical damage against [Medium] and [Large] size monsters by 2%
+	if (CardNumSearch(638))
+	{
+		n_tok[104] += n_A_Weapon_ATKplus * 2;
+		n_tok[105] += n_A_Weapon_ATKplus * 2;
+	}
+	
 	// Wood Goblin#562 - [Every Refine Level] - Increase physical damage against Water and Earth by 1%
 	if (CardNumSearch(562))
 	{
@@ -4352,6 +4359,17 @@ with(document.calcForm){
 		n_tok[40] += 40;
 		n_tok[21] += n_A_Weapon_ATKplus * 3;
 		n_tok[22] += n_A_Weapon_ATKplus * 3;
+	}
+	
+	/* 
+		[PvM Only]
+		Amdarais Card#604 - Increases short range physical damage inflicted on [Neutral] Element monsters by 15% and on [Ghost] Element monsters by 25%.
+		Phantom of Amdarais + Amdarais Combo#633 - Increases short range physical damage inflicted on [Neutral] Element monsters by 15% and on [Ghost] Element monsters by 25%.
+	*/	
+	if (!Taijin)
+	{
+		n_tok[300] += 15 * (CardNumSearch(604) + CardNumSearch(633));
+		n_tok[308] += 25 * (CardNumSearch(604) + CardNumSearch(633));
 	}
 	
 	// Bobo's Boba - Ignore 10% DEF and MDEF

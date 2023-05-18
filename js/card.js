@@ -629,7 +629,7 @@ cardOBJ = [
 ,[601,1,"1st Commander of Destruction","<b>[If Nibelungen Equipped]</b> [Brandish Spear] damage bonus is reduced to 40%.",8,5,5073,50,0]
 ,[602,1,"2nd Commander of Destruction", "<b>[If Two-Handed Spear Equipped]</b><br/> 50% more damage with [Holy Cross].",8,5,0]
 ,[603,4,"Corrupted Soul",0,18,5,19,5,393,10,399,10,0]
-,[604,2,"Amdarais","[Cart Termination] damage inflicted on [Ghost] Element monsters by 25%.<br>[Cart Termination] damage inflicted on [Neutral] Element monsters by 15%.",300,15,308,25,0]
+,[604,2,"Amdarais","<b>[PvM Only]</b><br>Increases short range physical and [Cart Termination] damage inflicted on [Ghost] Element monsters by 25%.<br>Increases short range physical and [Cart Termination] damage inflicted on [Neutral] Element monsters by 15%.",0]
 // Eclage
 ,[605,1,"Menblatt",0,8,5,5394,50,5395,50,0]
 ,[606,5,"Petal","<b>[Every 10 Base LUK]</b> Critical Attack + 2%",0]
@@ -658,6 +658,18 @@ cardOBJ = [
 ,[628,100,"Clown Alphoccio + Alphoccio", "<b>[PvM Only]</b><br>[Poem of Bragi] Aftercast Rate + 1% for each equipped Alphoccio Card.",0]
 ,[629,6,"Gypsy Trentini","Fast Movement all the time.<br>All Song and Dance buffs you recieve have an additional 40 second lasting duration.<br><b>[On Unequip]</b><br>Dispel Song/Dance Buffs.",15,20,16,10,0]
 ,[630,100,"Trentini + Alphoccio", "[Bard] [A Whistle] Flee Rate + 10%.<br>[Dancer] [Service for You] SP Rate + 5%.",0]
+,[631,6,"Phantom of Himmelmez","",346,25,347,25,60,-25,61,-25,62,-25,63,-25,64,-25,66,-25,67,-25,68,-25,0]
+,[632,2,"Phantom of Amdarais","",8,25,0]
+,[633,100,"Phantom of Amdarais + Amdarais","[PvM Only]<br>Increases short range physical and [Cart Termination] damage inflicted on [Ghost] Element monsters by 25%.<br>Increases short range physical and [Cart Termination] damage inflicted on [Neutral] Element monsters by 15%",1,5,8,25,0]
+,[634,5,"Root of Corruption","",98,15,190,10,190,10,192,10,0]
+,[635,100,"Corrupted Soul + Root of Corruption",352,10,0]
+,[636,1,"Mutating White Knight","",98,10,104,5,105,5,0]
+,[637,3,"Mutating Khalitzburg","",191,15,192,15,0]
+,[638,100,"Mutating White Knight + Mutating Khalitzburg","[Every Refine Level] Increases magical damage against [Medium] and [Large] size monsters by 2%.",191,10,192,10,0]
+,[639,7,"Cursed Raydric","",31,5,171,5,0]
+,[640,7,"Cursed Raydric Archer","",36,5,176,5,0]
+,[641,100,"Cursed Raydric + Cursed Raydric Archer","",31,5,36,5,171,5,176,5,0]
+,[642,2,"Cursed Butler","[Holy Cross] and [Soul Strike] Element becomes Shadow.",0]
 ];
 /*
 ID, Location, description, 0 - seperator, stat, value added/subtracted
@@ -1323,6 +1335,18 @@ cardID = [
 ,[628,2,0]
 ,[629,1,4566]
 ,[630,2,0]
+,[631,1,27381]
+,[632,1,27383]
+,[633,2,0]
+,[634,1,27382]
+,[635,2,0]
+,[636,1,27384]
+,[637,1,27385]
+,[638,2,0]
+,[639,1,27386]
+,[640,1,27387]
+,[641,2,0]
+,[642,1,27388]
 ];
 
 CardNum = cardOBJ.length -1;
@@ -1539,6 +1563,10 @@ w_SC = [[429,235,306,"NULL"],
 [608,607,591,"NULL"],
 [628,620,627,"NULL"],
 [630,621,620,"NULL"],
+[633,604,632,"NULL"],
+[635,603,634,"NULL"],
+[638,636,637,"NULL"],
+[641,640,639,"NULL"],
 ];
 SC_MAXnum = w_SC.length;
 
