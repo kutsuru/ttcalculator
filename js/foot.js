@@ -576,6 +576,7 @@ with(document.calcForm){
 		n_A_IJYOU[3] = eval(A_IJYOU3.checked);
 		eclage_food = eval(eclage_food_list.value);
 		abrasive_food = eval(abrasive_food_check.checked);
+		temporal_spell = eval(temporal_spell_check.checked);
 
 		eden_rough_crystal_buff = eval(eden_rough_crystal_buff_check.checked);
 		eden_purified_crystal_buff = eval(eden_purified_crystal_buff_check.checked);
@@ -8454,6 +8455,11 @@ function IsABiolabMonster() {
 	return (MonMap[10].findIndex( (x) => x == n_B[0] ) > -1);
 }
 
+// Old Glast Heim & Old Glast Heim Challenge
+function IsAnOGHMonster() {
+	return (MonMap[58].findIndex( (x) => x == n_B[0] ) > -1) || (MonMap[59].findIndex( (x) => x == n_B[0] ) > -1)
+}
+
 n_NtoS =["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
 function NtoS(n,keta){
@@ -10587,6 +10593,8 @@ eden_high_crystal_buff = 0;
 
 eclage_food = 0;
 abrasive_food = 0;
+temporal_spell = 0;
+
 bobo_boba_cocktail = 0;
 sting_slap_cocktail = 0;
 venatu_beep_cocktail = 0;

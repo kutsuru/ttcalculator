@@ -3487,6 +3487,10 @@ function BattleMagicCalc(wBMC)
 	// Wolfchev's Nightcap - Increases magical damage against Biolab monsters by 15%
 	if (wolfchev_nightcap_cocktail && IsABiolabMonster())
 		wBMC2 = wBMC2 * 1.15;
+	
+	// Temporal Spell - Increases magical damage against Old Glast Heim monsters by 10%
+	if (temporal_spell && IsAnOGHMonster())
+		wBMC2 = wBMC2 * 1.10;
 
 	wBMC2 = Math.floor(wBMC2);
 
@@ -4917,6 +4921,7 @@ with(document.calcForm){
 		str += '<TR><TD id="EN816"></TD></TR>';
 		str += '<TR><TD id="EN826"></TD></TR>';
 		str += '<TR><TD id="EN827"></TD></TR>';
+		str += '<TR><TD id="EN828"></TD></TR>';
 		str += '<TR><TD colspan="2"><Font size=2 color=black><B>Debuffs</B></Font></TD></TR>';
 		str += '<TR><TD id="EN830"></TD><TD id="EN831"></TD></TR>';
 		str += '<TR><TD id="EN832"></TD><TD id="EN833"></TD></TR></table>';
@@ -5058,6 +5063,7 @@ with(document.calcForm){
 		myInnerHtml("EN825",'<input type="checkbox" name="A8_Skill27"onClick="Click_A8(1)">Luciola\'s Honey Jam[Decreases damage on Splendide maps by 10%]',0);
 		myInnerHtml("EN826",'<input type="checkbox" name="A8_Skill28"onClick="Click_A8(1)">Guarana Candy[Increase AGI Level 10]',0);
 		myInnerHtml("EN827",'<input type="checkbox" name="A8_Skill35"onClick="Click_A8(1)">Greater Agimat of Ancient Spirit[Increases physical and magical damage to demon monsters by 10%]',0);
+		myInnerHtml("EN828",'<input type="checkbox" name="temporal_spell_check"onClick="Click_A8(1)">Temporal Spell[Increases physical and magical damage to Old Glast Heim monsters by 10%]',0);
 
 		myInnerHtml("EN830",'Quagmire <select name="A_IJYOU0" onChange="Click_A8(1)"></select>',0);
 		A_IJYOU0.options[0] = new Option("-",0);
@@ -5120,6 +5126,7 @@ with(document.calcForm){
 		A_IJYOU3.checked = n_A_IJYOU[3];
 		eclage_food_list.value = eclage_food;
 		abrasive_food_check.checked = abrasive_food;
+		temporal_spell_check.checked = temporal_spell;
 
 		eden_rough_crystal_buff_check.checked = eden_rough_crystal_buff;
 		eden_purified_crystal_buff_check.checked = eden_purified_crystal_buff;
@@ -8341,6 +8348,10 @@ function BaiCI(wBaiCI)
 	// Wolfchev's Nightcap - Increases physical damage against Biolab monsters by 15%
 	if (wolfchev_nightcap_cocktail && IsABiolabMonster())
 		wBaiCI = wBaiCI * 1.15;
+
+	// Temporal Spell - Increases physical damage against Old Glast Heim monsters by 10%
+	if (temporal_spell && IsAnOGHMonster())
+		wBaiCI = wBaiCI * 1.10;
 
 	return wBaiCI;
 }
