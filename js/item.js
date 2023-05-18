@@ -4105,7 +4105,9 @@ function Item_Setumei(nC1,nC2)
 		CBIstr += "Resistance against magic attacks" + wIS + nC2 +"%<BR>";
 	if(102 == nC1)
 		CBIstr += "Resistance against misc attacks (Traps, Tarot, Pressure, ...)" + wIS + nC2 +"%<BR>";
-  
+	if (nC1 >= 103 && nC1 <= 105)
+		CBIstr += "Increases magical damage against [" + SizeOBJ[nC1-103] +"] size monsters by "+ nC2 +"%<BR>";
+    
     /*Increase Crital Rate on race by an amount.
       110 = Formless
       111 = Undead

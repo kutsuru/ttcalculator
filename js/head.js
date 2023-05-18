@@ -3465,6 +3465,7 @@ function BattleMagicCalc(wBMC)
 	wBMC2 = wBMC2 * (100 + wX) /100;
 	
 	// >> bMagicAddSize
+	wBMC2 = wBMC2 * (100 + n_tok[103 + n_B[4]]) / 100;
 	// << bMagicAddSize
 	
 	// >> bAddMagicDamageClass
