@@ -890,6 +890,10 @@ with(document.calcForm){
 			n_tok[15] += 2;
 		}
 	}
+	
+	// Guardian Knight Spear#1672 - [Every Refine Level] - MaxHP + 3%
+	n_tok[15] += n_A_Weapon_ATKplus * 3 * EquipNumSearch(1672);
+	
 	// Undine Spear#1681 [Every Refine Level]  MaxHP + 1%
 	if (EquipNumSearch(1681)) {
 		n_tok[15] += n_A_Weapon_ATKplus
@@ -3269,6 +3273,9 @@ with(document.calcForm){
 	if (EquipNumSearch(897) && n_A_JOB == 43)
 		n_tok[12] += 5;
 
+	// Royal Magician Rod#1673 - [Every Refine Level] - ASPD + 2%
+	n_tok[12] += n_A_Weapon_ATKplus * EquipNumSearch(1673) * 2;
+	
 	// Heavy Sword#1680 - [Every Refine Level] - ASPD + 1%
 	n_tok[12] += n_A_Weapon_ATKplus * EquipNumSearch(1680);
 
@@ -3880,6 +3887,14 @@ with(document.calcForm){
 
 	if(EquipNumSearch(624))
 		n_tok[191] += n_A_Weapon_ATKplus;
+	
+	// Guardian Knight Battle Axe#723 - [Every Refine Level] - Reduces damage received from all size monsters by 2%
+	if (EquipNumSearch(723))
+	{
+		n_tok[190] += n_A_Weapon_ATKplus * 2;
+		n_tok[191] += n_A_Weapon_ATKplus * 2;
+		n_tok[192] += n_A_Weapon_ATKplus * 2;
+	}
 
 	//custom Talon Tales Magical Booster
 	if(EquipNumSearch(1430) && EquipNumSearch(1228)){
