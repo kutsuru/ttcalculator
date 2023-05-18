@@ -3269,6 +3269,9 @@ with(document.calcForm){
 	if (EquipNumSearch(897) && n_A_JOB == 43)
 		n_tok[12] += 5;
 
+	// Heavy Sword#1680 - [Every Refine Level] - ASPD + 1%
+	n_tok[12] += n_A_Weapon_ATKplus * EquipNumSearch(1680);
+
 	// Elemental Sword#939 + Elemental Boots#1819 [Every 2 Refine Levels] ASPD + 1%
 	// When using two Elemental Swords, only the first Sword is used!
 	if (EquipNumSearch(1819))
@@ -3398,9 +3401,9 @@ with(document.calcForm){
 	if (n_A_ActiveSkill == 272 && EquipNumSearch(1489))
 		skill_cast_reduction -= 15;
 	
-	//[Talon Tales Custom - 2019-10-30 - Heavy Sword - Decreases cast time of [Charge Attack] by 3% per refine
+	//[Talon Tales Custom - 2019-10-30 - Heavy Sword - Decreases cast time of [Charge Attack] by 5% per refine
 	if (n_A_ActiveSkill == 308 && EquipNumSearch(1680))
-		skill_cast_reduction -= (3 * n_A_Weapon_ATKplus);
+		skill_cast_reduction -= (5 * n_A_Weapon_ATKplus);
 		
 	// Storm Gust#131
 	if (n_A_ActiveSkill == 131)
@@ -4676,8 +4679,8 @@ function StPlusCalc()
 			n_tok[5] += 1;
 	}
 	
-	// Glorious Arc Wand#1084  - [Every Refine Level] - INT + 1
-	if (EquipNumSearch(1084))
+	// Glorious Arc Wand#1084 | Staff Of Geffen#1675 - [Every Refine Level] - INT + 1
+	if (EquipNumSearch(1084) || EquipNumSearch(1675))
 		n_tok[4] += n_A_Weapon_ATKplus;
 
 	//custom Talon Tales Improved Mage Hat: Every Refine level 7 or higher adds INT + 1 - [Loa] - 2018-06-07

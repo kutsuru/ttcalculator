@@ -202,12 +202,12 @@ JobEquipItemOBJ = [
 [0, 1, 55, 65,118, 71, 77,79,89,96,999], //Sage
 [0, 1, 56, 66,119, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,999], //Alchemist
 [0,50,90,93,94,95,96,120,999], // Super Novice
-[0, 1, 51, 61,107,121, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,999], //Lord Knight
+[0, 1, 51, 61,107,121, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,135,999], //Lord Knight
 [0, 1, 52, 62,108,122, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,999], //Assassin Cross
 [0, 1, 53, 63,109,123, 71, 73, 74, 77,78,79,81,82,85,89,95,96,151,152,999], //High Priest
 [0, 1, 54, 60,64,110,124, 75, 76,79,80,82,83,88,89,92,999], //Sniper
 [0, 1, 55, 65,111,125, 71, 77,79,82,89,96,151,152,999], //High Wizard
-[0, 1, 56, 66,112,126, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,999], //Whitesmith
+[0, 1, 56, 66,112,126, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,135,999], //Whitesmith
 [0, 1, 51, 61,113,127, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,999], //Paladin
 [0, 1, 52, 62,114,128, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,999], //Stalker
 [0, 1, 53, 63,115,129, 71, 73, 74,77,78,79,82,85,89,95,96,152,999], //Champion
@@ -318,6 +318,7 @@ JobEquipItemOBJ = [
 		132 = professor
 		133 = creator
 		134 = clown, gypsy
+		135 = lord knight, whitesmith
 
 		141 = taekwon ONLY
 		142 = star gladiator
@@ -734,9 +735,9 @@ function BattleCalc999()
 				(1380 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1))
 				zeny_cost = Math.ceil(zeny_cost * 0.25);
 			
-			// Goldsmithing Dagger#1677
+			// Goldsmithing Dagger#1677 - Spend 25% less zeny when using [Mammonite].
 			if (EquipNumSearch(1677))
-				zeny_cost = Math.ceil(zeny_cost * 0.90);
+				zeny_cost = Math.ceil(zeny_cost * 0.75);
 			
 			wbairitu += n_A_ActiveSkillLV *0.5;
 		}
@@ -2981,6 +2982,17 @@ function BattleCalc998()
 			if (skill_info.length > 3)
 				sp_cost = skill_info[Math.min(2 + n_A_ActiveSkillLV, skill_info.length - 1)];
 			
+			// Flat sp cost reduction
+			
+			// Heavy Sword#1680 - [Refine Rate 7~10] - Reduce SP cost of [Charge Attack#308] by 30 and [Head Crush#260] by 10.
+			if (EquipNumSearch(1680) && n_A_Weapon_ATKplus >= 7)
+			{
+				if (308 == n_A_ActiveSkill)
+					sp_cost -= 30;
+				else if (260 == n_A_ActiveSkill)
+					sp_cost -= 10;
+			}
+			
 			sp_cost = Math.ceil(sp_cost * (1 + n_tok[72] / 100));
 			
 			// Mjolnir#84#3rd Bonus - Reduce [Cart Termination] and [Mammonite] SP costs by 50%
@@ -3001,7 +3013,7 @@ function BattleCalc998()
 				(EquipNumSearch(1773) && (407 == n_A_ActiveSkill || 408 == n_A_ActiveSkill || 409 == n_A_ActiveSkill)))
 				sp_cost = Math.ceil(sp_cost * (1 - 0.03 * n_A_Weapon_ATKplus));
 				
-			// Rolling Thunder#1790 - [Every Refine Level] - 5% more damage with [Spread Attack#436]
+			// Rolling Thunder#1790 - [Every Refine Level] - 5% less SP cost with [Spread Attack#436]
 			if (436 == n_A_ActiveSkill && EquipNumSearch(1790))
 				sp_cost = Math.ceil(sp_cost * (1 - 0.05 * n_A_Weapon_ATKplus));
 			
@@ -8508,8 +8520,8 @@ function ApplySkillAtkBonus(dmg)
 		skill_atk_bonus_ratio += n_A_Weapon_ATKplus * EquipNumSearch(1080);
 
 	if (n_A_ActiveSkill == 65) {
-		// Glorious Two Handed Axe#1087 - [Every Refine Level] Increase [Mammonite] damage by 2% [Amor]
-		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus * EquipNumSearch(1087);
+		// Glorious Two Handed Axe#1087 | Goldsmithing Dagger#1677 - [Every Refine Level] Increase [Mammonite] damage by 2% [Amor]
+		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus * (EquipNumSearch(1087) + EquipNumSearch(1677));
 		
 		// Glorious Cleaver#1088 - [Every Refine Level] Increase [Mammonite] damage by 1% [Amor]
 		skill_atk_bonus_ratio += n_A_Weapon_ATKplus * EquipNumSearch(1088);
