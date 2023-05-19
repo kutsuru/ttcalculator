@@ -834,6 +834,57 @@ with(document.calcForm){
 		n_tok[12] += 7 * Math.max(0, SkillSearch(89) - 9);
 	}
 
+	// Temporal Boots (STR)#1836
+	if (EquipNumSearch(1836))
+	{
+		// [Every Refine Level] - Short Range Attack + 1%
+		n_tok[88] += n_A_SHOES_DEF_PLUS;
+
+		// [Base STR >= 95] - HIT + 10
+		if (SU_STR >= 95)
+			n_tok[8] += 10;
+	}
+	
+	// Temporal Boots (AGI)#1837
+	if (EquipNumSearch(1837))
+	{
+		// [Every Refine Level] - FLEE + 1%
+		n_tok[9] += n_A_SHOES_DEF_PLUS;
+
+		// [Base AGI >= 95] - ASPD + 5%
+		if (SU_AGI >= 95)
+			n_tok[12] += 5;
+	}
+	
+	// Temporal Boots (VIT)#1838
+	if (EquipNumSearch(1838))
+	{
+		// [Every Refine Level] - MaxHP + 100
+		n_tok[13] += 100 * n_A_SHOES_DEF_PLUS;
+
+		// [Base VIT >= 95] - DEF + 3, Natural HP Recovery + 20%
+		if (SU_VIT >= 95)
+		{
+			n_tok[18] += 3;
+			n_tok[75] += 20;
+		}
+	}
+
+	
+	// Temporal Boots (DEX)#1840
+	if (EquipNumSearch(1840))
+	{
+		// [Every Refine Level] - HIT + 2
+		n_tok[8] += 2 * n_A_SHOES_DEF_PLUS;
+
+		// [Base DEX >= 95] - Reduces aftercast delay by 5%
+		if (SU_DEX >= 95)
+			n_tok[74] += 5;
+	}
+		
+	// Temporal Boots (LUK)#1841 - [Every Refine Level] - CRIT + 1
+	n_tok[10] += n_A_SHOES_DEF_PLUS * EquipNumSearch(1841);
+
 	//Jolly Roger Hat -[Loa] - 2018-07-03
 	if(EquipNumSearch(1186)){
 		if(n_A_HEAD_DEF_PLUS > 7){
@@ -4611,6 +4662,20 @@ function StPlusCalc()
 	
 	n_tok[4] += SkillSearch(404);
 	n_tok[4] += Math.round(SkillSearch(234) / 2);
+	
+	// Temporal Boots (INT)#1839
+	if (EquipNumSearch(1839))
+	{
+		// [Every Refine Level] - MaxSP + 10
+		n_tok[14] += 10 * n_A_SHOES_DEF_PLUS;
+
+		// [Base INT >= 95] - INT + 3, Natural SP Recovery + 20%
+		if (SU_INT >= 95)
+		{
+			n_tok[4] += 3;
+			n_tok[76] += 20;
+		}
+	}
 	
 	n_tok[5] += SkillSearch(38);
 	// Baby Dragon Hat#1301 - [Sage Class][Dragonology Mastered] ATK & MATK + 5% and DEX + 5"

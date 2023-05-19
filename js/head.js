@@ -8204,7 +8204,7 @@ function BaiCI(wBaiCI)
 		
 		// bShortAtkRate
 		if (!n_Enekyori)
-			wBaiCI = Math.floor(wBaiCI * (1 + n_tok[300 + Math.floor(n_B[3] / 10)] / 100));
+			wBaiCI = Math.floor(wBaiCI * (1 + (n_tok[88] + n_tok[300 + Math.floor(n_B[3] / 10)]) / 100));
 
 		if(debug_dmg_avg) {
 			debug_atk+="\n --- (BaiCI) Weapon/Card Size Modifier ---";
@@ -8251,6 +8251,9 @@ function BaiCI(wBaiCI)
 		{
 			// This modifier does not increase Shadow Slash#401 and Sharpshoot#272 damage
 			crit_dmg_modifier = (272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill) ? 0 : n_tok[70];
+			
+			// Temporal Boots (LUK)#1841 - [Every 19 Base LUK] - Increases critical attack/skills attack by 3%
+			crit_dmg_modifier += Math.floor(SU_LUK / 19) * 3 * EquipNumSearch(1841);
 			
 			if (272 == n_A_ActiveSkill)  // Sharpshoot#272
 			{
