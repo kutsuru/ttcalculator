@@ -87,6 +87,8 @@ tRO_EDEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 //[Armor1,Armor2,Armor3,Garment1,Garment2,Garment3,Accessory1_1,Accessory1_2,Accessory1_3,Accessory2_1,Accessory2_2,Accessory2_3]
 tRO_MoraEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0];
 
+TT_TemporalEnchantment = [0,0,0];
+
 function myInnerHtml(wIH1,wIH2,wIH3)
 {
 	if(wIH3 == 0){
@@ -5691,6 +5693,22 @@ function tRO_PopulateCombos() {
 		for(var i=0; i<HS_ENCHANTS.length; i++) {
 			A_HSE.options[i+1] = new Option(HS_ENCHANTS[i][1],HS_ENCHANTS[i][0]);
 		}
+		
+		// Temporal Enchants (Footgear)
+		myInnerHtml("temporal_1st_enchant","1st Enchant: ",0);
+		myInnerHtml("temporal_2nd_enchant","2nd Enchant: ",0);
+		myInnerHtml("temporal_3rd_enchant","3rd Enchant: ",0);
+
+		temporal_1st_enchant_select.options[0] = new Option("(No Enchant)",0);
+		temporal_2nd_enchant_select.options[0] = new Option("(No Enchant)",0);
+		temporal_3rd_enchant_select.options[0] = new Option("(No Enchant)",0);
+
+		for (i = 0; i < TEMPORAL_1ST_ENCHANTS.length; ++i)
+			temporal_1st_enchant_select.options[i+1] = new Option(TEMPORAL_1ST_ENCHANTS[i][0],TEMPORAL_1ST_ENCHANTS[i][1]);
+		for (i = 0; i < TEMPORAL_2ND_ENCHANTS.length; ++i)
+			temporal_2nd_enchant_select.options[i+1] = new Option(TEMPORAL_2ND_ENCHANTS[i][0],TEMPORAL_2ND_ENCHANTS[i][2]);
+		for (i = 0; i < TEMPORAL_3RD_ENCHANTS.length; ++i)
+			temporal_3rd_enchant_select.options[i+1] = new Option(TEMPORAL_3RD_ENCHANTS[i][0],TEMPORAL_3RD_ENCHANTS[i][3]);
 	}
 }
 
@@ -6615,6 +6633,28 @@ with(document.calcForm){
 	tRO_MoraEnchantment[10] = document.calcForm.A_MORAEAC22.value;
 	tRO_MoraEnchantment[11] = document.calcForm.A_MORAEAC23.value;
 }}
+
+
+function Click_TemporalEnchantment(footgear_id) {
+with(document.calcForm) {
+	let bEnchant = (TEMPORAL_ENCHANTABLE.findIndex(x => x == footgear_id) > -1);
+	document.getElementById("temporal_enchant_block").style.display = ((bEnchant) ? "" : "none");
+
+	if (!bEnchant) {
+		document.calcForm.temporal_1st_enchant_select.value = 0;
+		document.calcForm.temporal_2nd_enchant_select.value = 0;
+		document.calcForm.temporal_3rd_enchant_select.value = 0;
+	}
+	
+	// 3rd enchant is only available to Sleipnir
+	let bIsSleipnir = (319 == footgear_id);
+	document.getElementById("temporal_enchant_sleipnir").style.display = ((bIsSleipnir) ? "" : "none");
+	
+	TT_TemporalEnchantment[0] = document.calcForm.temporal_1st_enchant_select.value;
+	TT_TemporalEnchantment[1] = document.calcForm.temporal_2nd_enchant_select.value;
+	TT_TemporalEnchantment[2] = (bIsSleipnir ? document.calcForm.temporal_3rd_enchant_select.value : 0);
+}
+}
 
 function Click_Skill9SW(){
 with(document.calcForm){

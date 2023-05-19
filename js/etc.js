@@ -1538,6 +1538,60 @@ MORA_ENCHANTABLE = [
 		,[1665,0] //Pendant Of Guardian
 ];
 
+TEMPORAL_ENCHANTABLE = [
+	319, 	// Sleipnir[1]
+	1836,	// Temporal Boots (STR)
+	1837,	// Temporal Boots (AGI)
+	1838,	// Temporal Boots (VIT)
+	1839,	// Temporal Boots (INT)
+	1840,	// Temporal Boots (DEX)
+	1841,	// Temporal Boots (LUK)
+];
+
+TEMPORAL_1ST_ENCHANTS = [
+	 ["Fighting Spirit Lv.1",0]
+	,["Fighting Spirit Lv.2",0]
+	,["Fighting Spirit Lv.3",0]
+	,["Fighting Spirit Lv.4",0]
+	,["Berserker Lv.1",0]
+	,["Berserker Lv.2",0]
+	,["Berserker Lv.3",0]
+	,["Berserker Lv.4",0]
+	,["Arcane Lv.1",0]
+	,["Arcane Lv.2",0]
+	,["Arcane Lv.3",0]
+	,["Arcane Lv.4",0]
+	,["Vigor Lv.1",0]
+	,["Vigor Lv.2",0]
+	,["Vigor Lv.3",0]
+	,["Vigor Lv.4",0]
+	,["Mysticism Lv.1",0]
+	,["Mysticism Lv.2",0]
+	,["Mysticism Lv.3",0]
+	,["Mysticism Lv.4",0]
+	,["Speed Lv.1",0]
+	,["Speed Lv.2",0]
+	,["Speed Lv.3",0]
+	,["Speed Lv.4",0]
+];
+
+TEMPORAL_2ND_ENCHANTS = [
+	 ["Bear's Power",0]
+	,["Speed of Light",1]
+	,["Muscle Fool",2]
+	,["Runaway Magic",3]
+	,["Hawkeye",4]
+	,["Lucky Day",5]
+];
+
+TEMPORAL_3RD_ENCHANTS = [
+	 ["STR",0]
+	,["AGI",1]
+	,["VIT",2]
+	,["INT",3]
+	,["DEX",4]
+	,["LUK",5]
+];
 
 // Manage restriction regarding Vanilla Equipment
 restrictedEquips = [319,347,348,444,576,603,604,605,606,670,1320,1329,1334,1336,1339,1340,1344,1348,1354,1356,1365,1371,1375,1376,1377,1378,1379,1380,1381,1382,1383,1384,1385,1386,1387,1388,1389,1390,1391,1393,1491,1492,1493,1522,1526,1548,1560,1607,1608,1609,1610,1615,1818];

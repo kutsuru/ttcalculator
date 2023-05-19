@@ -308,6 +308,9 @@ with(document.calcForm){
 	Click_MoraArmorEnchantment(n_A_Equip[6]);
 	Click_MoraGarmentEnchantment(n_A_Equip[7]);
 	Click_MoraAccessoryEnchantment(n_A_Equip[9],n_A_Equip[10]);
+	
+	// Manage Temporal Enchants
+	Click_TemporalEnchantment(n_A_Equip[8]);
 
 	if(n_Nitou){
 		W_REF2 = 0;
