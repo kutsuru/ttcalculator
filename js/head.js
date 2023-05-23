@@ -3528,7 +3528,7 @@ with(document.calcForm){
 	for(var i=2;i<=3;i++)
 		A_SpeedPOT.options[2] = null;
 
-	if(n_A_JOB != 3 && n_A_JobSearch2() != 9 && n_A_JobSearch2() != 16)
+	if(n_A_JOB != 3 && n_A_JobSearch2() != 9 && n_A_JobSearch2() != 16 && n_A_JobSearch2() != 17)
 		A_SpeedPOT.options[2] = new Option(SpeedPotName[2]+"(Lv40)",2);
 	else
 		A_SpeedPOT.options[2] = new Option("-",0);
