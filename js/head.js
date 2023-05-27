@@ -537,17 +537,8 @@ function BattleCalc999()
 				
 				n_A_ActiveSkill = previous_active_skill;
 				str_bSUBname += "Raging Trifecta Blow Damage<BR>";
-				
-				// Gertie Card#619 - [Triple Attack#187] Rate + 10%
-				// Champion Chen Card#625 - [Triple Attack#187] rate + skill lv%
-				triple_attack_rate = 30 - SkillSearch(187) + 10 * CardNumSearch(619) + triple_attack_lv * CardNumSearch(625);
-				
-				// Glorious Claw#1096 - [Every Refine Level] - [Triple Attack#187] rate + 3%
-				triple_attack_rate += EquipNumSearch(1096) * n_A_Weapon_ATKplus * 3;
-				
-				// Sherwood Bow#1388#7th Bonus - [Triple Attack#187] Rate + 10%
-				if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
-					triple_attack_rate += 10;
+
+				let triple_attack_rate = get_triple_attack_rate();
 				
 				str_bSUB += san[0] +"~"+ san[2] +" ("+ triple_attack_rate +"% Chance)<BR>";
 				TyouEnkakuSousa3dan = 0;
@@ -7774,19 +7765,8 @@ function calc()
 		w_Cri = 100;
 	}
 
-
 	TyouEnkakuSousa3dan = 0;
-	wBC3_3danHatudouRitu = 0;
-	if(SkillSearch(187))
-	{
-		wBC3_3danHatudouRitu = 30 - SkillSearch(187);
-		
-		// Stalker Card#619 - [Rogue Class, Monk Class] - [Triple Attack] Rate + 10%
-		wBC3_3danHatudouRitu += 10 * CardNumSearch(619);
-		
-		// Sura's Rampage#1512 - [Triple Attack] Rate + 20%
-		wBC3_3danHatudouRitu += 20 * EquipNumSearch(1512);
-	}
+	let triple_attack_rate = get_triple_attack_rate();
 
 	// Manage [Double Attack]
 	wDA = 0;
@@ -7842,27 +7822,30 @@ function calc()
 	}
 
 	w_HIT_DA = w_HIT;
-	if(wDA != 0 && n_A_WeaponType != 17){
-		w_HIT_DA = w_HIT_DA * (100 + SkillSearch(13)) /100;
-		if(w_HIT_DA >= 100)
-			w_HIT_DA=100;
-	}
+	if (wDA != 0 && n_A_WeaponType != 17) // Increased HIT rate per Double Attack level
+		w_HIT_DA = Math.min(100, Math.floor(w_HIT_DA + SkillSearch(13) * wDA / 100));
 
-	w998A = 100 - wBC3_3danHatudouRitu;
-	w998B = wBC3_3danHatudouRitu * w_HIT /100;
-	w998C = wBC3_3danHatudouRitu - w998B;
+	// Trigger sequence
+	// HIT rate -> TA rate -> DA rate -> Crit rate
+	// So critical rate even at 100% should reflect that missed/TA/DA attacked cannot be counted as crit
+	let crit_rate = w_Cri * w_HIT_DA / 100 * (100 - triple_attack_rate) / 100 * (100 - wDA) / 100;
+
+	w998A = 100 - triple_attack_rate;
+	w998B = triple_attack_rate * w_HIT /100;
+	w998C = triple_attack_rate - w998B;
 	w998D = w998A * wDA /100;
 	w998E = w998D * w_HIT_DA /100;
-	w998F = w998D - w998E;
-	w998G = (100-wBC3_3danHatudouRitu-w998D) * w_Cri /100;
-	w998H = 100 - wBC3_3danHatudouRitu -w998D -w998G;
+	//w998F = w998D - w998E;
+	w998G = (100 - triple_attack_rate - w998D) * w_Cri /100;
+	w998H = 100 - triple_attack_rate - w998D - crit_rate;
 	w998I = w998H * w_HIT /100;
-	w998J = w998H - w998I;
-	w998K = w998B +w998E +w998G +w998I;
-	w998L = 100 -w998K;
+	//w998J = w998H - w998I;
+	//w998K = w998B +w998E +w998G +w998I;
+	w998L = 100 - w_HIT_DA;
+
 	if(n_A_ActiveSkill==0 || n_A_ActiveSkill==272 || n_A_ActiveSkill==401 || (n_A_ActiveSkill==86 && (50 <= n_B[3] && n_B[3] < 60))){
-		w_HIT_HYOUJI = Math.floor(w998K * 100) /100;
-		myInnerHtml("CRInum",(Math.round(w998G * 100) / 100) + SubName[0],0);
+		w_HIT_HYOUJI = w_HIT_DA;
+		myInnerHtml("CRInum", crit_rate + SubName[0],0);
 	}
 
 	w_FLEE = n_A_FLEE + 20 - (n_B_HIT);
@@ -8920,7 +8903,7 @@ function CastAndDelay(){
 			if(SkillSearch(187)){
 				strSUB2name += "Attack Interval (Normal)<BR>Attack Interval (Raging Trifecta Blow)<BR>";
 				strSUB2 += n_Delay[1] +"s<BR>"+ sandanDelay +"s<BR>";
-				wDelay = n_Delay[1] * w998A /100 + sandanDelay * wBC3_3danHatudouRitu / 100;
+				wDelay = n_Delay[1] + Math.max(0, sandanDelay * get_triple_attack_rate() / 100);
 			}
 			else{
 				strSUB2name += "Time/Hit<BR>";
@@ -9457,4 +9440,29 @@ function is_a_combo_skill(skill_id)
 {
 	// Triple Attack#187, Chain Combo#188, Combo Finish#189, Tiger Knuckle Fist#289, Chain Crush Combo#290
 	return (187 == skill_id || 188 == skill_id || 189 == skill_id || 289== skill_id || 290 == skill_id);
+}
+
+function get_triple_attack_rate()
+{
+	let triple_attack_rate = 0;
+	let triple_attack_lv = SkillSearch(187);
+	
+	if (triple_attack_lv)
+	{
+		// Gertie Card#619 - [Triple Attack#187] Rate + 10%
+		// Champion Chen Card#625 - [Triple Attack#187] rate + skill lv%
+		triple_attack_rate = 30 - SkillSearch(187) + 10 * CardNumSearch(619) + triple_attack_lv * CardNumSearch(625);
+		
+		// Glorious Claw#1096 - [Every Refine Level] - [Triple Attack#187] rate + 3%
+		triple_attack_rate += EquipNumSearch(1096) * n_A_Weapon_ATKplus * 3;
+		
+		// Sura's Rampage#1512 - [Triple Attack] Rate + 20%
+		triple_attack_rate += 20 * EquipNumSearch(1512);
+		
+		// Sherwood Bow#1388#7th Bonus - [Triple Attack#187] Rate + 10%
+		if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
+			triple_attack_rate += 10;
+	}
+	
+	return triple_attack_rate;
 }
