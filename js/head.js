@@ -2831,7 +2831,7 @@ function BattleCalc998()
 
 	myInnerHtml("bSUBname",str_bSUBname,0);
 	myInnerHtml("bSUB",str_bSUB,0);
-	myInnerHtml("BattleHIT",w_HIT_HYOUJI,0);
+	myInnerHtml("BattleHIT",w_HIT_HYOUJI.toFixed(2),0);
 
 	if(n_B[0]==44 && n_A_ActiveSkill != 0 && n_A_ActiveSkill != 325){
 		for(i=0;i<=2;i++){
@@ -7821,6 +7821,10 @@ function calc()
 			wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 10 /100);
 	}
 
+	// For basic attack and skills relying on crit rate, crit rate is giving perfect hit
+	if (can_attack_crit(n_A_ActiveSkill))
+		w_HIT = Math.min(100, Math.max(w_Cri, w_HIT));
+	
 	w_HIT_DA = w_HIT;
 	if (wDA != 0 && n_A_WeaponType != 17) // Increased HIT rate per Double Attack level
 		w_HIT_DA = Math.min(100, Math.floor(w_HIT_DA + SkillSearch(13) * wDA / 100));
@@ -7843,9 +7847,10 @@ function calc()
 	//w998K = w998B +w998E +w998G +w998I;
 	w998L = 100 - w_HIT_DA;
 
-	if(n_A_ActiveSkill==0 || n_A_ActiveSkill==272 || n_A_ActiveSkill==401 || (n_A_ActiveSkill==86 && (50 <= n_B[3] && n_B[3] < 60))){
+	if (can_attack_crit(n_A_ActiveSkill))
+	{
 		w_HIT_HYOUJI = w_HIT_DA;
-		myInnerHtml("CRInum", crit_rate + SubName[0],0);
+		myInnerHtml("CRInum", crit_rate.toFixed(2) + SubName[0],0);
 	}
 
 	w_FLEE = n_A_FLEE + 20 - (n_B_HIT);
@@ -9465,4 +9470,11 @@ function get_triple_attack_rate()
 	}
 	
 	return triple_attack_rate;
+}
+
+function can_attack_crit(active_skill)
+{
+	// Sharp Shooting#272, Shadow Slash#401, Poison React#86
+	return (!n_A_ActiveSkill || 272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill
+		|| (86 == n_A_ActiveSkill && (50 <= n_B[3] && n_B[3] < 60)));
 }
