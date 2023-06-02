@@ -87,8 +87,6 @@ tRO_EDEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 //[Armor1,Armor2,Armor3,Garment1,Garment2,Garment3,Accessory1_1,Accessory1_2,Accessory1_3,Accessory2_1,Accessory2_2,Accessory2_3]
 tRO_MoraEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0];
 
-TT_TemporalEnchantment = [0,0,0];
-
 function myInnerHtml(wIH1,wIH2,wIH3)
 {
 	if(wIH3 == 0){
@@ -5699,16 +5697,16 @@ function tRO_PopulateCombos() {
 		myInnerHtml("temporal_2nd_enchant","2nd Enchant: ",0);
 		myInnerHtml("temporal_3rd_enchant","3rd Enchant: ",0);
 
-		temporal_1st_enchant_select.options[0] = new Option("(No Enchant)",0);
-		temporal_2nd_enchant_select.options[0] = new Option("(No Enchant)",0);
-		temporal_3rd_enchant_select.options[0] = new Option("(No Enchant)",0);
-
 		for (i = 0; i < TEMPORAL_1ST_ENCHANTS.length; ++i)
-			temporal_1st_enchant_select.options[i+1] = new Option(TEMPORAL_1ST_ENCHANTS[i][0], i + 1);
+			temporal_1st_enchant_select.options[i] = new Option(TEMPORAL_1ST_ENCHANTS[i][0], i);
 		for (i = 0; i < TEMPORAL_2ND_ENCHANTS.length; ++i)
-			temporal_2nd_enchant_select.options[i+1] = new Option(TEMPORAL_2ND_ENCHANTS[i][0], i + 1);
+			temporal_2nd_enchant_select.options[i] = new Option(TEMPORAL_2ND_ENCHANTS[i][0], i);
 		for (i = 0; i < TEMPORAL_3RD_ENCHANTS.length; ++i)
-			temporal_3rd_enchant_select.options[i+1] = new Option(TEMPORAL_3RD_ENCHANTS[i][0], i + 1);
+			temporal_3rd_enchant_select.options[i] = new Option(TEMPORAL_3RD_ENCHANTS[i][0], i);
+
+		temporal_1st_enchant_select.value = 0;
+		temporal_2nd_enchant_select.value = 0;
+		temporal_3rd_enchant_select.value = 0;
 	}
 }
 
@@ -6649,10 +6647,6 @@ with(document.calcForm) {
 	// 3rd enchant is only available to Sleipnir
 	let bIsSleipnir = (319 == footgear_id);
 	document.getElementById("temporal_enchant_sleipnir").style.display = ((bIsSleipnir) ? "" : "none");
-	
-	TT_TemporalEnchantment[0] = document.calcForm.temporal_1st_enchant_select.value;
-	TT_TemporalEnchantment[1] = document.calcForm.temporal_2nd_enchant_select.value;
-	TT_TemporalEnchantment[2] = (bIsSleipnir ? document.calcForm.temporal_3rd_enchant_select.value : 0);
 }
 }
 
@@ -8242,6 +8236,10 @@ function BaiCI(wBaiCI)
 		if(debug_dmg_avg)
 			debug_atk+="\na_wBaiCI:"+wBaiCI;
 		
+		// bAutoAtkRate
+		if (!n_A_ActiveSkill)
+			wBaiCI = Math.floor(wBaiCI * (1 + (n_tok[106])));
+
 		// bShortAtkRate
 		if (!n_Enekyori)
 			wBaiCI = Math.floor(wBaiCI * (1 + (n_tok[88] + n_tok[300 + Math.floor(n_B[3] / 10)]) / 100));

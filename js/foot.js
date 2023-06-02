@@ -700,7 +700,12 @@ with(document.calcForm){
 	}
 	
 	manage_sqi_bonus();
+
+	// Manage Temporal Enchants
+	apply_temporal_enchants();
+
 	StPlusCalc();
+	
 
 	if(n_A_WeaponType != 10 && n_A_WeaponType !=14 && n_A_WeaponType !=15 && n_A_WeaponType !=17 && n_A_WeaponType !=18 && n_A_WeaponType !=19 && n_A_WeaponType !=20 && n_A_WeaponType !=21){
 		n_A_ATK_w = Math.round(Math.floor(n_A_STR/10) * Math.floor(n_A_STR/10));
@@ -2379,6 +2384,9 @@ with(document.calcForm){
 	// Scouter#1387#6th Bonus - Ignore [Gatling Fever] FLEE and Movement Speed penalties. Dispell [Gatling Fever] on unequip
 	if (20 == n_A_WeaponType && SkillSearch(433) && (1387 != n_A_Equip[3] || SQI_Bonus_Effect.findIndex(x => x == 6) == -1))
 			n_A_FLEE -= 5 * SkillSearch(433);
+
+	// Manage FLEE % modifier
+	n_A_FLEE = Math.floor(n_A_FLEE * (1 + n_tok[107] / 100));
 
 	//berserk
 	if(SkillSearch(258)){
@@ -8546,6 +8554,56 @@ function IsAnOGHMonster() {
 	return (MonMap[58].findIndex( (x) => x == n_B[0] ) > -1) || (MonMap[59].findIndex( (x) => x == n_B[0] ) > -1)
 }
 
+function apply_temporal_enchants()
+{
+	let first_enchant_bonii = TEMPORAL_1ST_ENCHANTS[eval(document.calcForm.temporal_1st_enchant_select.value)][1];
+	let second_enchant_bonii = TEMPORAL_2ND_ENCHANTS[eval(document.calcForm.temporal_2nd_enchant_select.value)][1];
+	let third_enchant_bonii = TEMPORAL_3RD_ENCHANTS[eval(document.calcForm.temporal_3rd_enchant_select.value)][1];
+	let script_bonii = [first_enchant_bonii, second_enchant_bonii, third_enchant_bonii];
+
+	for (enchant_index = 0; enchant_index < script_bonii.length; ++enchant_index)
+	{
+		let script_bonus = script_bonii[enchant_index];
+		for (i = 0; i < script_bonus.length; i += 2)
+			n_tok[script_bonus[i]] += script_bonus[i + 1];
+	}
+
+	let third_enchant_index = document.calcForm.temporal_3rd_enchant_select.value;
+	if (third_enchant_index)
+	{
+		let enchant_category = third_enchant_index / 7; // Each category has 7 possible enchants
+		// Temporal STR [Base STR >= 95] - HIT + 10
+		if (enchant_category <= 1 && SU_STR >= 95)
+			n_tok[8] += 10;
+
+		// Temporal AGI [Base AGI >= 95] - ASPD + 5%
+		if (enchant_category <= 2 && SU_AGI >= 95)
+			n_tok[12] += 5;
+
+		// Temporal VIT [Base VIT >= 95] - Short Range Resistance + 3% - Natural HP Recovery + 20%
+		if (enchant_category <= 3 && SU_VIT >= 95)
+		{
+			n_tok[75] += 20;
+			n_tok[100] += 3;
+		}
+
+		// Temporal INT [Base INT >= 95] - INT + 3 - Natural SP Recovery + 20%
+		if (enchant_category <= 4 && SU_STR >= 95)
+		{
+			n_tok[4] += 3
+			n_tok[76] += 20;
+		}
+
+		// Temporal DEX [Base DEX >= 95] - 5% Less Aftercast Delay
+		if (enchant_category <= 5 && SU_DEX >= 95)
+			n_tok[74] += 5;
+
+		// Temporal LUK [Every 19 Base LUK] - Critical ATK/Skills + 3%
+		if (enchant_category <= 6)
+			n_tok[70] += Math.floor(SU_LUK / 19);
+	}
+}
+
 n_NtoS =["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
 function NtoS(n,keta){
@@ -10635,47 +10693,6 @@ CardShort =[
 ];
 for(i=0;i<=72;i++)
 	document.calcForm.A_cardshort.options[i] = new Option(CardShort[i][0],i);
-
-//custom Talon Tales extra enchants
-//original
-//var HSEname = ["STR","AGI","VIT","INT","DEX","LUK"];
-//new:
-/*
-var HSEname = ["STR","AGI","VIT","INT","DEX","LUK","DEF","MDEF","CRIT","ASPD","FLEE","HIT"];
-document.calcForm.A_HSE.options[0] = new Option("(Hidden Slot Enchant, Armor)",0);
-var iHSE=1;
-for(i=0;i<=5;i++){
-	for(var j=1;j<=3;j++){
-		document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[i] + "+"+ j,(i * 10) + j);
-		iHSE++;
-	}
-}
-//custom Talon Tales extra enchants
-//DEF,MDEF,CRIT
-for(i=6;i<=8;i++){
-	for(var j=1;j<=3;j++){
-		document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[i] + "+"+ (j+1),(i * 10) + j);
-		iHSE++;
-	}
-}
-//ASPD
-for(var j=1;j<=3;j++){
-	document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[9] + "+"+ j +"%",(9 * 10) + j);
-	iHSE++;
-}
-//FLEE
-for(var j=1;j<=3;j++){
-	document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[10] + "+"+ j*2,(10 * 10) + j);
-	iHSE++;
-}
-//HIT
-for(var j=1;j<=3;j++){
-	document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[11] + "+"+ j*4,(11 * 10) + j);
-	iHSE++;
-}
-*/
-//end - custom Talon Tales extra enchants
-
 
 //Enchant Headgear thing
 var HSEname = ["STR","AGI","VIT","INT","DEX","LUK","DEF","MDEF","CRIT","ASPD","FLEE","HIT"];

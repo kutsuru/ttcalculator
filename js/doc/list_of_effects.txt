@@ -146,7 +146,10 @@ Effect list:
 	103: Increases magical damage against [Small] size monsters by [value]%
 	104: Increases magical damage against [Medium] size monsters by [value]%
 	105: Increases magical damage against [Large] size monsters by [value]%
-	106-109: (unused)
+	106: Increases auto physical attack by [value]%
+	107: Increases FLEE by [value]%
+	108: Increases Crafting/Brewing Success by [value]% 
+	109: (unused)
 	110: Increases the critical rate on [Formless] race monsters by + [value]
 	111: Increases the critical rate on [Undead] race monsters by + [value]
 	112: Increases the critical rate on [Brute] race monsters by + [value]
