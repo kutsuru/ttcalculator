@@ -743,7 +743,7 @@ ItemOBJ = [
 ,[720,64,1,0,0,0,10,33,"Morpheus's Bracelet","",0,4,1,16,5,0]
 ,[721,64,1,0,0,0,20,61,"Morrigane's Belt","",0,17,5,10,3,0]
 ,[722,64,1,0,0,0,20,61,"Morrigane's Pendant","",0,1,2,10,3,0]
-,[723,999,0,0,0,0,10,90,"Sacrifice Ring","",0,0]
+,[723,7,112,300,4,2,250,70,"Guardian Knight Battle Axe","","Disable Knockback effect of Cart Revolution.<br><b>[Every Refine Level]</b><br>Reduces damage received from all size monsters by 2%.",5066,50,0]
 ,[724,64,52,1,0,"0 / 1",30,30,"Shinobi Sash","","<br><b>[Note] Slotted version can only be equipped by Ninja<b>",1,1,2,1,19,1,0]
 ,[725,64,1,0,0,0,400,0,"Bloodied Shackle Ball","",0,0]
 ,[726,64,72,1,0,0,100,0,"Armor Charm","",0,13,50,0]
@@ -884,7 +884,7 @@ ItemOBJ = [
 ,[861,100,0,0,0,0,0,0,"Lunatic Brooch set",0,0,5,1,14,50,76,10,0]
 ,[862,100,0,0,0,0,0,0,"Renown Archer set",0,"Reduce SP Consumption of skills by 25%",0]
 ,[863,9,63,50,4,1,50,70,"Holy Stick","",0,20,6,89,15,7037,25,7102,25,7104,25,0]
-,[864,999,0,0,0,0,10,0,"Autumn Leaves","",0,13,40,14,40,0]
+,[864,8,119,70,3,3,150,70,"Royal Syringue","","<b>[Every Refine Level]</b><br>Adds a 2% chance to auto-cast [Fire Bolt], [Cold Bolt], [Lightning Bolt], or [Earth Spike] at a random level between 1 and 5.",89,10,0]
 ,[865,50,0,3,0,0,60,20,"Poring Tower","","Add a 2% chance of auto casting Greed around the user when attacking",6,3,193,1,0]
 ,[866,50,0,0,0,0,10,0,"Golden Tiara","",0,4,2,0]
 ,[867,64,0,0,0,0,0,0,"Dragon Ring [Rental]","",0,129,15,0]
@@ -1714,15 +1714,15 @@ ItemOBJ = [
 ,[1669,100,0,0,0,0,0,0,"Love Guard + Staff of Recovery","","",91,1,94,1,0]
 ,[1670,100,0,0,0,0,0,0,"Love Guard + Holy Stick","","",91,2,94,2,0]
 ,[1671,19,145,200,3,2,200,80,"Peace Breaker","","Inflicts splash damage.<br><br><b>[Every Refine Level]</b><br>ATK + 5<br>Adds a 2% chance rate of auto casting level 6 [Spread Attack] when attacking normally.",8,-25,12,25,0]
-,[1672,100,0,0,0,0,0,0,"Placeholder","",0]
-,[1673,100,0,0,0,0,0,0,"Placeholder","",0]
+,[1672,5,113,205,4,3,250,70,"Guardian Night Spear","","<br><b>[Every Refine Level]</b><br>MaxHP + 3%",18,10,46,20,49,20,186,100,0]
+,[1673,9,77,70,4,2,80,70,"Royal Magician Rod","","<br><b>[Every Refine Level]</b><br>ASPD + 2%",5,2,89,15,0]
 ,[1674,50,0,2,0,1,20,1,"Ribbon Magician Hat","","A decorated magician hat.",4,3,89,5,14,50,0]
-,[1675,9,125,100,4,1,100,70,"Staff of Geffen","","Whenever you receive Magical Damage there is small chance to reflect all offensive magic against you at 40% chance for 2 seconds",195,1,89,25,5,3,18,5,19,5,73,-10,0]
+,[1675,9,65,100,4,1,100,70,"Staff of Geffen","","[Every Refine Level] INT + 1",195,1,4,10,73,-20,0]
 ,[1676,64,0,1,0,1,10,60,"Silversmith Bracelet","",0,19,3,220,58,0]
-,[1677,1,93,120,4,2,50,1,"Goldsmithing Dagger","","Spend 10% less zeny when using [Mammonite]",89,10,5065,20,0]
-,[1678,2,94,150,4,0,50,40,"Ceremonial Sword","",0,20,6,89,15,12,10,8,10,5161,25,0]
-,[1679,60,121,6,0,1,300,80,"Engraved Armor","",0,78,10,0]
-,[1680,3,121,330,4,1,250,70,"Heavy Sword","","5% chance to auto-cast level 1 [Critical Wounds] when using [Head Crush]<br><b>[Every Refine Level]</b><br>Decreases cast time of [Charge Attack] by 3%<br><b>[Refine Rate 9~10]</b><br>Increase [Critical Wounds] level to 2",5260,30,5308,20,0]
+,[1677,1,93,120,4,3,50,1,"Goldsmithing Dagger","","Spend 25% less zeny when using [Mammonite].<br><b>[Every Refine Level]</b><br>Increases [Mammonite] damage by 2%",2,5,89,15,5065,30,0]
+,[1678,2,94,150,4,2,50,40,"Ceremonial Sword","","<br>On every successful [Auto Guard] block against short range attacks, auto-cast [Holy Cross] at a level equal to this weapon's refine level. If AFK, nothing happens.",89,15,12,10,8,10,5161,25,0]
+,[1679,60,135,6,0,1,300,80,"Engraved Armor","",0,78,10,0]
+,[1680,3,107,330,4,2,250,70,"Heavy Sword","","50% chance to auto-cast level 1 or level learned [Head Crush] when using [Charge Attack].<br><b>[Every Refine Level]</b><br>ASPD + 1%<br>Decreases cast time of [Charge Attack] by 5%<br><b>[Refine Rate 7~10]</b><br>Reduces SP cost of [Charge Attack] by 30 and [Head Crush] by 10",5260,30,5308,50,0]
 // Akkoro Instance
 ,[1681,5,51,190,4,1,200,48,"Undine Spear","","<b>[Every Refine Level]</b><br>MHP + 1%",20,1,89,15,0]
 ,[1682,60,0,1,0,1,10,40,"Surfer Swimsuit","","<b>[Every Refine Level]</b><br>MSP + 2",14,30,15,5,152,30,0]
@@ -1889,6 +1889,12 @@ ItemOBJ = [
 ,[1833,50,0,2,0,1,20,20,"Red Dress Hat","","[Every 2 Refine Levels] MDEF + 1",19,7,0]
 ,[1834,51,0,1,0,0,70,50,"Demon Mask","","When being physically attacked there's 1% chance to get silence status.<br>Uses Lower and Middle Headgear location",38,5,178,5,0]
 ,[1835,11,1001,140,4,"0/2",150,55,"Katar of Shiver","","Recovers 100 HP when killing an enemy.",20,8,0]
+,[1836,63,0,2,0,1,150,99,"Temporal Boots (STR)","","<br><b>[Every Refine Level]</b><br>Short range attack + 1%<br><b>[Base STR >= 95]</b><br>HIT + 10",13,300,14,30,0]
+,[1837,63,0,2,0,1,150,99,"Temporal Boots (AGI)","","<br><b>[Every Refine Level]</b><br>FLEE + 1<br><b>[Base AGI >= 95]</b><br> ASPD + 5%",13,300,14,30,0]
+,[1838,63,0,2,0,1,150,99,"Temporal Boots (VIT)","","<br><b>[Every Refine Level]</b><br>MaxHP + 100<br><b>[Base VIT >= 95]</b><br>DEF + 3<br>Natural HP Recovery + 20%",13,500,14,30,75,10,0]
+,[1839,63,0,2,0,1,150,99,"Temporal Boots (INT)","","<br><b>[Every Refine Level]</b><br>MaxSP + 10<br><b>[Base INT >= 95]</b><br>INT + 3<br>Natural SP Recovery + 20%",4,2,13,300,14,50,0]
+,[1840,63,0,2,0,1,150,99,"Temporal Boots (DEX)","","<br><b>[Every Refine Level]</b><br>HIT + 2<br><b>[Base DEX >= 95]</b><br>5% Aftercast Delay Reduction",13,300,14,30,25,2,0]
+,[1841,63,0,2,0,1,150,99,"Temporal Boots (LUK)","","<br><b>[Every Refine Level]</b><br>CRIT + 1<br><b>[Every Refine Level +5~10]</b><br>Crafting/Brewing Rates + 0.5%<br><b>[Every 19 Base LUK]</b><br>Critical attacks/skills + 3%",13,300,14,30,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -2645,7 +2651,7 @@ ItemID = [
 ,[720,1,2649]
 ,[721,1,2650]
 ,[722,1,2651]
-,[723,3,0] //replace me
+,[723,1,28141]
 ,[724,1,2654]
 ,[725,1,2655]
 ,[726,1,2656]
@@ -2786,7 +2792,7 @@ ItemID = [
 ,[861,2,1723,2718]
 ,[862,2,2726,2727]
 ,[863,1,1631]
-,[864,3,0] //replace me
+,[864,1,32402]
 ,[865,1,5255]
 ,[866,1,5179]
 ,[867,1,2762]
@@ -3594,8 +3600,8 @@ ItemID = [
 ,[1669,2,18542,1625]
 ,[1670,2,18542,1631]
 ,[1671,1,13196]
-,[1672,2,0]
-,[1673,2,0]
+,[1672,1,32027]
+,[1673,1,26166]
 ,[1674,1,18641]
 ,[1675,1,2022]
 ,[1676,1,2949]
@@ -3758,6 +3764,12 @@ ItemID = [
 ,[1833,1,5795]
 ,[1834,1,18524]
 ,[1835,1,28039]
+,[1836,1,22000]
+,[1837,1,22002]
+,[1838,1,22003]
+,[1839,1,22001]
+,[1840,1,22004]
+,[1841,1,22005]
 ];
 
 /*
@@ -4105,7 +4117,9 @@ function Item_Setumei(nC1,nC2)
 		CBIstr += "Resistance against magic attacks" + wIS + nC2 +"%<BR>";
 	if(102 == nC1)
 		CBIstr += "Resistance against misc attacks (Traps, Tarot, Pressure, ...)" + wIS + nC2 +"%<BR>";
-  
+	if (nC1 >= 103 && nC1 <= 105)
+		CBIstr += "Increases magical damage against [" + SizeOBJ[nC1-103] +"] size monsters by "+ nC2 +"%<BR>";
+    
     /*Increase Crital Rate on race by an amount.
       110 = Formless
       111 = Undead

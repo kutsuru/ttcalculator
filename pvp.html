@@ -9,10 +9,10 @@
 Lang = 0;
 Taijin=1;
 // --></script>
-<script type="text/javascript" src="js/head.js?v=9"></script>
-<script type="text/javascript" src="js/item.js?v=9"></script>
-<script type="text/javascript" src="js/etc.js?v=9"></script>
-<script type="text/javascript" src="js/skill.js?v=9"></script>
+<script type="text/javascript" src="js/etc.js?v=10"></script>
+<script type="text/javascript" src="js/item.js?v=10"></script>
+<script type="text/javascript" src="js/head.js?v=10"></script>
+<script type="text/javascript" src="js/skill.js?v=10"></script>
 <script type="text/javascript" src="js/libs/base64.js"></script>
 <script type="text/javascript" src="js/libs/rawinflate.js"></script>
 <script type="text/javascript" src="js/libs/rawdeflate.js"></script>
@@ -730,6 +730,24 @@ I would like all of you to test this calc and compare it to the actual PVP damag
 				<select name="A_EDF3" onchange="StAllCalc()"></select>
 			</td>
 		</tr>
+		
+		<tr id="temporal_enchant_block" style="display: none">
+			<td class="calc">
+				<span id="temporal_enchant_label">Temporal Enchants</span>
+			</td>
+			<td class="calc">
+				<span id="temporal_1st_enchant"></span>
+				<select name="temporal_1st_enchant_select" onchange="StAllCalc()"></select>
+			</td>
+			<td class="calc">
+				<span id="temporal_2nd_enchant"></span>
+				<select name="temporal_2nd_enchant_select" onchange="StAllCalc()"></select>
+			</td>
+			<td id="temporal_enchant_sleipnir" class="calc">
+				<span id="temporal_3rd_enchant"></span>
+				<select name="temporal_3rd_enchant_select" onchange="StAllCalc()"></select>
+			</td>
+		</tr>
 
 		<tr id="T_EDAC2" style="display: none">
 			<td class="calc">
@@ -1154,8 +1172,8 @@ Adjusted to Talon Tales by FlynnQ
 </div></div>
 </div>
 <script type="text/javascript" src="js/monster1.js"></script>
-<script type="text/javascript" src="js/card.js?v=9"></script>
-<script type="text/javascript" src="js/foot.js?v=9"></script>
+<script type="text/javascript" src="js/card.js?v=10"></script>
+<script type="text/javascript" src="js/foot.js?v=10"></script>
 </form>
 		<script type="text/javascript">
 		</script>
