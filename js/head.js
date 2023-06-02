@@ -5704,11 +5704,11 @@ function tRO_PopulateCombos() {
 		temporal_3rd_enchant_select.options[0] = new Option("(No Enchant)",0);
 
 		for (i = 0; i < TEMPORAL_1ST_ENCHANTS.length; ++i)
-			temporal_1st_enchant_select.options[i+1] = new Option(TEMPORAL_1ST_ENCHANTS[i][0],TEMPORAL_1ST_ENCHANTS[i][1]);
+			temporal_1st_enchant_select.options[i+1] = new Option(TEMPORAL_1ST_ENCHANTS[i][0], i + 1);
 		for (i = 0; i < TEMPORAL_2ND_ENCHANTS.length; ++i)
-			temporal_2nd_enchant_select.options[i+1] = new Option(TEMPORAL_2ND_ENCHANTS[i][0],TEMPORAL_2ND_ENCHANTS[i][2]);
+			temporal_2nd_enchant_select.options[i+1] = new Option(TEMPORAL_2ND_ENCHANTS[i][0], i + 1);
 		for (i = 0; i < TEMPORAL_3RD_ENCHANTS.length; ++i)
-			temporal_3rd_enchant_select.options[i+1] = new Option(TEMPORAL_3RD_ENCHANTS[i][0],TEMPORAL_3RD_ENCHANTS[i][3]);
+			temporal_3rd_enchant_select.options[i+1] = new Option(TEMPORAL_3RD_ENCHANTS[i][0], i + 1);
 	}
 }
 

@@ -8798,9 +8798,23 @@ with(document.calcForm){
 		SaveData[130] = ((A_EDG1.value) ? eval(A_EDG1.value) : 0);
 		SaveData[131] = ((A_EDG2.value) ? eval(A_EDG2.value) : 0);
 		SaveData[132] = ((A_EDG3.value) ? eval(A_EDG3.value) : 0);
-		SaveData[133] = ((A_EDF1.value) ? eval(A_EDF1.value) : 0);
-		SaveData[134] = ((A_EDF2.value) ? eval(A_EDF2.value) : 0);
-		SaveData[135] = ((A_EDF3.value) ? eval(A_EDF3.value) : 0);
+
+		// Use same emplacement for Temporal and El Discastel footgear enchantments
+		let bTemporalEnchants = (TEMPORAL_ENCHANTABLE.findIndex(x => x == A_shoes.value) > -1);
+
+		if (bTemporalEnchants)
+		{
+			SaveData[133] = ((temporal_1st_enchant_select.value) ? eval(temporal_1st_enchant_select.value) : 0);
+			SaveData[134] = ((temporal_2nd_enchant_select.value) ? eval(temporal_2nd_enchant_select.value) : 0);
+			SaveData[135] = ((temporal_3rd_enchant_select.value) ? eval(temporal_3rd_enchant_select.value) : 0);
+		}
+		else
+		{
+			SaveData[133] = ((A_EDF1.value) ? eval(A_EDF1.value) : 0);
+			SaveData[134] = ((A_EDF2.value) ? eval(A_EDF2.value) : 0);
+			SaveData[135] = ((A_EDF3.value) ? eval(A_EDF3.value) : 0);
+		}
+
 		SaveData[136] = ((A_EDAC11.value) ? eval(A_EDAC11.value) : 0);
 		SaveData[137] = ((A_EDAC12.value) ? eval(A_EDAC12.value) : 0);
 		SaveData[138] = ((A_EDAC13.value) ? eval(A_EDAC13.value) : 0);
@@ -9297,9 +9311,23 @@ with(document.calcForm){
 	A_EDG1.value = SaveData[130];
 	A_EDG2.value = SaveData[131];
 	A_EDG3.value = SaveData[132];
-	A_EDF1.value = SaveData[133];
-	A_EDF2.value = SaveData[134];
-	A_EDF3.value = SaveData[135];
+
+	// Use same emplacement for Temporal and El Discastel footgear enchantments
+	let bTemporalEnchants = (TEMPORAL_ENCHANTABLE.findIndex(x => x == A_shoes.value) > -1);
+
+	if (bTemporalEnchants)
+	{
+		temporal_1st_enchant_select.value = SaveData[133];
+		temporal_2nd_enchant_select.value = SaveData[134];
+		temporal_3rd_enchant_select.value = SaveData[135];
+	}
+	else
+	{
+		A_EDF1.value = SaveData[133];
+		A_EDF2.value = SaveData[134];
+		A_EDF3.value = SaveData[135];
+	}
+
 	A_EDAC11.value = SaveData[136];
 	A_EDAC12.value = SaveData[137];
 	A_EDAC13.value = SaveData[138];
@@ -9774,9 +9802,23 @@ with(document.calcForm){
 	SaveData[x+1] = NtoS2(parseInt(A_EDG1.value),2);
 	SaveData[x+2] = NtoS2(parseInt(A_EDG2.value),2);
 	SaveData[x+3] = NtoS2(parseInt(A_EDG3.value),2);
-	SaveData[x+4] = NtoS2(parseInt(A_EDF1.value),2);
-	SaveData[x+5] = NtoS2(parseInt(A_EDF2.value),2);
-	SaveData[x+6] = NtoS2(parseInt(A_EDF3.value),2);
+
+	// Use same emplacement for Temporal and El Discastel footgear enchantments
+	let bTemporalEnchants = (TEMPORAL_ENCHANTABLE.findIndex(x => x == A_shoes.value) > -1);
+
+	if (bTemporalEnchants)
+	{
+		SaveData[x+4] = NtoS2(parseInt(temporal_1st_enchant_select.value),2);
+		SaveData[x+5] = NtoS2(parseInt(temporal_2nd_enchant_select.value),2);
+		SaveData[x+6] = NtoS2(parseInt(temporal_3rd_enchant_select.value),2);
+	}
+	else
+	{
+		SaveData[x+4] = NtoS2(parseInt(A_EDF1.value),2);
+		SaveData[x+5] = NtoS2(parseInt(A_EDF2.value),2);
+		SaveData[x+6] = NtoS2(parseInt(A_EDF3.value),2);
+	}
+
 	SaveData[x+7] = NtoS2(parseInt(A_EDAC11.value),2);
 	SaveData[x+8] = NtoS2(parseInt(A_EDAC12.value),2);
 	SaveData[x+9] = NtoS2(parseInt(A_EDAC13.value),2);
@@ -10382,9 +10424,23 @@ with(document.calcForm){
 		A_EDG1.value = StoN2(w.substr(x+1,2));
 		A_EDG2.value = StoN2(w.substr(x+3,2));
 		A_EDG3.value = StoN2(w.substr(x+5,2));
-		A_EDF1.value = StoN2(w.substr(x+7,2));
-		A_EDF2.value = StoN2(w.substr(x+9,2));
-		A_EDF3.value = StoN2(w.substr(x+11,2));
+
+		// Use same emplacement for Temporal and El Discastel footgear enchantments
+		let bTemporalEnchants = (TEMPORAL_ENCHANTABLE.findIndex(x => x == A_shoes.value) > -1);
+
+		if (bTemporalEnchants)
+		{
+			temporal_1st_enchant_select.value = StoN2(w.substr(x+7,2));
+			temporal_2nd_enchant_select.value = StoN2(w.substr(x+9,2));
+			temporal_3rd_enchant_select.value = StoN2(w.substr(x+11,2));
+		}
+		else
+		{
+			A_EDF1.value = StoN2(w.substr(x+7,2));
+			A_EDF2.value = StoN2(w.substr(x+9,2));
+			A_EDF3.value = StoN2(w.substr(x+11,2));
+		}
+
 		A_EDAC11.value = StoN2(w.substr(x+13,2));
 		A_EDAC12.value = StoN2(w.substr(x+15,2));
 		A_EDAC13.value = StoN2(w.substr(x+17,2));
