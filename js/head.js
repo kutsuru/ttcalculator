@@ -7822,36 +7822,40 @@ function calc()
 	}
 
 	// For basic attack and skills relying on crit rate, crit rate is giving perfect hit
+	let crit_rate = 0;
 	if (can_attack_crit(n_A_ActiveSkill))
-		w_HIT = Math.min(100, Math.max(w_Cri, w_HIT));
+	{
+		let non_crit_rate = wDA;
+		
+		if (wDA && n_A_WeaponType != 17) // Increased HIT rate per Double Attack level
+			non_crit_rate *= SkillSearch(13) / 100;
+		non_crit_rate += triple_attack_rate;
+		non_crit_rate += (100 - non_crit_rate) * (1 - w_Cri / 100);
+			
+		// Trigger sequence
+		// HIT rate -> TA rate -> DA rate -> Crit rate
+		// So critical rate even at 100% should reflect that missed/TA/DA attacked cannot be counted as crit
+		crit_rate = Math.min(Math.max(0, 100 - non_crit_rate), w_Cri);
+
+		w_HIT = Math.min(100, crit_rate + non_crit_rate * w_HIT / 100);
+		w_HIT_HYOUJI = w_HIT;
+	}
 	
-	w_HIT_DA = w_HIT;
-	if (wDA != 0 && n_A_WeaponType != 17) // Increased HIT rate per Double Attack level
-		w_HIT_DA = Math.min(100, Math.floor(w_HIT_DA + SkillSearch(13) * wDA / 100));
-
-	// Trigger sequence
-	// HIT rate -> TA rate -> DA rate -> Crit rate
-	// So critical rate even at 100% should reflect that missed/TA/DA attacked cannot be counted as crit
-	let crit_rate = w_Cri * w_HIT_DA / 100 * (100 - triple_attack_rate) / 100 * (100 - wDA) / 100;
-
 	w998A = 100 - triple_attack_rate;
 	w998B = triple_attack_rate * w_HIT /100;
 	w998C = triple_attack_rate - w998B;
 	w998D = w998A * wDA /100;
-	w998E = w998D * w_HIT_DA /100;
+	w998E = w998D * w_HIT /100;
 	//w998F = w998D - w998E;
 	w998G = (100 - triple_attack_rate - w998D) * w_Cri /100;
 	w998H = 100 - triple_attack_rate - w998D - crit_rate;
 	w998I = w998H * w_HIT /100;
 	//w998J = w998H - w998I;
 	//w998K = w998B +w998E +w998G +w998I;
-	w998L = 100 - w_HIT_DA;
+	w998L = 100 - w_HIT;
 
-	if (can_attack_crit(n_A_ActiveSkill))
-	{
-		w_HIT_HYOUJI = w_HIT_DA;
-		myInnerHtml("CRInum", crit_rate.toFixed(2) + SubName[0],0);
-	}
+	if (crit_rate)
+		myInnerHtml("CRInum", w_Cri + SubName[0],0); // crit_rate.toFixed(2)
 
 	w_FLEE = n_A_FLEE + 20 - (n_B_HIT);
 	if(w_FLEE > 95){
