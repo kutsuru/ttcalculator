@@ -1624,12 +1624,12 @@ TEMPORAL_3RD_ENCHANTS = [
 	,["(+9)  Temporal DEX",[8,18,25,2]]
 	,["(+10) Temporal DEX",[8,20,25,2]]
 	,["(+4)  Temporal LUK",[10,1]]
-	,["(+5)  Temporal LUK",[10,2,108,0.5]]
-	,["(+6)  Temporal LUK",[10,3,108,1]]
-	,["(+7)  Temporal LUK",[10,4,108,1.5]]
-	,["(+8)  Temporal LUK",[10,5,108,2]]
-	,["(+9)  Temporal LUK",[10,6,108,2.5]]
-	,["(+10) Temporal LUK",[10,7,108,3]]
+	,["(+5)  Temporal LUK",[10,2,108,5]]
+	,["(+6)  Temporal LUK",[10,3,108,10]]
+	,["(+7)  Temporal LUK",[10,4,108,15]]
+	,["(+8)  Temporal LUK",[10,5,108,20]]
+	,["(+9)  Temporal LUK",[10,6,108,25]]
+	,["(+10) Temporal LUK",[10,7,108,30]]
 ];
 
 // Manage restriction regarding Vanilla Equipment

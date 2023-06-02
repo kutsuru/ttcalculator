@@ -6532,12 +6532,12 @@ function KakutyouKansuu(){
 
 			adopted = eval(document.calcForm.A_youshi.checked);
 
-			srate1 = Math.floor((50 + smithing*5 + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20)*100)/100;
-			srate2 = Math.floor((50 + smithing*5 + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20 - 20)*100)/100;
-			srate3 = Math.floor((50 + smithing*5 + orideconres + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20 - 30)*100)/100;
-			srate4 = Math.floor((40 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + iron*5)*100)/100;
-			srate5 = Math.floor((30 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + steel*5)*100)/100;
-			srate6 = Math.floor((10 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + stone*5)*100)/100;
+			srate1 = Math.floor((n_tok[108] + 50 + smithing*5 + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20)*100)/100;
+			srate2 = Math.floor((n_tok[108] + 50 + smithing*5 + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20 - 20)*100)/100;
+			srate3 = Math.floor((n_tok[108] + 50 + smithing*5 + orideconres + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20 - 30)*100)/100;
+			srate4 = Math.floor((n_tok[108] + 40 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + iron*5)*100)/100;
+			srate5 = Math.floor((n_tok[108] + 30 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + steel*5)*100)/100;
+			srate6 = Math.floor((n_tok[108] + 10 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + stone*5)*100)/100;
 
 			if(srate1 < 0){srate1 = 0;}
 			if(srate2 < 0){srate2 = 0;}
@@ -6578,7 +6578,7 @@ function KakutyouKansuu(){
 				pharmacyboost *= 2;
 			adopted = eval(document.calcForm.A_youshi.checked);
 			//Brewing rework - [Loa] - 2018-06-17
-			srate = potionr * 50 + preparep * 300 + n_A_JobLV * 20 + (n_A_DEX + n_A_LUK + (n_A_INT/2)) * 10 + potrate * 100 + pharmacyboost * 100;
+			srate = potionr * 50 + preparep * 300 + n_A_JobLV * 20 + (n_A_DEX + n_A_LUK + (n_A_INT/2)) * 10 + potrate * 100 + pharmacyboost * 100 + n_tok[108];
 			//selpot values in etc.js
 			if(selpot == 3 //blue pot
 				|| selpot == 4 //slim red
@@ -6639,7 +6639,7 @@ function KakutyouKansuu(){
 			document.calcForm.A_KakutyouSelNum.options[0] = new Option("Poison Bottle",0);
 			document.calcForm.A_KakutyouSelNum.value=0;
 
-			srate = Math.floor((0.2 + (0.4*n_A_DEX) + (0.2*n_A_LUK))*100)/100;
+			srate = Math.floor((n_tok[108] + 0.2 + (0.4*n_A_DEX) + (0.2*n_A_LUK))*100)/100;
 
 			myInnerHtml("A_KakutyouData","<b><br>Success rate: </b>" + srate + " %",0);
 
@@ -6775,7 +6775,7 @@ function KakutyouKansuu(){
 		if((Flv1 == 8 && FStat1 == 5) || Flv1 == 9){ItemN = 7;}
 		if(Flv1 == 10){ItemN = 8;}
 
-		Food_Powa = (1200 * (CKit1+1)) + (20*(n_A_BaseLV+1)) + (20*(n_A_DEX)) - (Flv1*400) - (10*(100-(n_A_LUK + 1))) - (500*(ItemN-1));
+		Food_Powa = (1200 * (CKit1+1)) + (20*(n_A_BaseLV+1)) + (20*(n_A_DEX)) - (Flv1*400) - (10*(100-(n_A_LUK + 1))) - (500*(ItemN-1)) + n_tok[108];
 
 		Food_MIN = Math.round(Food_Powa + (100*(0 + (6 + CExp1/80)))*adp)/100;
 		Food_AVG = Math.round(Food_Powa + (100*(12 + (6 + CExp1/80)))*adp)/100;
