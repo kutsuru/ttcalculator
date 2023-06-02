@@ -62,30 +62,30 @@ debug_dmg_avg = 0;
 EQB = [1,0,0,0];
 
 //[Custom Talon Tales 2018-06-15 - Global for Malangdo Enchants values] [Kato]
-tRO_MalangdoEnchantment = [0,0,0,0];
+MalangdoEnchantment = [0,0,0,0];
 
 //[Custom Talon Tales 2018-07-10 - Global for Biolab Weapon Enchants values] [NattWara]
-tRO_BiolabWeaponEnchantment = [0,0,0,0];
+BiolabWeaponEnchantment = [0,0,0,0];
 
 //[Custom Talon Tales 2018-07-12 - Global for Eden Weapon Enchants values] [NattWara]
-tRO_EdenWeaponEnchantment = [0,0,0,0,0,0];
+EdenWeaponEnchantment = [0,0,0,0,0,0];
 
 //[Custom Talon Tales 2018-07-10 - Global for Biolab Armor Enchants values] [NattWara]
 //[Headgear1,Headgear2,Armor1,Armor2,Shield1,Shield2,Garment1,Garment2,Acc1_1,Acc1_2,Acc2_1,Acc2_2]
-tRO_BiolabArmorEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0];
+BiolabArmorEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0];
 
 //[Custom Talon Tales 2018-07-12 - Global for Eden Armor Enchants values] [NattWara]
 //[Hat,Armor1,Armor2,Garment1,Garment2,Footgear1,Footgear2]
-tRO_EdenArmorEnchantment = [0,0,0,0,0,0,0];
+EdenArmorEnchantment = [0,0,0,0,0,0,0];
 
 //[Custom Talon Tales 2018-07-12 - Global for El Dicaste Enchants values] [NattWara]
 //[Garment1,Garment2,Garment3,Footgear1,Footgear2,Footgear3,Accessory1_1,Accessory1_2,Accessory1_3,Accessory2_1,Accessory2_2,Accessory2_3]
 //Added values new values for Golden Trickle so it's not overwritten by Light of El Dicastes [Loa]
-tRO_EDEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+EDEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 //[Custom Talon Tales 2018-07-12 - Global for Mora Enchants values] [NattWara]
 //[Armor1,Armor2,Armor3,Garment1,Garment2,Garment3,Accessory1_1,Accessory1_2,Accessory1_3,Accessory2_1,Accessory2_2,Accessory2_3]
-tRO_MoraEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0];
+MoraEnchantment = [0,0,0,0,0,0,0,0,0,0,0,0];
 
 function myInnerHtml(wIH1,wIH2,wIH3)
 {
@@ -5281,7 +5281,7 @@ with(document.calcForm){
 Function to populate combos by using definitions from etc.js;
 Definitions are: +0 to +10, Kris/HS/Malangdo Enchants, Extended Info and Card Shorcuts] [Kato]
 */
-function tRO_PopulateCombos() {
+function PopulateCombos() {
 	with(document.calcForm){
 		for(var i=0;i< EXTENDED_INFO.length; i++) {
 			A_Kakutyou.options[i] = new Option(EXTENDED_INFO[i][1],EXTENDED_INFO[i][0]);
@@ -5666,7 +5666,7 @@ function tRO_PopulateCombos() {
 	Requires etc.js->arrays: ME_ENCHANTABLE and MALANGDO_ENCHANTS, index.html->select: A_ME11, A_ME12, A_ME21, A_ME22
 	] [Kato]
 */
-function tRO_Click_MalangdoEnchantment(w1,w2){
+function Click_MalangdoEnchantment(w1,w2){
 
 	var bEnchant1 = bEnchant2 = false;
 	var kID1 = kID2 = 0;
@@ -5766,7 +5766,7 @@ function tRO_Click_MalangdoEnchantment(w1,w2){
 			}
 		}
 	}
-	tRO_MalangdoEnchantment = [document.calcForm.A_ME11.value,document.calcForm.A_ME12.value,document.calcForm.A_ME21.value,document.calcForm.A_ME22.value];
+	MalangdoEnchantment = [document.calcForm.A_ME11.value,document.calcForm.A_ME12.value,document.calcForm.A_ME21.value,document.calcForm.A_ME22.value];
 }
 
 //custom Talon Tales Biolab Weapon Enchantment
@@ -5805,7 +5805,7 @@ with(document.calcForm){
 		document.calcForm.A_BE22.value = 0;
 	}
 
-	tRO_BiolabWeaponEnchantment = [document.calcForm.A_BE11.value,document.calcForm.A_BE12.value,document.calcForm.A_BE21.value,document.calcForm.A_BE22.value];
+	BiolabWeaponEnchantment = [document.calcForm.A_BE11.value,document.calcForm.A_BE12.value,document.calcForm.A_BE21.value,document.calcForm.A_BE22.value];
 }}
 
 function Click_EdenWeaponEnchantment(w1,w2){
@@ -5990,7 +5990,7 @@ function Click_EdenWeaponEnchantment(w1,w2){
 		}
 	}
 
-	tRO_EdenWeaponEnchantment = [document.calcForm.A_EE11.value,document.calcForm.A_EE12.value,document.calcForm.A_EE13.value,document.calcForm.A_EE21.value,document.calcForm.A_EE22.value,document.calcForm.A_EE23.value];
+	EdenWeaponEnchantment = [document.calcForm.A_EE11.value,document.calcForm.A_EE12.value,document.calcForm.A_EE13.value,document.calcForm.A_EE21.value,document.calcForm.A_EE22.value,document.calcForm.A_EE23.value];
 }
 
 //custom Talon Tales Headgear Enchantment (Biolab & Eden)
@@ -6047,9 +6047,9 @@ with(document.calcForm){
 		document.calcForm.A_EEH.value = 0;
 	}
 
-	tRO_BiolabArmorEnchantment[0] = document.calcForm.A_BEH1.value;
-	tRO_BiolabArmorEnchantment[1] = document.calcForm.A_BEH2.value;
-	tRO_EdenArmorEnchantment[0] = document.calcForm.A_EEH.value;
+	BiolabArmorEnchantment[0] = document.calcForm.A_BEH1.value;
+	BiolabArmorEnchantment[1] = document.calcForm.A_BEH2.value;
+	EdenArmorEnchantment[0] = document.calcForm.A_EEH.value;
 }}
 
 //custom Talon Tales Biolab Armor Enchantment
@@ -6072,8 +6072,8 @@ with(document.calcForm){
 		document.calcForm.A_BEA2.value = 0;
 	}
 
-	tRO_BiolabArmorEnchantment[2] = document.calcForm.A_BEA1.value;
-	tRO_BiolabArmorEnchantment[3] = document.calcForm.A_BEA2.value;
+	BiolabArmorEnchantment[2] = document.calcForm.A_BEA1.value;
+	BiolabArmorEnchantment[3] = document.calcForm.A_BEA2.value;
 }}
 
 //custom Talon Tales Eden Armor Enchantment
@@ -6096,8 +6096,8 @@ with(document.calcForm){
 		document.calcForm.A_EEA2.value = 0;
 	}
 
-	tRO_EdenArmorEnchantment[1] = document.calcForm.A_EEA1.value;
-	tRO_EdenArmorEnchantment[2] = document.calcForm.A_EEA2.value;
+	EdenArmorEnchantment[1] = document.calcForm.A_EEA1.value;
+	EdenArmorEnchantment[2] = document.calcForm.A_EEA2.value;
 }}
 
 //custom Talon Tales Mora Armor Enchantment
@@ -6121,9 +6121,9 @@ with(document.calcForm){
 		document.calcForm.A_MORAEA3.value = 0;
 	}
 
-	tRO_MoraEnchantment[0] = document.calcForm.A_MORAEA1.value;
-	tRO_MoraEnchantment[1] = document.calcForm.A_MORAEA2.value;
-	tRO_MoraEnchantment[2] = document.calcForm.A_MORAEA3.value;
+	MoraEnchantment[0] = document.calcForm.A_MORAEA1.value;
+	MoraEnchantment[1] = document.calcForm.A_MORAEA2.value;
+	MoraEnchantment[2] = document.calcForm.A_MORAEA3.value;
 }}
 
 //custom Talon Tales Biolab Shield Enchantment
@@ -6156,8 +6156,8 @@ with(document.calcForm){
 		document.calcForm.A_BES2.value = 0;
 	}
 
-	tRO_BiolabArmorEnchantment[4] = document.calcForm.A_BES1.value;
-	tRO_BiolabArmorEnchantment[5] = document.calcForm.A_BES2.value;
+	BiolabArmorEnchantment[4] = document.calcForm.A_BES1.value;
+	BiolabArmorEnchantment[5] = document.calcForm.A_BES2.value;
 }}
 
 //custom Talon Tales Garment Enchantment (Biolab & Eden)
@@ -6224,10 +6224,10 @@ with(document.calcForm){
 		document.calcForm.A_EEG2.value = 0;
 	}
 
-	tRO_BiolabArmorEnchantment[6] = document.calcForm.A_BEG1.value;
-	tRO_BiolabArmorEnchantment[7] = document.calcForm.A_BEG2.value;
-	tRO_EdenArmorEnchantment[3] = document.calcForm.A_EEG1.value;
-	tRO_EdenArmorEnchantment[4] = document.calcForm.A_EEG2.value;
+	BiolabArmorEnchantment[6] = document.calcForm.A_BEG1.value;
+	BiolabArmorEnchantment[7] = document.calcForm.A_BEG2.value;
+	EdenArmorEnchantment[3] = document.calcForm.A_EEG1.value;
+	EdenArmorEnchantment[4] = document.calcForm.A_EEG2.value;
 }}
 
 //custom Talon Tales El Dicaste Garment Enchantment
@@ -6251,9 +6251,9 @@ with(document.calcForm){
 		document.calcForm.A_EDG3.value = 0;
 	}
 
-	tRO_EDEnchantment[0] = document.calcForm.A_EDG1.value;
-	tRO_EDEnchantment[1] = document.calcForm.A_EDG2.value;
-	tRO_EDEnchantment[2] = document.calcForm.A_EDG3.value;
+	EDEnchantment[0] = document.calcForm.A_EDG1.value;
+	EDEnchantment[1] = document.calcForm.A_EDG2.value;
+	EDEnchantment[2] = document.calcForm.A_EDG3.value;
 }}
 
 //custom Talon Tales Mora Garment Enchantment
@@ -6277,9 +6277,9 @@ with(document.calcForm){
 		document.calcForm.A_MORAEG3.value = 0;
 	}
 
-	tRO_MoraEnchantment[3] = document.calcForm.A_MORAEG1.value;
-	tRO_MoraEnchantment[4] = document.calcForm.A_MORAEG2.value;
-	tRO_MoraEnchantment[5] = document.calcForm.A_MORAEG3.value;
+	MoraEnchantment[3] = document.calcForm.A_MORAEG1.value;
+	MoraEnchantment[4] = document.calcForm.A_MORAEG2.value;
+	MoraEnchantment[5] = document.calcForm.A_MORAEG3.value;
 }}
 
 //custom Talon Tales Eden Footgear Enchantment
@@ -6312,8 +6312,8 @@ with(document.calcForm){
 		document.calcForm.A_EEF2.value = 0;
 	}
 
-	tRO_EdenArmorEnchantment[5] = document.calcForm.A_EEF1.value;
-	tRO_EdenArmorEnchantment[6] = document.calcForm.A_EEF2.value;
+	EdenArmorEnchantment[5] = document.calcForm.A_EEF1.value;
+	EdenArmorEnchantment[6] = document.calcForm.A_EEF2.value;
 }}
 
 //custom Talon Tales El Dicaste Footgear Enchantment
@@ -6337,9 +6337,9 @@ with(document.calcForm){
 		document.calcForm.A_EDF3.value = 0;
 	}
 
-	tRO_EDEnchantment[3] = document.calcForm.A_EDF1.value;
-	tRO_EDEnchantment[4] = document.calcForm.A_EDF2.value;
-	tRO_EDEnchantment[5] = document.calcForm.A_EDF3.value;
+	EDEnchantment[3] = document.calcForm.A_EDF1.value;
+	EDEnchantment[4] = document.calcForm.A_EDF2.value;
+	EDEnchantment[5] = document.calcForm.A_EDF3.value;
 }}
 
 //custom Talon Tales Biolab Accessory Enchantment
@@ -6396,10 +6396,10 @@ with(document.calcForm){
 		document.calcForm.A_BEAC22.value = 0;
 	}
 
-	tRO_BiolabArmorEnchantment[8] = document.calcForm.A_BEAC11.value;
-	tRO_BiolabArmorEnchantment[9] = document.calcForm.A_BEAC12.value;
-	tRO_BiolabArmorEnchantment[10] = document.calcForm.A_BEAC21.value;
-	tRO_BiolabArmorEnchantment[11] = document.calcForm.A_BEAC22.value;
+	BiolabArmorEnchantment[8] = document.calcForm.A_BEAC11.value;
+	BiolabArmorEnchantment[9] = document.calcForm.A_BEAC12.value;
+	BiolabArmorEnchantment[10] = document.calcForm.A_BEAC21.value;
+	BiolabArmorEnchantment[11] = document.calcForm.A_BEAC22.value;
 }}
 
 //custom Talon Tales Light of El Dicaste Enchantment
@@ -6437,12 +6437,12 @@ with(document.calcForm){
 		document.calcForm.A_EDLOED23.value = 0;
 	}
 
-	tRO_EDEnchantment[6] = document.calcForm.A_EDLOED11.value;
-	tRO_EDEnchantment[7] = document.calcForm.A_EDLOED12.value;
-	tRO_EDEnchantment[8] = document.calcForm.A_EDLOED13.value;
-	tRO_EDEnchantment[9] = document.calcForm.A_EDLOED21.value;
-	tRO_EDEnchantment[10] = document.calcForm.A_EDLOED22.value;
-	tRO_EDEnchantment[11] = document.calcForm.A_EDLOED23.value;
+	EDEnchantment[6] = document.calcForm.A_EDLOED11.value;
+	EDEnchantment[7] = document.calcForm.A_EDLOED12.value;
+	EDEnchantment[8] = document.calcForm.A_EDLOED13.value;
+	EDEnchantment[9] = document.calcForm.A_EDLOED21.value;
+	EDEnchantment[10] = document.calcForm.A_EDLOED22.value;
+	EDEnchantment[11] = document.calcForm.A_EDLOED23.value;
 }}
 
 //custom Talon Tales El Dicaste Accessory Enchantment
@@ -6531,12 +6531,12 @@ with(document.calcForm){
 	// 	}
 	// }
 
-	tRO_EDEnchantment[12] = document.calcForm.A_EDAC11.value;
-	tRO_EDEnchantment[13] = document.calcForm.A_EDAC12.value;
-	tRO_EDEnchantment[14] = document.calcForm.A_EDAC13.value;
-	tRO_EDEnchantment[15] = document.calcForm.A_EDAC21.value;
-	tRO_EDEnchantment[16] = document.calcForm.A_EDAC22.value;
-	tRO_EDEnchantment[17] = document.calcForm.A_EDAC23.value;
+	EDEnchantment[12] = document.calcForm.A_EDAC11.value;
+	EDEnchantment[13] = document.calcForm.A_EDAC12.value;
+	EDEnchantment[14] = document.calcForm.A_EDAC13.value;
+	EDEnchantment[15] = document.calcForm.A_EDAC21.value;
+	EDEnchantment[16] = document.calcForm.A_EDAC22.value;
+	EDEnchantment[17] = document.calcForm.A_EDAC23.value;
 }}
 
 //custom Talon Tales Mora Accessory Enchantment
@@ -6574,12 +6574,12 @@ with(document.calcForm){
 		document.calcForm.A_MORAEAC23.value = 0;
 	}
 
-	tRO_MoraEnchantment[6] = document.calcForm.A_MORAEAC11.value;
-	tRO_MoraEnchantment[7] = document.calcForm.A_MORAEAC12.value;
-	tRO_MoraEnchantment[8] = document.calcForm.A_MORAEAC13.value;
-	tRO_MoraEnchantment[9] = document.calcForm.A_MORAEAC21.value;
-	tRO_MoraEnchantment[10] = document.calcForm.A_MORAEAC22.value;
-	tRO_MoraEnchantment[11] = document.calcForm.A_MORAEAC23.value;
+	MoraEnchantment[6] = document.calcForm.A_MORAEAC11.value;
+	MoraEnchantment[7] = document.calcForm.A_MORAEAC12.value;
+	MoraEnchantment[8] = document.calcForm.A_MORAEAC13.value;
+	MoraEnchantment[9] = document.calcForm.A_MORAEAC21.value;
+	MoraEnchantment[10] = document.calcForm.A_MORAEAC22.value;
+	MoraEnchantment[11] = document.calcForm.A_MORAEAC23.value;
 }}
 
 function Click_Skill9SW(){

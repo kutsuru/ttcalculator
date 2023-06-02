@@ -801,7 +801,7 @@ AutoSpellSkill = [
 [158,1,57,5,2,1], //When performing a ATK based attack, there's a 2 % chance to cast the skill [Thunderstorm]Lv 10
 ];
 
-TRO_MAGICALSKILL_ELEMENTS = [
+MAGICALSKILL_ELEMENTS = [
   [0], //Neural
   [54,55,128,130,131,320,410,412], //Water
   [132,133], //Earth

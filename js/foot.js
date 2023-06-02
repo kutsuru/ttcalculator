@@ -269,7 +269,7 @@ with(document.calcForm){
 	Click_KrisEnchantment();
 
 	//[Custom Talon Tales 2018-06-14 - Malangdo Enchantment] [Kato]
-	tRO_Click_MalangdoEnchantment(n_A_Equip[0],n_A_Equip[1]);
+	Click_MalangdoEnchantment(n_A_Equip[0],n_A_Equip[1]);
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Weapon Enchantment] [NattWara]
 	Click_BiolabWeaponEnchantment(n_A_Equip[0],n_A_Equip[1]);
@@ -1167,16 +1167,16 @@ with(document.calcForm){
 
 	//[Custom Talon Tales 2018-06-25 - Malangdo Enchantment for Fighting Spirit - ATK] [NattWara]
 	// Fighting Spirit n - ATK + n * 2 + 2 with n within [4..8]
-	for(i=0; i < tRO_MalangdoEnchantment.length; i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for(i=0; i < MalangdoEnchantment.length; i++) {
+		var vME = MalangdoEnchantment[i];
 		if(vME >= 1781 && vME <= 1788)
 			n_tok[17] += parseInt(vME.substr(-1)) * 2 + 2;
 	}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Weapon Enchantment for Fighting Spirit - ATK] [NattWara]
 	// Fighting Spirit n - ATK + n * 2 + 2 with n within [1..3]
-	for(i=0; i < tRO_BiolabWeaponEnchantment.length; i++) {
-		var vBE = tRO_BiolabWeaponEnchantment[i];
+	for(i=0; i < BiolabWeaponEnchantment.length; i++) {
+		var vBE = BiolabWeaponEnchantment[i];
 		if(vBE >= 1781 && vBE <= 1788)
 			n_tok[17] += parseInt(vBE.substr(-1)) * 2 + 2;
 	}
@@ -1418,16 +1418,16 @@ with(document.calcForm){
 		n_tok[13] += (150 * n_A_Weapon_ATKplus);
 	}
 	//[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for MaxHP] [Kato]
-	for(i=0;i<tRO_MalangdoEnchantment.length;i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for(i=0;i<MalangdoEnchantment.length;i++) {
+		var vME = MalangdoEnchantment[i];
 			if(vME >= 131 && vME <= 133) {
 					n_tok[13] += parseInt(vME.substr(-1)) * 100;
 			}
 	}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Armor Enchantment for MaxHP] [NattWara]
-	for(i=0;i<tRO_BiolabArmorEnchantment.length;i++) {
-		var vBE = tRO_BiolabArmorEnchantment[i];
+	for(i=0;i<BiolabArmorEnchantment.length;i++) {
+		var vBE = BiolabArmorEnchantment[i];
 			if(vBE >= 131 && vBE <= 133) {
 					n_tok[13] += parseInt(vBE.substr(-1)) * 100;
 			}
@@ -1670,15 +1670,15 @@ with(document.calcForm){
 		}
 	}
 	//[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for MaxSP] [Kato]
-	for(i=0;i<tRO_MalangdoEnchantment.length;i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for(i=0;i<MalangdoEnchantment.length;i++) {
+		var vME = MalangdoEnchantment[i];
 			if(vME == 141 || vME == 142) {
 					w += parseInt(vME.substr(-1)) * 50;
 			}
 	}
 	//[Custom Talon Tales 2018-07-10 - Biolab Armor Enchantment for MaxSP] [NattWara]
-	for(i=0;i<tRO_BiolabArmorEnchantment.length;i++) {
-		var vBE = tRO_BiolabArmorEnchantment[i];
+	for(i=0;i<BiolabArmorEnchantment.length;i++) {
+		var vBE = BiolabArmorEnchantment[i];
 			if(vBE == 141) {
 					w += 50;
 			}
@@ -1816,8 +1816,8 @@ with(document.calcForm){
 		}
 	}
 	//[Custom Talon Tales 2018-07-10 - Biolab Armor Enchantment for DEF] [NattWara]
-	for(i=0;i<tRO_BiolabArmorEnchantment.length;i++) {
-		var vBE = tRO_BiolabArmorEnchantment[i];
+	for(i=0;i<BiolabArmorEnchantment.length;i++) {
+		var vBE = BiolabArmorEnchantment[i];
 			if(vBE >= 101 && vBE <= 102) {
 					n_A_DEF += parseInt(vBE.substr(-1));
 			}
@@ -2009,16 +2009,16 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Armor Enchantment for MDEF] [NattWara]
-	for(i=0;i<tRO_BiolabArmorEnchantment.length;i++) {
-		var vBE = tRO_BiolabArmorEnchantment[i];
+	for(i=0;i<BiolabArmorEnchantment.length;i++) {
+		var vBE = BiolabArmorEnchantment[i];
 			if(vBE >= 111 && vBE <= 114) {
 					n_A_MDEF += parseInt(vBE.substr(-1));
 			}
 	}
 
 	//[Custom Talon Tales 2018-07-12 - Eden Armor Enchantment for MDEF] [NattWara]
-	for(i=0; i < tRO_EdenArmorEnchantment.length; i++) {
-		var vEE = tRO_EdenArmorEnchantment[i];
+	for(i=0; i < EdenArmorEnchantment.length; i++) {
+		var vEE = EdenArmorEnchantment[i];
 		if(111 <= vEE && vEE <= 119) {
 			var val = parseInt(vEE.substr(-1));
 			n_A_MDEF += val;
@@ -2150,8 +2150,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for Fighting Spirit/Sharp - HIT] [Kato]
-		for(i=0; i < tRO_MalangdoEnchantment.length; i++) {
-			var vME = tRO_MalangdoEnchantment[i];
+		for(i=0; i < MalangdoEnchantment.length; i++) {
+			var vME = MalangdoEnchantment[i];
 			if(vME >= 1781 && vME <= 1788) { //FS
 				if(vME.substr(-1) <= 4)
 					n_A_HIT += 1 + parseInt(vME.substr(-1));
@@ -2165,8 +2165,8 @@ with(document.calcForm){
 		}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Weapon Enchantment for Fighting Spirit/Sharp - HIT] [NattWara]
-		for(i=0; i < tRO_BiolabWeaponEnchantment.length; i++) {
-			var vBE = tRO_BiolabWeaponEnchantment[i];
+		for(i=0; i < BiolabWeaponEnchantment.length; i++) {
+			var vBE = BiolabWeaponEnchantment[i];
 			if(vBE >= 1781 && vBE <= 1788) { //FS
 				if(vBE.substr(-1) <= 4)
 					n_A_HIT += 1 + parseInt(vBE.substr(-1));
@@ -2256,29 +2256,29 @@ with(document.calcForm){
 			n_A_FLEE += parseInt(wHSE.substr(-1));
 	}
 	//[Custom Talon Tales 2018-07-10 - Biolab Armor Enchantment for FLEE] [NattWara]
-	for(i=0;i<tRO_BiolabArmorEnchantment.length;i++) {
-		var vBE = tRO_BiolabArmorEnchantment[i];
+	for(i=0;i<BiolabArmorEnchantment.length;i++) {
+		var vBE = BiolabArmorEnchantment[i];
 		if(vBE >= 301 && vBE <= 309) {
 			n_A_FLEE += parseInt(vBE.substr(-1));
 		}
 	}
 	//[Custom Talon Tales 2018-07-12 - Eden Armor Enchantment for FLEE] [NattWara]
-	for(i=0; i < tRO_EdenArmorEnchantment.length; i++) {
-		var vEE = tRO_EdenArmorEnchantment[i];
+	for(i=0; i < EdenArmorEnchantment.length; i++) {
+		var vEE = EdenArmorEnchantment[i];
 		if(301 <= vEE && vEE <= 309) {
 			n_A_FLEE += parseInt(vEE.substr(-1));
 		}
 	}
 	//[Custom Talon Tales 2018-07-12 - El Dicaste Enchantment for FLEE] [NattWara]
-	for(i=0; i < tRO_EDEnchantment.length; i++) {
-		var vED = tRO_EDEnchantment[i];
+	for(i=0; i < EDEnchantment.length; i++) {
+		var vED = EDEnchantment[i];
 		if(301 <= vED && vED <= 312) {
 			n_A_FLEE += parseInt(vED.substr(-2));
 		}
 	}
 	//[Custom Talon Tales 2018-07-12 - Mora Enchantment for FLEE] [NattWara]
-	for(i=0; i < tRO_MoraEnchantment.length; i++) {
-		var vMORA = tRO_MoraEnchantment[i];
+	for(i=0; i < MoraEnchantment.length; i++) {
+		var vMORA = MoraEnchantment[i];
 		if(301 <= vMORA && vMORA <= 312) {
 			n_A_FLEE += parseInt(vMORA.substr(-2));
 		}
@@ -2543,8 +2543,8 @@ with(document.calcForm){
 		n_tok[10] += n_A_SHOES_DEF_PLUS * EquipNumSearch(1554);
 
 	//[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for Sharp - CRIT [Kato]
-	for (i=0; i < tRO_MalangdoEnchantment.length; i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for (i=0; i < MalangdoEnchantment.length; i++) {
+		var vME = MalangdoEnchantment[i];
 		if (vME >= 1081 && vME <= 1085) {
 			if (vME.substr(-1) == 1)
 				n_tok[10] += 3;
@@ -2554,8 +2554,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Weapon Enchantment for Sharp - CRIT [NattWara]
-	for (i=0; i < tRO_BiolabWeaponEnchantment.length; i++) {
-		var vBE = tRO_BiolabWeaponEnchantment[i];
+	for (i=0; i < BiolabWeaponEnchantment.length; i++) {
+		var vBE = BiolabWeaponEnchantment[i];
 		if (vBE >= 1081 && vBE <= 1085) {
 			if(vBE.substr(-1) == 1)
 				n_tok[10] += 3;
@@ -2565,8 +2565,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-07-12 - Eden Armor Enchantment for CRIT] [NattWara]
-	for (i=0; i < tRO_EdenArmorEnchantment.length; i++) {
-		var vEE = tRO_EdenArmorEnchantment[i];
+	for (i=0; i < EdenArmorEnchantment.length; i++) {
+		var vEE = EdenArmorEnchantment[i];
 		if (151 <= vEE && vEE <= 159) {
 			var val = parseInt(vEE.substr(-1));
 			n_tok[10] += val;
@@ -2574,8 +2574,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-07-12 - El Dicaste Enchantment for CRIT] [NattWara]
-	for (i=0; i < tRO_EDEnchantment.length; i++) {
-		var vED = tRO_EDEnchantment[i];
+	for (i=0; i < EDEnchantment.length; i++) {
+		var vED = EDEnchantment[i];
 		if (151 <= vED && vED <= 159) {
 			var val = parseInt(vED.substr(-1));
 			n_tok[10] += val;
@@ -2583,8 +2583,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-07-12 - Mora Enchantment for CRIT] [NattWara]
-	for (i=0; i < tRO_MoraEnchantment.length; i++) {
-		var vMORA = tRO_MoraEnchantment[i];
+	for (i=0; i < MoraEnchantment.length; i++) {
+		var vMORA = MoraEnchantment[i];
 		if (151 <= vMORA && vMORA <= 159) {
 			var val = parseInt(vMORA.substr(-1));
 			n_tok[10] += val;
@@ -2851,16 +2851,16 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-06-16 - Malangdo Enchantment for ATK%] [Kato]
-	for(i=0; i < tRO_MalangdoEnchantment.length; i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for(i=0; i < MalangdoEnchantment.length; i++) {
+		var vME = MalangdoEnchantment[i];
 		if (vME >= 171 && vME <= 179) {
 			n_tok[80] += parseInt(vME.substr(-1));
 		}
 	}
 
 	//[Custom Talon Tales 2018-07-12 - Eden Weapon Enchantment] [NattWara]
-	for(i=0; i < tRO_EdenWeaponEnchantment.length; i++) {
-		var vEE = tRO_EdenWeaponEnchantment[i];
+	for(i=0; i < EdenWeaponEnchantment.length; i++) {
+		var vEE = EdenWeaponEnchantment[i];
 
 		//ATK + 2%
 		if (vEE >= 171 && vEE <= 179) {
@@ -2884,8 +2884,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-07-12 - El Dicaste Enchantment] [NattWara]
-	for(i=0; i < tRO_EDEnchantment.length; i++) {
-		var vED = tRO_EDEnchantment[i];
+	for(i=0; i < EDEnchantment.length; i++) {
+		var vED = EDEnchantment[i];
 
 		//ATK + 2%, ATK + 3%
 		if (vED >= 171 && vED <= 179) {
@@ -2899,8 +2899,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-07-12 - Mora Enchantment] [NattWara]
-	for(i=0; i < tRO_MoraEnchantment.length; i++) {
-		var vMORA = tRO_MoraEnchantment[i];
+	for(i=0; i < MoraEnchantment.length; i++) {
+		var vMORA = MoraEnchantment[i];
 
 		//ATK + 2%, ATK + 3%
 		if (vMORA >= 171 && vMORA <= 179) {
@@ -2970,8 +2970,8 @@ with(document.calcForm){
 	}
 
 	// [Custom Talon Tales 2018-06-16 - Malangdo Enchantment for MATK%] [Kato]
-	for(i=0; i < tRO_MalangdoEnchantment.length; i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for(i=0; i < MalangdoEnchantment.length; i++) {
+		var vME = MalangdoEnchantment[i];
 
 		if(vME >= 891 && vME <= 899) {
 			w += parseInt(vME.substr(-1));
@@ -3279,8 +3279,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for ASPD] [Kato]
-	for (i=0; i < tRO_MalangdoEnchantment.length; i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for (i=0; i < MalangdoEnchantment.length; i++) {
+		var vME = MalangdoEnchantment[i];
 
 		if (vME){
 			if (121 <= vME && vME <= 129)
@@ -3289,8 +3289,8 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Weapon Enchantment for ASPD] [NattWara]
-	for (i=0; i < tRO_BiolabWeaponEnchantment.length; i++) {
-		var vBE = tRO_BiolabWeaponEnchantment[i];
+	for (i=0; i < BiolabWeaponEnchantment.length; i++) {
+		var vBE = BiolabWeaponEnchantment[i];
 
 		if (vBE){
 			if (121 <= vBE && vBE <= 129)
@@ -3696,16 +3696,16 @@ with(document.calcForm){
 		n_tok[78] += n_A_HEAD_DEF_PLUS - 5;
 
 	//[Custom Talon Tales 2018-06-15 - Malandgo Enchantment for Expert Archer] [Kato]
-	for(i=0; i < tRO_MalangdoEnchantment.length; i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for(i=0; i < MalangdoEnchantment.length; i++) {
+		var vME = MalangdoEnchantment[i];
 		if(vME >= 251 && vME <= 256) {
 				n_tok[25] += 2 * parseInt(vME.substr(-1));
 		}
 	}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Weapon Enchantment for Expert Archer] [NattWara]
-	for(i=0; i < tRO_BiolabWeaponEnchantment.length; i++) {
-		var vBE = tRO_BiolabWeaponEnchantment[i];
+	for(i=0; i < BiolabWeaponEnchantment.length; i++) {
+		var vBE = BiolabWeaponEnchantment[i];
 		if(vBE >= 251 && vBE <= 253) {
 				n_tok[25] += 2 * parseInt(vBE.substr(-1));
 		}
@@ -4152,8 +4152,8 @@ with(document.calcForm){
 	*/
 	var eTypes = [0,0,0,0,0]; // 0 Neural, 1 Water, 2 Earth, 3 Fire, 4 Wind
 	var aMSnoEle = [373,374,375]; // Magical skills without proper element (will change depending on n_A_Weapon_zokusei)
-	for(i=0; i < tRO_MalangdoEnchantment.length; i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for(i=0; i < MalangdoEnchantment.length; i++) {
+		var vME = MalangdoEnchantment[i];
 		if(vME >= 261 && vME <= 267) {
 			switch(vME.substr(-1)){
 				case '1' : eTypes[3] += 2; break;
@@ -4166,7 +4166,7 @@ with(document.calcForm){
 			}
 
 			for(k=1; k<5; k++) {
-				if(TRO_MAGICALSKILL_ELEMENTS[k].indexOf(n_A_ActiveSkill) != -1){
+				if(MAGICALSKILL_ELEMENTS[k].indexOf(n_A_ActiveSkill) != -1){
 					for(j=0; j<10; j++) {
 						n_tok[170 + j] = ((n_tok[170 + j] + 100) * (100 + eTypes[k]) / 100) - 100; // ***
 					}
@@ -4182,8 +4182,8 @@ with(document.calcForm){
 	//[Custom Talon Tales 2018-07-10 - Biolab Weapon Enchantment for Spell Element] [NattWara]
 	var eTypes = [0,0,0,0,0]; // 0 Neural, 1 Water, 2 Earth, 3 Fire, 4 Wind
 	var aMSnoEle = [373,374,375]; // Magical skills without proper element (will change depending on n_A_Weapon_zokusei)
-	for(i=0; i < tRO_BiolabWeaponEnchantment.length; i++) {
-		var vBE = tRO_BiolabWeaponEnchantment[i];
+	for(i=0; i < BiolabWeaponEnchantment.length; i++) {
+		var vBE = BiolabWeaponEnchantment[i];
 		if(vBE >= 261 && vBE <= 264) {
 			switch(vBE.substr(-1)){
 				case '1' : eTypes[3] += 2; break;
@@ -4193,7 +4193,7 @@ with(document.calcForm){
 			}
 
 			for(k=1; k<5; k++) {
-				if(TRO_MAGICALSKILL_ELEMENTS[k].indexOf(n_A_ActiveSkill) != -1){
+				if(MAGICALSKILL_ELEMENTS[k].indexOf(n_A_ActiveSkill) != -1){
 					for(j=0; j<10; j++) {
 						n_tok[170 + j] = ((n_tok[170 + j] + 100) * (100 + eTypes[k]) / 100) - 100; // ***
 					}
@@ -5165,8 +5165,8 @@ function ManageStatEnchants()
 	}
 
 	//[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for STR/AGI/VIT/INT/DEX/LUK] [Kato]
-	for(i=0; i < tRO_MalangdoEnchantment.length; i++) {
-		var vME = tRO_MalangdoEnchantment[i];
+	for(i=0; i < MalangdoEnchantment.length; i++) {
+		var vME = MalangdoEnchantment[i];
 
 		if(vME == 0 || vME.length > 2) continue;
 
@@ -5177,8 +5177,8 @@ function ManageStatEnchants()
 	}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Weapon Enchantment for STR/AGI/VIT/INT/DEX/LUK] [NattWara]
-	for(i=0; i < tRO_BiolabWeaponEnchantment.length; i++) {
-		var vBE = tRO_BiolabWeaponEnchantment[i];
+	for(i=0; i < BiolabWeaponEnchantment.length; i++) {
+		var vBE = BiolabWeaponEnchantment[i];
 
 		if(vBE == 0 || vBE.length > 2) continue;
 
@@ -5189,8 +5189,8 @@ function ManageStatEnchants()
 	}
 
 	//[Custom Talon Tales 2018-07-10 - Biolab Armor Enchantment for STR/AGI/VIT/INT/DEX/LUK] [NattWara]
-	for(i=0; i < tRO_BiolabArmorEnchantment.length; i++) {
-		var vBE = tRO_BiolabArmorEnchantment[i];
+	for(i=0; i < BiolabArmorEnchantment.length; i++) {
+		var vBE = BiolabArmorEnchantment[i];
 
 		if(vBE == 0 || vBE.length > 2) continue;
 
@@ -5201,8 +5201,8 @@ function ManageStatEnchants()
 	}
 
 	//[Custom Talon Tales 2018-07-12 - Eden Armor Enchantment for STR/AGI/VIT/INT/DEX/LUK] [NattWara]
-	for(i=0; i < tRO_EdenArmorEnchantment.length; i++) {
-		var vEE = tRO_EdenArmorEnchantment[i];
+	for(i=0; i < EdenArmorEnchantment.length; i++) {
+		var vEE = EdenArmorEnchantment[i];
 
 		if(vEE == 0 || vEE.length > 2) continue;
 
@@ -5213,8 +5213,8 @@ function ManageStatEnchants()
 	}
 
 	//[Custom Talon Tales 2018-07-12 - El Dicaste Enchantment for STR/AGI/VIT/INT/DEX/LUK] [NattWara]
-	for(i=0; i < tRO_EDEnchantment.length; i++) {
-		var vED = tRO_EDEnchantment[i];
+	for(i=0; i < EDEnchantment.length; i++) {
+		var vED = EDEnchantment[i];
 
 		if(vED == 0 || vED.length > 2) continue;
 
@@ -5225,8 +5225,8 @@ function ManageStatEnchants()
 	}
 
 	//[Custom Talon Tales 2018-07-12 - Mora Enchantment for STR/AGI/VIT/INT/DEX/LUK] [NattWara]
-	for(i=0; i < tRO_MoraEnchantment.length; i++) {
-		var vMORA = tRO_MoraEnchantment[i];
+	for(i=0; i < MoraEnchantment.length; i++) {
+		var vMORA = MoraEnchantment[i];
 
 		if(vMORA == 0 || vMORA.length > 2) continue;
 
@@ -10639,7 +10639,7 @@ for(i=0;i<ITEM_SP_TIME_OBJ.length;i++){
 }
 
 //[Custom Talon Tales - 2018-06-03 - Populate combos in index] [Kato]
-tRO_PopulateCombos();
+PopulateCombos();
 
 document.calcForm.A_JOB.value = 0;
 ClickJob(0);
