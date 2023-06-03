@@ -662,7 +662,7 @@ cardOBJ = [
 ,[632,2,"Phantom of Amdarais","",8,25,0]
 ,[633,100,"Phantom of Amdarais + Amdarais","[PvM Only]<br>Increases short range physical and [Cart Termination] damage inflicted on [Ghost] Element monsters by 25%.<br>Increases short range physical and [Cart Termination] damage inflicted on [Neutral] Element monsters by 15%",1,5,8,25,0]
 ,[634,5,"Root of Corruption","",98,15,190,10,190,10,192,10,0]
-,[635,100,"Corrupted Soul + Root of Corruption",352,10,0]
+,[635,100,"Corrupted Soul + Root of Corruption","",352,10,0]
 ,[636,1,"Mutating White Knight","",98,10,104,5,105,5,0]
 ,[637,3,"Mutating Khalitzburg","",191,15,192,15,0]
 ,[638,100,"Mutating White Knight + Mutating Khalitzburg","[Every Refine Level] Increases magical damage against [Medium] and [Large] size monsters by 2%.",191,10,192,10,0]
