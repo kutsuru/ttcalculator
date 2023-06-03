@@ -202,12 +202,12 @@ JobEquipItemOBJ = [
 [0, 1, 55, 65,118, 71, 77,79,89,96,999], //Sage
 [0, 1, 56, 66,119, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,999], //Alchemist
 [0,50,90,93,94,95,96,120,999], // Super Novice
-[0, 1, 51, 61,107,121, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,999], //Lord Knight
+[0, 1, 51, 61,107,121, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,135,999], //Lord Knight
 [0, 1, 52, 62,108,122, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,999], //Assassin Cross
 [0, 1, 53, 63,109,123, 71, 73, 74, 77,78,79,81,82,85,89,95,96,151,152,999], //High Priest
 [0, 1, 54, 60,64,110,124, 75, 76,79,80,82,83,88,89,92,999], //Sniper
 [0, 1, 55, 65,111,125, 71, 77,79,82,89,96,151,152,999], //High Wizard
-[0, 1, 56, 66,112,126, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,999], //Whitesmith
+[0, 1, 56, 66,112,126, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,135,999], //Whitesmith
 [0, 1, 51, 61,113,127, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,999], //Paladin
 [0, 1, 52, 62,114,128, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,999], //Stalker
 [0, 1, 53, 63,115,129, 71, 73, 74,77,78,79,82,85,89,95,96,152,999], //Champion
@@ -318,6 +318,7 @@ JobEquipItemOBJ = [
 		132 = professor
 		133 = creator
 		134 = clown, gypsy
+		135 = lord knight, whitesmith
 
 		141 = taekwon ONLY
 		142 = star gladiator
@@ -725,9 +726,9 @@ function BattleCalc999()
 				(1380 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1))
 				zeny_cost = Math.ceil(zeny_cost * 0.25);
 			
-			// Goldsmithing Dagger#1677
+			// Goldsmithing Dagger#1677 - Spend 25% less zeny when using [Mammonite].
 			if (EquipNumSearch(1677))
-				zeny_cost = Math.ceil(zeny_cost * 0.90);
+				zeny_cost = Math.ceil(zeny_cost * 0.75);
 			
 			wbairitu += n_A_ActiveSkillLV *0.5;
 		}
@@ -742,7 +743,9 @@ function BattleCalc999()
 			wbairitu += n_A_ActiveSkillLV *0.2;
 		}else if(n_A_ActiveSkill==161){
 			wbairitu += n_A_ActiveSkillLV *0.35;
-			n_A_Weapon_zokusei = 6;
+			
+			// Cursed Butler#642 - [Holy Cross] element becomes Shadow
+			n_A_Weapon_zokusei = (CardNumSearch(642) ? 7 : 6);
 		}else if(n_A_ActiveSkill==171)
 			wbairitu += n_A_ActiveSkillLV *0.4;
 		else if(n_A_ActiveSkill==72){
@@ -2070,7 +2073,10 @@ function BattleCalc999()
 		else if(n_A_ActiveSkill==47) // Soul Strike#47
 		{
 			support_autospell = 1;
-			n_A_Weapon_zokusei = 8;
+			
+			// Cursed Butler#642 - [Soul Strike] element becomes Shadow
+			n_A_Weapon_zokusei = (CardNumSearch(642) ? 7 : 8);
+			
 			wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
 			wCast = 0.5;
 			if(n_A_ActiveSkillLV % 2 == 0)
@@ -2967,6 +2973,17 @@ function BattleCalc998()
 			if (skill_info.length > 3)
 				sp_cost = skill_info[Math.min(2 + n_A_ActiveSkillLV, skill_info.length - 1)];
 			
+			// Flat sp cost reduction
+			
+			// Heavy Sword#1680 - [Refine Rate 7~10] - Reduce SP cost of [Charge Attack#308] by 30 and [Head Crush#260] by 10.
+			if (EquipNumSearch(1680) && n_A_Weapon_ATKplus >= 7)
+			{
+				if (308 == n_A_ActiveSkill)
+					sp_cost -= 30;
+				else if (260 == n_A_ActiveSkill)
+					sp_cost -= 10;
+			}
+			
 			sp_cost = Math.ceil(sp_cost * (1 + n_tok[72] / 100));
 			
 			// Mjolnir#84#3rd Bonus - Reduce [Cart Termination] and [Mammonite] SP costs by 50%
@@ -2987,7 +3004,7 @@ function BattleCalc998()
 				(EquipNumSearch(1773) && (407 == n_A_ActiveSkill || 408 == n_A_ActiveSkill || 409 == n_A_ActiveSkill)))
 				sp_cost = Math.ceil(sp_cost * (1 - 0.03 * n_A_Weapon_ATKplus));
 				
-			// Rolling Thunder#1790 - [Every Refine Level] - 5% more damage with [Spread Attack#436]
+			// Rolling Thunder#1790 - [Every Refine Level] - 5% less SP cost with [Spread Attack#436]
 			if (436 == n_A_ActiveSkill && EquipNumSearch(1790))
 				sp_cost = Math.ceil(sp_cost * (1 - 0.05 * n_A_Weapon_ATKplus));
 			
@@ -3456,6 +3473,7 @@ function BattleMagicCalc(wBMC)
 	wBMC2 = wBMC2 * (100 + wX) /100;
 	
 	// >> bMagicAddSize
+	wBMC2 = wBMC2 * (100 + n_tok[103 + n_B[4]]) / 100;
 	// << bMagicAddSize
 	
 	// >> bAddMagicDamageClass
@@ -3472,6 +3490,10 @@ function BattleMagicCalc(wBMC)
 	// Wolfchev's Nightcap - Increases magical damage against Biolab monsters by 15%
 	if (wolfchev_nightcap_cocktail && IsABiolabMonster())
 		wBMC2 = wBMC2 * 1.15;
+	
+	// Temporal Spell - Increases magical damage against Old Glast Heim monsters by 10%
+	if (temporal_spell && IsAnOGHMonster())
+		wBMC2 = wBMC2 * 1.10;
 
 	wBMC2 = Math.floor(wBMC2);
 
@@ -4902,6 +4924,7 @@ with(document.calcForm){
 		str += '<TR><TD id="EN816"></TD></TR>';
 		str += '<TR><TD id="EN826"></TD></TR>';
 		str += '<TR><TD id="EN827"></TD></TR>';
+		str += '<TR><TD id="EN828"></TD></TR>';
 		str += '<TR><TD colspan="2"><Font size=2 color=black><B>Debuffs</B></Font></TD></TR>';
 		str += '<TR><TD id="EN830"></TD><TD id="EN831"></TD></TR>';
 		str += '<TR><TD id="EN832"></TD><TD id="EN833"></TD></TR></table>';
@@ -5043,6 +5066,7 @@ with(document.calcForm){
 		myInnerHtml("EN825",'<input type="checkbox" name="A8_Skill27"onClick="Click_A8(1)">Luciola\'s Honey Jam[Decreases damage on Splendide maps by 10%]',0);
 		myInnerHtml("EN826",'<input type="checkbox" name="A8_Skill28"onClick="Click_A8(1)">Guarana Candy[Increase AGI Level 10]',0);
 		myInnerHtml("EN827",'<input type="checkbox" name="A8_Skill35"onClick="Click_A8(1)">Greater Agimat of Ancient Spirit[Increases physical and magical damage to demon monsters by 10%]',0);
+		myInnerHtml("EN828",'<input type="checkbox" name="temporal_spell_check"onClick="Click_A8(1)">Temporal Spell[Increases physical and magical damage to Old Glast Heim monsters by 10%]',0);
 
 		myInnerHtml("EN830",'Quagmire <select name="A_IJYOU0" onChange="Click_A8(1)"></select>',0);
 		A_IJYOU0.options[0] = new Option("-",0);
@@ -5105,6 +5129,7 @@ with(document.calcForm){
 		A_IJYOU3.checked = n_A_IJYOU[3];
 		eclage_food_list.value = eclage_food;
 		abrasive_food_check.checked = abrasive_food;
+		temporal_spell_check.checked = temporal_spell;
 
 		eden_rough_crystal_buff_check.checked = eden_rough_crystal_buff;
 		eden_purified_crystal_buff_check.checked = eden_purified_crystal_buff;
@@ -5657,6 +5682,22 @@ function PopulateCombos() {
 		for(var i=0; i<HS_ENCHANTS.length; i++) {
 			A_HSE.options[i+1] = new Option(HS_ENCHANTS[i][1],HS_ENCHANTS[i][0]);
 		}
+		
+		// Temporal Enchants (Footgear)
+		myInnerHtml("temporal_1st_enchant","1st Enchant: ",0);
+		myInnerHtml("temporal_2nd_enchant","2nd Enchant: ",0);
+		myInnerHtml("temporal_3rd_enchant","3rd Enchant: ",0);
+
+		for (i = 0; i < TEMPORAL_1ST_ENCHANTS.length; ++i)
+			temporal_1st_enchant_select.options[i] = new Option(TEMPORAL_1ST_ENCHANTS[i][0], i);
+		for (i = 0; i < TEMPORAL_2ND_ENCHANTS.length; ++i)
+			temporal_2nd_enchant_select.options[i] = new Option(TEMPORAL_2ND_ENCHANTS[i][0], i);
+		for (i = 0; i < TEMPORAL_3RD_ENCHANTS.length; ++i)
+			temporal_3rd_enchant_select.options[i] = new Option(TEMPORAL_3RD_ENCHANTS[i][0], i);
+
+		temporal_1st_enchant_select.value = 0;
+		temporal_2nd_enchant_select.value = 0;
+		temporal_3rd_enchant_select.value = 0;
 	}
 }
 
@@ -6581,6 +6622,24 @@ with(document.calcForm){
 	MoraEnchantment[10] = document.calcForm.A_MORAEAC22.value;
 	MoraEnchantment[11] = document.calcForm.A_MORAEAC23.value;
 }}
+
+
+function Click_TemporalEnchantment(footgear_id) {
+with(document.calcForm) {
+	let bEnchant = (TEMPORAL_ENCHANTABLE.findIndex(x => x == footgear_id) > -1);
+	document.getElementById("temporal_enchant_block").style.display = ((bEnchant) ? "" : "none");
+
+	if (!bEnchant) {
+		document.calcForm.temporal_1st_enchant_select.value = 0;
+		document.calcForm.temporal_2nd_enchant_select.value = 0;
+		document.calcForm.temporal_3rd_enchant_select.value = 0;
+	}
+	
+	// 3rd enchant is only available to Sleipnir
+	let bIsSleipnir = (319 == footgear_id);
+	document.getElementById("temporal_enchant_sleipnir").style.display = ((bIsSleipnir) ? "" : "none");
+}
+}
 
 function Click_Skill9SW(){
 with(document.calcForm){
@@ -8169,9 +8228,13 @@ function BaiCI(wBaiCI)
 		if(debug_dmg_avg)
 			debug_atk+="\na_wBaiCI:"+wBaiCI;
 		
+		// bAutoAtkRate
+		if (!n_A_ActiveSkill)
+			wBaiCI = Math.floor(wBaiCI * (1 + (n_tok[106])));
+
 		// bShortAtkRate
 		if (!n_Enekyori)
-			wBaiCI = Math.floor(wBaiCI * (1 + n_tok[300 + Math.floor(n_B[3] / 10)] / 100));
+			wBaiCI = Math.floor(wBaiCI * (1 + (n_tok[88] + n_tok[300 + Math.floor(n_B[3] / 10)]) / 100));
 
 		if(debug_dmg_avg) {
 			debug_atk+="\n --- (BaiCI) Weapon/Card Size Modifier ---";
@@ -8218,6 +8281,9 @@ function BaiCI(wBaiCI)
 		{
 			// This modifier does not increase Shadow Slash#401 and Sharpshoot#272 damage
 			crit_dmg_modifier = (272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill) ? 0 : n_tok[70];
+			
+			// Temporal Boots (LUK)#1841 - [Every 19 Base LUK] - Increases critical attack/skills attack by 3%
+			crit_dmg_modifier += Math.floor(SU_LUK / 19) * 3 * EquipNumSearch(1841);
 			
 			if (272 == n_A_ActiveSkill)  // Sharpshoot#272
 			{
@@ -8327,6 +8393,10 @@ function BaiCI(wBaiCI)
 	// Wolfchev's Nightcap - Increases physical damage against Biolab monsters by 15%
 	if (wolfchev_nightcap_cocktail && IsABiolabMonster())
 		wBaiCI = wBaiCI * 1.15;
+
+	// Temporal Spell - Increases physical damage against Old Glast Heim monsters by 10%
+	if (temporal_spell && IsAnOGHMonster())
+		wBaiCI = wBaiCI * 1.10;
 
 	return wBaiCI;
 }
@@ -8483,8 +8553,8 @@ function ApplySkillAtkBonus(dmg)
 		skill_atk_bonus_ratio += n_A_Weapon_ATKplus * EquipNumSearch(1080);
 
 	if (n_A_ActiveSkill == 65) {
-		// Glorious Two Handed Axe#1087 - [Every Refine Level] Increase [Mammonite] damage by 2% [Amor]
-		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus * EquipNumSearch(1087);
+		// Glorious Two Handed Axe#1087 | Goldsmithing Dagger#1677 - [Every Refine Level] Increase [Mammonite] damage by 2% [Amor]
+		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus * (EquipNumSearch(1087) + EquipNumSearch(1677));
 		
 		// Glorious Cleaver#1088 - [Every Refine Level] Increase [Mammonite] damage by 1% [Amor]
 		skill_atk_bonus_ratio += n_A_Weapon_ATKplus * EquipNumSearch(1088);
@@ -8553,12 +8623,25 @@ function ApplySkillAtkBonus(dmg)
 	if (5 == n_A_WeaponType && 161 == n_A_ActiveSkill)
 		skill_atk_bonus_ratio += 50 * CardNumSearch(602);
 	
-	// Amdarais Card#604 - [Cart Termination] damage inflicted on Neutral Element monsters by 10%.
-	if (326 == n_A_ActiveSkill && n_B[3] < 5) // Neutral 0-4
-		skill_atk_bonus_ratio += 10 * CardNumSearch(604);
-	// Amdarais Card#604 - [Cart Termination] damage inflicted on Ghost Element monsters by 25%.
-	if (326 == n_A_ActiveSkill && n_B[3] > 80 && [3] < 85) // Ghost 81-84
-		skill_atk_bonus_ratio += 25 * CardNumSearch(604);
+	// Cart Termination#326 - [PvM Only] - Amdarais#604 + Phantom of Amdarais#632  Combo#633
+	if (326 == n_A_ActiveSkill && !Taijin)
+	{
+		if (n_B[3] < 5) // Neutral 0-4
+		{
+			// Amdarais Card#604 - [Cart Termination] damage inflicted on Neutral Element monsters by 15%.
+			skill_atk_bonus_ratio += 15 * CardNumSearch(604);
+			// Phantom of Amdarais + Amdarais Combo#633 - [Cart Termination] damage inflicted on Neutral Element monsters by 15%.
+			skill_atk_bonus_ratio += 15 * CardNumSearch(633);
+		}
+		
+		if (n_B[3] > 80 && [3] < 85) // Ghost 81-84
+		{
+			// Amdarais Card#604 - [Cart Termination] damage inflicted on Ghost Element monsters by 25%.
+			skill_atk_bonus_ratio += 25 * CardNumSearch(604);
+			// Phantom of Amdarais + Amdarais Combo#633 - [Cart Termination] damage inflicted on Neutral Element monsters by 25%.
+			skill_atk_bonus_ratio += 25 * CardNumSearch(633);
+		}
+	}
 	
 	// Elemental Huuma#1771#1772#1773 - 50% more damage with [Throw Kunai#395] when equipped with elemental kunais.
 	if (395 == n_A_ActiveSkill && ((EquipNumSearch(1771) && 2 == document.calcForm.SkillSubNum.value)

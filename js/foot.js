@@ -308,6 +308,9 @@ with(document.calcForm){
 	Click_MoraArmorEnchantment(n_A_Equip[6]);
 	Click_MoraGarmentEnchantment(n_A_Equip[7]);
 	Click_MoraAccessoryEnchantment(n_A_Equip[9],n_A_Equip[10]);
+	
+	// Manage Temporal Enchants
+	Click_TemporalEnchantment(n_A_Equip[8]);
 
 	if(n_Nitou){
 		W_REF2 = 0;
@@ -576,6 +579,7 @@ with(document.calcForm){
 		n_A_IJYOU[3] = eval(A_IJYOU3.checked);
 		eclage_food = eval(eclage_food_list.value);
 		abrasive_food = eval(abrasive_food_check.checked);
+		temporal_spell = eval(temporal_spell_check.checked);
 
 		eden_rough_crystal_buff = eval(eden_rough_crystal_buff_check.checked);
 		eden_purified_crystal_buff = eval(eden_purified_crystal_buff_check.checked);
@@ -696,7 +700,12 @@ with(document.calcForm){
 	}
 	
 	manage_sqi_bonus();
+
+	// Manage Temporal Enchants
+	apply_temporal_enchants();
+
 	StPlusCalc();
+	
 
 	if(n_A_WeaponType != 10 && n_A_WeaponType !=14 && n_A_WeaponType !=15 && n_A_WeaponType !=17 && n_A_WeaponType !=18 && n_A_WeaponType !=19 && n_A_WeaponType !=20 && n_A_WeaponType !=21){
 		n_A_ATK_w = Math.round(Math.floor(n_A_STR/10) * Math.floor(n_A_STR/10));
@@ -833,6 +842,57 @@ with(document.calcForm){
 		n_tok[12] += 7 * Math.max(0, SkillSearch(89) - 9);
 	}
 
+	// Temporal Boots (STR)#1836
+	if (EquipNumSearch(1836))
+	{
+		// [Every Refine Level] - Short Range Attack + 1%
+		n_tok[88] += n_A_SHOES_DEF_PLUS;
+
+		// [Base STR >= 95] - HIT + 10
+		if (SU_STR >= 95)
+			n_tok[8] += 10;
+	}
+	
+	// Temporal Boots (AGI)#1837
+	if (EquipNumSearch(1837))
+	{
+		// [Every Refine Level] - FLEE + 1%
+		n_tok[9] += n_A_SHOES_DEF_PLUS;
+
+		// [Base AGI >= 95] - ASPD + 5%
+		if (SU_AGI >= 95)
+			n_tok[12] += 5;
+	}
+	
+	// Temporal Boots (VIT)#1838
+	if (EquipNumSearch(1838))
+	{
+		// [Every Refine Level] - MaxHP + 100
+		n_tok[13] += 100 * n_A_SHOES_DEF_PLUS;
+
+		// [Base VIT >= 95] - DEF + 3, Natural HP Recovery + 20%
+		if (SU_VIT >= 95)
+		{
+			n_tok[18] += 3;
+			n_tok[75] += 20;
+		}
+	}
+
+	
+	// Temporal Boots (DEX)#1840
+	if (EquipNumSearch(1840))
+	{
+		// [Every Refine Level] - HIT + 2
+		n_tok[8] += 2 * n_A_SHOES_DEF_PLUS;
+
+		// [Base DEX >= 95] - Reduces aftercast delay by 5%
+		if (SU_DEX >= 95)
+			n_tok[74] += 5;
+	}
+		
+	// Temporal Boots (LUK)#1841 - [Every Refine Level] - CRIT + 1
+	n_tok[10] += n_A_SHOES_DEF_PLUS * EquipNumSearch(1841);
+
 	//Jolly Roger Hat -[Loa] - 2018-07-03
 	if(EquipNumSearch(1186)){
 		if(n_A_HEAD_DEF_PLUS > 7){
@@ -889,6 +949,10 @@ with(document.calcForm){
 			n_tok[15] += 2;
 		}
 	}
+	
+	// Guardian Knight Spear#1672 - [Every Refine Level] - MaxHP + 3%
+	n_tok[15] += n_A_Weapon_ATKplus * 3 * EquipNumSearch(1672);
+	
 	// Undine Spear#1681 [Every Refine Level]  MaxHP + 1%
 	if (EquipNumSearch(1681)) {
 		n_tok[15] += n_A_Weapon_ATKplus
@@ -2321,6 +2385,9 @@ with(document.calcForm){
 	if (20 == n_A_WeaponType && SkillSearch(433) && (1387 != n_A_Equip[3] || SQI_Bonus_Effect.findIndex(x => x == 6) == -1))
 			n_A_FLEE -= 5 * SkillSearch(433);
 
+	// Manage FLEE % modifier
+	n_A_FLEE = Math.floor(n_A_FLEE * (1 + n_tok[107] / 100));
+
 	//berserk
 	if(SkillSearch(258)){
 		n_A_FLEE /= 2;}
@@ -3268,6 +3335,12 @@ with(document.calcForm){
 	if (EquipNumSearch(897) && n_A_JOB == 43)
 		n_tok[12] += 5;
 
+	// Royal Magician Rod#1673 - [Every Refine Level] - ASPD + 2%
+	n_tok[12] += n_A_Weapon_ATKplus * EquipNumSearch(1673) * 2;
+	
+	// Heavy Sword#1680 - [Every Refine Level] - ASPD + 1%
+	n_tok[12] += n_A_Weapon_ATKplus * EquipNumSearch(1680);
+
 	// Elemental Sword#939 + Elemental Boots#1819 [Every 2 Refine Levels] ASPD + 1%
 	// When using two Elemental Swords, only the first Sword is used!
 	if (EquipNumSearch(1819))
@@ -3397,9 +3470,9 @@ with(document.calcForm){
 	if (n_A_ActiveSkill == 272 && EquipNumSearch(1489))
 		skill_cast_reduction -= 15;
 	
-	//[Talon Tales Custom - 2019-10-30 - Heavy Sword - Decreases cast time of [Charge Attack] by 3% per refine
+	//[Talon Tales Custom - 2019-10-30 - Heavy Sword - Decreases cast time of [Charge Attack] by 5% per refine
 	if (n_A_ActiveSkill == 308 && EquipNumSearch(1680))
-		skill_cast_reduction -= (3 * n_A_Weapon_ATKplus);
+		skill_cast_reduction -= (5 * n_A_Weapon_ATKplus);
 		
 	// Storm Gust#131
 	if (n_A_ActiveSkill == 131)
@@ -3876,6 +3949,14 @@ with(document.calcForm){
 
 	if(EquipNumSearch(624))
 		n_tok[191] += n_A_Weapon_ATKplus;
+	
+	// Guardian Knight Battle Axe#723 - [Every Refine Level] - Reduces damage received from all size monsters by 2%
+	if (EquipNumSearch(723))
+	{
+		n_tok[190] += n_A_Weapon_ATKplus * 2;
+		n_tok[191] += n_A_Weapon_ATKplus * 2;
+		n_tok[192] += n_A_Weapon_ATKplus * 2;
+	}
 
 	//custom Talon Tales Magical Booster
 	if(EquipNumSearch(1430) && EquipNumSearch(1228)){
@@ -4338,6 +4419,20 @@ with(document.calcForm){
 		if(n_A_HEAD_DEF_PLUS >= 9) n_tok[97] += 5;
 	}
 	
+	// White Knight + Khalitzburg Knight Combo#446 - [Every Refine Level] Increases physical damage against [Medium] and [Large] size monsters by 1%
+	if (CardNumSearch(446))
+	{
+		n_tok[28] += n_A_Weapon_ATKplus;
+		n_tok[29] += n_A_Weapon_ATKplus;
+	}
+	
+	// Mutating White Knight + Mutating Khalitzburg Combo#638 - [Every Refine Level] Increases magical damage against [Medium] and [Large] size monsters by 2%
+	if (CardNumSearch(638))
+	{
+		n_tok[104] += n_A_Weapon_ATKplus * 2;
+		n_tok[105] += n_A_Weapon_ATKplus * 2;
+	}
+	
 	// Wood Goblin#562 - [Every Refine Level] - Increase physical damage against Water and Earth by 1%
 	if (CardNumSearch(562))
 	{
@@ -4352,6 +4447,17 @@ with(document.calcForm){
 		n_tok[40] += 40;
 		n_tok[21] += n_A_Weapon_ATKplus * 3;
 		n_tok[22] += n_A_Weapon_ATKplus * 3;
+	}
+	
+	/* 
+		[PvM Only]
+		Amdarais Card#604 - Increases short range physical damage inflicted on [Neutral] Element monsters by 15% and on [Ghost] Element monsters by 25%.
+		Phantom of Amdarais + Amdarais Combo#633 - Increases short range physical damage inflicted on [Neutral] Element monsters by 15% and on [Ghost] Element monsters by 25%.
+	*/	
+	if (!Taijin)
+	{
+		n_tok[300] += 15 * (CardNumSearch(604) + CardNumSearch(633));
+		n_tok[308] += 25 * (CardNumSearch(604) + CardNumSearch(633));
 	}
 	
 	// Bobo's Boba - Ignore 10% DEF and MDEF
@@ -4568,6 +4674,20 @@ function StPlusCalc()
 	n_tok[4] += SkillSearch(404);
 	n_tok[4] += Math.round(SkillSearch(234) / 2);
 	
+	// Temporal Boots (INT)#1839
+	if (EquipNumSearch(1839))
+	{
+		// [Every Refine Level] - MaxSP + 10
+		n_tok[14] += 10 * n_A_SHOES_DEF_PLUS;
+
+		// [Base INT >= 95] - INT + 3, Natural SP Recovery + 20%
+		if (SU_INT >= 95)
+		{
+			n_tok[4] += 3;
+			n_tok[76] += 20;
+		}
+	}
+	
 	n_tok[5] += SkillSearch(38);
 	// Baby Dragon Hat#1301 - [Sage Class][Dragonology Mastered] ATK & MATK + 5% and DEX + 5"
 	if (5 == SkillSearch(234) && EquipNumSearch(1301))
@@ -4650,8 +4770,8 @@ function StPlusCalc()
 			n_tok[5] += 1;
 	}
 	
-	// Glorious Arc Wand#1084  - [Every Refine Level] - INT + 1
-	if (EquipNumSearch(1084))
+	// Glorious Arc Wand#1084 | Staff Of Geffen#1675 - [Every Refine Level] - INT + 1
+	if (EquipNumSearch(1084) || EquipNumSearch(1675))
 		n_tok[4] += n_A_Weapon_ATKplus;
 
 	//custom Talon Tales Improved Mage Hat: Every Refine level 7 or higher adds INT + 1 - [Loa] - 2018-06-07
@@ -6412,12 +6532,12 @@ function KakutyouKansuu(){
 
 			adopted = eval(document.calcForm.A_youshi.checked);
 
-			srate1 = Math.floor((50 + smithing*5 + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20)*100)/100;
-			srate2 = Math.floor((50 + smithing*5 + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20 - 20)*100)/100;
-			srate3 = Math.floor((50 + smithing*5 + orideconres + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20 - 30)*100)/100;
-			srate4 = Math.floor((40 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + iron*5)*100)/100;
-			srate5 = Math.floor((30 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + steel*5)*100)/100;
-			srate6 = Math.floor((10 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + stone*5)*100)/100;
+			srate1 = Math.floor((n_tok[108] + 50 + smithing*5 + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20)*100)/100;
+			srate2 = Math.floor((n_tok[108] + 50 + smithing*5 + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20 - 20)*100)/100;
+			srate3 = Math.floor((n_tok[108] + 50 + smithing*5 + orideconres + weaponres + anvil2 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 - starcrumb*15 - elemstone*20 - 30)*100)/100;
+			srate4 = Math.floor((n_tok[108] + 40 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + iron*5)*100)/100;
+			srate5 = Math.floor((n_tok[108] + 30 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + steel*5)*100)/100;
+			srate6 = Math.floor((n_tok[108] + 10 + n_A_JobLV * 0.2 + (n_A_DEX +n_A_LUK)* 0.1 + stone*5)*100)/100;
 
 			if(srate1 < 0){srate1 = 0;}
 			if(srate2 < 0){srate2 = 0;}
@@ -6458,7 +6578,7 @@ function KakutyouKansuu(){
 				pharmacyboost *= 2;
 			adopted = eval(document.calcForm.A_youshi.checked);
 			//Brewing rework - [Loa] - 2018-06-17
-			srate = potionr * 50 + preparep * 300 + n_A_JobLV * 20 + (n_A_DEX + n_A_LUK + (n_A_INT/2)) * 10 + potrate * 100 + pharmacyboost * 100;
+			srate = potionr * 50 + preparep * 300 + n_A_JobLV * 20 + (n_A_DEX + n_A_LUK + (n_A_INT/2)) * 10 + potrate * 100 + pharmacyboost * 100 + n_tok[108];
 			//selpot values in etc.js
 			if(selpot == 3 //blue pot
 				|| selpot == 4 //slim red
@@ -6519,7 +6639,7 @@ function KakutyouKansuu(){
 			document.calcForm.A_KakutyouSelNum.options[0] = new Option("Poison Bottle",0);
 			document.calcForm.A_KakutyouSelNum.value=0;
 
-			srate = Math.floor((0.2 + (0.4*n_A_DEX) + (0.2*n_A_LUK))*100)/100;
+			srate = Math.floor((n_tok[108] + 0.2 + (0.4*n_A_DEX) + (0.2*n_A_LUK))*100)/100;
 
 			myInnerHtml("A_KakutyouData","<b><br>Success rate: </b>" + srate + " %",0);
 
@@ -6655,7 +6775,7 @@ function KakutyouKansuu(){
 		if((Flv1 == 8 && FStat1 == 5) || Flv1 == 9){ItemN = 7;}
 		if(Flv1 == 10){ItemN = 8;}
 
-		Food_Powa = (1200 * (CKit1+1)) + (20*(n_A_BaseLV+1)) + (20*(n_A_DEX)) - (Flv1*400) - (10*(100-(n_A_LUK + 1))) - (500*(ItemN-1));
+		Food_Powa = (1200 * (CKit1+1)) + (20*(n_A_BaseLV+1)) + (20*(n_A_DEX)) - (Flv1*400) - (10*(100-(n_A_LUK + 1))) - (500*(ItemN-1)) + n_tok[108];
 
 		Food_MIN = Math.round(Food_Powa + (100*(0 + (6 + CExp1/80)))*adp)/100;
 		Food_AVG = Math.round(Food_Powa + (100*(12 + (6 + CExp1/80)))*adp)/100;
@@ -8429,6 +8549,61 @@ function IsABiolabMonster() {
 	return (MonMap[10].findIndex( (x) => x == n_B[0] ) > -1);
 }
 
+// Old Glast Heim & Old Glast Heim Challenge
+function IsAnOGHMonster() {
+	return (MonMap[58].findIndex( (x) => x == n_B[0] ) > -1) || (MonMap[59].findIndex( (x) => x == n_B[0] ) > -1)
+}
+
+function apply_temporal_enchants()
+{
+	let first_enchant_bonii = TEMPORAL_1ST_ENCHANTS[eval(document.calcForm.temporal_1st_enchant_select.value)][1];
+	let second_enchant_bonii = TEMPORAL_2ND_ENCHANTS[eval(document.calcForm.temporal_2nd_enchant_select.value)][1];
+	let third_enchant_bonii = TEMPORAL_3RD_ENCHANTS[eval(document.calcForm.temporal_3rd_enchant_select.value)][1];
+	let script_bonii = [first_enchant_bonii, second_enchant_bonii, third_enchant_bonii];
+
+	for (enchant_index = 0; enchant_index < script_bonii.length; ++enchant_index)
+	{
+		let script_bonus = script_bonii[enchant_index];
+		for (i = 0; i < script_bonus.length; i += 2)
+			n_tok[script_bonus[i]] += script_bonus[i + 1];
+	}
+
+	let third_enchant_index = document.calcForm.temporal_3rd_enchant_select.value;
+	if (third_enchant_index)
+	{
+		let enchant_category = third_enchant_index / 7; // Each category has 7 possible enchants
+		// Temporal STR [Base STR >= 95] - HIT + 10
+		if (enchant_category <= 1 && SU_STR >= 95)
+			n_tok[8] += 10;
+
+		// Temporal AGI [Base AGI >= 95] - ASPD + 5%
+		if (enchant_category <= 2 && SU_AGI >= 95)
+			n_tok[12] += 5;
+
+		// Temporal VIT [Base VIT >= 95] - Short Range Resistance + 3% - Natural HP Recovery + 20%
+		if (enchant_category <= 3 && SU_VIT >= 95)
+		{
+			n_tok[75] += 20;
+			n_tok[100] += 3;
+		}
+
+		// Temporal INT [Base INT >= 95] - INT + 3 - Natural SP Recovery + 20%
+		if (enchant_category <= 4 && SU_STR >= 95)
+		{
+			n_tok[4] += 3
+			n_tok[76] += 20;
+		}
+
+		// Temporal DEX [Base DEX >= 95] - 5% Less Aftercast Delay
+		if (enchant_category <= 5 && SU_DEX >= 95)
+			n_tok[74] += 5;
+
+		// Temporal LUK [Every 19 Base LUK] - Critical ATK/Skills + 3%
+		if (enchant_category <= 6)
+			n_tok[70] += Math.floor(SU_LUK / 19);
+	}
+}
+
 n_NtoS =["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
 function NtoS(n,keta){
@@ -8681,9 +8856,23 @@ with(document.calcForm){
 		SaveData[130] = ((A_EDG1.value) ? eval(A_EDG1.value) : 0);
 		SaveData[131] = ((A_EDG2.value) ? eval(A_EDG2.value) : 0);
 		SaveData[132] = ((A_EDG3.value) ? eval(A_EDG3.value) : 0);
-		SaveData[133] = ((A_EDF1.value) ? eval(A_EDF1.value) : 0);
-		SaveData[134] = ((A_EDF2.value) ? eval(A_EDF2.value) : 0);
-		SaveData[135] = ((A_EDF3.value) ? eval(A_EDF3.value) : 0);
+
+		// Use same emplacement for Temporal and El Discastel footgear enchantments
+		let bTemporalEnchants = (TEMPORAL_ENCHANTABLE.findIndex(x => x == A_shoes.value) > -1);
+
+		if (bTemporalEnchants)
+		{
+			SaveData[133] = ((temporal_1st_enchant_select.value) ? eval(temporal_1st_enchant_select.value) : 0);
+			SaveData[134] = ((temporal_2nd_enchant_select.value) ? eval(temporal_2nd_enchant_select.value) : 0);
+			SaveData[135] = ((temporal_3rd_enchant_select.value) ? eval(temporal_3rd_enchant_select.value) : 0);
+		}
+		else
+		{
+			SaveData[133] = ((A_EDF1.value) ? eval(A_EDF1.value) : 0);
+			SaveData[134] = ((A_EDF2.value) ? eval(A_EDF2.value) : 0);
+			SaveData[135] = ((A_EDF3.value) ? eval(A_EDF3.value) : 0);
+		}
+
 		SaveData[136] = ((A_EDAC11.value) ? eval(A_EDAC11.value) : 0);
 		SaveData[137] = ((A_EDAC12.value) ? eval(A_EDAC12.value) : 0);
 		SaveData[138] = ((A_EDAC13.value) ? eval(A_EDAC13.value) : 0);
@@ -9180,9 +9369,23 @@ with(document.calcForm){
 	A_EDG1.value = SaveData[130];
 	A_EDG2.value = SaveData[131];
 	A_EDG3.value = SaveData[132];
-	A_EDF1.value = SaveData[133];
-	A_EDF2.value = SaveData[134];
-	A_EDF3.value = SaveData[135];
+
+	// Use same emplacement for Temporal and El Discastel footgear enchantments
+	let bTemporalEnchants = (TEMPORAL_ENCHANTABLE.findIndex(x => x == A_shoes.value) > -1);
+
+	if (bTemporalEnchants)
+	{
+		temporal_1st_enchant_select.value = SaveData[133];
+		temporal_2nd_enchant_select.value = SaveData[134];
+		temporal_3rd_enchant_select.value = SaveData[135];
+	}
+	else
+	{
+		A_EDF1.value = SaveData[133];
+		A_EDF2.value = SaveData[134];
+		A_EDF3.value = SaveData[135];
+	}
+
 	A_EDAC11.value = SaveData[136];
 	A_EDAC12.value = SaveData[137];
 	A_EDAC13.value = SaveData[138];
@@ -9657,9 +9860,23 @@ with(document.calcForm){
 	SaveData[x+1] = NtoS2(parseInt(A_EDG1.value),2);
 	SaveData[x+2] = NtoS2(parseInt(A_EDG2.value),2);
 	SaveData[x+3] = NtoS2(parseInt(A_EDG3.value),2);
-	SaveData[x+4] = NtoS2(parseInt(A_EDF1.value),2);
-	SaveData[x+5] = NtoS2(parseInt(A_EDF2.value),2);
-	SaveData[x+6] = NtoS2(parseInt(A_EDF3.value),2);
+
+	// Use same emplacement for Temporal and El Discastel footgear enchantments
+	let bTemporalEnchants = (TEMPORAL_ENCHANTABLE.findIndex(x => x == A_shoes.value) > -1);
+
+	if (bTemporalEnchants)
+	{
+		SaveData[x+4] = NtoS2(parseInt(temporal_1st_enchant_select.value),2);
+		SaveData[x+5] = NtoS2(parseInt(temporal_2nd_enchant_select.value),2);
+		SaveData[x+6] = NtoS2(parseInt(temporal_3rd_enchant_select.value),2);
+	}
+	else
+	{
+		SaveData[x+4] = NtoS2(parseInt(A_EDF1.value),2);
+		SaveData[x+5] = NtoS2(parseInt(A_EDF2.value),2);
+		SaveData[x+6] = NtoS2(parseInt(A_EDF3.value),2);
+	}
+
 	SaveData[x+7] = NtoS2(parseInt(A_EDAC11.value),2);
 	SaveData[x+8] = NtoS2(parseInt(A_EDAC12.value),2);
 	SaveData[x+9] = NtoS2(parseInt(A_EDAC13.value),2);
@@ -10265,9 +10482,23 @@ with(document.calcForm){
 		A_EDG1.value = StoN2(w.substr(x+1,2));
 		A_EDG2.value = StoN2(w.substr(x+3,2));
 		A_EDG3.value = StoN2(w.substr(x+5,2));
-		A_EDF1.value = StoN2(w.substr(x+7,2));
-		A_EDF2.value = StoN2(w.substr(x+9,2));
-		A_EDF3.value = StoN2(w.substr(x+11,2));
+
+		// Use same emplacement for Temporal and El Discastel footgear enchantments
+		let bTemporalEnchants = (TEMPORAL_ENCHANTABLE.findIndex(x => x == A_shoes.value) > -1);
+
+		if (bTemporalEnchants)
+		{
+			temporal_1st_enchant_select.value = StoN2(w.substr(x+7,2));
+			temporal_2nd_enchant_select.value = StoN2(w.substr(x+9,2));
+			temporal_3rd_enchant_select.value = StoN2(w.substr(x+11,2));
+		}
+		else
+		{
+			A_EDF1.value = StoN2(w.substr(x+7,2));
+			A_EDF2.value = StoN2(w.substr(x+9,2));
+			A_EDF3.value = StoN2(w.substr(x+11,2));
+		}
+
 		A_EDAC11.value = StoN2(w.substr(x+13,2));
 		A_EDAC12.value = StoN2(w.substr(x+15,2));
 		A_EDAC13.value = StoN2(w.substr(x+17,2));
@@ -10463,47 +10694,6 @@ CardShort =[
 for(i=0;i<=72;i++)
 	document.calcForm.A_cardshort.options[i] = new Option(CardShort[i][0],i);
 
-//custom Talon Tales extra enchants
-//original
-//var HSEname = ["STR","AGI","VIT","INT","DEX","LUK"];
-//new:
-/*
-var HSEname = ["STR","AGI","VIT","INT","DEX","LUK","DEF","MDEF","CRIT","ASPD","FLEE","HIT"];
-document.calcForm.A_HSE.options[0] = new Option("(Hidden Slot Enchant, Armor)",0);
-var iHSE=1;
-for(i=0;i<=5;i++){
-	for(var j=1;j<=3;j++){
-		document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[i] + "+"+ j,(i * 10) + j);
-		iHSE++;
-	}
-}
-//custom Talon Tales extra enchants
-//DEF,MDEF,CRIT
-for(i=6;i<=8;i++){
-	for(var j=1;j<=3;j++){
-		document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[i] + "+"+ (j+1),(i * 10) + j);
-		iHSE++;
-	}
-}
-//ASPD
-for(var j=1;j<=3;j++){
-	document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[9] + "+"+ j +"%",(9 * 10) + j);
-	iHSE++;
-}
-//FLEE
-for(var j=1;j<=3;j++){
-	document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[10] + "+"+ j*2,(10 * 10) + j);
-	iHSE++;
-}
-//HIT
-for(var j=1;j<=3;j++){
-	document.calcForm.A_HSE.options[iHSE] = new Option(HSEname[11] + "+"+ j*4,(11 * 10) + j);
-	iHSE++;
-}
-*/
-//end - custom Talon Tales extra enchants
-
-
 //Enchant Headgear thing
 var HSEname = ["STR","AGI","VIT","INT","DEX","LUK","DEF","MDEF","CRIT","ASPD","FLEE","HIT"];
 document.calcForm.A_HSE_HEAD1.options[0] = new Option("(Hidden Slot Enchant, Headgear)",0);
@@ -10562,6 +10752,8 @@ eden_high_crystal_buff = 0;
 
 eclage_food = 0;
 abrasive_food = 0;
+temporal_spell = 0;
+
 bobo_boba_cocktail = 0;
 sting_slap_cocktail = 0;
 venatu_beep_cocktail = 0;

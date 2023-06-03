@@ -801,7 +801,7 @@ MonsterOBJ = [
 ,[688,"1st Commander of Destruction",1,92,1,105,550033,60,82,122,150,52,3521,4730,15,54,120018,101184,,1,0,2473]
 ,[689,"2nd Commander of Destruction",1,92,1,105,478011,60,88,135,150,59,3590,4978,15,58,119672,86398,,1,0,2474]
 ,[690,"Corrupted Soul",6,23,2,110,1320000,45,20,201,171,20,3587,7474,41,69,1399906,1208478,,1,1,2475]
-,[691,"Amdarias",1,94,2,110,3690000,45,39,169,136,20,4990,8690,6,26,1991324,1897024,,1,0,2476]
+,[691,"Amdarais",1,94,2,110,4200000,88,39,139,156,20,4990,9690,30,26,1991324,1897024,,1,0,2476]
 // [Custom Talon Tales - 2020-04-01 Eclage]
 ,[692,"Menblatt",4,42,1,93,36600,40,68,55,108,30,1298,1788,15,30,14005,11544,,0,1,2363]
 ,[693,"Petal",2,41,1,91,36015,55,82,45,108,25,747,1017,14,22,13695,11341,,0,1,2364]
@@ -1000,6 +1000,15 @@ MonsterOBJ = [
 ,[877,"Valkyrie Reginleif [1st Form]",8,64,2,99,6000000,80,80,130,150,5,5560,9980,25,42,1854900,2114520,,1,0,27006]
 ,[878,"Valkyrie Reginleif [2nd Form]",8,74,2,99,8000000,81,160,50,120,52,32000,32001,29,65,4700000,3000000,,1,0,27005]
 ,[879,"Beelzebub [1st Form]",6,84,0,98,6666666,200,110,250,120,66,4100,4960,40,35,0,0,,1,0,1873]
+// [Custom Talon Tales - 2023-05-18 OGH Challenge]
+,[880,"Phantom of Himmelmez",7,1,1,125,10000000,45,200,230,185,60,7565,11069,60,15,0,0,,1,0,20572]
+,[881,"Phantom of Amdarais",1,93,2,115,74000000,90,80,215,185,40,7565,11069,45,35,0,0,,1,0,20573]
+,[882,"Mutating White Knight",1,72,2,109,180630,60,65,80,110,47,3800,6644,25,30,0,0,,1,0,20574]
+,[883,"Root of Corruption",6,23,2,190,5280000,90,40,225,185,50,7174,14948,61,79,0,0,,1,0,20575]
+,[884,"Mutating Khalitzburg",1,72,1,110,179480,40,152,91,85,42,3400,6800,31,18,0,0,,1,0,20576]
+,[885,"Cursed Raydric",6,72,1,96,147264,56,97,43,91,437,3667,5805,26,22,0,0,,1,0,20577]
+,[886,"Cursed Raydric Archer",6,72,1,96,115496,50,48,30,146,40,4667,6365,22,36,0,0,,1,1,20578]
+,[887,"Cursed Butler",1,92,1,95,163480,58,54,31,75,44,3465,6132,12,30,0,0,,1,0,20579]
 ];
 
 //[id, "name",race,element,size,lvl,hp,vit,agi,int,dex,luk,minatk,maxatk,def,mdef,baseexp@1x_rate,jobexp@1x_rate,,1 boss/0 non-boss,1 range/0 melee, monster ID]
@@ -1030,7 +1039,7 @@ var tiiki = ["All Regions","SQI Instances","GMC","Abyss Lake Dungeon","Amatsu","
 "Guild Dungeon [Aldebaran]","Guild Dungeon [Arunafeltz]","Guild Dungeon [Geffen]","Guild Dungeon [Morroc]","Guild Dungeon [Payon]","Guild Dungeon [Prontera]",
 "Guild Dungeon [Schwartzvald]","Hidden Temple","Hugel Fields","Ice Cave","Juperos Dungeon","Kiel Dungeon","Lighthalzen Fields",
 "Louyang","Lutie & Toy Factory","Magma Dungeon","Malangdo","Malangdo Culvert","Manuk","Morroc Fields","Moscovia","Mt. Mjolnir","Nameless Island","Nidhoggr's Nest",
-"Niflheim","Odins Shrine","Old Glast Heim","Orc Dungeon","Payon Dungeon","Payon Fields","Poring Island","Port Malaya Instance","Prontera Fields","Pyramid","Pyramid [Nightmare]","Rachel Fields",
+"Niflheim","Odins Shrine","Old Glast Heim","Old Glast Heim Challenge","Orc Dungeon","Payon Dungeon","Payon Fields","Poring Island","Port Malaya Instance","Prontera Fields","Pyramid","Pyramid [Nightmare]","Rachel Fields",
 "Rachel Sanctuary","Scaraba Hole","Sphinx","Splendide","Seals(Old)","Sunken Ship","Thanatos Tower","Thors Volcano","Turtle Island","Umbala Dungeon",
 "Umbala Fields","Valkyries' Realm","Veins Fields","War of Emperium","Yuno Fields"];
 
@@ -1099,6 +1108,7 @@ Array.from({ length: 873 + 1 - 869},(_,k) => 869 + k),// Guild Dungeon [Morroc]
 [324,325,326,327,328,329,330,331,332,"N"],// Niflheim
 [404,423,424,425,426,427,436,437,438,439,440,481,511,512,"N"],// Odins Shrine
 [679,680,681,682,683,684,685,686,687,688,689,690,691,"N"],// Old Glast Heim
+Array.from({ length: 887 + 1 - 880},(_,k) => 880 + k),// Old Glast Heim Challenge
 [49,51,52,,153,164,213,244,"N"],// Orc Dungeon
 [1,10,26,31,34,81,83,89,135,146,167,169,170,205,213,241,244,271,275,290,302,337,"N"],// Payon Dungeon
 [27,33,34,38,40,89,92,126,158,160,161,196,201,205,208,239,252,267,271,272,311,322,"N"],// Payon Fields
