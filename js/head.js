@@ -7921,7 +7921,7 @@ function calc()
 	w998L = 100 - w_HIT;
 
 	if (crit_rate)
-		myInnerHtml("CRInum", w_Cri + SubName[0],0); // crit_rate.toFixed(2)
+		myInnerHtml("CRInum", w_Cri.toFixed(2) + SubName[0],0);
 
 	w_FLEE = n_A_FLEE + 20 - (n_B_HIT);
 	if(w_FLEE > 95){
