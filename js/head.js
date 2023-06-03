@@ -8237,7 +8237,7 @@ function BaiCI(wBaiCI)
 		
 		// bAutoAtkRate
 		if (!n_A_ActiveSkill)
-			wBaiCI = Math.floor(wBaiCI * (1 + (n_tok[106])));
+			wBaiCI = Math.floor(wBaiCI * (1 + n_tok[106] / 100));
 
 		// bShortAtkRate
 		if (!n_Enekyori)
