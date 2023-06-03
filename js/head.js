@@ -6637,7 +6637,14 @@ with(document.calcForm) {
 	
 	// 3rd enchant is only available to Sleipnir
 	let bIsSleipnir = (319 == footgear_id);
-	document.getElementById("temporal_enchant_sleipnir").style.display = ((bIsSleipnir) ? "" : "none");
+
+	if (bIsSleipnir)
+		document.getElementById("temporal_enchant_sleipnir").style.display = "";
+	else
+	{
+		document.getElementById("temporal_enchant_sleipnir").style.display = "none";
+		document.calcForm.temporal_3rd_enchant_select.value = 0;
+	}
 }
 }
 
