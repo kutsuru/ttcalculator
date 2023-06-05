@@ -8588,7 +8588,7 @@ function apply_temporal_enchants()
 		}
 
 		// Temporal INT [Base INT >= 95] - INT + 3 - Natural SP Recovery + 20%
-		if (enchant_category <= 4 && SU_STR >= 95)
+		if (enchant_category <= 4 && SU_INT >= 95)
 		{
 			n_tok[4] += 3
 			n_tok[76] += 20;
