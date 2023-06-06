@@ -658,7 +658,7 @@ cardOBJ = [
 ,[628,100,"Clown Alphoccio + Alphoccio", "<b>[PvM Only]</b><br>[Poem of Bragi] Aftercast Rate + 1% for each equipped Alphoccio Card.",0]
 ,[629,6,"Gypsy Trentini","Fast Movement all the time.<br>All Song and Dance buffs you recieve have an additional 40 second lasting duration.<br><b>[On Unequip]</b><br>Dispel Song/Dance Buffs.",15,20,16,10,0]
 ,[630,100,"Trentini + Alphoccio", "[Bard] [A Whistle] Flee Rate + 10%.<br>[Dancer] [Service for You] SP Rate + 5%.",0]
-,[631,6,"Phantom of Himmelmez","",346,25,347,25,60,-25,61,-25,62,-25,63,-25,64,-25,66,-25,67,-25,68,-25,0]
+,[631,6,"Phantom of Himmelmez","",346,25,347,25,5162,25,60,-25,61,-25,62,-25,63,-25,64,-25,66,-25,67,-25,68,-25,0]
 ,[632,2,"Phantom of Amdarais","",8,25,0]
 ,[633,100,"Phantom of Amdarais + Amdarais","[PvM Only]<br>Increases short range physical and [Cart Termination] damage inflicted on [Ghost] Element monsters by 25%.<br>Increases short range physical and [Cart Termination] damage inflicted on [Neutral] Element monsters by 15%",1,5,8,25,0]
 ,[634,5,"Root of Corruption","",98,15,190,10,190,10,192,10,352,10,0]
