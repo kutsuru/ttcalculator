@@ -666,9 +666,9 @@ cardOBJ = [
 ,[636,1,"Mutating White Knight","",98,10,104,5,105,5,0]
 ,[637,3,"Mutating Khalitzburg","",191,15,192,15,0]
 ,[638,100,"Mutating White Knight + Mutating Khalitzburg","[Every Refine Level] Increases magical damage against [Medium] and [Large] size monsters by 2%.",191,10,192,10,0]
-,[639,7,"Cursed Raydric","",31,5,171,5,0]
-,[640,7,"Cursed Raydric Archer","",36,5,176,5,0]
-,[641,100,"Cursed Raydric + Cursed Raydric Archer","",31,5,36,5,171,5,176,5,0]
+,[639,7,"Cursed Raydric","",31,10,171,10,0]
+,[640,7,"Cursed Raydric Archer","",36,10,176,10,0]
+,[641,100,"Cursed Raydric + Cursed Raydric Archer","",31,10,36,10,171,10,176,10,0]
 ,[642,2,"Cursed Butler","[Holy Cross] and [Soul Strike] Element becomes Shadow.",0]
 ];
 /*
