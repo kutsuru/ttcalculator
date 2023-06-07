@@ -8568,7 +8568,7 @@ function apply_temporal_enchants()
 			n_tok[script_bonus[i]] += script_bonus[i + 1];
 	}
 
-	let third_enchant_index = document.calcForm.temporal_3rd_enchant_select.value;
+	let third_enchant_index = eval(document.calcForm.temporal_3rd_enchant_select.value);
 	if (third_enchant_index)
 	{
 		let enchant_category = third_enchant_index / 7; // Each category has 7 possible enchants
