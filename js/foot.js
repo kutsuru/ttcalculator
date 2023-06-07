@@ -845,8 +845,8 @@ with(document.calcForm){
 	// Temporal Boots (STR)#1836
 	if (EquipNumSearch(1836))
 	{
-		// [Every Refine Level] - Short Range Attack + 1%
-		n_tok[88] += n_A_SHOES_DEF_PLUS;
+		// [Every Refine Level >= +4] - Short Range Attack + 1%
+		n_tok[88] += Math.max(0, n_A_SHOES_DEF_PLUS - 3);
 
 		// [Base STR >= 95] - HIT + 10
 		if (SU_STR >= 95)
@@ -890,8 +890,15 @@ with(document.calcForm){
 			n_tok[74] += 5;
 	}
 		
-	// Temporal Boots (LUK)#1841 - [Every Refine Level] - CRIT + 1
-	n_tok[10] += n_A_SHOES_DEF_PLUS * EquipNumSearch(1841);
+	// Temporal Boots (LUK)#1841
+	if (EquipNumSearch(1841))
+	{
+		// [Every Refine Level >= +4] - CRIT + 1
+		n_tok[10] += Math.max(0, n_A_SHOES_DEF_PLUS - 3);
+
+		// [Every Refine Level >= +5] - Crafting/Brewing Rates + 0.5%
+		n_tok[108] += Math.max(0, n_A_SHOES_DEF_PLUS - 4) * 5; // * 10 / 2
+	}
 
 	//Jolly Roger Hat -[Loa] - 2018-07-03
 	if(EquipNumSearch(1186)){
