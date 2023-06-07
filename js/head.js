@@ -6635,10 +6635,10 @@ with(document.calcForm) {
 		document.calcForm.temporal_3rd_enchant_select.value = 0;
 	}
 	
-	// 3rd enchant is only available to Sleipnir
-	let bIsSleipnir = (319 == footgear_id);
+	// 3rd enchant is only available to Sleipnir and Eversong
+	let bSupports3rdEnchant = (319 == footgear_id || 1383 == footgear_id);
 
-	if (bIsSleipnir)
+	if (bSupports3rdEnchant)
 		document.getElementById("temporal_enchant_sleipnir").style.display = "";
 	else
 	{

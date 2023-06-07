@@ -1540,6 +1540,7 @@ MORA_ENCHANTABLE = [
 
 TEMPORAL_ENCHANTABLE = [
 	319, 	// Sleipnir[1]
+	1383,	// Eversong Greaves
 	1836,	// Temporal Boots (STR)
 	1837,	// Temporal Boots (AGI)
 	1838,	// Temporal Boots (VIT)
