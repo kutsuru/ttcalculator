@@ -1585,7 +1585,7 @@ function BattleCalc999()
 			w_DMG[b] = BaiCI(w_DMG[b]);
 			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);
 
-			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] + EDP_DMG(b);
+			Last_DMG_A[b] = Last_DMG_B[b] = ApplySkillAtkBonus(w_DMG[b] + EDP_DMG(b));
 			InnStr[b] += Last_DMG_A[b];
 		}
 
