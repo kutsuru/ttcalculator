@@ -529,8 +529,6 @@ function BattleCalc999()
 				
 				for(var i=0;i<=2;i++){
 					san[i] = BattleCalc(n_A_DMG[i] * (wbairitu + wBC3_3danAtkBairitu),i) + EDP_DMG(i);
-					
-					san[i] = san[i] * (1 + (StPlusCalc2(5187) +  StPlusCard(5187)) / 100);
 					san[i] = Math.floor(san[i] /3) *3;
 					if(n_B[19] == 5)
 						san[i] = 3;
@@ -8810,7 +8808,7 @@ function BattleCalc4(wBC4,wBC4_2,wBC4_3){
 		wBC4_3=n_A_WeaponLV_seirenATK;
 	else
 		wBC4_3=n_A_Weapon2LV_seirenATK;
-	
+
 	// Finger Offensive#192 counts refine bonus multiple times
 	if (192 == n_A_ActiveSkill)
 		wBC4_3 *= SkillSearch(185);
