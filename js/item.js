@@ -1714,7 +1714,7 @@ ItemOBJ = [
 ,[1669,100,0,0,0,0,0,0,"Love Guard + Staff of Recovery","","",91,1,94,1,0]
 ,[1670,100,0,0,0,0,0,0,"Love Guard + Holy Stick","","",91,2,94,2,0]
 ,[1671,19,145,200,3,2,200,80,"Peace Breaker","","Inflicts splash damage.<br><br><b>[Every Refine Level]</b><br>ATK + 5<br>Adds a 2% chance rate of auto casting level 6 [Spread Attack] when attacking normally.",8,-25,12,25,0]
-,[1672,5,113,205,4,3,250,70,"Guardian Night Spear","","<br><b>[Every Refine Level]</b><br>MaxHP + 3%",18,10,46,20,49,20,186,100,0]
+,[1672,5,113,205,4,3,250,70,"Guardian Night Spear","","<br><b>[Every Refine Level]</b><br>MaxHP + 3%",186,100,0]
 ,[1673,9,77,70,4,2,80,70,"Royal Magician Rod","","<br><b>[Every Refine Level]</b><br>ASPD + 2%",5,2,89,15,0]
 ,[1674,50,0,2,0,1,20,1,"Ribbon Magician Hat","","A decorated magician hat.",4,3,89,5,14,50,0]
 ,[1675,9,65,100,4,1,100,70,"Staff of Geffen","","[Every Refine Level] INT + 1",195,1,4,10,73,-20,0]
