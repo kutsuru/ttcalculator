@@ -494,8 +494,6 @@ function BattleCalc999()
 			w_DMG[1] += BattleCalc3left(w_left_Aveatk);
 			w_DMG[1] += EDP_DMG(1);
 
-			EDPhyouzi(1);
-
 			var wX = BattleCalc2(0);
 			var wX2 = Math.floor(w_left_star * (0.3 + SkillSearch(80) /10));
 
@@ -624,8 +622,6 @@ function BattleCalc999()
 			w_DMG[1] = BattleCalc3(w_DMG[1]);
 			w_DMG[1] += wTAKA;
 			w_DMG[1] += EDP_DMG(1);
-
-			EDPhyouzi(1);
 
 			CastAndDelay();
 			BattleCalc998();
@@ -8872,28 +8868,8 @@ function EDPplus(HitNum){
 		w_DMG[1] += EDP_DMG(1) * HitNum;
 		if(w_HIT_EDP == 100)
 			w_DMG[0] += EDP_DMG(0) * HitNum;
-		EDPhyouzi(HitNum);
 	}
 }
-
-
-function EDPhyouzi(HitNum){
-/*	if(SkillSearch(266) || n_A_PassSkill2[11]){
-		var wE = 0;
-		if(w_HIT_HYOUJI == 100)
-			wE = 1;
-		if(n_PerHIT_DMG)
-			wE = 1;
-		str_bSUBname += "MB/EDP Part chase(?)<BR>";
-		var w0 = n_A_EDP_DMG[0] * HitNum;
-		var w2 = n_A_EDP_DMG[2] * HitNum;
-		if(wE)
-			str_bSUB += w0 +"~"+ w2 +"(�add invocation rate(?)"+ w_HIT_EDP +"%)<BR>";
-		else
-			str_bSUB += w0 +"~"+ w2 +"(�add invocation rate(?)"+ (Math.floor(w_HIT * w_HIT_EDP) / 100) +"%)<BR>";
-	}*/
-}
-
 
 
 function EDP_DMG(num){

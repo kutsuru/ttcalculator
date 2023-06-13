@@ -5530,18 +5530,6 @@ function WeaponSet()
 			work[j] = i;
 			j++;
 		}
-		//original:
-		/*
-		}else if(ItemOBJ[i][4] >= 1 && ItemOBJ[i][1] == n_A_WeaponType && SuperNoviceFullWeaponCHECK){
-			if(ItemOBJ[i][1] == 1 && ItemOBJ[i][4] == 4){
-				work[j] = i;
-				j++;
-			}
-			if(ItemOBJ[i][1] == 2 || ItemOBJ[i][1] > 3){
-				work[j] = i;
-				j++;
-			}
-		}*/
 	}
 	work[j] = "EOF";
 
@@ -5665,22 +5653,11 @@ with(document.calcForm){
 		workB[m] = sort(workB[m]);
 
 	var z = 0;
-	//custom Talon Tales so LKH appears as the first option on the Headgear list
-	//old:
+
 	for(i=0;i<wsj[0];i++){
 		z = workB[0][i];
 		A_head1.options[i] = new Option(ItemOBJ[z][8],ItemOBJ[z][0]);
 	}
-	//new:
-	/*A_head1.options[0] = new Option(ItemOBJ[workB[0][0]][8],ItemOBJ[workB[0][0]][0]);
-	A_head1.options[1] = new Option(ItemOBJ[444][8],ItemOBJ[444][0]);
-	for(i=2;i<wsj[0];i++){
-		z = workB[0][i-1];
-		A_head1.options[i] = new Option(ItemOBJ[z][8],ItemOBJ[z][0]);
-	}
-	//last headgear, because the last one is ignored due to the changes above
-	A_head1.options[wsj[0]] = new Option(ItemOBJ[workB[0][wsj[0]-1]][8],ItemOBJ[workB[0][wsj[0]-1]][0]);*/
-	//end custom Talon Tales LKH appearance
 	for(i=0;i<wsj[1];i++){
 		z = workB[1][i];
 		A_head2.options[i] = new Option(ItemOBJ[z][8],ItemOBJ[z][0]);
@@ -5941,11 +5918,6 @@ function ActiveSkillSetPlus()
 		w_ASSP9[j] = 2096;
 		j++;
 	}
-	/*if(EquipNumSearch(1096) && n_A_JobSearch2() != 9){
-		w_ASSP0[j] = 193;
-		w_ASSP9[j] = 2108;
-		j++;
-	}*/
 	if(n_A_PassSkill7[15]){
 		var wSC = [33,34,35,36,13,37,38,39,7];
 		for(var i=0;i<=8;i++){
@@ -6652,28 +6624,6 @@ function KakutyouKansuu(){
 
 		}else{myInnerHtml("A_KakutyouData","Not Available for this Class",0);}
 	}
-	/*else if(wKK == 1 4){
-		var wkk14;
-		if(n_A_JOB == 19 || n_A_JOB == 33 ){
-			Amistr = n_A_STR + n_A_AGI + n_A_VIT;
-			Filir = n_A_STR + n_A_AGI + n_A_LUK;
-			Vanilmirth = n_A_INT + n_A_DEX + n_A_LUK;
-			Lif = n_A_VIT + n_A_INT + n_A_DEX;
-
-			homontotal = Amistr + Filir + Vanilmirth + Lif;
-			Amistr = Amistr / homontotal * 100;
-			Filir = Filir / homontotal * 100;
-			Vanilmirth = Vanilmirth / homontotal * 100;
-			Lif = Lif / homontotal * 100;
-
-			wkk14 = "<table border=0><tr><td>Chance to get Amistr: </td><td>" + Math.floor(Amistr*10)/10 + " %</td></tr>";
-			wkk14 += "<tr><td>Chance to get Filir: </td><td>" + Math.floor(Filir*10)/10 + " %</td></tr>";
-			wkk14 += "<tr><td>Chance to get Vanilmirth: </td><td>" + Math.floor(Vanilmirth*10)/10 + " %</td></tr>";
-			wkk14 += "<tr><td>Chance to get Lif: </td><td>" + Math.floor(Lif*10)/10 + " %</td></tr></table>";
-
-		}else{wkk14 = "Not Available for this Class";}
-		myInnerHtml("A_KakutyouData",wkk14,0);
-	}*/
 	else if(wKK == 14){ // Strip Chance
 		var wkk14;
 		if(n_A_JOB == 14 || n_A_JOB == 28){
@@ -9766,20 +9716,6 @@ with(document.calcForm){
 	x+=1;
 
 	//custom Talon Tales Kris Enchantment SAVE URL
-	/*
-	if(A_weapon1.value == 1472){
-		SaveData[x+1] = NtoS2(parseInt(A_KE11.value),2);
-		SaveData[x+2] = NtoS2(parseInt(A_KE12.value),2);
-		x+=2;
-	}
-	if (typeof(A_weapon2) != "undefined"){
-		if(A_weapon2.value == 1472){
-			SaveData[x+1] = NtoS2(parseInt(A_KE21.value),2);
-			SaveData[x+2] = NtoS2(parseInt(A_KE22.value),2);
-			x+=2;
-		}
-	}
-	*/
 	SaveData[x+1] = NtoS2(parseInt(A_KE11.value),2);
 	SaveData[x+2] = NtoS2(parseInt(A_KE12.value),2);
 	SaveData[x+3] = NtoS2(parseInt(A_KE21.value),2);
@@ -9806,16 +9742,6 @@ with(document.calcForm){
 	}
 
 	//[Custom Talon Tales 2018-06-15 - SAVE URL] [Kato]
-	/*
-	SaveData[x+1] = NtoS2(parseInt(document.calcForm.A_ME11.value),2);
-	SaveData[x+2] = NtoS2(parseInt(document.calcForm.A_ME12.value),2);
-	x+=2;
-	if (typeof(A_weapon2) != "undefined"){
-		SaveData[x+1] = NtoS2(parseInt(document.calcForm.A_ME21.value),2);
-		SaveData[x+2] = NtoS2(parseInt(document.calcForm.A_ME22.value),2);
-	}
-	x+=2;
-	*/
 	SaveData[x+1] = NtoS2(parseInt(document.calcForm.A_ME11.value),2);
 	SaveData[x+2] = NtoS2(parseInt(document.calcForm.A_ME12.value),2);
 	SaveData[x+3] = NtoS2(parseInt(document.calcForm.A_ME21.value),2);
@@ -10275,31 +10201,6 @@ with(document.calcForm){
 		}
 
 		//[Custom Talon Tales 2018-06-15 - LOAD URL] [Kato]
-		/*
-		if((StoN2(w.substr(x+1,2)) != "undefined"))
-			A_ME11.value = StoN2(w.substr(x+1,2));
-		else
-			A_ME11.value = 0;
-
-		if((StoN2(w.substr(x+3,2)) != "undefined"))
-			A_ME12.value = StoN2(w.substr(x+3,2));
-		else
-			A_ME12.value = 0;
-
-		x+=4;
-
-		if((StoN2(w.substr(x+1,2)) != "undefined"))
-			A_ME21.value = StoN2(w.substr(x+1,2));
-		else
-			A_ME21.value = 0;
-
-		if((StoN2(w.substr(x+3,2)) != "undefined"))
-			A_ME22.value = StoN2(w.substr(x+3,2));
-		else
-			A_ME22.value = 0;
-
-		x+=4;
-		*/
 		A_ME11.value = StoN2(w.substr(x+1,2));
 		A_ME12.value = StoN2(w.substr(x+3,2));
 		A_ME21.value = StoN2(w.substr(x+5,2));
