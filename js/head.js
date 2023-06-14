@@ -2201,7 +2201,6 @@ function BattleCalc999()
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			wHITsuu = n_A_ActiveSkillLV;
 			wCast = 2;
-			n_Delay[1] = 0.1;
 			n_Delay[2] = 0.5;
 			wbairitu = 0.4 + n_A_BaseLV / 100;
 			if(Taijin==1)
