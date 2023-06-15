@@ -2179,7 +2179,6 @@ function BattleCalc999()
 		}else if(n_A_ActiveSkill==373){
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			wCast = 0.1;
-			n_Delay[1] = 0.1;
 			n_Delay[2] = 0.5;
 			if(n_B[4] == 0)
 				wbairitu = n_A_ActiveSkillLV * 0.1;
@@ -2191,7 +2190,6 @@ function BattleCalc999()
 		else if(n_A_ActiveSkill==374){
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			wCast = 0.1;
-			n_Delay[1] = 0.1;
 			n_Delay[2] = 0.5;
 			wbairitu = n_A_ActiveSkillLV * 0.05;
 			if(Taijin==1)
