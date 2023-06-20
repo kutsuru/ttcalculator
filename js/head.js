@@ -1007,6 +1007,7 @@ function BattleCalc999()
 		else if(n_A_ActiveSkill==437) // Ground Drift#437
 		{	
 			wCast = 2;
+			w_HIT = 100;
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
 
@@ -2918,9 +2919,7 @@ function BattleCalc998()
 	else
 		myInnerHtml("AveSecondATK", damage_per_second, 0);
 
-	w = Math.floor(n_B[6] / w_DMG[1]);
-	if(n_B[6] % w_DMG[1] != 0)
-		w += 1;
+	w = Math.ceil(n_B[6] / w_DMG[1]);
 
 	if(Taijin==0){
 		if(w<10000){
