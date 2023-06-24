@@ -1909,10 +1909,12 @@ function BattleCalc999()
 		if(n_A_ActiveSkill==102){
 			n_A_Weapon_zokusei = 6;
 			wCast = 1 * n_A_CAST;
+			n_Delay[2] = 3;
 		}else{
 			n_A_Weapon_zokusei = 0;
 			wCast = 8 - n_A_ActiveSkillLV * 2;
 			wCast = wCast * n_A_CAST;
+			n_Delay[2] = n_A_ActiveSkillLV - 1;
 		}
 		n_Enekyori=2;
 		if(n_B[3] < 90){
@@ -1940,7 +1942,6 @@ function BattleCalc999()
 		InnStr[1] += w_DMG[1] +" (Considering the Success Chance)";
 		InnStr[2] += Math.floor(w_DMG[2] * zokusei[n_B[3]][n_A_Weapon_zokusei]) +" (" +Math.floor(w *10000)/100 +"% Success Chance)";
 
-		n_Delay[2] = 3;
 		w_HIT_HYOUJI = 100;
 		CastAndDelay();
 		BattleCalc998();
