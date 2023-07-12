@@ -5161,7 +5161,6 @@ function StPlusCalc()
 
 	//CUSTOM (1st Transcendent Spirit)
 	if(SkillSearch(392) && (n_Tensei == 1) && (n_A_BaseLV > 10) && (n_A_BaseLV < 70)){
-	//alert("n_tok[1]:"+n_tok[1]+"\nn_A_STR:"+n_A_STR+"\nSU_STR:"+SU_STR);
 		var linkboni = n_A_BaseLV - 10;
 		//custom Talon Tales fix
 		//new:
@@ -8860,14 +8859,8 @@ with(document.calcForm){
 		// Save build name in serialization
 		SaveData[160] = (document.calcForm.A_SlotName.value != document.calcForm.A_SlotName.defaultValue) ? document.calcForm.A_SlotName.value : "undefined";
 
-		//wak1="";
-		//for(i=0;i<=96;i++)
-		//	wak1+=i+": "+SaveData[i]+"\n";
 		for(i=0;i<=159;i++)
 			SaveData[i] = NtoS(SaveData[i],SaveStr1[i]);
-		//for(i=0;i<=96;i++)
-		//	wak1+=i+": "+SaveData[i]+"\n";
-		//alert(wak1);
 
 		cookieNum = A_SaveSlot.value;
 
