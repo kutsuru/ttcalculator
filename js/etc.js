@@ -1550,88 +1550,113 @@ TEMPORAL_ENCHANTABLE = [
 ];
 
 TEMPORAL_1ST_ENCHANTS = [
-	 ["(No Enchant)",[]]
-	,["Fighting Spirit Lv.1",[17,4,8,2]]
-	,["Fighting Spirit Lv.2",[17,6,8,3]]
-	,["Fighting Spirit Lv.3",[17,8,8,4]]
-	,["Fighting Spirit Lv.4",[17,10,8,5]]
-	,["Berserker Lv.1",[106,2]]
-	,["Berserker Lv.2",[106,4]]
-	,["Berserker Lv.3",[106,6]]
-	,["Berserker Lv.4",[106,8]]
-	,["Arcane Lv.1",[89,1,98,4]]
-	,["Arcane Lv.2",[89,2,98,6]]
-	,["Arcane Lv.3",[89,2,98,8]]
-	,["Arcane Lv.4",[89,3,98,10]]
-	,["Vigor Lv.1",[15,2,75,5]]
-	,["Vigor Lv.2",[15,3,75,10]]
-	,["Vigor Lv.3",[15,4,75,15]]
-	,["Vigor Lv.4",[15,5,75,20]]
-	,["Mysticism Lv.1",[16,2,76,5]]
-	,["Mysticism Lv.2",[16,3,76,10]]
-	,["Mysticism Lv.3",[16,4,76,15]]
-	,["Mysticism Lv.4",[16,5,76,20]]
-	,["Speed Lv.1",[12,1,9,2]]
-	,["Speed Lv.2",[12,2,9,3]]
-	,["Speed Lv.3",[12,2,9,4]]
-	,["Speed Lv.4",[12,3,9,5]]
+	 ["(No Enchant)",[], ""]
+	,["Fighting Spirit Lv.1",[17,4,8,2],  "HIT + 2<br>ATK + 4"]
+	,["Fighting Spirit Lv.2",[17,6,8,3],  "HIT + 3<br>ATK + 6"]
+	,["Fighting Spirit Lv.3",[17,8,8,4],  "HIT + 4<br>ATK + 8"]
+	,["Fighting Spirit Lv.4",[17,10,8,5], "HIT + 5<br>ATK + 10"]
+	,["Berserker Lv.1",[106,2], "Auto Physical ATK + 2%"]
+	,["Berserker Lv.2",[106,4], "Auto Physical ATK + 4%"]
+	,["Berserker Lv.3",[106,6], "Auto Physical ATK + 6%"]
+	,["Berserker Lv.4",[106,8], "Auto Physical ATK + 8%"]
+	,["Arcane Lv.1",[89,1,98,4],  "MATK + 1%<br>MATK + 4"]
+	,["Arcane Lv.2",[89,2,98,6],  "MATK + 2%<br>MATK + 6"]
+	,["Arcane Lv.3",[89,2,98,8],  "MATK + 2%<br>MATK + 8"]
+	,["Arcane Lv.4",[89,3,98,10], "MATK + 3%<br>MATK + 10"]
+	,["Vigor Lv.1",[15,2,75,5],  "MaxHP + 2%<br>HP Recovery + 5%"]
+	,["Vigor Lv.2",[15,3,75,10], "MaxHP + 3%<br>HP Recovery + 10%"]
+	,["Vigor Lv.3",[15,4,75,15], "MaxHP + 4%<br>HP Recovery + 15%"]
+	,["Vigor Lv.4",[15,5,75,20], "MaxHP + 5%<br>HP Recovery + 20%"]
+	,["Mysticism Lv.1",[16,2,76,5],  "MaxSP + 2%<br>SP Recovery + 5%"]
+	,["Mysticism Lv.2",[16,3,76,10], "MaxSP + 3%<br>SP Recovery + 10%"]
+	,["Mysticism Lv.3",[16,4,76,15], "MaxSP + 4%<br>SP Recovery + 15%"]
+	,["Mysticism Lv.4",[16,5,76,20], "MaxSP + 5%<br>SP Recovery + 20%"]
+	,["Speed Lv.1",[12,1,9,2], "ASPD + 1%<br>FLEE + 2"]
+	,["Speed Lv.2",[12,2,9,3], "ASPD + 2%<br>FLEE + 3"]
+	,["Speed Lv.3",[12,2,9,4], "ASPD + 2%<br>FLEE + 4"]
+	,["Speed Lv.4",[12,3,9,5], "ASPD + 3%<br>FLEE + 5"]
 ];
 
 TEMPORAL_2ND_ENCHANTS = [
-	 ["(No Enchant)",[]]
-	,["Bear's Power",[1,10]]
-	,["Speed of Light",[107,50,85,50]]
-	,["Muscle Fool",[]]
-	,["Runaway Magic",[4,10]]
-	,["Hawkeye",[25,5]]
-	,["Lucky Day",[70,15]]
+	 ["(No Enchant)",[], ""]
+	,["Bear's Power",[1,10], "You ate a bear for breakfast, and now you have POWAAA!!!!"]
+	,["Speed of Light",[107,50,85,50], "Not as fast as Flash but still pretty fast."]
+	,["Muscle Fool",[], "You won't fool me this is just air in it Mr Bibendum"]
+	,["Runaway Magic",[4,10], "Dang ... It flew away the moment I casted it..."]
+	,["Hawkeye",[25,5], "Massive aliens invasion you say? Better bring at least 20 arrows then"]
+	,["Lucky Day",[70,15], "You wished it was yours, but not today!"]
 ];
 
 TEMPORAL_3RD_ENCHANTS = [
-	 ["(No Enchant)",[]]
-   	,["(+4)  Temporal STR",[88, 1]]
-   	,["(+5)  Temporal STR",[88, 2]]
-   	,["(+6)  Temporal STR",[88, 3]]
-   	,["(+7)  Temporal STR",[88, 4]]
-   	,["(+8)  Temporal STR",[88, 5]]
-   	,["(+9)  Temporal STR",[88, 6]]
-   	,["(+10) Temporal STR",[88, 7]]
-	,["(+4)  Temporal AGI",[9,4]]
-	,["(+5)  Temporal AGI",[9,5]]
-	,["(+6)  Temporal AGI",[9,6]]
-	,["(+7)  Temporal AGI",[9,7]]
-	,["(+8)  Temporal AGI",[9,8]]
-	,["(+9)  Temporal AGI",[9,9]]
-	,["(+10) Temporal AGI",[9,10]]
-	,["(+4)  Temporal VIT",[13,400,75,10]]
-	,["(+5)  Temporal VIT",[13,500,75,10]]
-	,["(+6)  Temporal VIT",[13,600,75,10]]
-	,["(+7)  Temporal VIT",[13,700,75,10]]
-	,["(+8)  Temporal VIT",[13,800,75,10]]
-	,["(+9)  Temporal VIT",[13,900,75,10]]
-	,["(+10) Temporal VIT",[13,1000,75,10]]
-	,["(+4)  Temporal INT",[4,2,14,40,76,10]]
-	,["(+5)  Temporal INT",[4,2,14,50,76,10]]
-	,["(+6)  Temporal INT",[4,2,14,60,76,10]]
-	,["(+7)  Temporal INT",[4,2,14,70,76,10]]
-	,["(+8)  Temporal INT",[4,2,14,80,76,10]]
-	,["(+9)  Temporal INT",[4,2,14,90,76,10]]
-	,["(+10) Temporal INT",[4,2,14,100,76,10]]
-	,["(+4)  Temporal DEX",[8,8,25,2]]
-	,["(+5)  Temporal DEX",[8,10,25,2]]
-	,["(+6)  Temporal DEX",[8,12,25,2]]
-	,["(+7)  Temporal DEX",[8,14,25,2]]
-	,["(+8)  Temporal DEX",[8,16,25,2]]
-	,["(+9)  Temporal DEX",[8,18,25,2]]
-	,["(+10) Temporal DEX",[8,20,25,2]]
-	,["(+4)  Temporal LUK",[10,1]]
-	,["(+5)  Temporal LUK",[10,2,108,5]]
-	,["(+6)  Temporal LUK",[10,3,108,10]]
-	,["(+7)  Temporal LUK",[10,4,108,15]]
-	,["(+8)  Temporal LUK",[10,5,108,20]]
-	,["(+9)  Temporal LUK",[10,6,108,25]]
-	,["(+10) Temporal LUK",[10,7,108,30]]
+	 ["(No Enchant)",[], ""]
+   	,["(+4)  Temporal STR",[88, 1], "Short Range ATK + 1%<br><b>[Base STR >= 95]</b> HIT + 10"]
+   	,["(+5)  Temporal STR",[88, 2], "Short Range ATK + 2%<br><b>[Base STR >= 95]</b> HIT + 10"]
+   	,["(+6)  Temporal STR",[88, 3], "Short Range ATK + 3%<br><b>[Base STR >= 95]</b> HIT + 10"]
+   	,["(+7)  Temporal STR",[88, 4], "Short Range ATK + 4%<br><b>[Base STR >= 95]</b> HIT + 10"]
+   	,["(+8)  Temporal STR",[88, 5], "Short Range ATK + 5%<br><b>[Base STR >= 95]</b> HIT + 10"]
+   	,["(+9)  Temporal STR",[88, 6], "Short Range ATK + 6%<br><b>[Base STR >= 95]</b> HIT + 10"]
+   	,["(+10) Temporal STR",[88, 7], "Short Range ATK + 7%<br><b>[Base STR >= 95]</b> HIT + 10"]
+	,["(+4)  Temporal AGI",[9,4],  "FLEE + 4<br><b>[Base AGI >= 95]</b> ASPD + 5%"]
+	,["(+5)  Temporal AGI",[9,5],  "FLEE + 5<br><b>[Base AGI >= 95]</b> ASPD + 5%"]
+	,["(+6)  Temporal AGI",[9,6],  "FLEE + 6<br><b>[Base AGI >= 95]</b> ASPD + 5%"]
+	,["(+7)  Temporal AGI",[9,7],  "FLEE + 7<br><b>[Base AGI >= 95]</b> ASPD + 5%"]
+	,["(+8)  Temporal AGI",[9,8],  "FLEE + 8<br><b>[Base AGI >= 95]</b> ASPD + 5%"]
+	,["(+9)  Temporal AGI",[9,9],  "FLEE + 9<br><b>[Base AGI >= 95]</b> ASPD + 5%"]
+	,["(+10) Temporal AGI",[9,10], "FLEE + 10<br><b>[Base AGI >= 95]</b> ASPD + 5%"]
+	,["(+4)  Temporal VIT",[13,400,75,10],  "MaxHP + 400<br>HP Recovery + 10%<br><br><b>[Base VIT >= 95]</b><br>Short Range Resistance + 3%<br>HP Recovery + 20%"]
+	,["(+5)  Temporal VIT",[13,500,75,10],  "MaxHP + 500<br>HP Recovery + 10%<br><br><b>[Base VIT >= 95]</b><br>Short Range Resistance + 3%<br>HP Recovery + 20%"]
+	,["(+6)  Temporal VIT",[13,600,75,10],  "MaxHP + 600<br>HP Recovery + 10%<br><br><b>[Base VIT >= 95]</b><br>Short Range Resistance + 3%<br>HP Recovery + 20%"]
+	,["(+7)  Temporal VIT",[13,700,75,10],  "MaxHP + 700<br>HP Recovery + 10%<br><br><b>[Base VIT >= 95]</b><br>Short Range Resistance + 3%<br>HP Recovery + 20%"]
+	,["(+8)  Temporal VIT",[13,800,75,10],  "MaxHP + 800<br>HP Recovery + 10%<br><br><b>[Base VIT >= 95]</b><br>Short Range Resistance + 3%<br>HP Recovery + 20%"]
+	,["(+9)  Temporal VIT",[13,900,75,10],  "MaxHP + 900<br>HP Recovery + 10%<br><br><b>[Base VIT >= 95]</b><br>Short Range Resistance + 3%<br>HP Recovery + 20%"]
+	,["(+10) Temporal VIT",[13,1000,75,10], "MaxHP + 1000<br>HP Recovery + 10%<br><br><b>[Base VIT >= 95]</b><br>Short Range Resistance + 3%<br>HP Recovery + 20%"]
+	,["(+4)  Temporal INT",[4,2,14,40,76,10],  "MaxSP + 40<br>INT + 2<br>SP Recovery + 10%<br><br><b>[Base INT >= 95]</b><br>INT + 3<br>SP Recovery + 20%"]
+	,["(+5)  Temporal INT",[4,2,14,50,76,10],  "MaxSP + 50<br>INT + 2<br>SP Recovery + 10%<br><br><b>[Base INT >= 95]</b><br>INT + 3<br>SP Recovery + 20%"]
+	,["(+6)  Temporal INT",[4,2,14,60,76,10],  "MaxSP + 60<br>INT + 2<br>SP Recovery + 10%<br><br><b>[Base INT >= 95]</b><br>INT + 3<br>SP Recovery + 20%"]
+	,["(+7)  Temporal INT",[4,2,14,70,76,10],  "MaxSP + 70<br>INT + 2<br>SP Recovery + 10%<br><br><b>[Base INT >= 95]</b><br>INT + 3<br>SP Recovery + 20%"]
+	,["(+8)  Temporal INT",[4,2,14,80,76,10],  "MaxSP + 80<br>INT + 2<br>SP Recovery + 10%<br><br><b>[Base INT >= 95]</b><br>INT + 3<br>SP Recovery + 20%"]
+	,["(+9)  Temporal INT",[4,2,14,90,76,10],  "MaxSP + 90<br>INT + 2<br>SP Recovery + 10%<br><br><b>[Base INT >= 95]</b><br>INT + 3<br>SP Recovery + 20%"]
+	,["(+10) Temporal INT",[4,2,14,100,76,10], "MaxSP + 100<br>INT + 2<br>SP Recovery + 10%<br><br><b>[Base INT >= 95]</b><br>INT + 3<br>SP Recovery + 20%"]
+	,["(+4)  Temporal DEX",[8,8,25,2],  "HIT + 8<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
+	,["(+5)  Temporal DEX",[8,10,25,2], "HIT + 10<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
+	,["(+6)  Temporal DEX",[8,12,25,2], "HIT + 12<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
+	,["(+7)  Temporal DEX",[8,14,25,2], "HIT + 14<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
+	,["(+8)  Temporal DEX",[8,16,25,2], "HIT + 16<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
+	,["(+9)  Temporal DEX",[8,18,25,2], "HIT + 18<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
+	,["(+10) Temporal DEX",[8,20,25,2], "HIT + 20<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
+	,["(+4)  Temporal LUK",[10,1],        "CRIT + 1<br>Crafting/Brewing Success + 0%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+5)  Temporal LUK",[10,2,108,5],  "CRIT + 2<br>Crafting/Brewing Success + 0.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+6)  Temporal LUK",[10,3,108,10], "CRIT + 3<br>Crafting/Brewing Success + 1%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+7)  Temporal LUK",[10,4,108,15], "CRIT + 4<br>Crafting/Brewing Success + 1.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+8)  Temporal LUK",[10,5,108,20], "CRIT + 5<br>Crafting/Brewing Success + 2%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+9)  Temporal LUK",[10,6,108,25], "CRIT + 6<br>Crafting/Brewing Success + 2.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+10) Temporal LUK",[10,7,108,30], "CRIT + 7<br>Crafting/Brewing Success + 3%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
 ];
+
+ENCHANT_TYPES = {
+	"temporal_1st_enchant": TEMPORAL_1ST_ENCHANTS,
+	"temporal_2nd_enchant": TEMPORAL_2ND_ENCHANTS,
+	"temporal_3rd_enchant": TEMPORAL_3RD_ENCHANTS,
+}
+
+function display_enchant_info(enchant_type, enchant_index)
+{
+	if (document.calcForm.ITEM_SW.checked)
+	{
+		// Clean previous item info in case of earlier selection
+		for (i = 0 ; i <= 4; ++i)
+				myInnerHtml("ITEM"+i,"",0);
+		myInnerHtml("ITEM_W_LV","",0);
+		myInnerHtml("ITEM_DATA","",0);
+		myInnerHtml("ITEM_SLOT","",0);
+		myInnerHtml("ITEM_LV","",0);
+		myInnerHtml("ITEM_WAIT","",0);
+
+		myInnerHtml("nm080","Enchant Info",0);
+		enchant_info = ENCHANT_TYPES[enchant_type][enchant_index][2]
+		myInnerHtml("B_SETUMEI",enchant_info,0);
+	}
+}
 
 // Manage restriction regarding Vanilla Equipment
 restrictedEquips = [319,347,348,444,576,603,604,605,606,670,1320,1329,1334,1336,1339,1340,1344,1348,1354,1356,1365,1371,1375,1376,1377,1378,1379,1380,1381,1382,1383,1384,1385,1386,1387,1388,1389,1390,1391,1393,1491,1492,1493,1522,1526,1548,1560,1607,1608,1609,1610,1615,1818];

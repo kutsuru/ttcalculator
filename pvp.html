@@ -737,15 +737,15 @@ I would like all of you to test this calc and compare it to the actual PVP damag
 			</td>
 			<td class="calc">
 				<span id="temporal_1st_enchant"></span>
-				<select name="temporal_1st_enchant_select" onchange="StAllCalc()"></select>
+				<select name="temporal_1st_enchant_select" onchange="StAllCalc() | display_enchant_info('temporal_1st_enchant', this[this.selectedIndex].value)"></select>
 			</td>
 			<td class="calc">
 				<span id="temporal_2nd_enchant"></span>
-				<select name="temporal_2nd_enchant_select" onchange="StAllCalc()"></select>
+				<select name="temporal_2nd_enchant_select" onchange="StAllCalc() | display_enchant_info('temporal_2nd_enchant', this[this.selectedIndex].value)"></select>
 			</td>
 			<td id="temporal_enchant_sleipnir" class="calc">
 				<span id="temporal_3rd_enchant"></span>
-				<select name="temporal_3rd_enchant_select" onchange="StAllCalc()"></select>
+				<select name="temporal_3rd_enchant_select" onchange="StAllCalc() | display_enchant_info('temporal_3rd_enchant', this[this.selectedIndex].value)"></select>
 			</td>
 		</tr>
 
