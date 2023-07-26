@@ -759,7 +759,7 @@ sqi_bonus_db = {
 			,["Ignore 10% of enemy MDEF",295,10,0]
 			,["20% Melee Resistance, 20% Magic Resistance",100,20,101,20,0]
 			,["MaxHP + 15%",15,15,0]
-			,["CRIT + 15, 10% more damage with Critical Hits",20,15,70,10,0]
+			,["CRIT + 15, 10% more damage with Critical Hits",10,15,70,10,0]
 			,["Enable [Double Attack] usage, [Double Attack] and [Triple Attack] Rate + 10%",0]
 			,["PvP: Add a 10% chance to auto-cast level 1 [Strip Armor] when attacking with long range. PvM: 5% chance for [Strip Shield] instead at the level learned",221,117,0]
 			,["Add a 5% chance to auto-cast level 3 [Critical Wounds] when attacking with long range",0]
