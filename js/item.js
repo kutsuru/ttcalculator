@@ -1895,6 +1895,13 @@ ItemOBJ = [
 ,[1839,63,0,2,0,1,150,99,"Temporal Boots (INT)","","<br><b>[Every Refine Level]</b><br>MaxSP + 10<br><b>[Base INT >= 95]</b><br>INT + 3<br>Natural SP Recovery + 20%",4,2,13,300,14,50,0]
 ,[1840,63,0,2,0,1,150,99,"Temporal Boots (DEX)","","<br><b>[Every Refine Level]</b><br>HIT + 2<br><b>[Base DEX >= 95]</b><br>5% Aftercast Delay Reduction",13,300,14,30,25,2,0]
 ,[1841,63,0,2,0,1,150,99,"Temporal Boots (LUK)","","<br><b>[Every Refine Level]</b><br>CRIT + 1<br><b>[Every Refine Level +5~10]</b><br>Crafting/Brewing Rates + 0.5%<br><b>[Every 19 Base LUK]</b><br>Critical attacks/skills + 3%",13,300,14,30,0]
+,[1842,50,0,3,0,0,0,0,"Rook Beret","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[Only PvP/BG/WoE]</span>",13,500,7,3,151,30,78,10,0]
+,[1843,61,0,8,0,0,250,0,"Rook Shield","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[Only PvP/BG/WoE]</span>","",19,3,57,25,0]
+,[1844,60,0,6,0,0,0,0,"Rook Mail","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[Only PvP/BG/WoE]</span>","",13,500,152,30,0]
+,[1845,63,0,4,0,0,0,0,"Rook Greaves","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[Only PvP/BG/WoE]</span>","",15,5,14,100,218,10,0]
+,[1846,62,0,5,0,0,0,0,"Rook Pauldron","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[Only PvP/BG/WoE]</span>","",19,5,13,500,60,15,0]
+,[1847,100,0,0,0,0,0,0,"Rook Beret + Rook Shield","",0,151,30,78,10,152,50,0]
+,[1848,100,0,0,0,0,0,0,"Rook Mail + Rook Pauldron + Rook Greaves","","Enable to use [Increase Agility] lvl 1",13,500,151,20,152,100,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3770,6 +3777,13 @@ ItemID = [
 ,[1839,1,22001]
 ,[1840,1,22004]
 ,[1841,1,22005]
+,[1842,1,30338]
+,[1843,1,30339]
+,[1844,1,30340]
+,[1845,1,30341]
+,[1846,1,30342]
+,[1847,2,30338,30339]
+,[1848,2,30340,30341,30342]
 ];
 
 /*
@@ -4456,6 +4470,8 @@ w_SE = [[737,436,475,"NULL"]
 ,[1825,1818,522,"NULL"] //Custom Talon Tales - Invective Robe + Heavenly Maiden Robe
 ,[1826,1818,704,"NULL"] //Custom Talon Tales - Invective Robe + Vali's Manteau
 ,[1827,1818,315,"NULL"] //Custom Talon Tales - Invective Robe + Ancient Cape
+,[1847,1842,1843,"NULL"] //Custom Talon Tales - Rook Beret + Rook Shield
+,[1848,1844,1845,1846,"NULL"] //Custom Talon Tales - Rook Mail + Rook Greaves + Rook Pauldron
 ];
 
 SE_MAXnum = w_SE.length -1;
