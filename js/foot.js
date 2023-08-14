@@ -8748,7 +8748,7 @@ with(document.calcForm){
 				SaveData[65+i] = 0;
 		}
 		SaveData[78] = n_A_PassSkill8[0]; // Manage Pet
-		SaveData[79] = 0;
+		SaveData[79] = n_A_PassSkill6[3];; // Attention Concentrate Lv.1
 		SaveData[80] = 0;
 		SaveData[81] = 0;
 		SaveData[82] = 0;
@@ -9161,7 +9161,13 @@ with(document.calcForm){
 
 	// Manage Pet
 	n_A_PassSkill8[0] = SaveData[78];
-	A8_Skill0.value = n_A_PassSkill8[0];
+	if ("undefined" != typeof(A8_Skill0))
+		A8_Skill0.value = n_A_PassSkill8[0];
+
+	// Manage Attention Concentrate Lv.1 provided through items/gears
+	n_A_PassSkill6[3] = SaveData[79];
+	if ("undefined" != typeof(A6_Skill3))
+		A6_Skill3.value = n_A_PassSkill6[3];
 
 	//custom Talon Tales Kris Enchantment Load Cookie
 	if(A_weapon1.value == 1472){
