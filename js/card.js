@@ -423,7 +423,7 @@ cardOBJ = [
 ,[401,5,"Kavach Icarus","If the garment is upgraded to +4 or less: Flee Rate +20 instead, Perfect Dodge +1",9,10,0]
 ,[402,5,"Chung E","Luk +1 and Crit Rate +1 for each upgrade on the garment",6,-5,0]
 ,[403,5,"Orc Baby","If the garment is upgraded to +9 or higher: Additional Flee Rate +5 and -5% damage from Neutral element",60,10,9,10,0]
-,[404,4,"Assassin Cross","Add a 6% chance of inflicting Critical Wounds Level 3 on an enemy when the user receives Physical Damage (not calced)",0] //custom Talon Tales - diff position
+,[404,5,"Assassin Cross","<br>Adds a 33% chance to ignore Poison Bottle consumption. <br><b>Dispels Enchant Deadly Poison when unequipping the card.</b>",9,20,190,10,191,10,192,10,0]
 ,[405,5,"Aliot","If equipped by a Swordman, Thief, or Merchant job type: Max HP +5%, Str +2<BR>If equipped by an Acolyte, Mage, or Archer job type: Max SP +5%, Int +2",0]
 ,[406,6,"Thanatos Odium","Agi +1 for each upgrade on the shoes",2,-5,0]
 ,[407,6,"Gold Acidus","If shoes are upgraded to +4 or less: Additional Max HP and Max SP +4% and HP Regen and SP Regen +5%",15,4,16,4,0]
@@ -528,11 +528,11 @@ cardOBJ = [
 ,[506,3,"Dark Shadow",0,67,20,47,5,0]
 ,[507,3,"Luciola Vespa",0,64,20,44,5,0]
 ,[508,3,"Tatacho",0,62,20,42,5,0]
-,[509,2,"Rata","[Refine Rate +7 or higher]<br/>Increases magic damage against Boss monsters by an additional 5%.<br/>[Refine Rate +9 or higher]<br/>Increases magic damage against Boss monsters by an additional 5%.",98,15,97,5,0]
+,[509,2,"Rata","[Refine Rate +7 or higher]<br/>Ignore 5% MDEF of Boss type monsters.<br/>[Refine Rate +9 or higher]<br/>Ignore by an additional 5% MDEF of Boss type monsters.",98,15,97,15,0]
 ,[510,2,"Dark Pinguicula","<b>[Alchemist Class]</b><br>Ignore [Acid Terror] Acid Bottle Cost.<br>Ignore [Demonstration] Bottle Grenades Cost.<br>Increase SP Costs of [Demonstration] and [Acid Terror] by 50%.<br><b>Only works in PvM</b>",0]
 ,[511,2,"Duneyrr","When dealing physical damage, has a 2% chance of gaining Perfect Dodge + 10 for 15 seconds.<br/>[Lord Knight]<br/>When activated during Frenzy, add another Perfect Dodge + 10.",17,15,0]
 ,[512,2,"Phylla",0,2,1,5,1,89,2,221,142,0]
-,[513,6,"Rhyncho","<br/><b>[On Deluge/Hidden Water]<b><br/>Increase Resistance to Fire property by 10%.",15,10,75,25,76,25,0]
+,[513,6,"Rhyncho","<br/><>[On Deluge/Hidden Water]<b><br/>Increase Resistance to Fire property by 10%.",15,10,75,25,76,25,0]
 //custom Talon Tales [Update 2013-10-06]
 ,[514,2,"Dolomedes","<b>[Archer Class]</b><br>DEX + 1 for every 3 refines<br><b>[Other Class]</b><br>INT + 1 for every 3 refines",3,2,0]
 ,[515,1,"Queen Scaraba",0,8,35,80,15,0]
@@ -565,7 +565,7 @@ cardOBJ = [
 ,[538,7,"Miming",0,5056,25,7056,25,0]
 ,[539,1,"Pom Spider",0,31,20,0]
 ,[540,1,"Mini Octopus",0,404,1.5,0]
-,[541,4,"Nightmare Amon Ra",0,152,50,171,7,176,7,357,7,359,7,0]
+,[541,4,"Nightmare Amon Ra","<br><b>[Armor Refine Level]</b> All magic bonus increased by 1%",152,50,171,6,176,6,357,6,359,6,0]
 ,[542,3,"Nightmare Arclouze",0,52,20,51,20,0]
 ,[543,1,"Nightmare Mimic",0,171,5,172,5,0]
 ,[544,1,"Nightmare Minorous",0,32,10,31,10,0]
@@ -602,7 +602,7 @@ cardOBJ = [
 ,[575,100,"Obeaune + Iara","Increase SP Consumption of skills by 10%",5,6,14,100,0]
 ,[576,100,"Entweihen Crothen + Naght Sieger",0,73,-10,0]
 ,[577,100,"Entweihen Crothen + Dark Illusion",0,15,-10,16,-10,73,5,0]
-,[578,4,"Nidhoggur Shadow","[Swordman Class, Merchant Class, Thief Class]<br/>When using short-range physical skills, monsters will not switch targets to you if they are currently attacking another target.<br/>Lose 1% HP every 2 seconds.", 0]
+,[578,4,"Nidhoggur Shadow","[Swordman Class, Merchant Class, Thief Class, Super Novice]<br/>When using short-range physical skills, monsters will not switch targets to you if they are currently attacking another target.<br/>Lose 1% HP every 2 seconds.", 0]
 ,[579,2,"Naght Sieger","[Soul Linker]<br/>Ghost property magical attack is 15% instead.",19,5,348,30,350,10,0]
 ,[580,100,"Rhyncho + Phylla","Add a 3% chance of auto casting level 3 [Deluge] on the user when attacking normally.",0]
 ,[581,4,"Hardrock Mammoth","[Every Refine Level]<br/>MaxHP + 2%",15,10,18,5,19,5,0]
@@ -670,6 +670,11 @@ cardOBJ = [
 ,[640,7,"Cursed Raydric Archer","",36,10,176,10,0]
 ,[641,100,"Cursed Raydric + Cursed Raydric Archer","",31,10,36,10,171,10,176,10,0]
 ,[642,2,"Cursed Butler","[Holy Cross] and [Soul Strike] Element becomes Shadow.",0]
+,[643,5,"Weird Coelacanth","",3,10,19,10,61,5,62,5,63,5,64,5,0]
+,[644,1,"Gloomy Coelacanth","<br><b>[Each Refine Level]</b><br> [Water] and [Wind] element magic increased by (WeaponLv + 1)/2 %<br><br><span style='font-size: 14px;color:#ff0000;font-weight: bold'>Card can only be applied once</span>",351,5,354,5,0]
+,[645,1,"Mutant Coelacanth","<br><b>[Each Refine Level]</b><br> [Fire] element magic increased by (WeaponLv + 1)/2 %<br>[Earth] element magic increased by (WeaponLv + 1) %<br><br><span style='font-size: 14px;color:#ff0000;font-weight: bold'>Card can only be applied once</span>",352,5,353,5,0]
+,[646,6,"Violent Coelacanth","",17,30,8,20,0]
+,[647,2,"Giant Octopus","<b>[Two-handed Melee Weapon]</b><br>MaxHP + 10%<br>Magic resistance + 20%",0]
 ];
 /*
 ID, Location, description, 0 - seperator, stat, value added/subtracted
@@ -1347,6 +1352,11 @@ cardID = [
 ,[640,1,27387]
 ,[641,2,0]
 ,[642,1,27388]
+,[643,1,4526]
+,[644,1,4527]
+,[645,1,4528]
+,[646,1,4529]
+,[647,1,4534]
 ];
 
 CardNum = cardOBJ.length -1;

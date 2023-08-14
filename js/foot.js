@@ -964,6 +964,16 @@ with(document.calcForm){
 	if (EquipNumSearch(1681)) {
 		n_tok[15] += n_A_Weapon_ATKplus
 	}
+
+	// Giant Octopus#647
+	// [Two-Handed Melee Weapon] - MaxHP + 10%, Magic Resistance + 25%
+	let giant_octopus_cards = CardNumSearch(647)
+	if (giant_octopus_cards && !(n_A_WeaponType==10 || 17 <= n_A_WeaponType && n_A_WeaponType <= 21) && (ItemOBJ[n_A_Equip[5]][1] != 61 || ItemOBJ[n_A_Equip[5]][0] == 305))
+	{
+		n_tok[15] += 10 * giant_octopus_cards;
+		n_tok[101] += 25 * giant_octopus_cards;
+	}
+	
 	// Surfer Swimsuit#1682 [Every Refine Level] SP + 2
 	if (EquipNumSearch(1682)) {
 		n_tok[14] += n_A_BODY_DEF_PLUS * 2
@@ -4139,6 +4149,19 @@ with(document.calcForm){
 		if(n_A_HEAD_DEF_PLUS >= 7)
 			n_tok[297] += 1;
 	}
+
+	/*
+		Rata Card#509
+		[Refine Rate +7 or higher]
+		Ignore 5% MDEF of Boss type monsters.
+		[Refine Rate +9 or higher]
+		Ignore by an additional 5% MDEF of Boss type monsters.
+	*/
+	if (n_A_card[8] == 509) {
+		if(n_A_HEAD_DEF_PLUS >= 7) n_tok[297] += 5;
+		if(n_A_HEAD_DEF_PLUS >= 9) n_tok[297] += 5;
+	}
+
 	if(n_B[19] == 0)
 		n_tok[295] += n_tok[296];
 	if(n_B[19] == 1)
@@ -4415,17 +4438,43 @@ with(document.calcForm){
 		n_tok[348] -= 15 * CardNumSearch(579);
 	
 	/*
-		Rata Card#509
-		[Refine Rate +7 or higher]
-		Increases magic damage against Boss monsters by an additional 5%.
-		[Refine Rate +9 or higher]
-		Increases magic damage against Boss monsters by an additional 5%.
+		Gloomy Coelacanth#644
+		[Each Refine Level] - [Water] and [Wind] element magic increased by (WeaponLv + 1)/2 %
+		Card is only applied once
 	*/
-	if (n_A_card[8] == 509) {
-		if(n_A_HEAD_DEF_PLUS >= 7) n_tok[97] += 5;
-		if(n_A_HEAD_DEF_PLUS >= 9) n_tok[97] += 5;
+
+	if (CardNumSearch(644) == 1)
+	{
+		let bonus = Math.floor((n_A_WeaponLV + 1) / 2) * n_A_Weapon_ATKplus;
+		n_tok[341] += bonus;
+		n_tok[344] += bonus;
 	}
-	
+
+	/*
+		Mutant Coelacanth#645
+		[Each Refine Level]
+			[Fire] element magic increased by (WeaponLv + 1)/2 %
+			[Earth] element magic increased by (WeaponLv + 1) %
+		Card is only applied once
+	*/
+	if (CardNumSearch(645) == 1)
+	{
+		n_tok[342] += (n_A_WeaponLV + 1) * n_A_Weapon_ATKplus;
+		n_tok[343] += Math.floor((n_A_WeaponLV + 1) / 2) * n_A_Weapon_ATKplus;
+	}
+
+	/*
+		Nightmare Amon Ra#541
+		[Each Armor Refine Level] Magic bonus increased by 1%
+	*/
+	if (CardNumSearch(541))
+	{
+		n_tok[171] += n_A_BODY_DEF_PLUS;
+		n_tok[176] += n_A_BODY_DEF_PLUS;
+		n_tok[357] += n_A_BODY_DEF_PLUS;
+		n_tok[359] += n_A_BODY_DEF_PLUS;
+	}
+
 	// White Knight + Khalitzburg Knight Combo#446 - [Every Refine Level] Increases physical damage against [Medium] and [Large] size monsters by 1%
 	if (CardNumSearch(446))
 	{
