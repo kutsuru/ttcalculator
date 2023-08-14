@@ -1579,12 +1579,12 @@ TEMPORAL_1ST_ENCHANTS = [
 
 TEMPORAL_2ND_ENCHANTS = [
 	 ["(No Enchant)",[], ""]
-	,["Bear's Power",[1,10], "You ate a bear for breakfast, and now you have POWAAA!!!!"]
-	,["Speed of Light",[107,50,85,50], "Not as fast as Flash but still pretty fast."]
-	,["Muscle Fool",[], "You won't fool me this is just air in it Mr Bibendum"]
-	,["Runaway Magic",[4,10], "Dang ... It flew away the moment I casted it..."]
-	,["Hawkeye",[25,5], "Massive aliens invasion you say? Better bring at least 20 arrows then"]
-	,["Lucky Day",[70,15], "You wished it was yours, but not today!"]
+	,["Bear's Power",[1,10], "You ate a bear for breakfast, and now you have POWAAA!!!!<br><br>2% chance to add STR + 10 for 10 seconds [Toggle]"]
+	,["Speed of Light",[107,50,85,50], "Not as fast as Flash but still pretty fast.<br><br>2% chance to trigger FLEE + 50% 10 seconds, but decreases DEF/MDEF by half [Toggle]"]
+	,["Muscle Fool",[], "You won't fool me this is just air in it Mr Bibendum.<br><br>2% chance to resist all elements (except neutral) by 30% for 10 seconds [not calc]"]
+	,["Runaway Magic",[4,10], "Dang ... It flew away the moment I casted it...<br><br>2% chance to add INT + 10 for 10 seconds [Toggle]"]
+	,["Hawkeye",[25,5], "Massive aliens invasion you say? Better bring at least 20 arrows then.<br><br>2% chance to increase long range attack by 5% for 10 seconds [Toggle]"]
+	,["Lucky Day",[70,15], "You wished it was yours, but not today!<br><br>2% chance to increase critical damage by 15% for 10 seconds [Toggle]"]
 ];
 
 TEMPORAL_3RD_ENCHANTS = [
