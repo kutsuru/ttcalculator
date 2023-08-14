@@ -8637,7 +8637,7 @@ function StoN(n){
 }
 
 SaveStr2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14, 15,16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159]; // Add to 159
-SaveStr1 = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1,  3, 1,  3,  3,  3,  3,  3, 1,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+SaveStr1 = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1,  3, 1,  3,  3,  3,  3,  3, 1,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  2];
 
 function CopyToClipboard() {
   url = document.calcForm.URL_TEXT;
@@ -8747,7 +8747,7 @@ with(document.calcForm){
 			else if(SaveData[65+i] == false)
 				SaveData[65+i] = 0;
 		}
-		SaveData[78] = 0;
+		SaveData[78] = n_A_PassSkill8[0]; // Manage Pet
 		SaveData[79] = 0;
 		SaveData[80] = 0;
 		SaveData[81] = 0;
@@ -9158,6 +9158,11 @@ with(document.calcForm){
 		A_SHOULDER_DEF_PLUS.value = 0;
 		A_SHOES_DEF_PLUS.value = 0;
 	}
+
+	// Manage Pet
+	n_A_PassSkill8[0] = SaveData[78];
+	A8_Skill0.value = n_A_PassSkill8[0];
+
 	//custom Talon Tales Kris Enchantment Load Cookie
 	if(A_weapon1.value == 1472){
 		A_KE11.value = SaveData[89];
@@ -9748,8 +9753,7 @@ with(document.calcForm){
 		x+=8;
 	}
 
-	//SaveData[x+1] = NtoS2(parseInt(document.calcForm.Conf01.value),2);
-	SaveData[x+1] = NtoS2(33,2);
+	SaveData[x+1] = NtoS2(n_A_PassSkill8[0],2); // Manage Pet
 	x+=1;
 
 	SaveData[x+1] = NtoS2(parseInt(document.calcForm.A_HSE.value),2);
@@ -10214,7 +10218,12 @@ with(document.calcForm){
 			x+=14;
 		}
 
+		// Manage Pet
+		n_A_PassSkill8[0] = StoN2(w.substr(x+1,2));
+		if ("undefined" != typeof(document.calcForm.A8_Skill0))
+			document.calcForm.A8_Skill0.value = n_A_PassSkill8[0];
 		x+=2;
+
 		if(w_Version >= 1){
 			document.calcForm.A_HSE.value = StoN2(w.substr(x+1,2));
 			x+=2;

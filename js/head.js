@@ -4921,7 +4921,6 @@ with(document.calcForm){
 		str += '<TR><TD id="EN832"></TD><TD id="EN833"></TD></TR></table>';
 		myInnerHtml("ID_ETC",str,0);
 		A8_SKILLSW.checked = 1;
-		myInnerHtml("EN800",'<select name="A8_Skill0" onChange="Click_A8(1)"></select>',0);
 
 		// Added Eclage Food with a drop down list for selection. Velaryon#8787 4-4-2020
 		myInnerHtml("EN842",'<select name="eclage_food_list" onChange="Click_A8(1)"></select>',0);
@@ -4967,6 +4966,7 @@ with(document.calcForm){
 			return 0
 		});
 
+		myInnerHtml("EN800",'<select name="A8_Skill0" onChange="Click_A8(1)"></select>',0);
 		for(i=0;i<PET_OBJ_copy.length;i++)
 			A8_Skill0.options[i] = new Option(PET_OBJ_copy[i][1],PET_OBJ_copy[i][0]);
 		myInnerHtml("EN801",'Battle Manual <select name="A8_Skill1" onChange="Click_A8(1)"></select>',0);
