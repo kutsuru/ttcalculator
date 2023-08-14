@@ -671,8 +671,8 @@ cardOBJ = [
 ,[641,100,"Cursed Raydric + Cursed Raydric Archer","",31,10,36,10,171,10,176,10,0]
 ,[642,2,"Cursed Butler","[Holy Cross] and [Soul Strike] Element becomes Shadow.",0]
 ,[643,5,"Weird Coelacanth","",3,10,19,10,61,5,62,5,63,5,64,5,0]
-,[644,1,"Gloomy Coelacanth","<br><b>[Each Refine Level]</b><br> [Water] and [Wind] element magic increased by (WeaponLv + 1)/2 %<br><br><span style='font-size: 14px;color:#ff0000;font-weight: bold'>Card can only be applied once</span>",351,5,354,5,0]
-,[645,1,"Mutant Coelacanth","<br><b>[Each Refine Level]</b><br> [Fire] element magic increased by (WeaponLv + 1)/2 %<br>[Earth] element magic increased by (WeaponLv + 1) %<br><br><span style='font-size: 14px;color:#ff0000;font-weight: bold'>Card can only be applied once</span>",352,5,353,5,0]
+,[644,1,"Gloomy Coelacanth","<br><b>[Each Refine Level]</b><br> [Water] and [Wind] element magic increased by (WeaponLv + 1)/2 %<br><br><span style='font-size: 14px;color:#ff0000;font-weight: bold'>Card can only be applied once</span>",341,5,344,5,0]
+,[645,1,"Mutant Coelacanth","<br><b>[Each Refine Level]</b><br> [Fire] element magic increased by (WeaponLv + 1)/2 %<br>[Earth] element magic increased by (WeaponLv + 1) %<br><br><span style='font-size: 14px;color:#ff0000;font-weight: bold'>Card can only be applied once</span>",342,5,343,5,0]
 ,[646,6,"Violent Coelacanth","",17,30,8,20,0]
 ,[647,2,"Giant Octopus","<b>[Two-handed Melee Weapon]</b><br>MaxHP + 10%<br>Magic resistance + 20%",0]
 ];
