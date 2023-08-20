@@ -8281,7 +8281,13 @@ function BaiCI(wBaiCI)
 			crit_dmg_modifier = (272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill) ? 0 : n_tok[70];
 			
 			// Temporal Boots (LUK)#1841 - [Every 19 Base LUK] - Increases critical attack/skills attack by 3%
-			crit_dmg_modifier += Math.floor(SU_LUK / 19) * 3 * EquipNumSearch(1841);
+			let enchant_category = 0;
+			let third_enchant_index = eval(document.calcForm.temporal_3rd_enchant_select.value);
+			if (third_enchant_index)
+				enchant_category = Math.floor(third_enchant_index / 7);
+
+			if (EquipNumSearch(1841) || 5 == enchant_category)
+				crit_dmg_modifier += Math.floor(SU_LUK / 19) * 3;
 			
 			if (272 == n_A_ActiveSkill)  // Sharpshoot#272
 			{

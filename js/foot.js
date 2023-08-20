@@ -8604,8 +8604,7 @@ function apply_temporal_enchants()
 			n_tok[74] += 5;
 
 		// Temporal LUK [Every 19 Base LUK] - Critical ATK/Skills + 3%
-		if (enchant_category <= 6)
-			n_tok[70] += Math.floor(SU_LUK / 19);
+		// Managed later due to crit modifier applied to skills as well
 	}
 }
 
