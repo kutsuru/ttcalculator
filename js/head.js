@@ -8638,7 +8638,7 @@ function ApplySkillAtkBonus(dmg)
 			skill_atk_bonus_ratio += 15 * CardNumSearch(633);
 		}
 		
-		if (n_B[3] > 80 && [3] < 85) // Ghost 81-84
+		if (n_B[3] > 80 && n_B[3] < 85) // Ghost 81-84
 		{
 			// Amdarais Card#604 - [Cart Termination] damage inflicted on Ghost Element monsters by 25%.
 			skill_atk_bonus_ratio += 25 * CardNumSearch(604);
