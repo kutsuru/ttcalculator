@@ -449,7 +449,7 @@ ITEM_SP_TIME_OBJ =[
 ,[17,"Elemental Sword + Elemental Boots","MATK + 1% per Elemental Sword refine level at a 4% chance for 5 seconds when attacking normally.",1,1821,0] 
 ,[18,"Desert Twilight + Desert Wind","190 ASPD",1,818,12,100,0]
 ,[19,"Shadow Guard Set [Shadow Walk + Shadow Guard]","FLEE + 20",1,995,9,20,0]
-,[20,"Huuma Front Shuriken (Valorous)","Throw Fuuma Shuriken/Final Strike Damage + 100%",0,0,0] //1,931,5396,100,5405,100,5438,100,0
+,[20,"Valorous Huuma Front Shuriken","After using [Throw Shuriken] adds a 3% chance to increase ASPD by 15% for 10 seconds.",1,931,12,15,0]
 ,[21,"Naght Sieger Twin-Blade [Blue]","Ignore [Non-Boss] Monster Defense",1,932,21,100,0]
 ,[22,"Soldier Gatling Gun","ATK + 80",1,927,17,80,0]
 ,[23,"Soldier Grenade Launcher","ATK + 300",1,929,17,300,0]
