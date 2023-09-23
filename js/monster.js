@@ -1010,6 +1010,12 @@ MonsterOBJ = [
 ,[886,"Cursed Raydric Archer",6,92,1,96,115496,50,48,30,146,40,4667,6365,22,36,0,0,,0,1,20578]
 ,[887,"Cursed Butler",1,92,1,95,163480,58,54,31,75,44,3465,6132,12,30,0,0,,0,0,20579]
 ,[888,"Maggot [Hard]",4,22,0,93,66972,45,103,35,172,15,1692,4006,31,36,520,260,,0,0,3142]
+// [Custom Talon Tales - 2023-09-21 OGH Challenge]
+,[889,"1st Payon Soldier",7,1,1,75,41599,35,66,55,64,30,2045,2651,35,28,19383,15188,,0,0,2543]
+,[890,"2nd Payon Soldier",7,1,1,88,64188,25,86,55,74,40,2697,3251,42,33,27536,20703,,0,0,2544]
+,[891,"1st Guard Dog",2,31,1,75,41599,35,66,55,64,30,1947,2351,29,38,19344,15158,,0,0,2545]
+,[892,"2nd Guard Dog",2,21,1,88,55278,25,86,55,94,50,2473,2851,34,45,23514,17673,,0,0,2546]
+,[893,"Doyen Irene",7,1,1,98,866110,40,86,100,152,88,4249,5360,38,47,101360,207032,,1,0,2542]
 ];
 
 //[id, "name",race,element,size,lvl,hp,vit,agi,int,dex,luk,minatk,maxatk,def,mdef,baseexp@1x_rate,jobexp@1x_rate,,1 boss/0 non-boss,1 range/0 melee, monster ID]
@@ -1041,7 +1047,7 @@ var tiiki = ["All Regions","SQI Instances","GMC","Abyss Lake Dungeon","Amatsu","
 "Guild Dungeon [Schwartzvald]","Hidden Temple","Hugel Fields","Ice Cave","Juperos Dungeon","Kiel Dungeon","Lighthalzen Fields",
 "Louyang","Lutie & Toy Factory","Magma Dungeon","Malangdo","Malangdo Culvert","Manuk","Morroc Fields","Moscovia","Mt. Mjolnir","Nameless Island","Nidhoggr's Nest",
 "Niflheim","Odins Shrine","Old Glast Heim","Old Glast Heim Challenge","Orc Dungeon","Payon Dungeon","Payon Fields","Poring Island","Port Malaya Instance","Prontera Fields","Pyramid","Pyramid [Nightmare]","Rachel Fields",
-"Rachel Sanctuary","Scaraba Hole","Sphinx","Splendide","Seals(Old)","Sunken Ship","Thanatos Tower","Thors Volcano","Turtle Island","Umbala Dungeon",
+"Rachel Sanctuary","Sarah's Memory","Scaraba Hole","Sphinx","Splendide","Seals(Old)","Sunken Ship","Thanatos Tower","Thors Volcano","Turtle Island","Umbala Dungeon",
 "Umbala Fields","Valkyries' Realm","Veins Fields","War of Emperium","Yuno Fields"];
 
 if(Taijin==0){
@@ -1120,6 +1126,7 @@ Array.from({ length: 888 + 1 - 880},(_,k) => 880 + k),// Old Glast Heim Challeng
 [664,665,666,667,668,669,670,"N"],// Nightmare Pyramid
 [96,136,214,219,271,323,346,376,379,445,446,447,448,449,450,"N"],// Rachel Fields
 [396,397,457,458,459,460,461,462,463,"N"],// Rachel Sanctuary
+Array.from({ length: 893 + 1 - 889 }, (_, k) => 889 + k),// Sarah's Memory
 [556,557,558,559,560,561,562,563,564,582,583,584,585,586,587,588,589,590,"N"],// Scaraba Hole
 [122,165,213,224,245,276,288,297,298,316,484,"N"],// Sphinx
 [525,526,529,532,533,"N"],// Splendide
