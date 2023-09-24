@@ -4515,6 +4515,20 @@ with(document.calcForm){
 		n_tok[300] += 15 * (CardNumSearch(604) + CardNumSearch(633));
 		n_tok[308] += 25 * (CardNumSearch(604) + CardNumSearch(633));
 	}
+
+	/*
+	 * Argen Blanco[4]#1850 - [Every Refine Level]
+		- 1 % DEF pierce against Demon and Undead monsters
+		- 1 % resistance towards Demon and Undead monsters
+	*/
+	if (EquipNumSearch(1850))
+	{
+		n_tok[51] += n_A_Weapon_ATKplus;
+		n_tok[56] += n_A_Weapon_ATKplus;
+		n_tok[181] += n_A_Weapon_ATKplus;
+		n_tok[186] += n_A_Weapon_ATKplus;
+    }
+	
 	
 	// Bobo's Boba - Ignore 10% DEF and MDEF
 	if (bobo_boba_cocktail)

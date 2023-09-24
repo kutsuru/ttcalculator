@@ -1902,6 +1902,8 @@ ItemOBJ = [
 ,[1846,62,0,5,0,0,0,0,"Rook Pauldron","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[Only PvP/BG/WoE]</span>","",19,5,13,500,60,15,0]
 ,[1847,100,0,0,0,0,0,0,"Rook Beret + Rook Shield","",0,151,30,78,10,152,50,0]
 ,[1848,100,0,0,0,0,0,0,"Rook Mail + Rook Pauldron + Rook Greaves","","Enable to use [Increase Agility] lvl 1",13,500,151,20,152,100,0]
+,[1849,1,114,185,3,3,150,70,"Platinum Dagger","","Increase [Raid] AoE to 7×7 cells.<br><b>[Every Refine Level]</b><br>Increase Raid damage +5%",0]
+,[1850,5,113,150,4,4,200,70,"Argen Blanco","","<b>[Every Refine Level]</b><br>1 % DEF pierce against Demon and Undead monsters.<br>1 % resistance towards Demon and Undead monsters.",8,10,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3784,6 +3786,8 @@ ItemID = [
 ,[1846,1,30342]
 ,[1847,2,30338,30339]
 ,[1848,2,30340,30341,30342]
+,[1849,1,28768]
+,[1850,1,32023]
 ];
 
 /*

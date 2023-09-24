@@ -8706,6 +8706,10 @@ function ApplySkillAtkBonus(dmg)
 			skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
 	}
 
+	// Platinum Dagger#1849 - [Every Refine Level] - [Raid#171] damage increased by 5%
+	if (171 == n_A_ActiveSkill && EquipNumSearch(1849))
+		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus;
+
 	dmg = dmg * (100 + StPlusCalc2 (5000 + n_A_ActiveSkill) + StPlusCard(5000 + n_A_ActiveSkill) + skill_atk_bonus_ratio) / 100;
 
 	return Math.floor(dmg);
