@@ -149,7 +149,7 @@ Effect list:
 	106: Increases auto physical attack by [value]%
 	107: Increases FLEE by [value]%
 	108: Increases Crafting/Brewing Success by [value]% 
-	109: (unused)
+	109: Increases HIT by [value]%
 	110: Increases the critical rate on [Formless] race monsters by + [value]
 	111: Increases the critical rate on [Undead] race monsters by + [value]
 	112: Increases the critical rate on [Brute] race monsters by + [value]
@@ -240,7 +240,8 @@ Effect list:
 	199: Received heal effectiveness from [Potion Pitcher] increased by + [value]%
 	200: Received heal effectiveness from [Slim Potion Pitcher] increased by + [value]%
 	201: Heal effectiveness from [Slim Potion Pitcher] increased by + [value]%
-	202-217: (unused)
+	202: Increases min MATK by [value] (flat)
+	203-217: (unused)
 	218: Increases HP recovered by n% for healing items
 	218: Increases HP recovered by n% for healing item id ([id, n, g = 1 for group bonus])
 	219: Increases SP recovered by n% for healing items

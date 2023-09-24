@@ -3825,7 +3825,11 @@ with(document.calcForm){
 
 	let additional_skill_lv_bonus = 0;
 	let current_class = n_A_JobSearch();
-				
+
+	// Payon Soldier card#648 - [Crusader Class] - Increases the level of [Brandish Spear#73] according to the level of [Spear Quicken#166] learned
+	if (3067 == n_A_ActiveSkill && CardNumSearch(648))
+		additional_skill_lv_bonus = Math.max(0, SkillSearch(166) - 1);
+
 	// Rolling Thunder#1790 - [Every 2 Refine Level] - Increase [Thunderstorm#149] level by 1.
 	if (EquipNumSearch(1790) && 2149 == n_A_ActiveSkill)
 		additional_skill_lv_bonus = Math.floor(n_A_Weapon_ATKplus / 2);

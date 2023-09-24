@@ -614,6 +614,7 @@ InsertSkill = [
 [64,1,65,2], // custom Talon Tales - Orange Hat - Mammonite lv 2
 [65,1,66,1], // custom Talon Tales SQI Bonus - Blade of Angel - Cart Revolution lv 1
 [66,1,133,5], // custom Talon Tales SQI Bonus - Blade of Angel - Heaven's Drive lv 5
+[67,1,73,1], // custom Talon Tales SQI Bonus - Payon Soldier card - Brandish Spear lv 1
 ];
 
 

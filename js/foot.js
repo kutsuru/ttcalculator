@@ -2147,11 +2147,6 @@ with(document.calcForm){
 
 	n_A_HIT += n_tok[8];
 
-	// //negative hit correction- [Loa] - 2018-06-18
-	// if(n_A_HIT < 0){
-	// 	n_A_HIT -= n_A_HIT;
-	// }
-
 	if(EquipNumSearch(656))
 		n_A_HIT -= Math.floor(SU_DEX / 3);
 	if(n_A_WeaponType==3 || n_A_WeaponType==2)
@@ -2162,6 +2157,7 @@ with(document.calcForm){
 		n_A_HIT += Math.floor(n_A_JobLV /5) * CardNumSearch(492); //custom Talon Tales Ifrit Card +1hit every 5 Joblv
 		//n_A_HIT += Math.floor(n_A_JobLV /10) * CardNumSearch(492); //custom Talon Tales Ifrit Card +1hit every 5 Joblv
 
+	n_A_HIT = Math.floor(n_A_HIT * (1 + n_tok[109] / 100));
 
 	if(SU_STR >= 90 && EquipNumSearch(442))
 		n_A_HIT += 10 * EquipNumSearch(442);
@@ -2734,10 +2730,12 @@ with(document.calcForm){
 	n_A_MATK = [0,0,0];
 
 	var w = Math.floor(n_A_INT / 7);
-	n_A_MATK[0] = n_A_INT + w * w;
+	n_A_MATK[0] = n_A_INT + w * w + n_tok[202];
 
 	w = Math.floor(n_A_INT / 5);
 	n_A_MATK[2] = n_A_INT + w * w;
+
+	n_A_MATK[0] = Math.min(n_A_MATK[0], n_A_MATK[2]);
 
 	//MATK% stuff
 	w = 100;
@@ -5107,6 +5105,21 @@ function StPlusCalc()
 		if(n_A_JobSearch()==3 || n_A_JobSearch()==4 || n_A_JobSearch()==5)
 			n_tok[4] += 2;
 	}
+
+	/*
+	 * Irene High Elder card#649 
+	 *		[Every 10 Base STR] - HIT Rate + 3%
+	 *		[Every 10 Base INT] - Min MATK + 10
+	 *		[Every 3 Refine Levels] - STR + 1, INT + 1
+	*/
+	if (CardNumSearch(649))
+	{
+		n_tok[1] += Math.floor(n_A_SHOULDER_DEF_PLUS / 3);
+		n_tok[4] += Math.floor(n_A_SHOULDER_DEF_PLUS / 3);
+		n_tok[109] += 3 * Math.floor(SU_STR / 10);
+		n_tok[202] += 10 * Math.floor(SU_INT / 10);
+    }
+
 
 	// Girl Sun Hat#1830 - [Every 3 Refine Levels] INT + 2
 	if (EquipNumSearch(1830))
