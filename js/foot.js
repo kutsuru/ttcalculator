@@ -684,7 +684,7 @@ with(document.calcForm){
 	for(var i=0;i<=6;i++)
 		n_Delay[i] = 0;
 
-	for(i=1;i<=201;i++){
+	for(i=1;i<=202;i++){
 		n_tok[i] = 0;
 		n_tok[i] += StPlusCalc2(i);
 		n_tok[i] += StPlusCard(i);
