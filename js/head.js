@@ -9492,7 +9492,7 @@ function calc_base_atk(base_atk, is_critical_attack, is_left_hand_active, is_dex
 	return [damage_min, Math.floor((damage_min + damage_max) / 2), damage_max];
 }
 
-// Additional base atk dmg bonus for refine and overrefine (weapon is refined above safety refine level)
+// Additional base atk dmg bonus for overrefine only (weapon is refined above safety refine level)
 function calc_weapon_damage_bonus(weapon_refine, weapon_lv)
 {
 	damage_bonus = 0;
@@ -9500,10 +9500,9 @@ function calc_weapon_damage_bonus(weapon_refine, weapon_lv)
 	if (weapon_lv)
 	{
 		safe_refine = [7, 6, 5, 4];
-		refine_bonus = [2, 3, 5, 7];
 		overrefine_bonus = [3, 5, 8, 13];
 
-		damage_bonus = weapon_refine * refine_bonus[weapon_lv - 1] + Math.max(weapon_refine - safe_refine[weapon_lv - 1], 0) * overrefine_bonus[weapon_lv - 1];
+		damage_bonus = Math.max(weapon_refine - safe_refine[weapon_lv - 1], 0) * overrefine_bonus[weapon_lv - 1];
 	}
 
 	return damage_bonus;
