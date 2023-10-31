@@ -7060,15 +7060,18 @@ function KakutyouKansuu(){
 			playerDex = eval(document.calcForm.playerDexStealManual.value);
 		}
 		monsterDex = monsterStolen[10];
+		isBoss = monsterStolen[19];
+		monsterId = monsterStolen[23];
+		monsterDropList = MonsterDropOBJ[monsterId];
 		document.getElementById("outputPlayerDexStealCalc").innerHTML = "<b>Player DEX: </b> " + playerDex + "</b>";
 		document.getElementById("outputMonsterDexStealCalc").innerHTML = "<b>Monster DEX: </b> " + monsterDex + "</b>";
-		if (monsterStolen[23] != 0) {
-			document.getElementById("outputMonsterGifStealCalc").innerHTML = "<img src=\"https://talontales.com/panel/data/monsters/"+monsterStolen[23]+".gif\" alt=\"no picture available =(\">";
+		if (monsterId != 0) {
+			document.getElementById("outputMonsterGifStealCalc").innerHTML = "<img src=\"https://talontales.com/panel/data/monsters/"+monsterId+".gif\" alt=\"no picture available =(\">";
 		} else {
 			document.getElementById("outputMonsterGifStealCalc").innerHTML = "<img src=\"\" alt=\"no picture available =(\">";
 		}
 		var tblStealCalcRight = document.getElementById("tblStealCalcRight");
-		if (monsterStolen[19]) {
+		if (isBoss) {
 			document.getElementById("addRemStealCalc").style = "display:none";
 			while (tblStealCalcRight.rows.length > 1) {
 				tblStealCalcRight.deleteRow(-1);
@@ -7088,8 +7091,8 @@ function KakutyouKansuu(){
 			} else {
 				for (i = 0; i < tblStealCalcRight.rows.length-1; ++i) {
 					var itemDropRate = 0;
-					if (monsterStolen[24]) {
-						itemDropRate = monsterStolen[25 + i*2];
+					if (monsterDropList) {
+						itemDropRate = monsterDropList[i*2 + 1];
 					} else {
 						itemDropRate = eval(tblStealCalcRight.rows[i+1].getElementsByTagName("input")[0].value);
 					}
@@ -7111,7 +7114,7 @@ function KakutyouKansuu(){
 				}
 			}
 			for (i = 0; i < stealSuccess.length; ++i) {
-				if (i == 9 || monsterStolen[24 + i*2] == 0) {
+				if (i == 9 || monsterDropList[i*2] == 0) {
 					break;
 				}
 				tblStealCalcRight.rows[i+1].cells[3].innerHTML = (+(stealSuccess[i]/100.)).toFixed(4) + "%";
@@ -8346,7 +8349,9 @@ function loadMonsterItemDropListStealCalc() {
 		tbl.deleteRow(-1);
 	}
 	var monsterStolen = MonsterOBJ[eval(document.calcForm.monsterStolen.value)];
-	if (monsterStolen[24]) {
+	var monsterId = monsterStolen[23];
+	var monsterDropList = MonsterDropOBJ[monsterId];
+	if (monsterDropList) {
 		document.getElementById("addRemStealCalc").style = "display:none";
 		for (i = 0; i < 10; ++i) {
 			var row = tbl.insertRow(-1);
@@ -8358,8 +8363,8 @@ function loadMonsterItemDropListStealCalc() {
 			cell3.style = "text-align:right";
 			cell4.style = "text-align:right";
 			cell5.style = "text-align:right";
-			var dropPercentage = monsterStolen[25 + i*2];
-			var dropItemId = monsterStolen[24 + i*2];
+			var dropItemId = monsterDropList[i*2];
+			var dropPercentage = monsterDropList[i*2 + 1];
 			if (dropItemId == 0) {
 				continue;
 			}
