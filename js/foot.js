@@ -8603,31 +8603,31 @@ function apply_temporal_enchants()
 	let third_enchant_index = eval(document.calcForm.temporal_3rd_enchant_select.value);
 	if (third_enchant_index)
 	{
-		let enchant_category = third_enchant_index / 7; // Each category has 7 possible enchants
+		let enchant_category = Math.ceil(third_enchant_index / 7); // Each category has 7 possible enchants
 		// Temporal STR [Base STR >= 95] - HIT + 10
-		if (enchant_category <= 1 && SU_STR >= 95)
+		if (1 == enchant_category && SU_STR >= 95)
 			n_tok[8] += 10;
 
 		// Temporal AGI [Base AGI >= 95] - ASPD + 5%
-		if (enchant_category <= 2 && SU_AGI >= 95)
+		else if (2 == enchant_category && SU_AGI >= 95)
 			n_tok[12] += 5;
 
 		// Temporal VIT [Base VIT >= 95] - Short Range Resistance + 3% - Natural HP Recovery + 20%
-		if (enchant_category <= 3 && SU_VIT >= 95)
+		else if (3 == enchant_category && SU_VIT >= 95)
 		{
 			n_tok[75] += 20;
 			n_tok[100] += 3;
 		}
 
 		// Temporal INT [Base INT >= 95] - INT + 3 - Natural SP Recovery + 20%
-		if (enchant_category <= 4 && SU_INT >= 95)
+		else if (4 == enchant_category && SU_INT >= 95)
 		{
 			n_tok[4] += 3
 			n_tok[76] += 20;
 		}
 
 		// Temporal DEX [Base DEX >= 95] - 5% Less Aftercast Delay
-		if (enchant_category <= 5 && SU_DEX >= 95)
+		else if (5 == enchant_category && SU_DEX >= 95)
 			n_tok[74] += 5;
 
 		// Temporal LUK [Every 19 Base LUK] - Critical ATK/Skills + 3%
