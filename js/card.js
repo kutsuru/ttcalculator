@@ -674,7 +674,7 @@ cardOBJ = [
 ,[644,1,"Gloomy Coelacanth","<br><b>[Each Refine Level]</b><br> [Water] and [Wind] element magic increased by (WeaponLv + 1)/2 %<br><br><span style='font-size: 14px;color:#ff0000;font-weight: bold'>Card can only be applied once</span>",341,5,344,5,0]
 ,[645,1,"Mutant Coelacanth","<br><b>[Each Refine Level]</b><br> [Fire] element magic increased by (WeaponLv + 1)/2 %<br>[Earth] element magic increased by (WeaponLv + 1) %<br><br><span style='font-size: 14px;color:#ff0000;font-weight: bold'>Card can only be applied once</span>",342,5,343,5,0]
 ,[646,6,"Violent Coelacanth","",17,30,8,20,0]
-,[647,2,"Giant Octopus","<b>[Two-handed Melee Weapon]</b><br>MaxHP + 10%<br>Magic resistance + 20%",0]
+,[647,2,"Giant Octopus","<b>[Two-handed Melee Weapon]</b><br>MaxHP + 10%<br>Magic resistance + 25%",0]
 ,[648,1,"Payon Soldier","<b>[Crusader]</b><br>Increases the level of [Brandish Spear] according to the level of [Spear Quicken] learned.",8,10,5070,15,5073,15,220,67,0]
 ,[649,5,"Irene High Elder","<b>[Every 10 Base STR]</b> HIT Rate + 3%<br><b>[Every 10 Base INT]</b> Min MATK + 10<br><b>[Every 3 Refine Levels]</b> STR + 1, INT + 1",8,10,89,2,0]
 ];
