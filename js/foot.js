@@ -4119,6 +4119,10 @@ with(document.calcForm){
 		n_tok[57] += n_A_HEAD_DEF_PLUS - 2;
 	}
 
+	// Ninja BG Set#1858 - [If Huuma Shuriken is Equipped] - Stun resistance + 30%
+	if (16 == n_A_WeaponType && EquipNumSearch(1858))
+		n_tok[151] += 30;
+
 	if(EquipNumSearch(828)){
 		n_tok[151] += 2 * n_A_HEAD_DEF_PLUS;
 		n_tok[152] += 2 * n_A_HEAD_DEF_PLUS;
@@ -4736,15 +4740,14 @@ with(document.calcForm){
 	//KakutyouKansuu2();
 }}
 
-function StPlusCalc()
-{
+function StPlusCalc() {
 	n_A_JobSet();
 	n_A_JobLV = eval(document.calcForm.A_JobLV.value);
 
 	// Apply job stats bonus
 	job_id = (n_A_JOB == 0 && n_Tensei) ? 34 : n_A_JOB;
-	for(var i=0;JobBOBJ[n_A_JOB][i] <= n_A_JobLV && JobBOBJ[n_A_JOB][i] != "n";i+=2)
-		n_tok[JobBOBJ[job_id][i+1] + 1] += 1;
+	for (var i = 0; JobBOBJ[n_A_JOB][i] <= n_A_JobLV && JobBOBJ[n_A_JOB][i] != "n"; i += 2)
+		n_tok[JobBOBJ[job_id][i + 1] + 1] += 1;
 
 	if (n_A_JobLV >= 70 && SkillSearch(309)) // SuNo No Death Bonus#309
 		n_tok[7] += 10;
@@ -4753,33 +4756,45 @@ function StPlusCalc()
 	n_tok[1] += SkillSearch(404);
 	n_tok[1] += 4 * SkillSearch(68);
 	n_tok[1] += Math.floor(Math.pow(2, SkillSearch(286) - 1)); //Stealth [STR+]#286
-	
+
 	n_tok[4] += SkillSearch(404);
 	n_tok[4] += Math.round(SkillSearch(234) / 2);
-	
+
 	// Temporal Boots (INT)#1839
-	if (EquipNumSearch(1839))
-	{
+	if (EquipNumSearch(1839)) {
 		// [Every Refine Level] - MaxSP + 10
 		n_tok[14] += 10 * n_A_SHOES_DEF_PLUS;
 
 		// [Base INT >= 95] - INT + 3, Natural SP Recovery + 20%
-		if (SU_INT >= 95)
-		{
+		if (SU_INT >= 95) {
 			n_tok[4] += 3;
 			n_tok[76] += 20;
 		}
 	}
-	
+
 	n_tok[5] += SkillSearch(38);
 	// Baby Dragon Hat#1301 - [Sage Class][Dragonology Mastered] ATK & MATK + 5% and DEX + 5"
-	if (5 == SkillSearch(234) && EquipNumSearch(1301))
-	{
+	if (5 == SkillSearch(234) && EquipNumSearch(1301)) {
 		n_tok[5] += 5;
 		n_tok[80] += 5;
 		n_tok[89] += 5;
 	}
-	
+
+	/*
+	 * Soul Linker BG Set#1862
+	 * DEX + 3
+	 * SP + 500
+	 * ATK + 100
+	 * Reduces SP cost of skill by 10%
+	 */
+	if (43 == n_A_JOB && EquipNumSearch(1862))
+	{
+		n_tok[5] += 3
+		n_tok[14] += 500;
+		n_tok[17] += 100;
+		n_tok[72] -= 10;
+    }
+
 	// Chrome Metal Sword#1623 - [Every Refine] AGI + 1, ATK + 4
 	if (EquipNumSearch(1623))
 	{

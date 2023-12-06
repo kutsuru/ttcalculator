@@ -1904,6 +1904,19 @@ ItemOBJ = [
 ,[1848,100,0,0,0,0,0,0,"Rook Mail + Rook Pauldron + Rook Greaves","","Enable to use [Increase Agility] lvl 1",13,500,151,20,152,100,0]
 ,[1849,1,114,185,3,3,150,70,"Platinum Dagger","","Increase [Raid] AoE to 7×7 cells.<br><b>[Every Refine Level]</b><br>Increase Raid damage +5%",0]
 ,[1850,5,113,150,4,4,200,70,"Argen Blanco","","<b>[Every Refine Level]</b><br>1 % DEF pierce against Demon and Undead monsters.<br>1 % resistance towards Demon and Undead monsters.",8,10,0]
+// BG Extended Set
+,[1851,60,50,2,0,1,80,0,"Trainee Suit","",0,19,2,13,2000,57,2,0]
+,[1852,63,50,1,0,1,80,0,"Fledgling Boots","",0,19,1,13,300,57,1,0]
+,[1853,62,50,1,0,1,80,0,"Fledgling Manteau","",0,19,2,13,400,57,2,0]
+,[1854,100,0,0,0,0,0,0,"Trainee Suit + Fledgling Manteau + Fledgling Boots","",0,7,2,10,25,12,10,14,300,15,15,74,10,50,-300,51,-300,52,-300,53,-300,54,-300,55,-300,56,-300,58,-300,59,-300,0]
+,[1855,60,58,2,0,1,80,0,"Striking Mail","",0,19,2,13,2000,57,2,0]
+,[1856,63,58,1,0,1,80,0,"Tabi","",0,19,1,13,300,57,1,0]
+,[1857,62,58,1,0,1,80,0,"Mikoshi","",0,19,2,13,400,57,2,0]
+,[1858,100,0,0,0,0,0,0,"Striking Mail + Mikoshi + Tabi","","<br><b>[If Huuma Shuriken is Equipped]</b> Stun resistance + 30% (additional)",12,10,74,20,219,20,151,20,50,-300,51,-300,52,-300,53,-300,54,-300,55,-300,56,-300,58,-300,59,-300,0]
+,[1859,60,98,2,0,1,80,0,"Wolf Gi","",0,19,2,13,2000,57,2,0]
+,[1860,63,98,1,0,1,80,0,"Wolf Boots","",0,19,1,13,300,57,1,0]
+,[1861,62,98,1,0,1,80,0,"Wolf Muffler","",0,19,2,13,400,57,2,0]
+,[1862,100,0,0,0,0,0,0,"Wolf Gi + Wolf Muffler + Wolf Boots","","<br><b>[Star Gladiator]</b><br>Increases Kick Skill rate by 15%.<br>Increases damage of all kick skills 10%.<br><br><b>[Soul Linker]</b><br>MSP + 500<br>DEX + 3<br>ATK + 100<br>Reduces SP cost of skills by 10%.",12,10,92,10,95,10,199,10,218,10,50,-300,51,-300,52,-300,53,-300,54,-300,55,-300,56,-300,58,-300,59,-300,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3788,6 +3801,18 @@ ItemID = [
 ,[1848,2,30340,30341,30342]
 ,[1849,1,28768]
 ,[1850,1,32023]
+,[1851,1,30355]
+,[1852,1,30357]
+,[1853,1,30358]
+,[1854,2,30355,30356,30357]
+,[1855,1,30359]
+,[1856,1,30361]
+,[1857,1,30360]
+,[1858,2,30359,30360,30361]
+,[1859,1,30362]
+,[1860,1,30364]
+,[1861,1,30363]
+,[1862,2,30362,30363,30364]
 ];
 
 /*
@@ -4476,6 +4501,9 @@ w_SE = [[737,436,475,"NULL"]
 ,[1827,1818,315,"NULL"] //Custom Talon Tales - Invective Robe + Ancient Cape
 ,[1847,1842,1843,"NULL"] //Custom Talon Tales - Rook Beret + Rook Shield
 ,[1848,1844,1845,1846,"NULL"] //Custom Talon Tales - Rook Mail + Rook Greaves + Rook Pauldron
+,[1854,1851,1852,1853,"NULL"] //Custom Talon Tales - Trainee Suit + Fledgling Manteau + Fledgling Boots
+,[1858,1855,1856,1857,"NULL"] //Custom Talon Tales - Striking Mail + Mikoshi + Tabi
+,[1862,1859,1860,1861,"NULL"] //Custom Talon Tales - Wolf Gi + Wolf Muffler + Wolf Boots
 ];
 
 SE_MAXnum = w_SE.length -1;

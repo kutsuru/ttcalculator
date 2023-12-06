@@ -222,9 +222,9 @@ JobEquipItemOBJ = [
 [0],
 [0],
 [0],
-[0, 1,141, 83,84,85,86,97,150,999], //Taekwon Kid //custom
-[0, 1,142, 79,83,84,85,86,87,91,97,150,999], //Star Gladiator
-[0, 1,143, 55, 57, 65, 71, 77,79,89,93,96,999], //Soul Linker
+[0, 1,141, 83,84,85,86,97,98,150,999], //Taekwon Kid //custom
+[0, 1,142, 79,83,84,85,86,87,91,97,98,150,999], //Star Gladiator
+[0, 1,143, 55, 57, 65, 71, 77,79,89,93,96,98,999], //Soul Linker
 [0, 1,144, 58, 52, 57, 91, 93,999], //Ninja
 [0, 1,145, 59, 60, 83,145,999], //Gunslinger
 ];
@@ -282,6 +282,7 @@ JobEquipItemOBJ = [
 		95 = novice, swordman class, merchant class, acolyte class
 		96 = novice, mage class, acolyte class, soul linker
 		97 = thief class, taekwon boy, star gladiator
+		98 = taekwon boy, star gladiator, soul linker
 
 		100 = novice ONLY
 		101 = swordman ONLY
@@ -8732,6 +8733,10 @@ function ApplySkillAtkBonus(dmg)
 	// Swordman Figure#1117 - [Vanilla Mode] - [Brandish Spear#73] and [Holy Cross#161] damage increased by 25%
 	if (document.calcForm.vanilla.checked && (73 == n_A_ActiveSkill || 161 == n_A_ActiveSkill))
 		skill_atk_bonus_ratio += 25 * EquipNumSearch(1117);
+
+	// Star Gladiator BG Set#1862 - Increases damage of all kick skills 10%
+	if (42 == n_A_JOB && EquipNumSearch(1862) && n_A_ActiveSkill != 317 && n_A_ActiveSkill != 318)
+		skill_atk_bonus_ratio += 10;
 
 	dmg = dmg * (100 + StPlusCalc2 (5000 + n_A_ActiveSkill) + StPlusCard(5000 + n_A_ActiveSkill) + skill_atk_bonus_ratio) / 100;
 
