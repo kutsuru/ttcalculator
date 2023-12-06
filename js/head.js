@@ -183,37 +183,37 @@ KunaiOBJ = [
 JobEquipItemOBJ = [
 [0,50,90,93,94,95,96,100,999], //Novice
 [0, 1, 51,101, 70, 71, 72, 74, 75,78,83,84,85,86,87,90,91,93,94,95,999], //Swordman
-[0, 1, 52,102, 72, 74, 75,78, 80,83,84,85,90,91,92,93,94,999], //Thief
+[0, 1, 52,102, 72, 74, 75,78, 80,83,84,85,90,91,92,93,94,97,999], //Thief
 [0, 1, 53,103, 71, 73, 74, 77,78,85,89,95,96,152,999], //Acolyte
 [0, 1, 54,104, 75, 76,83,89,92,999], //Archer
-[0, 1, 55,105, 71, 77,89,96,152,999], //Mage
+[0, 1, 55, 57,105, 71, 77,89,96,152,999], //Mage
 [0, 1, 56,106, 70, 71, 72, 73, 74, 75,78,83,84,85,86,90,91,93,94,95,999], //Merchant
 [0, 1, 51, 61,107, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,999], //Knight
-[0, 1, 52, 62,108, 72, 74, 75,78,79,81,83,84,85,90,91,93,94,999], //Assassin
+[0, 1, 52, 62,108, 72, 74, 75,78,79,81,83,84,85,90,91,93,94,97,999], //Assassin
 [0, 1, 53, 63,109, 71, 73, 74, 77,78,79,81,85,89,95,96,999], //Priest
-[0, 1, 54, 60,64,110, 75, 76,79,80,83,88,89,92,999], //Hunter
-[0, 1, 55, 65,111, 71, 77,79,89,96,999], //Wizard
+[0, 1, 54, 60, 64,110, 75, 76,79,80,83,88,89,92,999], //Hunter
+[0, 1, 55, 57, 65,111, 71, 77,79,89,96,999], //Wizard
 [0, 1, 56, 66,112, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,999], //Blacksmith
 [0, 1, 51, 61,113, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,999], //Crusader
-[0, 1, 52, 62,114, 72, 74, 75, 76,78,79,80,83,84,85,88,91,92,93,94,999], //Rogue
+[0, 1, 52, 62,114, 72, 74, 75, 76,78,79,80,83,84,85,88,91,92,93,94,97,999], //Rogue
 [0, 1, 53, 63,115, 71, 73, 74, 77,78,79,85,89,95,96,999], //Monk
 [0, 1, 54, 60,64,116, 74, 75, 76,79,83,89,92,999], //Bard
 [0, 1, 54, 60,64,117, 74, 75, 76,79,83,89,92,999], //Dancer
-[0, 1, 55, 65,118, 71, 77,79,89,96,999], //Sage
+[0, 1, 55, 57, 65,118, 71, 77,79,89,96,999], //Sage
 [0, 1, 56, 66,119, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,999], //Alchemist
 [0,50,90,93,94,95,96,120,999], // Super Novice
 [0, 1, 51, 61,107,121, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,135,999], //Lord Knight
-[0, 1, 52, 62,108,122, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,999], //Assassin Cross
+[0, 1, 52, 62,108,122, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,97,999], //Assassin Cross
 [0, 1, 53, 63,109,123, 71, 73, 74, 77,78,79,81,82,85,89,95,96,151,152,999], //High Priest
-[0, 1, 54, 60,64,110,124, 75, 76,79,80,82,83,88,89,92,999], //Sniper
-[0, 1, 55, 65,111,125, 71, 77,79,82,89,96,151,152,999], //High Wizard
+[0, 1, 54, 60, 64,110,124, 75, 76,79,80,82,83,88,89,92,999], //Sniper
+[0, 1, 55, 57, 65,111,125, 71, 77,79,82,89,96,151,152,999], //High Wizard
 [0, 1, 56, 66,112,126, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,135,999], //Whitesmith
 [0, 1, 51, 61,113,127, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,999], //Paladin
-[0, 1, 52, 62,114,128, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,999], //Stalker
+[0, 1, 52, 62,114,128, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,97,999], //Stalker
 [0, 1, 53, 63,115,129, 71, 73, 74,77,78,79,82,85,89,95,96,152,999], //Champion
-[0, 1, 54, 60,64,116,130, 74, 75, 76,79,82,83,89,153,92,134,999], //Clown
-[0, 1, 54, 60,64,117,131, 74, 75, 76,79,82,83,89,153,92,134,999], //Gypsy
-[0, 1, 55, 65,118,132, 71,77,79,82,89,152,96,999], //Professor
+[0, 1, 54, 60, 64,116,130, 74, 75, 76,79,82,83,89,153,92,134,999], //Clown
+[0, 1, 54, 60, 64,117,131, 74, 75, 76,79,82,83,89,153,92,134,999], //Gypsy
+[0, 1, 55, 57, 65,118,132, 71,77,79,82,89,152,96,999], //Professor
 [0, 1, 56, 66,119,133, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,999], //Creator
 [0],
 [0],
@@ -222,10 +222,10 @@ JobEquipItemOBJ = [
 [0],
 [0],
 [0],
-[0, 1,141, 83,84,85,86,150,999], //Taekwon Kid //custom
-[0, 1,142, 79,83,84,85,86,87,91,150,999], //Star Gladiator
-[0, 1,143, 55, 65, 71, 77,79,89,93,96,999], //Soul Linker
-[0, 1,144, 58, 52, 91, 93,999], //Ninja
+[0, 1,141, 83,84,85,86,97,150,999], //Taekwon Kid //custom
+[0, 1,142, 79,83,84,85,86,87,91,97,150,999], //Star Gladiator
+[0, 1,143, 55, 57, 65, 71, 77,79,89,93,96,999], //Soul Linker
+[0, 1,144, 58, 52, 57, 91, 93,999], //Ninja
 [0, 1,145, 59, 60, 83,145,999], //Gunslinger
 ];
 
@@ -242,6 +242,7 @@ JobEquipItemOBJ = [
 		54 = archer class
 		55 = mage class, soul linker
 		56 = merchant class
+		57 = mage class, ninja, soul linker
 		58 = ninja
 		59 = gunslinger
 		60 = archer class, gunslinger
@@ -280,6 +281,7 @@ JobEquipItemOBJ = [
 		94 = novice, swordman class, merchant class, thief class
 		95 = novice, swordman class, merchant class, acolyte class
 		96 = novice, mage class, acolyte class, soul linker
+		97 = thief class, taekwon boy, star gladiator
 
 		100 = novice ONLY
 		101 = swordman ONLY
@@ -3335,34 +3337,33 @@ function BattleHiDam(){
 	return wBHD;
 }
 
-function BattleMagicCalc(wBMC)
-{
+function BattleMagicCalc(wBMC) {
 	// Apply skill damage bonus
-	
-	var wX = StPlusCalc2(5000+n_A_ActiveSkill) + StPlusCard(5000+n_A_ActiveSkill);
-	if(n_A_ActiveSkill==46 || n_A_ActiveSkill==47 || n_A_ActiveSkill==277)
-		if(n_A_JobSearch()==5)
+
+	var wX = StPlusCalc2(5000 + n_A_ActiveSkill) + StPlusCard(5000 + n_A_ActiveSkill);
+	if (n_A_ActiveSkill == 46 || n_A_ActiveSkill == 47 || n_A_ActiveSkill == 277)
+		if (n_A_JobSearch() == 5)
 			wX += 20 * CardNumSearch(474);
-	if(n_A_ActiveSkill==132 || n_A_ActiveSkill==133)
-		if(EquipNumSearch(1146))
+	if (n_A_ActiveSkill == 132 || n_A_ActiveSkill == 133)
+		if (EquipNumSearch(1146))
 			wX += n_A_Weapon_ATKplus;
-	if(n_A_ActiveSkill==131)
-		if(EquipNumSearch(1169))
+	if (n_A_ActiveSkill == 131)
+		if (EquipNumSearch(1169))
 			wX += n_A_Weapon_ATKplus;
 
 	//Custom Talon Tales - 2018-06-07 - Chilly Spell Book - Storm Gust & Cold Bolt damage +3% per refine [Nattwara]
-	if(n_A_ActiveSkill==54 || n_A_ActiveSkill==131)
-		if(EquipNumSearch(1653))
+	if (n_A_ActiveSkill == 54 || n_A_ActiveSkill == 131)
+		if (EquipNumSearch(1653))
 			wX += (3 * n_A_Weapon_ATKplus);
 
-	if(n_A_ActiveSkill==37||n_A_ActiveSkill==387){
-		if(n_A_JobSearch() == 3 && EquipNumSearch(1247)){
+	if (n_A_ActiveSkill == 37 || n_A_ActiveSkill == 387) {
+		if (n_A_JobSearch() == 3 && EquipNumSearch(1247)) {
 			wX += 5;
-			if(n_A_HEAD_DEF_PLUS > 7)
+			if (n_A_HEAD_DEF_PLUS > 7)
 				wX += 5;
 		}
 	}
-	
+
 	// Hira Shurikat#1385#13th Bonus - [If Base STR >= 90] - 10% more damage with [Lightning Spear of Ice#410], [Crimson Fire Blossom#407], and [North Wind#415]
 	if (SU_STR >= 90 && (407 == n_A_ActiveSkill || 410 == n_A_ActiveSkill || 415 == n_A_ActiveSkill) && 1385 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 13) > -1)
 		wX += 10;
@@ -3370,14 +3371,21 @@ function BattleMagicCalc(wBMC)
 	// Elemental Boots#1819 - [Refine Level +7 or Higher] 5% more damage with [Fire Bolt], [Cold Bolt], [Lightning Bolt], [Earth Spike].
 	if ((n_A_ActiveSkill == 51 || n_A_ActiveSkill == 54 || n_A_ActiveSkill == 56 || n_A_ActiveSkill == 132) && n_A_SHOES_DEF_PLUS > 6)
 		wX += 5;
-	
+
 	// Mental Stick#1508 - [Every Refine Level] 2% more damage with [Fire Bolt]#51, [Cold Bolt]#54, [Lightning Bolt]#56
 	if (n_A_ActiveSkill == 51 || n_A_ActiveSkill == 54 || n_A_ActiveSkill == 56)
+	{
 		wX += 2 * n_A_Weapon_ATKplus * EquipNumSearch(1508);
+
+		// Novice Figure#1116 - [INT > 90] - [Fire Bolt]#51,[Cold Bolt]#54 and [Lighting Bolt]#56 damage increased by 15%
+		if (SU_INT > 90)
+			wX += 15 * EquipNumSearch(1116)
+	}
 	
 	// Yellow Lichtern Card#612 - [Ninja Class] - 25% more damage with [Wind Blade]
 	if (44 == n_A_JOB)
 		wX += 25 * CardNumSearch(612);
+
 
 	wBMC = wBMC * (100 + wX) / 100;
 	
@@ -7872,6 +7880,10 @@ function calc()
 	if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
 		wDA += 10;
 
+	// Thief Figure#1121 - [Vanilla Mode] - [Double Attack] Rate + 5%
+	if (document.calcForm.vanilla.checked)
+		wDA += 5 * EquipNumSearch(1121);
+
 	// Chain Action#427 - Similar behaviour as Double Attack
 	if (n_A_WeaponType == 17){
 		wDA = SkillSearch(427) * 5;
@@ -8712,6 +8724,14 @@ function ApplySkillAtkBonus(dmg)
 	// Platinum Dagger#1849 - [Every Refine Level] - [Raid#171] damage increased by 5%
 	if (171 == n_A_ActiveSkill && EquipNumSearch(1849))
 		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus;
+
+	// Novice Figure#1116 - [STR > 90] - [Bash#6],[Mammonite#65] and [Magnum Break#7] damage increased by 15%
+	if ((6 == n_A_ActiveSkill || 7 == n_A_ActiveSkill || 65 == n_A_ActiveSkill) && EquipNumSearch(1116) && SU_STR > 90)
+		skill_atk_bonus_ratio += 15;
+
+	// Swordman Figure#1117 - [Vanilla Mode] - [Brandish Spear#73] and [Holy Cross#161] damage increased by 25%
+	if (document.calcForm.vanilla.checked && (73 == n_A_ActiveSkill || 161 == n_A_ActiveSkill))
+		skill_atk_bonus_ratio += 25 * EquipNumSearch(1117);
 
 	dmg = dmg * (100 + StPlusCalc2 (5000 + n_A_ActiveSkill) + StPlusCard(5000 + n_A_ActiveSkill) + skill_atk_bonus_ratio) / 100;
 

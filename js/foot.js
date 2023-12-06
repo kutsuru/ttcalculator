@@ -1464,8 +1464,15 @@ with(document.calcForm){
 		n_tok[13] += 500 * CardNumSearch(477);
 	if(EquipNumSearch(883) && n_A_BaseLV <= 79)
 		n_tok[13] += 400 * EquipNumSearch(883);
-	if(EquipNumSearch(1116) && n_A_JobSearch()==0)
-		n_tok[13] += 60;
+
+	// Novice Figure#1116 - [INT > 90] - After-cast delay - 10%, MATK + 25
+	let novice_figures = EquipNumSearch(1116);
+	if (novice_figures && SU_INT > 90)
+	{
+		n_tok[98] += 25 * novice_figures;
+		n_tok[74] += 10 * novice_figures;
+	}
+
 	if(EquipNumSearch(986))
 		n_tok[13] += 7 * n_A_BaseLV;
 	if(n_A_Weapon_ATKplus >= 6 && EquipNumSearch(1168))
@@ -2156,6 +2163,10 @@ with(document.calcForm){
 	if(CardNumSearch(492))
 		n_A_HIT += Math.floor(n_A_JobLV /5) * CardNumSearch(492); //custom Talon Tales Ifrit Card +1hit every 5 Joblv
 		//n_A_HIT += Math.floor(n_A_JobLV /10) * CardNumSearch(492); //custom Talon Tales Ifrit Card +1hit every 5 Joblv
+
+	// Thief Figure#1121 - [PvM Only] HIT + 10%
+	if (!Taijin)
+		n_tok[109] += 10 * EquipNumSearch(1121);
 
 	n_A_HIT = Math.floor(n_A_HIT * (1 + n_tok[109] / 100));
 
@@ -3607,6 +3618,10 @@ with(document.calcForm){
 	// Huuma Swirling Petal#1770 - [Every Refine Level] - 2% less aftercast delay with [Throw Huuma Shuriken#396]
 	if (396 == n_A_ActiveSkill && EquipNumSearch(1770))
 		skill_delay_reduction += 2 * n_A_Weapon_ATKplus;
+
+	// Novice Figure#1116 - [STR > 90] - [Magnum Break#7] after-cast delay reduced by 10%
+	if (7 == n_A_ActiveSkill && EquipNumSearch(1116) && SU_STR > 90)
+		skill_delay_reduction += 10;
 	
 	n_tok[74] = Math.floor(100 - (100 - n_tok[74]) * (1 - skill_delay_reduction / 100));
 
