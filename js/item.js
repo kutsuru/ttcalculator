@@ -1917,6 +1917,8 @@ ItemOBJ = [
 ,[1860,63,98,1,0,1,80,0,"Wolf Boots","",0,19,1,13,300,57,1,0]
 ,[1861,62,98,1,0,1,80,0,"Wolf Muffler","",0,19,2,13,400,57,2,0]
 ,[1862,100,0,0,0,0,0,0,"Wolf Gi + Wolf Muffler + Wolf Boots","","<br><b>[Star Gladiator]</b><br>Increases Kick Skill rate by 15%.<br>Increases damage of all kick skills 10%.<br><br><b>[Soul Linker]</b><br>MSP + 500<br>DEX + 3<br>ATK + 100<br>Reduces SP cost of skills by 10%.",12,10,92,10,95,10,199,10,218,10,50,-300,51,-300,52,-300,53,-300,54,-300,55,-300,56,-300,58,-300,59,-300,0]
+,[1863,64,50,0,0,0,80,0,"Apprentice Badge","","<br>Add 1% chance of auto casting Level 1 [Dragon Fear] when attacking.",19,6,14,100,13,500,12,5,89,5,80,5,0]
+,[1864,100,0,0,0,0,0,0,"Apprentice Badge + Glorious Ring","",0,89,5,91,10,94,10,93,10,80,5,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3813,6 +3815,8 @@ ItemID = [
 ,[1860,1,30364]
 ,[1861,1,30363]
 ,[1862,2,30362,30363,30364]
+,[1863,1,30358]
+,[1864,2,30358,2772]
 ];
 
 /*
@@ -4131,7 +4135,7 @@ function Item_Setumei(nC1,nC2)
 	if(89 == nC1)
 		CBIstr += "MATK"+ wIS + nC2 +"%<BR>";
 	if(91 == nC1)
-		CBIstr += "Heal effectiveness increased by "+ wIS + nC2 +"%<BR>";
+		CBIstr += "[Heal] effectiveness increased by "+ wIS + nC2 +"%<BR>";
 	if(92 == nC1)
 		CBIstr += "Heal received from [Heal] increased by "+ wIS + nC2 +"%<BR>";
 	if(93 == nC1)
@@ -4145,7 +4149,7 @@ function Item_Setumei(nC1,nC2)
 	if(201 == nC1)
 		CBIstr += "[Slim Potion Pitcher] effectiveness increased by "+ wIS + nC2 +"%<BR>";
 	if(94 == nC1)
-		CBIstr += "Sanctuary effectiveness increased by "+ wIS + nC2 +"%<BR>";
+		CBIstr += "[Sanctuary] effectiveness increased by "+ wIS + nC2 +"%<BR>";
 	if(96 == nC1)
 		CBIstr += "Heal received from [Sanctuary] increased by "+ wIS + nC2 +"%<BR>";
 	if(97 == nC1)
@@ -4504,6 +4508,7 @@ w_SE = [[737,436,475,"NULL"]
 ,[1854,1851,1852,1853,"NULL"] //Custom Talon Tales - Trainee Suit + Fledgling Manteau + Fledgling Boots
 ,[1858,1855,1856,1857,"NULL"] //Custom Talon Tales - Striking Mail + Mikoshi + Tabi
 ,[1862,1859,1860,1861,"NULL"] //Custom Talon Tales - Wolf Gi + Wolf Muffler + Wolf Boots
+,[1864,1863,1111,"NULL"] //Custom Talon Tales - Apprentice Badge + Glorious Ring
 ];
 
 SE_MAXnum = w_SE.length -1;
