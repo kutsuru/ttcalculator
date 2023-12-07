@@ -8727,8 +8727,8 @@ function ApplySkillAtkBonus(dmg)
 		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus;
 
 	// Novice Figure#1116 - [STR > 90] - [Bash#6],[Mammonite#65] and [Magnum Break#7] damage increased by 15%
-	if ((6 == n_A_ActiveSkill || 7 == n_A_ActiveSkill || 65 == n_A_ActiveSkill) && EquipNumSearch(1116) && SU_STR > 90)
-		skill_atk_bonus_ratio += 15;
+	if ((6 == n_A_ActiveSkill || 7 == n_A_ActiveSkill || 65 == n_A_ActiveSkill) && SU_STR > 90)
+		skill_atk_bonus_ratio += 15 * EquipNumSearch(1116);
 
 	// Swordman Figure#1117 - [Vanilla Mode] - [Brandish Spear#73] and [Holy Cross#161] damage increased by 25%
 	if (document.calcForm.vanilla.checked && (73 == n_A_ActiveSkill || 161 == n_A_ActiveSkill))
