@@ -1919,6 +1919,7 @@ ItemOBJ = [
 ,[1862,100,0,0,0,0,0,0,"Wolf Gi + Wolf Muffler + Wolf Boots","","<br><b>[Star Gladiator]</b><br>Increases Kick Skill rate by 15%.<br>Increases damage of all kick skills 10%.<br><br><b>[Soul Linker]</b><br>MSP + 500<br>DEX + 3<br>ATK + 100<br>Reduces SP cost of skills by 10%.",12,10,92,10,95,10,199,10,218,10,50,-300,51,-300,52,-300,53,-300,54,-300,55,-300,56,-300,58,-300,59,-300,0]
 ,[1863,64,50,0,0,0,80,0,"Apprentice Badge","","<br>Add 1% chance of auto casting Level 1 [Dragon Fear] when attacking.",19,6,14,100,13,500,12,5,89,5,80,5,0]
 ,[1864,100,0,0,0,0,0,0,"Apprentice Badge + Glorious Ring","",0,89,5,91,10,94,10,93,10,80,5,0]
+,[1865,50,0,1,0,1,35,1,"Small Deviling Hat","","<b>[Refine Rate 8~10]</b> MaxHP + 1% per refine",57,5,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3817,6 +3818,7 @@ ItemID = [
 ,[1862,2,30362,30363,30364]
 ,[1863,1,30358]
 ,[1864,2,30358,2772]
+,[1865,1,18843]
 ];
 
 /*

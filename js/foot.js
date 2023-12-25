@@ -959,7 +959,12 @@ with(document.calcForm){
 	
 	// Guardian Knight Spear#1672 - [Every Refine Level] - MaxHP + 3%
 	n_tok[15] += n_A_Weapon_ATKplus * 3 * EquipNumSearch(1672);
-	
+
+
+	// Small Deviling Hat#1865 - [Refine 8~10] - [Every Refine Level] - MaxHP + 1%
+	if (EquipNumSearch(1865) && n_A_HEAD_DEF_PLUS >= 8)
+		n_tok[15] += n_A_HEAD_DEF_PLUS;
+
 	// Undine Spear#1681 [Every Refine Level]  MaxHP + 1%
 	if (EquipNumSearch(1681)) {
 		n_tok[15] += n_A_Weapon_ATKplus
