@@ -5042,8 +5042,9 @@ function StPlusCalc() {
 	if (EquipNumSearch(898) && (n_A_JobSearch2() == 14 || n_A_JOB == 44)) {
 		n_tok[5] += 1; // DEX + 1
 		
-		// [Every Refine Level +6~8] - DEX + 2
-		n_tok[5] += 2 * Math.min(3, Math.max(0, n_A_Weapon_ATKplus - 5)); // DEX + 2
+		// [Refine Level >= 6] - DEX + 2
+		if (n_A_Weapon_ATKplus >= 6)
+			n_tok[5] += 2;
 
 		if (n_A_Weapon_ATKplus >= 9) {
 			n_tok[5] += 3; 	// DEX + 3
