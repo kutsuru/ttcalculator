@@ -2783,7 +2783,7 @@ with(document.calcForm){
 		n_tok[12] += Math.floor(SU_INT / 8) * 2; // [Every 8 Base INT] ASPD + 2%
 	}
 	
-	// Glorious Staff of Destruction#1083 - [Every Refine Leve] - MATK + 3% for 6 seconds when using magic attacks at a 1% chance per refine.
+	// Glorious Staff of Destruction#1083 - [Every Refine Level] - MATK + 3% for 6 seconds when using magic attacks at a 1% chance per refine.
 	if (TimeItemNumSearch(59))
 		n_tok[89] += 3 * n_A_Weapon_ATKplus;
 	
