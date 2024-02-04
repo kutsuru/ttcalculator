@@ -1506,10 +1506,15 @@ with(document.calcForm){
 	if(EquipNumSearch(1048)){
 		n_tok[13] += n_A_HEAD_DEF_PLUS * 20;
 	}
-  //[Talon Tales Custom - Glorious Huuma Shuriken - + 150 HP per refine level] [Amor]
-	if(EquipNumSearch(1098)) {
-		n_tok[13] += (150 * n_A_Weapon_ATKplus);
+	// Glorious Huuma Shuriken - [Every Refine Level]
+	// - Increases HP by 250
+	// - Ignores [Demi-Human] race monsters defense by 2%
+	if (EquipNumSearch(1098))
+	{
+		n_tok[13] += 250 * n_A_Weapon_ATKplus;
+		n_tok[187] += 2 * n_A_Weapon_ATKplus;
 	}
+
 	//[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for MaxHP] [Kato]
 	for(i=0;i<MalangdoEnchantment.length;i++) {
 		var vME = MalangdoEnchantment[i];
@@ -2786,7 +2791,15 @@ with(document.calcForm){
 	// Glorious Staff of Destruction#1083 - [Every Refine Level] - MATK + 3% for 6 seconds when using magic attacks at a 1% chance per refine.
 	if (TimeItemNumSearch(59))
 		n_tok[89] += 3 * n_A_Weapon_ATKplus;
-	
+
+	//[Custom Talon Tales - 2018-07-27 Glorious Arc Wand - Every 2 refine 1% MATK for demi-human] [Amor]
+	if (EquipNumSearch(1084)) {
+		n_tok[177] += (1 * Math.floor(n_A_Weapon_ATKplus / 2));
+
+		if (20 == n_A_JOB)
+			n_tok[89] += 20;
+	}
+
 	w += n_tok[89];
 
 	if(n_A_Weapon_ATKplus >= 9 && EquipNumSearch(642))
@@ -3347,16 +3360,20 @@ with(document.calcForm){
 	if (EquipNumSearch(913) && n_A_JobSearch() == 2)
 		n_tok[12] += 10;
 
-	//[Talon Tales Custom - 2018-07-27 - Glorious Apocalipse 1095/Glorious Cleaver 1088/Glorious Flamberge 1077/Glorious Guitar 1092/Glorious Jamadhar 1091/Glorious Lariat 1093/Glorious Morning Star 1086/Glorious Spear 1081 - Every Refine Level gives APSD + 1%][Amor]
-	if (EquipNumSearch(1095) || EquipNumSearch(1088) || EquipNumSearch(1077) || EquipNumSearch(1092) || EquipNumSearch(1091) || EquipNumSearch(1093) || EquipNumSearch(1086) || EquipNumSearch(1081) || EquipNumSearch(1087))
+	//[Talon Tales Custom - 2018-07-27 - Glorious Apocalipse 1095/Glorious Cleaver 1088/Glorious Guitar 1092/Glorious Jamadhar 1091/Glorious Lariat 1093/Glorious Morning Star 1086/Glorious Spear 1081 - Every Refine Level gives ASPD + 1%][Amor]
+	if (EquipNumSearch(1095) || EquipNumSearch(1088) || EquipNumSearch(1092) || EquipNumSearch(1091) || EquipNumSearch(1093) || EquipNumSearch(1086) || EquipNumSearch(1081) || EquipNumSearch(1087))
 		n_tok[12] += n_A_Weapon_ATKplus;
+
+	// Glorious Flamberge#1077 - [Every Refine Level] ASPD + 1%
+	if (EquipNumSearch(1077))
+		n_tok[12] += 3 * n_A_Weapon_ATKplus;
 
 	// Glorious Two-Handed Axe#1087 - [Every Refine Level] - ASPD + 2%
 	n_tok[12] += 2 * EquipNumSearch(1087);
 
-	//[Talon Tales Custom - 2018-07-28 - Glorious Gladius  +1% ASPD per refine to [SL/Ninja]] [Amor]
+	//[Talon Tales Custom - 2018-07-28 - Glorious Gladius  +2% ASPD per refine to [SL/Ninja]] [Amor]
 	if (EquipNumSearch(1076) && (n_A_JOB== 43 || n_A_JOB == 44))
-		n_tok[12] += n_A_Weapon_ATKplus;
+		n_tok[12] += 2 * n_A_Weapon_ATKplus;
 
 	//[Talon Tales Custom - 2018-07-28 - Glorious Hunter Bow - 5% ASPD (+2% per refine) for Rogue Class] [Amor]
 	if (EquipNumSearch(1089) && n_A_JobSearch2() == 14)
@@ -4076,9 +4093,6 @@ with(document.calcForm){
 		n_tok[94] += n_A_Weapon_ATKplus;
 	}
 
-	//[Custom Talon Tales - 2018-07-27 Glorious Arc Wand - Every 2 refine 1% MATK for demi-human] [Amor]
-	if (EquipNumSearch(1084))
-		n_tok[177] += (1 * Math.floor(n_A_Weapon_ATKplus/2));
 
 	if(EquipNumSearch(1161)) {
 		n_tok[91] += SkillSearch(23);

@@ -8580,8 +8580,8 @@ function ApplySkillAtkBonus(dmg)
 		skill_atk_bonus_ratio += n_A_Weapon_ATKplus * EquipNumSearch(1088);
 	}
 
-	// Glorious Flamberge#1077 - [Every Refine Level] Increase [Bash], [Mammonite] and [Back Stab] damage by 5% [Amor]
-	if (n_A_ActiveSkill == 65 || n_A_ActiveSkill == 6 || n_A_ActiveSkill == 169)
+	// Glorious Flamberge#1077 - [Every Refine Level] Increase [Bash] and [Mammonite] damage by 5% [Amor]
+	if (n_A_ActiveSkill == 65 || n_A_ActiveSkill == 6)
 		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus * EquipNumSearch(1077);
 
 	// Glorious Grenade Launcher#1103 - [Every Refine Level] Increase [Ground Drift] damage by 2% [Amor]
