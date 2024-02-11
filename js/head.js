@@ -1612,16 +1612,11 @@ function BattleCalc999()
 			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);						//Enemy element reduction for ghost
 			w_DMG[b] = ApplySkillAtkBonus(w_DMG[b]);
 
-			//[Custom Talon Tales - 2018-07-09 Soft-Cap Asura damage above 200k] [NattWara/Loa]
-			//100% accurate for below 200k damage.
-			//~1% error for 200k-400k damage.
-			//No data available for above 400k damage.
-			
-			//Lex Aeterna for Asura Strike after soft-cap
+			// Lex Aeterna for Asura Strike before soft-cap
 			if (n_B_IJYOU[6] && wLAch==0)
 				w_DMG[b] *= 2;
 
-			if (w_DMG[b] > 200000)
+			if (w_DMG[b] > 200000) // Apply soft-cap
 				w_DMG[b] = Math.floor(w_DMG[b] / (w_DMG[b] + 300000) * 500000);
 			
 			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b]
