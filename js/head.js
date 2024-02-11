@@ -1622,11 +1622,7 @@ function BattleCalc999()
 				w_DMG[b] *= 2;
 
 			if (w_DMG[b] > 200000)
-			{
-				overflow_damage = w_DMG[b] - 200000;
-				smoothed_damage = 1.323031 + 0.5996693 * overflow_damage - 0.000001183789 * overflow_damage**2 + 2.125968e-12 * overflow_damage ** 3 - 2.736422e-18 * overflow_damage ** 4 + 1.647955e-24 * overflow_damage**5;
-				w_DMG[b] = Math.floor(200000 + smoothed_damage);
-			}
+				w_DMG[b] = Math.floor(w_DMG[b] / (w_DMG[b] + 300000) * 500000);
 			
 			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b]
 
