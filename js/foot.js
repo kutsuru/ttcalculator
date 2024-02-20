@@ -6904,7 +6904,8 @@ function KakutyouKansuu(){
 	}
 	else if(wKK == 16){
 		var wkk16="";
-		if(n_A_JOB==9 || n_A_JOB==23){
+		if (n_A_JobSearch2() == 9 || n_A_JobSearch2() == 14) // Enabled for Priest/Rogue job
+		{
 			var wX = 100+n_tok[94];
 
 			wkk16+="<table border=0>";
