@@ -3063,9 +3063,14 @@ with(document.calcForm){
 	//custom Talon Tales Black Wing +3% matk each refine
 	if(EquipNumSearch(1463))
 		w += 3*n_A_Weapon_ATKplus;
-	//custom Talon Tales RWC Commemorative Pin +1% matk each refine above 4
-	if(EquipNumSearch(1468) && n_A_HEAD_DEF_PLUS >= 4)
-		w += n_A_HEAD_DEF_PLUS-3;
+	// RWC Commemorative Pin#1468 -  [Every Refine >= 4] - MATK + 1% - Damage on [Small,Medium,Large] size monster + 1% 
+	if (EquipNumSearch(1468) && n_A_HEAD_DEF_PLUS >= 4) {
+		let bonus = n_A_HEAD_DEF_PLUS - 3;
+		n_tok[27] += bonus;
+		n_tok[28] += bonus;
+		n_tok[29] += bonus;
+		w += bonus;
+    }
 	//custom Talon Tales Halloween Midas Whisper
 	if(SU_INT >= 80 && EquipNumSearch(1526))
 		w += 3;
@@ -4517,7 +4522,7 @@ with(document.calcForm){
 		n_tok[28] += n_A_Weapon_ATKplus;
 		n_tok[29] += n_A_Weapon_ATKplus;
 	}
-	
+
 	// Mutating White Knight + Mutating Khalitzburg Combo#638 - [Every Refine Level] Increases magical damage against [Medium] and [Large] size monsters by 2%
 	if (CardNumSearch(638))
 	{

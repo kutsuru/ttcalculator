@@ -1264,27 +1264,27 @@ function BattleCalc999()
 		skill_ratio = (1 + n_A_ActiveSkillLV * 0.3);
 
 		damage = [0,0,0].map(x => Math.floor((n_A_ATK + shield_weight) * skill_ratio));
-		
+
 		// Apply skill modifiers
 		damage = damage.map(x => ApplySkillAtkBonus(x));
 		
 		// Apply status modifiers, in that case soul link
 		damage = damage.map(x => (n_A_ActiveSkill == 384 ? x * 2 : x));
-		
+
 		// Apply defense reduction
 		damage = ApplyDefReduction(damage, 0, is_piercing_attack);
-		
-		// Add refine bonus
-		damage = damage.map(x => x + shield_refine * 10);
-
-		// Apply modifiers
-		damage = damage.map(x => BaiCI(x));
 		
 		// Take into consideration monster element
 		// Aegis Shield#1376#8th Bonus - [Shield Chain] and [Shield Boomerang] ignores Neutral Resist.
 		if (1376 != n_A_Equip[5] || SQI_Bonus_Effect.findIndex(x => x == 8) == -1)
 			damage = damage.map(x => Math.floor(x * zokusei[n_B[3]][n_A_Weapon_zokusei]));
-		
+
+		// Add refine bonus
+		damage = damage.map(x => x + shield_refine * 10);
+
+		// Apply modifiers
+		damage = damage.map(x => BaiCI(x));
+
 		total_damage = damage.map(x => Math.floor(x * nb_hits));
 		
 		for (i = 0; i <= 2; ++i)
@@ -8213,73 +8213,61 @@ function BattleCalc2(w999)
 function BaiCI(wBaiCI)
 {
 
-	if(wBCEDPch==0 && not_use_card == 0){
+	if (wBCEDPch == 0 && not_use_card == 0)
+	{
+		damage_modifier = 1000;
 
-		if(debug_dmg_avg) {
-			debug_atk+="\n --- (BaiCI) Weapon/Card Race Modifier ---";
-			debug_atk+="\nb_wBaiCI:"+wBaiCI;
-		}
-		w1=n_tok[30+n_B[2]];
-		wBaiCI = Math.floor(wBaiCI * (100+w1) /100);
-		if(debug_dmg_avg)
-			debug_atk+="\na_wBaiCI:"+wBaiCI;
+		// bAddRace
+		race_modifier = 1 + n_tok[30 + n_B[2]] / 100;
+		damage_modifier = Math.floor(damage_modifier * race_modifier);
 
-		if(debug_dmg_avg) {
-			debug_atk+="\n --- (BaiCI) Weapon/Card Element Modifier ---";
-			debug_atk+="\nb_wBaiCI:"+wBaiCI;
-		}
-		w1=n_tok[40+Math.floor(n_B[3] / 10)];
-		wBaiCI = Math.floor(wBaiCI * (100+w1) /100);
-		if(debug_dmg_avg)
-			debug_atk+="\na_wBaiCI:"+wBaiCI;
-		
+		// bAddEle
+		element_modifier = 1 + n_tok[40 + Math.floor(n_B[3] / 10)] / 100;
+		damage_modifier = Math.floor(damage_modifier * element_modifier);
+
+		// bAddSize
+		size_modifier = 1 + n_tok[27 + n_B[4]] / 100;
+		damage_modifier = Math.floor(damage_modifier * size_modifier);
+
+		// bAddRace2
+		race2_modifier = 1;
+		if (108 <= n_B[0] && n_B[0] <= 115 || n_B[0] == 319 || n_B[0] == 233)
+			race2_modifier += n_tok[81] / 100;
+
+		if (116 <= n_B[0] && n_B[0] <= 120)
+			race2_modifier += n_tok[82] / 100;
+
+		if (49 <= n_B[0] && n_B[0] <= 52 || 55 == n_B[0] || 221 == n_B[0])
+			race2_modifier += n_tok[83] / 100;
+
+		if (106 == n_B[0] || 152 == n_B[0] || 308 == n_B[0] || 32 == n_B[0] || 541 == n_B[0])
+			race2_modifier += n_tok[84] / 100;
+		damage_modifier = Math.floor(damage_modifier * race2_modifier);
+
+		// bAddClass
+		class_modifier = 1 + n_tok[80] / 100;
+		if (n_B[19] == 1)
+			class_modifier += n_tok[26] / 100;
+		damage_modifier = Math.floor(damage_modifier * class_modifier);
+
 		// bAutoAtkRate
+		autoattack_modifier = 1;
 		if (!n_A_ActiveSkill)
-			wBaiCI = Math.floor(wBaiCI * (1 + n_tok[106] / 100));
+			autoattack_modifier += n_tok[106] / 100;
+		damage_modifier = Math.floor(damage_modifier * autoattack_modifier);
 
 		// bShortAtkRate
+		melee_modifier = 1;
 		if (!n_Enekyori)
-			wBaiCI = Math.floor(wBaiCI * (1 + (n_tok[88] + n_tok[300 + Math.floor(n_B[3] / 10)]) / 100));
+			melee_modifier += (n_tok[88] + n_tok[300 + Math.floor(n_B[3] / 10)]) / 100;
+		damage_modifier = Math.floor(damage_modifier * melee_modifier);
 
-		if(debug_dmg_avg) {
-			debug_atk+="\n --- (BaiCI) Weapon/Card Size Modifier ---";
-			debug_atk+="\nb_wBaiCI:"+wBaiCI;
-		}
-		
-		w1=n_tok[27 + n_B[4]];
-		//custom Talon Tales RWC Commemorative Pin +1% atk against small/mid/large size each refine above 4
-		if(EquipNumSearch(1468) && n_A_HEAD_DEF_PLUS >= 4)
-			w1 += n_A_HEAD_DEF_PLUS-3;
-		wBaiCI = Math.floor(wBaiCI * (100+w1) /100);
-		if(debug_dmg_avg)
-			debug_atk+="\na_wBaiCI:"+wBaiCI;
+		// bLongAtkRate
+		range_modifier = 1;
+		if (n_Enekyori == 1 && TyouEnkakuSousa3dan != -1)
+			range_modifier += n_tok[25] / 100;
+		damage_modifier = Math.floor(damage_modifier * range_modifier);
 
-		if(debug_dmg_avg) {
-			debug_atk+="\n --- (BaiCI) range damage Modifier ---";
-			debug_atk+="\nb_wBaiCI:"+wBaiCI;
-		}
-		if(n_Enekyori==1){
-			if(TyouEnkakuSousa3dan != -1){
-				w1=n_tok[25];
-				wBaiCI = Math.floor(wBaiCI * (100+w1) /100);
-			}
-		}
-		if(debug_dmg_avg)
-			debug_atk+="\na_wBaiCI:"+wBaiCI;
-
-		if(debug_dmg_avg) {
-			debug_atk+="\n --- (BaiCI) damage Modifier ---";
-			debug_atk+="\nb_wBaiCI:"+wBaiCI;
-		}
-
-		w1=0;
-		if(n_B[19] == 1)
-			w1 += n_tok[26];
-
-		w1 += n_tok[80];
-		wBaiCI = Math.floor(wBaiCI * (100+w1) /100);
-		if(debug_dmg_avg)
-			debug_atk+="\n\tw1:"+w1+"(%)\na_wBaiCI:"+wBaiCI;
 
 		// Manage critical damage modifier
 		if (wCriTyuu)
@@ -8316,37 +8304,21 @@ function BaiCI(wBaiCI)
 				if (EquipNumSearch(897)) // Brave Assassin Damascus#897
 					crit_dmg_modifier += 10;
 			}
-
-			wBaiCI = Math.floor(wBaiCI * (100 + crit_dmg_modifier) /100);
+			damage_modifier = Math.floor(damage_modifier * (1 + crit_dmg_modifier / 100));
 		}
 
-		if(108<=n_B[0] && n_B[0]<=115 || n_B[0]==319 || n_B[0] == 233) 
-			wBaiCI = Math.floor(wBaiCI * (100+n_tok[81]) /100);
-
-		if(116<=n_B[0] && n_B[0]<=120)
-			wBaiCI = Math.floor(wBaiCI * (100+n_tok[82]) /100);
-
-		if(49<=n_B[0] && n_B[0]<=52 || 55==n_B[0] || 221==n_B[0])
-			wBaiCI = Math.floor(wBaiCI * (100+n_tok[83]) /100);
-
-		if(106==n_B[0] || 152==n_B[0] || 308==n_B[0] || 32==n_B[0] || 541==n_B[0])
-			wBaiCI = Math.floor(wBaiCI * (100+n_tok[84]) /100);
-
-		if(debug_dmg_avg) {
-			debug_atk+="\n --- (BaiCI) specific monster Modifier ---";
-			debug_atk+="\nb_wBaiCI:"+wBaiCI;
-		}
-		
 		monster_dmg_modifier = StPlusCalc2(1000 + n_B[0]) + StPlusCard(1000 + n_B[0]);
 		
 		// Glorious Jamadhar#1091 - [Refine Rate 6-10] - Increases physical attack against Emperium#44 by 10%.
 		if (44 && EquipNumSearch(1091) && n_A_Weapon_ATKplus >= 6)
 			monster_dmg_modifier += 10;
 
-		wBaiCI = Math.floor(wBaiCI * (100 + monster_dmg_modifier) /100);
-		if(debug_dmg_avg)
-			debug_atk+="\na_wBaiCI:"+wBaiCI;
+		damage_modifier = Math.floor(damage_modifier * (1 + monster_dmg_modifier / 100));
 
+		// Apply damage modifier
+		wBaiCI = Math.floor(wBaiCI * damage_modifier / 1000);
+
+		// FIXME: Those modifiers should not directly increase damage but damage_modifier instead
 		if(SkillSearch(258))
 			wBaiCI = wBaiCI * 2;
 		if(SkillSearch(266))
