@@ -940,7 +940,7 @@ ItemOBJ = [
 ,[917,9,0,70,3,0,0,80,"Warlock's Magic Wand","","<b>[Refine level 7-10]</b><br>Adds a 5% chance to Stun opponents with your magic.<br><b>[Refine level 8-10]</b><br>Reduces cast time of Mystical Amplification by 50%.",89,15,4,4,5,3,317,25,194,1,0]
 ,[918,9,0,70,3,0,0,80,"Warlock's Battle Wand","","<b>[Refine level 7-10]</b><br>Adds a 10% chance to Sleep opponents when using Magic Crasher.<br><b>[Refine level 8-10]</b><br>Reduces cast time of Mystical Amplification by 50%.",89,15,4,3,5,3,73,-5,177,10,317,10,194,1,0]
 ,[919,9,0,70,3,0,0,80,"Strong Recovery Wand","","Recover 5 SP every 10 seconds",89,15,91,14,94,14,194,1,0]
-,[920,9,0,70,3,0,0,80,"Speedy Recovery Wand","","Recover 25 HP and 10 SP every 10 seconds.<br><br><b>[Acolyte Class]</b> INT + 3<br><br><b>[Refine level 8-10]</b><br>Reduce ranged damage by 10% but increases SP cost by 10%.",4,2,5,2,74,15,194,1,0]
+,[920,9,0,70,3,0,0,80,"Speedy Recovery Wand","","Recover 25 HP and 10 SP every 10 seconds.<br><br><b>[Acolyte Class]</b> INT + 3<br><br><b>[Refine level 8-10]</b><br>Reduce ranged damage by 10% but increases SP cost by 10%.",4,2,5,2,74,10,194,1,0]
 ,[921,14,0,60,3,0,0,80,"Valorous Battlefield Guitar","",0,5,2,37,95,187,20,194,1,0]
 ,[922,14,0,60,3,0,0,80,"Brave Battlefield Guitar","",0,5,2,37,95,5292,20,194,1,0]
 ,[923,15,0,60,3,0,0,80,"Valorous Battle Lariat","","<br><b>[Refine Level 8-10]</b><br>[Fortune's Kiss] CRIT Rate + 5.",5,2,6,2,37,95,187,20,194,1,0]
