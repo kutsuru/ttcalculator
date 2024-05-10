@@ -131,14 +131,6 @@ ArrowOBJ = [
 [ 1,0,"Stun Arrow"]//23
 ];
 
-ArrowOBJbackup = [
-[25,0,"Arrow"],
-[30,6,"Silver Arrow"],
-[30,3,"Fire Arrow"],
-[30,0,"Iron Arrow"],
-[30,2,"Stone Arrow"],
-];
-
 BulletOBJ = [
 [10,0,"Bullet"],
 [15,6,"Silver Bullet"],
@@ -3671,56 +3663,26 @@ with(document.calcForm){
 
 function ClickWeaponType(n){
 with(document.calcForm){
-	add_status_arrow = 0;
 	n_A_JobSet();
-	if(n_A_JobSearch()==2 || n_A_JobSearch()==4 || (n_A_JOB==45 && n!=0)){
+	if (n_A_JobSearch() == 2 || n_A_JobSearch() == 4 || (n_A_JOB == 45 && n != 0))
+	{
 		A_Arrow.style.visibility = "visible";
-		var len = A_Arrow.length;
-		for(var i=0;i<len;i++)
-			A_Arrow.options[0] = null;
-		
-		if(n==10||n==14||n==15)
-		{
-			j = ArrowOBJ.length;
-			for (i=0; i < ArrowOBJbackup.length; i++)
-				ArrowOBJ[i] = ArrowOBJbackup[i];
-		}
-		else if (n >= 17 && n <= 20)
-		{
-			j = BulletOBJ.length;
-			for (i = 0; i < j; ++i)
-				ArrowOBJ[i] = BulletOBJ[i];
-		}
-		else if (n==21)
-		{
-			j = GrenadeOBJ.length;
-			for (i = 0; i < j; ++i)
-				ArrowOBJ[i] = GrenadeOBJ[i]
-		}
-		else
-		{
-			j = 2;
-			ArrowOBJ[0] = [0,0,"No Arrows"];
-			ArrowOBJ[1] = ArrowOBJ[16];
-			//custom Talon Tales fix, add Sharp Arrow if no range weapon is equipped, so +5% crit damage still works if equipped with Little Feather Hat
-			add_status_arrow = 1;
-		}
-		//custom Talon Tales fix, add Sharp Arrow if no range weapon is equipped, so +5% crit damage still works if equipped with Little Feather Hat
-		for(i=0; i < j; i++){
-			A_Arrow.options[i] = new Option(ArrowOBJ[i][2],i);
-		}
-		if (add_status_arrow)
-		{
-			A_Arrow.options[2] = new Option(ArrowOBJ[15][2],15); // Sharp Arrow#15
-			A_Arrow.options[3] = new Option(ArrowOBJ[13][2],13); // Frozen Arrow#13
-			A_Arrow.options[4] = new Option(ArrowOBJ[14][2],14); // Poison Arrow#14
-			A_Arrow.options[5] = new Option(ArrowOBJ[19][2],19); // Curse Arrow#19
-			A_Arrow.options[6] = new Option(ArrowOBJ[20][2],20); // Flash Arrow#20
-			A_Arrow.options[7] = new Option(ArrowOBJ[21][2],21); // Mute Arrow#21
-			A_Arrow.options[8] = new Option(ArrowOBJ[22][2],22); // Sleep Arrow#22
-			A_Arrow.options[9] = new Option(ArrowOBJ[23][2],23); // Stun Arrow#23
-		}
-	}else{
+		let current_ammo_length = A_Arrow.length;
+		for (var i = current_ammo_length - 1; i >= 0; i--)
+			A_Arrow.remove(i);
+
+		let ammunitions_list = ArrowOBJ;
+
+		if (n >= 17 && n <= 20)
+			ammunitions_list = BulletOBJ;
+		else if (n == 21)
+			ammunitions_list = GrenadeOBJ;
+
+		for (i = 0; i < ammunitions_list.length; i++)
+			A_Arrow.options[i] = new Option(ammunitions_list[i][2], i);
+	}
+	else
+	{
 		A_Arrow.value = 0;
 		A_Arrow.style.visibility = "hidden";
 	}

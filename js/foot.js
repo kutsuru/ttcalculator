@@ -10660,9 +10660,6 @@ SpeedPotName = ["None","Concentration Potion","Awakening Potion","Berserk Potion
 document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
 document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
 
-for (i=0;i<=23;i++)
-	document.calcForm.A_Arrow.options[i] = new Option(ArrowOBJ[i][2],i);
-
 EnName =["Neutral","Water","Earth","Fire","Wind","Poison","Holy","Shadow","Ghost","Undead"];
 for (i=0;i<=9;i++)
 	document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
