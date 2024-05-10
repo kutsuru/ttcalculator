@@ -1920,6 +1920,7 @@ ItemOBJ = [
 ,[1863,64,50,0,0,0,80,0,"Apprentice Badge","","<br>Add 1% chance of auto casting Level 1 [Dragon Fear] when attacking.",19,6,14,100,13,500,12,5,89,5,80,5,0]
 ,[1864,100,0,0,0,0,0,0,"Apprentice Badge + Glorious Ring","",0,89,5,91,10,94,10,93,10,80,5,0]
 ,[1865,50,0,1,0,1,35,1,"Small Deviling Hat","","<b>[Refine Rate 8~10]</b> MaxHP + 1% per refine",57,5,0]
+,[1866,50,0,3,0,1,25,0,"Torch Cap","","Cannot be refined",63,20,220,34,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3819,6 +3820,7 @@ ItemID = [
 ,[1863,1,30358]
 ,[1864,2,30358,2772]
 ,[1865,1,18843]
+,[1866,1,5430]
 ];
 
 /*
