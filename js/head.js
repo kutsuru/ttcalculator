@@ -356,22 +356,21 @@ BossTypeOBJ = ["Normal","Boss"];
 
 SubName = ["%","s","Damage","Critical Damage","Critical Rate","Over 10000 Hits","Too High to Calculate","Immesurable"," x ","Cast Time","Off","On"];
 
-function BattleCalc999()
-{
+function BattleCalc999() {
 	wbairitu = 1;
 	wCast = 0;
 	wHITsuu = 1;
-	n_Enekyori=0;
-	wLAch=0;
+	n_Enekyori = 0;
+	wLAch = 0;
 
-	w_DMG = [0,0,0];
+	w_DMG = [0, 0, 0];
 	not_use_card = 0;
 	cast_kotei = 0;
 	zeny_cost = 0;
 
 	str_PerHIT_DMG = 0;
 	SG_Special_ch = 0;
-	for(var i=0;i<=2;i++){
+	for (var i = 0; i <= 2; i++) {
 		Last_DMG_A[i] = 0;
 		Last_DMG_B[i] = 0;
 	}
@@ -380,29 +379,29 @@ function BattleCalc999()
 	str_bSUBname = "";
 	InnStr = ["", "", ""];
 
-	if(n_A_ActiveSkill != 0 && n_A_ActiveSkill !=272 && n_A_ActiveSkill !=401 && !(n_A_ActiveSkill == 86 && (50 <= n_B[3] && n_B[3] < 60))){
-		myInnerHtml("CRIATK","",0);
-		myInnerHtml("CRInum","",0);
-		myInnerHtml("CRIATKname","",0);
-		myInnerHtml("CRInumname","",0);
+	if (n_A_ActiveSkill != 0 && n_A_ActiveSkill != 272 && n_A_ActiveSkill != 401 && !(n_A_ActiveSkill == 86 && (50 <= n_B[3] && n_B[3] < 60))) {
+		myInnerHtml("CRIATK", "", 0);
+		myInnerHtml("CRInum", "", 0);
+		myInnerHtml("CRIATKname", "", 0);
+		myInnerHtml("CRInumname", "", 0);
 	}
 
-	if(n_A_WeaponType==10 && n_A_ActiveSkill==0)
-		n_Enekyori=1;
+	if (n_A_WeaponType == 10 && n_A_ActiveSkill == 0)
+		n_Enekyori = 1;
 
-	if((n_A_WeaponType==17||n_A_WeaponType==18||n_A_WeaponType==19||n_A_WeaponType==20||n_A_WeaponType==21)&& n_A_ActiveSkill==0)
-		n_Enekyori=1;
+	if ((n_A_WeaponType == 17 || n_A_WeaponType == 18 || n_A_WeaponType == 19 || n_A_WeaponType == 20 || n_A_WeaponType == 21) && n_A_ActiveSkill == 0)
+		n_Enekyori = 1;
 
 
-	if(n_A_ActiveSkill==0 || (n_A_ActiveSkill==86 && (50 <= n_B[3] && n_B[3] < 60))){ // Poison React [Counter]#86
-		myInnerHtml("CRIATKname",SubName[3],0);
-		myInnerHtml("CRInumname",SubName[4],0);
+	if (n_A_ActiveSkill == 0 || (n_A_ActiveSkill == 86 && (50 <= n_B[3] && n_B[3] < 60))) { // Poison React [Counter]#86
+		myInnerHtml("CRIATKname", SubName[3], 0);
+		myInnerHtml("CRInumname", SubName[4], 0);
 
-		if(n_A_ActiveSkill==86){
+		if (n_A_ActiveSkill == 86) {
 			n_Delay[0] = 1;
 		}
-		debug_atk+="\n --- (BattleCalc999) skill calc:0,86 ---";
-		if(n_Nitou){
+		debug_atk += "\n --- (BattleCalc999) skill calc:0,86 ---";
+		if (n_Nitou) {
 			TyouEnkakuSousa3dan = 0;
 
 			//custom Talon Tales ignore effects on left/offhand like Ice Pick and bIgnoreDefRace
@@ -410,104 +409,104 @@ function BattleCalc999()
 
 			n_A_workDEX = Math.floor(n_A_DEX * (1 + (n_A_Weapon2LV - 1) * 0.2));
 
-			if(n_A_workDEX>=n_A_Weapon2_ATK)
+			if (n_A_workDEX >= n_A_Weapon2_ATK)
 				w_left_Maxatk = n_A_ATK + n_A_Weapon2LV_Maxplus + Math.floor(n_A_Weapon2_ATK * wCSize);
 			else
 				w_left_Maxatk = n_A_ATK + n_A_Weapon2LV_Maxplus + Math.floor((n_A_Weapon2_ATK - 1) * wCSize);
 
-			w_left_Maxatk = BattleCalc4(w_left_Maxatk * wbairitu,2,1);
+			w_left_Maxatk = BattleCalc4(w_left_Maxatk * wbairitu, 2, 1);
 
-			if(w_left_Maxatk<1)w_left_Maxatk=1;
+			if (w_left_Maxatk < 1) w_left_Maxatk = 1;
 			w_left_Maxatk = Math.floor(w_left_Maxatk * zokusei[n_B[3]][n_A_Weapon2_zokusei]);
 
 			w_left_star = 0;
-			if(n_A_card[4]==106 && n_A_card[5]==106 && n_A_card[6]==106){
+			if (n_A_card[4] == 106 && n_A_card[5] == 106 && n_A_card[6] == 106) {
 				w_left_star += 40;
-			}else{
-				for(i=4;i<=6;i++){
-					if(cardOBJ[n_A_card[i]][0]==106)
+			} else {
+				for (i = 4; i <= 6; i++) {
+					if (cardOBJ[n_A_card[i]][0] == 106)
 						w_left_star += 5;
 				}
 			}
-			if(n_A_card[7]==106)
+			if (n_A_card[7] == 106)
 				w_left_star += 10;
 			w_left_Maxatk += w_left_star;
-			w_left_Maxatk = w_left_Maxatk * (3 + SkillSearch(80)) /10;
+			w_left_Maxatk = w_left_Maxatk * (3 + SkillSearch(80)) / 10;
 			w_left_Maxatk = Math.floor(w_left_Maxatk);
 
-			if(n_A_workDEX > n_A_Weapon2_ATK)
+			if (n_A_workDEX > n_A_Weapon2_ATK)
 				n_A_workDEX = n_A_Weapon2_ATK;
 			w_left_Minatk = n_A_ATK + n_A_Weapon2LV_Minplus + Math.floor(n_A_workDEX * wCSize);
-			w_left_Minatk = BattleCalc4(w_left_Minatk * wbairitu,0,1);
-			
+			w_left_Minatk = BattleCalc4(w_left_Minatk * wbairitu, 0, 1);
+
 			manage_left_hand_effect(1);
 
-			if(w_left_Minatk<1)
-				w_left_Minatk=1;
+			if (w_left_Minatk < 1)
+				w_left_Minatk = 1;
 			w_left_Minatk = Math.floor(w_left_Minatk * zokusei[n_B[3]][n_A_Weapon2_zokusei]);
-			w_left_Minatk  += w_left_star;
-			w_left_Minatk *= (0.3 + SkillSearch(80) /10);
+			w_left_Minatk += w_left_star;
+			w_left_Minatk *= (0.3 + SkillSearch(80) / 10);
 			w_left_Minatk = Math.floor(w_left_Minatk);
 
-			w_left_Aveatk = (w_left_Maxatk + w_left_Minatk) /2;
+			w_left_Aveatk = (w_left_Maxatk + w_left_Minatk) / 2;
 
 			w_left_Maxatk = tPlusDamCut(w_left_Maxatk);
 			w_left_Minatk = tPlusDamCut(w_left_Minatk);
 			w_left_Aveatk = tPlusDamCut(w_left_Aveatk);
 
-			ATKbai02(wbairitu,0);
+			ATKbai02(wbairitu, 0);
 
 			n_Min_DMG += w_left_Minatk;
 			n_Max_DMG += w_left_Maxatk;
 
-			w_DMG[0] = BattleCalc(n_A_DMG[0],0);
+			w_DMG[0] = BattleCalc(n_A_DMG[0], 0);
 
 			var wX = w_DMG[0] + EDP_DMG(0);
 
 			Last_DMG_A[0] = Last_DMG_B[0] = wX + w_left_Minatk;
-			InnStr[0] += wX +" ("+ w_left_Minatk +")";
-			if(w998D){
+			InnStr[0] += wX + " (" + w_left_Minatk + ")";
+			if (w998D) {
 				str_bSUBname += "Double Attack chance<BR>";
-				str_bSUB += (wX *2 + w_left_Minatk) +"~";
+				str_bSUB += (wX * 2 + w_left_Minatk) + "~";
 			}
-			if(wX + w_left_Minatk < n_Min_DMG && w998G < 100)
+			if (wX + w_left_Minatk < n_Min_DMG && w998G < 100)
 				n_Min_DMG = wX + w_left_Minatk;
 			w_DMG[0] = n_Min_DMG;
 
-			w_DMG[2] = BattleCalc(n_A_DMG[2],2);
+			w_DMG[2] = BattleCalc(n_A_DMG[2], 2);
 
 			var wX = w_DMG[2] + EDP_DMG(2) + w_left_Maxatk;
 			Last_DMG_A[2] = Last_DMG_B[2] = wX + w_left_Maxatk;
-			InnStr[2] += w_DMG[2] + EDP_DMG(2) +" ("+ w_left_Maxatk +")";
-			if(w998D){
+			InnStr[2] += w_DMG[2] + EDP_DMG(2) + " (" + w_left_Maxatk + ")";
+			if (w998D) {
 				wX = (w_DMG[2] + EDP_DMG(2)) * 2 + w_left_Maxatk;
-				str_bSUB += wX +" ("+ w998D +"%)<BR>";
+				str_bSUB += wX + " (" + w998D + "%)<BR>";
 			}
-			if(wX > n_Max_DMG && w998G < 100)
+			if (wX > n_Max_DMG && w998G < 100)
 				n_Max_DMG = wX;
 			w_DMG[2] = n_Max_DMG;
 
-			w_DMG[1] = BattleCalc(n_A_DMG[1],1);
+			w_DMG[1] = BattleCalc(n_A_DMG[1], 1);
 
 			var wX = w_DMG[1] + EDP_DMG(1);
 			Last_DMG_A[1] = Last_DMG_B[1] = wX + w_left_Aveatk;
-			InnStr[1] += wX +" ("+ w_left_Aveatk +")";
+			InnStr[1] += wX + " (" + w_left_Aveatk + ")";
 
 			w_DMG[1] = BattleCalc3(w_DMG[1]);
 			w_DMG[1] += BattleCalc3left(w_left_Aveatk);
 			w_DMG[1] += EDP_DMG(1);
 
 			var wX = BattleCalc2(0);
-			var wX2 = Math.floor(w_left_star * (0.3 + SkillSearch(80) /10));
+			var wX2 = Math.floor(w_left_star * (0.3 + SkillSearch(80) / 10));
 
 			n_PerHIT_DMG = wX + wX2;
-			str_PerHIT_DMG = wX +"+"+ wX2;
+			str_PerHIT_DMG = wX + "+" + wX2;
 
 			CastAndDelay();
 			BattleCalc998();
 		}
-		else{
-			n_TAKA_DMG=0;
+		else {
+			n_TAKA_DMG = 0;
 			//debug_atk+="\n --- (BattleCalc999) BlitzBeat ---";
 			//debug_atk+="\nb_wTAKA:not defined(manuell)";
 			wTAKA = BattleTAKA();
@@ -517,60 +516,60 @@ function BattleCalc999()
 			//debug_atk+="\n --- (BattleCalc999) Triple Attack ---";
 			//debug_atk+="\nb_n_Min_DMG:"+n_Min_DMG;
 			//debug_atk+="\nb_n_Max_DMG:"+n_Max_DMG;
-			
+
 			let triple_attack_lv = SkillSearch(187); // Triple Attack#187
-			
-			if (triple_attack_lv){ 
+
+			if (triple_attack_lv) {
 				TyouEnkakuSousa3dan = -1;
 				wBC3_3danAtkBairitu = SkillSearch(187) * 0.2;
-				var san = [0,0,0];
+				var san = [0, 0, 0];
 				// Force active skill to Triple Attack#187 during the damage computation
 				let previous_active_skill = n_A_ActiveSkill;
 				n_A_ActiveSkill = 187;
-				
-				for(var i=0;i<=2;i++){
-					san[i] = BattleCalc(n_A_DMG[i] * (wbairitu + wBC3_3danAtkBairitu),i) + EDP_DMG(i);
-					san[i] = Math.floor(san[i] /3) *3;
-					if(n_B[19] == 5)
+
+				for (var i = 0; i <= 2; i++) {
+					san[i] = BattleCalc(n_A_DMG[i] * (wbairitu + wBC3_3danAtkBairitu), i) + EDP_DMG(i);
+					san[i] = Math.floor(san[i] / 3) * 3;
+					if (n_B[19] == 5)
 						san[i] = 3;
 				}
-				
+
 				n_A_ActiveSkill = previous_active_skill;
 				str_bSUBname += "Raging Trifecta Blow Damage<BR>";
 
 				let triple_attack_rate = get_triple_attack_rate();
-				
-				str_bSUB += san[0] +"~"+ san[2] +" ("+ triple_attack_rate +"% Chance)<BR>";
+
+				str_bSUB += san[0] + "~" + san[2] + " (" + triple_attack_rate + "% Chance)<BR>";
 				TyouEnkakuSousa3dan = 0;
-				if(n_Min_DMG > san[0])
+				if (n_Min_DMG > san[0])
 					n_Min_DMG = san[0];
-				if(n_Max_DMG < san[2])
+				if (n_Max_DMG < san[2])
 					n_Max_DMG = san[2];
 			}
 			//debug_atk+="\na_n_Min_DMG:"+n_Min_DMG;
 			//debug_atk+="\na_n_Max_DMG:"+n_Max_DMG;
 
-			debug_atk+="\n --- (BattleCalc999) extra Boni: Powerthrust/Fighting Chant ---";
-			debug_atk+="\nb_ATKbai02 (n_A_DMG[1]):"+n_A_DMG[1];
-			ATKbai02(wbairitu,0);
-			debug_atk+="\na_ATKbai02 (n_A_DMG[1]):"+n_A_DMG[1];
+			debug_atk += "\n --- (BattleCalc999) extra Boni: Powerthrust/Fighting Chant ---";
+			debug_atk += "\nb_ATKbai02 (n_A_DMG[1]):" + n_A_DMG[1];
+			ATKbai02(wbairitu, 0);
+			debug_atk += "\na_ATKbai02 (n_A_DMG[1]):" + n_A_DMG[1];
 
-			for(var i=0;i<=2;i++) {
-				if (i==1) {
-					debug_dmg_avg=1;
-					debug_atk+="\nb_BattleCalc (w_DMG[1]):"+w_DMG[i]+"\n\tn_A_DMG[1]:"+n_A_DMG[i];
+			for (var i = 0; i <= 2; i++) {
+				if (i == 1) {
+					debug_dmg_avg = 1;
+					debug_atk += "\nb_BattleCalc (w_DMG[1]):" + w_DMG[i] + "\n\tn_A_DMG[1]:" + n_A_DMG[i];
 				}
-				w_DMG[i] = BattleCalc(n_A_DMG[i],i);
-				if (i==1) {
-					debug_dmg_avg=0;
-					debug_atk+="\na_BattleCalc (w_DMG[1]):"+w_DMG[i];
+				w_DMG[i] = BattleCalc(n_A_DMG[i], i);
+				if (i == 1) {
+					debug_dmg_avg = 0;
+					debug_atk += "\na_BattleCalc (w_DMG[1]):" + w_DMG[i];
 				}
 			}
 
-			var w_KATARU = [0,0,0];
+			var w_KATARU = [0, 0, 0];
 			var w_Ave_KATARU = 0;
-			if(n_A_WeaponType == 11){
-				for(i=0;i<=2;i++)
+			if (n_A_WeaponType == 11) {
+				for (i = 0; i <= 2; i++)
 					w_KATARU[i] = Math.floor((w_DMG[i] + EDP_DMG(i)) * (0.01 + SkillSearch(13) * 0.02));
 				w_Ave_KATARU = Math.floor(w_DMG[1] * (0.01 + SkillSearch(13) * 0.02));
 			}
@@ -578,37 +577,37 @@ function BattleCalc999()
 			Last_DMG_B[0] = w_DMG[0] + EDP_DMG(0);
 			Last_DMG_A[0] = Last_DMG_B[0] + w_KATARU[0];
 			InnStr[0] += Last_DMG_A[0];
-			if(n_A_WeaponType == 11)
-				InnStr[0] = Last_DMG_A[0] +" ("+ Last_DMG_B[0] +"+"+ w_KATARU[0] +")";
-			if(Last_DMG_A[0] < n_Min_DMG && w998G < 100)
+			if (n_A_WeaponType == 11)
+				InnStr[0] = Last_DMG_A[0] + " (" + Last_DMG_B[0] + "+" + w_KATARU[0] + ")";
+			if (Last_DMG_A[0] < n_Min_DMG && w998G < 100)
 				n_Min_DMG = Last_DMG_A[0];
-			if(w998D){
-				if(n_A_WeaponType == 17 && SkillSearch(427)){
-					if(CardNumSearch(43) || EquipNumSearch(570))
+			if (w998D) {
+				if (n_A_WeaponType == 17 && SkillSearch(427)) {
+					if (CardNumSearch(43) || EquipNumSearch(570))
 						str_bSUBname += "Double attack chance<BR>";
 					else
 						str_bSUBname += "Chain action chance<BR>";
-				}else
+				} else
 					str_bSUBname += "Double attack chance<BR>";
-				str_bSUB += Last_DMG_A[0] * 2 +"~";
+				str_bSUB += Last_DMG_A[0] * 2 + "~";
 			}
 			w_DMG[0] = n_Min_DMG;
 
 			Last_DMG_B[2] = w_DMG[2] + EDP_DMG(2);
 			Last_DMG_A[2] = Last_DMG_B[2] + w_KATARU[2];
 			InnStr[2] += Last_DMG_A[2];
-			if(n_A_WeaponType == 11)
-				InnStr[2] = Last_DMG_A[2] +" ("+ Last_DMG_B[2] +"+"+ w_KATARU[2] +")";
+			if (n_A_WeaponType == 11)
+				InnStr[2] = Last_DMG_A[2] + " (" + Last_DMG_B[2] + "+" + w_KATARU[2] + ")";
 			n_Max_DMG += n_TAKA_DMG;
 			var wX = Last_DMG_A[2];
 			wX += n_TAKA_DMG;
-			if(n_Max_DMG < wX && w998G < 100)
+			if (n_Max_DMG < wX && w998G < 100)
 				n_Max_DMG = wX;
-			if(w998D){
-				var wX = (w_DMG[2] + EDP_DMG(2) + w_KATARU[2]) *2;
-				str_bSUB += wX +" ("+ w998D +"%)<BR>";
+			if (w998D) {
+				var wX = (w_DMG[2] + EDP_DMG(2) + w_KATARU[2]) * 2;
+				str_bSUB += wX + " (" + w998D + "%)<BR>";
 				wX += n_TAKA_DMG;
-				if(n_Max_DMG < wX)
+				if (n_Max_DMG < wX)
 					n_Max_DMG = wX;
 			}
 			w_DMG[2] = n_Max_DMG;
@@ -616,9 +615,9 @@ function BattleCalc999()
 			Last_DMG_B[1] = w_DMG[1] + EDP_DMG(1);
 			Last_DMG_A[1] = Last_DMG_B[1] + w_KATARU[1];
 			InnStr[1] += Last_DMG_A[1];
-			if(n_A_WeaponType == 11)
-				InnStr[1] = Last_DMG_A[1] +" ("+ Last_DMG_B[1] +"+"+ w_KATARU[1] +")";
-			if(SkillSearch(187))
+			if (n_A_WeaponType == 11)
+				InnStr[1] = Last_DMG_A[1] + " (" + Last_DMG_B[1] + "+" + w_KATARU[1] + ")";
+			if (SkillSearch(187))
 				TyouEnkakuSousa3dan = san[1];
 
 			w_DMG[1] += w_Ave_KATARU;
@@ -632,54 +631,54 @@ function BattleCalc999()
 		if (debug_mode)
 			alert(debug_atk);
 		return;
-	}else if(n_A_ActiveSkill==272 || n_A_ActiveSkill==401){ // Sharp Shooting#272, Shadow Slash#401
-		myInnerHtml("CRIATKname","Critical Hit",0);
-		myInnerHtml("CRInumname","Critical Attack chance",0);
+	} else if (n_A_ActiveSkill == 272 || n_A_ActiveSkill == 401) { // Sharp Shooting#272, Shadow Slash#401
+		myInnerHtml("CRIATKname", "Critical Hit", 0);
+		myInnerHtml("CRInumname", "Critical Attack chance", 0);
 
-		if(n_A_ActiveSkill==272){
-			n_Enekyori=1;
+		if (n_A_ActiveSkill == 272) {
+			n_Enekyori = 1;
 			wbairitu += (1 + 0.5 * n_A_ActiveSkillLV);
 			wCast = 2 * n_A_CAST;
 			n_Delay[2] = 1.5;
-		}else{
+		} else {
 			n_Delay[0] = 1;
-			n_Enekyori=0;
-			wbairitu += (n_A_ActiveSkillLV -1);
+			n_Enekyori = 0;
+			wbairitu += (n_A_ActiveSkillLV - 1);
 		}
 
 
-		for(i=0;i<=2;i++)
+		for (i = 0; i <= 2; i++)
 			n_A_CriATK[i] = n_A_DMG[i];
 
-		ATKbai02(wbairitu,1);
+		ATKbai02(wbairitu, 1);
 
-		wCriTyuu=1;
-		for(var i=0;i<=2;i++)
-			n_A_CriATK[i] = BattleCalc(n_A_CriATK[i],10);
+		wCriTyuu = 1;
+		for (var i = 0; i <= 2; i++)
+			n_A_CriATK[i] = BattleCalc(n_A_CriATK[i], 10);
 
-		wCriTyuu=0;
+		wCriTyuu = 0;
 
 
-		for(var i=0;i<=2;i++)
+		for (var i = 0; i <= 2; i++)
 			n_A_CriATK[i] += EDP_DMG(i);
 
-		if(w998G >= 100)
+		if (w998G >= 100)
 			n_Min_DMG = n_A_CriATK[0];
-		if(w998G > 0)
+		if (w998G > 0)
 			n_Max_DMG = n_A_CriATK[2];
-		myInnerHtml("CRIATK",n_A_CriATK[0] +"~"+ n_A_CriATK[2],0);
+		myInnerHtml("CRIATK", n_A_CriATK[0] + "~" + n_A_CriATK[2], 0);
 
-		ATKbai02(wbairitu,0);
+		ATKbai02(wbairitu, 0);
 
-		for(var i=0;i<=2;i++){
-			w_DMG[i] = BattleCalc(n_A_DMG[i],i);
+		for (var i = 0; i <= 2; i++) {
+			w_DMG[i] = BattleCalc(n_A_DMG[i], i);
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] + EDP_DMG(i);
 			InnStr[i] += Last_DMG_A[i];
 		}
 
-		if(w998G >= 100)
+		if (w998G >= 100)
 			w_DMG[0] = n_Min_DMG;
-		if(w998G > 0)
+		if (w998G > 0)
 			w_DMG[2] = n_Max_DMG;
 
 
@@ -692,323 +691,323 @@ function BattleCalc999()
 		return;
 	}
 
-	w_ActS=[6,7,19,41,44,65,71,72,73,83,84,111,158,161,169,171,176,188,189,199,207,248,260,261,264,288,289,290,292,302,303,305,306,307,308,326,317,318,331,333,335,337,339,382,388,398,400,419,423,428,430,431,432,434,435,436,437,"NULL"];
-	for(iw=0;w_ActS[iw] != n_A_ActiveSkill && w_ActS[iw] != "NULL";iw++);
-	if(n_A_ActiveSkill==w_ActS[iw]){
+	w_ActS = [6, 7, 19, 41, 44, 65, 71, 72, 73, 83, 84, 111, 158, 161, 169, 171, 176, 188, 189, 199, 207, 248, 260, 261, 264, 288, 289, 290, 292, 302, 303, 305, 306, 307, 308, 326, 317, 318, 331, 333, 335, 337, 339, 382, 388, 398, 400, 419, 423, 428, 430, 431, 432, 434, 435, 436, 437, "NULL"];
+	for (iw = 0; w_ActS[iw] != n_A_ActiveSkill && w_ActS[iw] != "NULL"; iw++);
+	if (n_A_ActiveSkill == w_ActS[iw]) {
 		wActiveHitNum = 1;
-		if(n_A_ActiveSkill==6)
-			wbairitu += n_A_ActiveSkillLV *0.3;
-		else if(n_A_ActiveSkill==7){
-			wbairitu += n_A_ActiveSkillLV *0.2;
+		if (n_A_ActiveSkill == 6)
+			wbairitu += n_A_ActiveSkillLV * 0.3;
+		else if (n_A_ActiveSkill == 7) {
+			wbairitu += n_A_ActiveSkillLV * 0.2;
 			n_A_Weapon_zokusei = 3;
 			n_Delay[2] = 2;
-		}else if(n_A_ActiveSkill==19){
+		} else if (n_A_ActiveSkill == 19) {
 			not_use_card = 1;
 			wbairitu += 0.3;
 			n_A_Weapon_zokusei = 2;
-		}else if(n_A_ActiveSkill==41){
-			n_Enekyori=1;
-			wbairitu += n_A_ActiveSkillLV *0.05 - 0.25;
+		} else if (n_A_ActiveSkill == 41) {
+			n_Enekyori = 1;
+			wbairitu += n_A_ActiveSkillLV * 0.05 - 0.25;
 			n_Delay[2] = 1;
-		}else if(n_A_ActiveSkill==44){
-			n_Enekyori=1;
+		} else if (n_A_ActiveSkill == 44) {
+			n_Enekyori = 1;
 			wCast = 1.5;
 			wbairitu += 0.5;
-		}else if(n_A_ActiveSkill==65) // Mammonite#65
+		} else if (n_A_ActiveSkill == 65) // Mammonite#65
 		{
 			zeny_cost = n_A_ActiveSkillLV * 100;
-			
+
 			// Blade of Angels#1379#7th Bonus, Djinn#1380#6th Bonus - 75% reduced zeny cost with [Mammonite]
 			if ((1379 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1) ||
 				(1380 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1))
 				zeny_cost = Math.ceil(zeny_cost * 0.25);
-			
+
 			// Goldsmithing Dagger#1677 - Spend 25% less zeny when using [Mammonite].
 			if (EquipNumSearch(1677))
 				zeny_cost = Math.ceil(zeny_cost * 0.75);
-			
-			wbairitu += n_A_ActiveSkillLV *0.5;
+
+			wbairitu += n_A_ActiveSkillLV * 0.5;
 		}
-		else if(n_A_ActiveSkill==71){
-			wbairitu += n_A_ActiveSkillLV *0.2;
-			n_Enekyori=1;
-		}else if(n_A_ActiveSkill==84){
+		else if (n_A_ActiveSkill == 71) {
+			wbairitu += n_A_ActiveSkillLV * 0.2;
+			n_Enekyori = 1;
+		} else if (n_A_ActiveSkill == 84) {
 			if (n_A_ActiveSkillLV > 1) // Grimtooth#84 is considered as melee for level 1
-				n_Enekyori=1;
+				n_Enekyori = 1;
 			wbairitu += 0.2 * n_A_ActiveSkillLV;
-		}else if(n_A_ActiveSkill==158){
-			wbairitu += n_A_ActiveSkillLV *0.2;
-		}else if(n_A_ActiveSkill==161){
-			wbairitu += n_A_ActiveSkillLV *0.35;
-			
+		} else if (n_A_ActiveSkill == 158) {
+			wbairitu += n_A_ActiveSkillLV * 0.2;
+		} else if (n_A_ActiveSkill == 161) {
+			wbairitu += n_A_ActiveSkillLV * 0.35;
+
 			// Cursed Butler#642 - [Holy Cross] element becomes Shadow
 			n_A_Weapon_zokusei = (CardNumSearch(642) ? 7 : 6);
-		}else if(n_A_ActiveSkill==171)
-			wbairitu += n_A_ActiveSkillLV *0.4;
-		else if(n_A_ActiveSkill==72){
-			wbairitu += n_A_ActiveSkillLV *0.5;
+		} else if (n_A_ActiveSkill == 171)
+			wbairitu += n_A_ActiveSkillLV * 0.4;
+		else if (n_A_ActiveSkill == 72) {
+			wbairitu += n_A_ActiveSkillLV * 0.5;
 			n_Delay[2] = 1;
-			n_Enekyori=1;
+			n_Enekyori = 1;
 		}
 		else if (73 == n_A_ActiveSkill) // Brandish Spear#73
 		{
 			wCast = 0.7;
 			skill_ratio = 1 + n_A_ActiveSkillLV * 0.2;
 			aoe_position = eval(document.calcForm.SkillSubNum.value);
-			
+
 			// Nibelungen#1386#7th Bonus - inflict full damage regardless of AoE position
 			if (1386 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
 				aoe_position = 0;
-			
+
 			wbairitu += skill_ratio - 1;
-			
-			if(n_A_ActiveSkillLV > 3 && aoe_position == 0)
+
+			if (n_A_ActiveSkillLV > 3 && aoe_position == 0)
 				wbairitu += skill_ratio / 2;
-			if(n_A_ActiveSkillLV > 6 && aoe_position == 0)
+			if (n_A_ActiveSkillLV > 6 && aoe_position == 0)
 				wbairitu += skill_ratio / 4;
-			if(n_A_ActiveSkillLV > 9 && aoe_position == 0)
+			if (n_A_ActiveSkillLV > 9 && aoe_position == 0)
 				wbairitu += skill_ratio / 8;
-			if(n_A_ActiveSkillLV > 6 && aoe_position == 1)
+			if (n_A_ActiveSkillLV > 6 && aoe_position == 1)
 				wbairitu += skill_ratio / 2;
-			if(n_A_ActiveSkillLV > 9 && aoe_position == 1)
+			if (n_A_ActiveSkillLV > 9 && aoe_position == 1)
 				wbairitu += skill_ratio / 4;
-			if(n_A_ActiveSkillLV > 9 && aoe_position == 2)
+			if (n_A_ActiveSkillLV > 9 && aoe_position == 2)
 				wbairitu += skill_ratio / 2;
-		}else if(n_A_ActiveSkill==83 || n_A_ActiveSkill==388){ // Sonic Blow#83#388 (Soul Linked)
+		} else if (n_A_ActiveSkill == 83 || n_A_ActiveSkill == 388) { // Sonic Blow#83#388 (Soul Linked)
 
 			wActiveHitNum = 8;
-			wbairitu += n_A_ActiveSkillLV *0.5 + 2;
-			if(n_A_ActiveSkill==388 && Taijin==0)
+			wbairitu += n_A_ActiveSkillLV * 0.5 + 2;
+			if (n_A_ActiveSkill == 388 && Taijin == 0)
 				wbairitu *= 2;
-			if(n_A_ActiveSkill==388 && Taijin==1){
-				if(n_Ses)
+			if (n_A_ActiveSkill == 388 && Taijin == 1) {
+				if (n_Ses)
 					wbairitu *= 1.25;
 				else
 					wbairitu *= 2;
 			}
 			n_Delay[3] = 2;
-		}else if(n_A_ActiveSkill==111){
+		} else if (n_A_ActiveSkill == 111) {
 			n_Delay[0] = 1;
 			not_use_card = 1;
 			n_A_Weapon_zokusei = 1;
-		}else if(n_A_ActiveSkill==169){
-			wbairitu += n_A_ActiveSkillLV *0.4 + 2;
+		} else if (n_A_ActiveSkill == 169) {
+			wbairitu += n_A_ActiveSkillLV * 0.4 + 2;
 			n_Delay[2] = 0.5;
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
-		}else if(n_A_ActiveSkill==176){
+		} else if (n_A_ActiveSkill == 176) {
 			wbairitu += n_A_ActiveSkillLV * 0.3;
 			n_Delay[2] = 1;
-		}else if(n_A_ActiveSkill==188){
+		} else if (n_A_ActiveSkill == 188) {
 			wActiveHitNum = 4;
-			wbairitu += 0.5+n_A_ActiveSkillLV *0.5;
+			wbairitu += 0.5 + n_A_ActiveSkillLV * 0.5;
 			n_Delay[0] = 1;
 			n_Delay[1] = 0.1;
 			n_Delay[3] = 1 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
-		}else if(n_A_ActiveSkill==189){
-			wbairitu += 1.4+n_A_ActiveSkillLV *0.6;
+		} else if (n_A_ActiveSkill == 189) {
+			wbairitu += 1.4 + n_A_ActiveSkillLV * 0.6;
 			n_Delay[0] = 1;
 			n_Delay[1] = 0.1;
 			n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
-		}else if(n_A_ActiveSkill==199||n_A_ActiveSkill==207){
+		} else if (n_A_ActiveSkill == 199 || n_A_ActiveSkill == 207) {
 			wCast = 1.5;
 			wbairitu += (n_A_ActiveSkillLV * 0.4 - 0.4);
 			n_A_Weapon_zokusei = ArrowOBJ[n_A_Arrow][1];
-			if(eval(document.calcForm.A_Weapon_zokusei.value) != 0)
+			if (eval(document.calcForm.A_Weapon_zokusei.value) != 0)
 				n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-			n_Enekyori=1;
-		}else if(n_A_ActiveSkill==248){
+			n_Enekyori = 1;
+		} else if (n_A_ActiveSkill == 248) {
 			not_use_card = 1;
-			
+
 			// Djinn#1380#13th Bonus - PvM: [Demonstration#248] takes on the element of the user's weapon
 			if (Taijin || 1380 != n_A_Equip[0] || SQI_Bonus_Effect.findIndex(x => x == 13) == -1)
 				n_A_Weapon_zokusei = 3;
-			
+
 			n_Delay[0] = 1;
 			// Djinn#1380#7th Bonus - [Demonstration#248] damage interval reduced by 75% (every 0.25 secs instead of 1 sec)
 			if (1380 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
 				n_Delay[0] = 0.25
 
 			wCast = 1;
-			wbairitu += n_A_ActiveSkillLV *0.2;
+			wbairitu += n_A_ActiveSkillLV * 0.2;
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
-		}else if(n_A_ActiveSkill==260){
-			n_Enekyori=1;
-			wbairitu += n_A_ActiveSkillLV *0.4;
+		} else if (n_A_ActiveSkill == 260) {
+			n_Enekyori = 1;
+			wbairitu += n_A_ActiveSkillLV * 0.4;
 			n_Delay[2] = 0.5;
-		}else if(n_A_ActiveSkill==261){
-			n_Enekyori=1;
-			wbairitu += (n_A_ActiveSkillLV *0.1 -0.5);
-			if(n_A_ActiveSkillLV > 5)
+		} else if (n_A_ActiveSkill == 261) {
+			n_Enekyori = 1;
+			wbairitu += (n_A_ActiveSkillLV * 0.1 - 0.5);
+			if (n_A_ActiveSkillLV > 5)
 				n_Delay[2] = 1;
 			else
 				n_Delay[2] = 0.8;
-		}else if(n_A_ActiveSkill==264){
+		} else if (n_A_ActiveSkill == 264) {
 			not_use_card = 1;
-			wbairitu += (n_A_ActiveSkillLV *0.4 -0.6);
+			wbairitu += (n_A_ActiveSkillLV * 0.4 - 0.6);
 			wCast = 0.5;
 			n_Delay[2] = 0.5;
-		}else if(n_A_ActiveSkill==288){
+		} else if (n_A_ActiveSkill == 288) {
 			wbairitu += (1 + n_A_ActiveSkillLV);
 			n_Delay[2] = 0.3;
-		}else if(n_A_ActiveSkill==289){
+		} else if (n_A_ActiveSkill == 289) {
 			n_Delay[0] = 1;
-			wbairitu += n_A_ActiveSkillLV -0.6;
+			wbairitu += n_A_ActiveSkillLV - 0.6;
 			n_Delay[1] = 0.1;
 			n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
-		}else if(n_A_ActiveSkill==290){
+		} else if (n_A_ActiveSkill == 290) {
 			n_Delay[0] = 1;
 			wbairitu += (3 + n_A_ActiveSkillLV);
-			if(n_A_ActiveSkillLV>6) n_Delay[2]=1;
-			else n_Delay[2]=0.8;
-		}else if(n_A_ActiveSkill==292){ // Arrow Vulcan#292
+			if (n_A_ActiveSkillLV > 6) n_Delay[2] = 1;
+			else n_Delay[2] = 0.8;
+		} else if (n_A_ActiveSkill == 292) { // Arrow Vulcan#292
 			wActiveHitNum = 9;
 			wbairitu += 1 + n_A_ActiveSkillLV;
 			n_A_Weapon_zokusei = ArrowOBJ[n_A_Arrow][1];
-			if(eval(document.calcForm.A_Weapon_zokusei.value) != 0)
+			if (eval(document.calcForm.A_Weapon_zokusei.value) != 0)
 				n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-			n_Enekyori=1;
-			wCast = 1.8 + n_A_ActiveSkillLV *0.2;
+			n_Enekyori = 1;
+			wCast = 1.8 + n_A_ActiveSkillLV * 0.2;
 			if (n_A_ActiveSkillLV > 5)
 				n_Delay[2] = 3;
 			else
 				n_Delay[2] = 2.8;
 			n_Delay[3] = 2;
-		}else if(n_A_ActiveSkill==302){ // Throw Tomahawk#302
-			n_Enekyori=1;
+		} else if (n_A_ActiveSkill == 302) { // Throw Tomahawk#302
+			n_Enekyori = 1;
 			n_Delay[2] = 0.5;
-		}else if(n_A_ActiveSkill==303){
-			wbairitu += (n_A_ActiveSkillLV -1) * 1;
-		}else if(n_A_ActiveSkill==306){
-			n_Enekyori=1;
+		} else if (n_A_ActiveSkill == 303) {
+			wbairitu += (n_A_ActiveSkillLV - 1) * 1;
+		} else if (n_A_ActiveSkill == 306) {
+			n_Enekyori = 1;
 			not_use_card = 1;
 			n_A_DMG[1] += Math.floor(14.5 * wCSize);
 			n_A_DMG[2] += Math.floor(29 * wCSize);
-		}else if(n_A_ActiveSkill==307){
-			n_Enekyori=1;
+		} else if (n_A_ActiveSkill == 307) {
+			n_Enekyori = 1;
 			not_use_card = 1;
 			wbairitu += 0.5;
-		}else if(n_A_ActiveSkill==308){
+		} else if (n_A_ActiveSkill == 308) {
 			var w;
 			w = eval(document.calcForm.SkillSubNum.value);
 			wbairitu += w;
-			wCast = 0.5 * (w+1);
-			if(wCast > 1.5)
+			wCast = 0.5 * (w + 1);
+			if (wCast > 1.5)
 				wCast = 1.5;
-		}else if(n_A_ActiveSkill==317){
+		} else if (n_A_ActiveSkill == 317) {
 			n_Delay[0] = 1;
 			n_Delay[5] = 0.05;
-			if(n_B[19]==1)
+			if (n_B[19] == 1)
 				n_Delay[5] = 0.1;
-			if(Taijin==1){
+			if (Taijin == 1) {
 				str_bSUBname += "<Font size=2>SP damage</Font><BR>";
 				str_bSUB += "15<BR>";
 			}
-		}else if(n_A_ActiveSkill==318){
+		} else if (n_A_ActiveSkill == 318) {
 			n_Delay[5] = 0.05;
-			if(n_B[19]==1)
+			if (n_B[19] == 1)
 				n_Delay[5] = 0.1;
-			if(Taijin==1){
+			if (Taijin == 1) {
 				n_Delay[0] = 1;
 				str_bSUBname += "<Font size=2>SP damage</Font><BR>";
 				str_bSUB += "15<BR>";
 			}
-		}else if(n_A_ActiveSkill==326){ // Cart Termination#326
+		} else if (n_A_ActiveSkill == 326) { // Cart Termination#326
 			not_use_card = 1;
 			zeny_cost = (5 + n_A_ActiveSkillLV) * 100;
-			wbairitu += Math.floor((retrieve_cart_weight(n_A_ActiveSkill) / (16 - n_A_ActiveSkillLV) / 100 -1) * 100) / 100;
-		}else if(n_A_ActiveSkill==382){
+			wbairitu += Math.floor((retrieve_cart_weight(n_A_ActiveSkill) / (16 - n_A_ActiveSkillLV) / 100 - 1) * 100) / 100;
+		} else if (n_A_ActiveSkill == 382) {
 			not_use_card = 1;
 			wbairitu += 2;
 
 
-		}else if(n_A_ActiveSkill==331 || n_A_ActiveSkill==333){
+		} else if (n_A_ActiveSkill == 331 || n_A_ActiveSkill == 333) {
 			n_Delay[0] = 1;
 			wbairitu += (0.6 + n_A_ActiveSkillLV * 0.2);
-		}else if(n_A_ActiveSkill==335 || n_A_ActiveSkill==337){
+		} else if (n_A_ActiveSkill == 335 || n_A_ActiveSkill == 337) {
 			n_Delay[0] = 1;
 			wbairitu += (0.9 + n_A_ActiveSkillLV * 0.3);
-			if(n_A_ActiveSkill==337)
+			if (n_A_ActiveSkill == 337)
 				wActiveHitNum = 3;
-		}else if(n_A_ActiveSkill==339){
+		} else if (n_A_ActiveSkill == 339) {
 			n_Delay[0] = 1;
 			wbairitu += (-0.7 + n_A_ActiveSkillLV * 0.1);
-		}else if(n_A_ActiveSkill==305){
+		} else if (n_A_ActiveSkill == 305) {
 			n_Delay[0] = 1;
-			if(SkillSearch(379) && n_A_WeaponType==0)
+			if (SkillSearch(379) && n_A_WeaponType == 0)
 				wbairitu += (n_A_BaseLV * 0.08 - 1);
 			else
 				wbairitu += (n_A_BaseLV * 0.04 - 1);
-		}else if(n_A_ActiveSkill==398){
+		} else if (n_A_ActiveSkill == 398) {
 			wbairitu += (n_A_ActiveSkillLV * 0.1);
 			n_Delay[2] = 3;
-		}else if(n_A_ActiveSkill==400){
+		} else if (n_A_ActiveSkill == 400) {
 			n_Delay[0] = 1;
 			wbairitu += (n_A_ActiveSkillLV * 0.1);
 			n_Delay[2] = 1;
-		}else if(n_A_ActiveSkill==419){
+		} else if (n_A_ActiveSkill == 419) {
 			not_use_card = 1;
 			wCast = 0.5;
 			n_Delay[2] = 1;
-			n_Enekyori=1;
+			n_Enekyori = 1;
 			wActiveHitNum = 5;
-			if(n_B[2] == 2 || n_B[2] == 7)
+			if (n_B[2] == 2 || n_B[2] == 7)
 				wbairitu += 4;
-		}else if(n_A_ActiveSkill==423){
-			n_Enekyori=1;
+		} else if (n_A_ActiveSkill == 423) {
+			n_Enekyori = 1;
 			n_Delay[2] = 0.5;
 			n_A_Weapon_zokusei = 8;
 			not_use_card = 1;
-		}else if(n_A_ActiveSkill==428){
-			n_Enekyori=1;
+		} else if (n_A_ActiveSkill == 428) {
+			n_Enekyori = 1;
 			wActiveHitNum = 5;
-			wbairitu += n_A_ActiveSkillLV *0.5 + 4;
+			wbairitu += n_A_ActiveSkillLV * 0.5 + 4;
 			n_Delay[2] = 1;
-		}else if(n_A_ActiveSkill==430){ // Tracking#430
-			if(n_A_Weapon_ATKplus > 8 && EquipNumSearch(1100)){TCcast = 1.25;}
-			else if(EquipNumSearch(926)){TCcast = .75;}
-			else{TCcast = 1;}
-			wCast = (1 + (0.2 * n_A_ActiveSkillLV))*TCcast;
+		} else if (n_A_ActiveSkill == 430) { // Tracking#430
+			if (n_A_Weapon_ATKplus > 8 && EquipNumSearch(1100)) { TCcast = 1.25; }
+			else if (EquipNumSearch(926)) { TCcast = .75; }
+			else { TCcast = 1; }
+			wCast = (1 + (0.2 * n_A_ActiveSkillLV)) * TCcast;
 			//cast_kotei = 1;
-			n_Enekyori=1;
-			wbairitu += n_A_ActiveSkillLV *1 +1;
+			n_Enekyori = 1;
+			wbairitu += n_A_ActiveSkillLV * 1 + 1;
 
-			w_HIT = w_HIT * 5 +5;
-			if(w_HIT > 100)
+			w_HIT = w_HIT * 5 + 5;
+			if (w_HIT > 100)
 				w_HIT = 100;
 			w_HIT_HYOUJI = w_HIT;
-			
+
 			if (EquipNumSearch(1787)) // RAG203#1787
 			{
 				n_tok[23] = 1; // Enable bDefRatioAtkClass
 				n_Delay[3] = 1; // 1 second irreducible delay
 			}
-				
-		}else if(n_A_ActiveSkill==431){
+
+		} else if (n_A_ActiveSkill == 431) {
 			wCast = 2;
 			n_Delay[2] = 1;
-			n_Enekyori=1;
-		}else if(n_A_ActiveSkill==432){ // Piercing Shot#432
+			n_Enekyori = 1;
+		} else if (n_A_ActiveSkill == 432) { // Piercing Shot#432
 			wCast = 1.5;
-			n_Enekyori=1;
-			wbairitu += n_A_ActiveSkillLV *0.2;
-		}else if(n_A_ActiveSkill==434){ // Dust#434
+			n_Enekyori = 1;
+			wbairitu += n_A_ActiveSkillLV * 0.2;
+		} else if (n_A_ActiveSkill == 434) { // Dust#434
 			wCast = 1;
-			n_Enekyori=0;
-			wbairitu += n_A_ActiveSkillLV *0.5;
+			n_Enekyori = 0;
+			wbairitu += n_A_ActiveSkillLV * 0.5;
 			n_Delay[3] = 1;
-		}else if(n_A_ActiveSkill==435){
-			n_Enekyori=1;
+		} else if (n_A_ActiveSkill == 435) {
+			n_Enekyori = 1;
 			wbairitu += n_A_ActiveSkillLV * 1 + 2;
-			n_Delay[2] = 1 + n_A_ActiveSkillLV *0.2;
-		}else if (n_A_ActiveSkill == 436) // Spread Attack#436
+			n_Delay[2] = 1 + n_A_ActiveSkillLV * 0.2;
+		} else if (n_A_ActiveSkill == 436) // Spread Attack#436
 		{
-			n_Enekyori=1;
+			n_Enekyori = 1;
 			wbairitu += n_A_ActiveSkillLV * 0.2 - 0.2;
 		}
-		else if(n_A_ActiveSkill==437) // Ground Drift#437
-		{	
+		else if (n_A_ActiveSkill == 437) // Ground Drift#437
+		{
 			wCast = 2;
 			w_HIT = 100;
 			n_Enekyori = 1;
@@ -1019,50 +1018,49 @@ function BattleCalc999()
 				wHITsuu = 5;
 		}
 
-		ATKbai02(wbairitu,0);
+		ATKbai02(wbairitu, 0);
 
-		if(cast_kotei == 0)
+		if (cast_kotei == 0)
 			wCast = wCast * n_A_CAST;
 
-		for(var i=0;i<=2;i++){
+		for (var i = 0; i <= 2; i++) {
 			w_MagiclBulet = i;
-			w_DMG[i] = BattleCalc(n_A_DMG[i],i);
-			if(wActiveHitNum > 1)
+			w_DMG[i] = BattleCalc(n_A_DMG[i], i);
+			if (wActiveHitNum > 1)
 				w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
 
 			Last_DMG_A[i] = Last_DMG_B[i] = Math.floor((w_DMG[i] + EDP_DMG(i)) * wHITsuu);
 			InnStr[i] += Last_DMG_A[i];
 			if (wActiveHitNum > 1)
-				InnStr[i] += " ("+ (w_DMG[i] / wActiveHitNum) +" x "+ wActiveHitNum +"Hits)";
-			if (wHITsuu > 1)
-			{
-				InnStr[i] += " ("+ w_DMG[i] +" x "+ wHITsuu +"Hits)";
+				InnStr[i] += " (" + (w_DMG[i] / wActiveHitNum) + " x " + wActiveHitNum + "Hits)";
+			if (wHITsuu > 1) {
+				InnStr[i] += " (" + w_DMG[i] + " x " + wHITsuu + "Hits)";
 				w_DMG[i] = Math.floor(w_DMG[i] * wHITsuu);
 			}
 
 		}
 		w_MagiclBulet = 1;
 
-		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) *(100-w_HIT))/100;
+		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * (100 - w_HIT)) / 100;
 
 		EDPplus(1);
 
-		if(cast_kotei == 0)
+		if (cast_kotei == 0)
 			CastAndDelay();
 		BattleCalc998();
-	}else if(n_A_ActiveSkill==275){ // Magic Crasher#275
-		n_Enekyori=1;
+	} else if (n_A_ActiveSkill == 275) { // Magic Crasher#275
+		n_Enekyori = 1;
 		wCast = 0.3;
 		n_Delay[2] = 0.3;
 		wCast = wCast * n_A_CAST;
 
-		for(var i=0;i<=2;i++){
-			w_DMG[i] = BattleCalc(BK_n_A_MATK[i],i);
+		for (var i = 0; i <= 2; i++) {
+			w_DMG[i] = BattleCalc(BK_n_A_MATK[i], i);
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] + EDP_DMG(i);
 			InnStr[i] += Last_DMG_A[i];
 		}
-		n_PerHIT_DMG = BattleCalc2(0)+n_A_WeaponLV_seirenATK;
-		w_DMG[1] = (w_DMG[1] * w_HIT + n_PerHIT_DMG *(100-w_HIT))/100;
+		n_PerHIT_DMG = BattleCalc2(0) + n_A_WeaponLV_seirenATK;
+		w_DMG[1] = (w_DMG[1] * w_HIT + n_PerHIT_DMG * (100 - w_HIT)) / 100;
 
 		EDPplus(1);
 
@@ -1073,8 +1071,7 @@ function BattleCalc999()
 	{
 		n_Enekyori = 1;
 
-		for (i = 0; i <=2; ++i)
-		{
+		for (i = 0; i <= 2; ++i) {
 			w_DMG[i] = 50;
 			InnStr[i] += w_DMG[i];
 		}
@@ -1082,92 +1079,92 @@ function BattleCalc999()
 		CastAndDelay();
 		BattleCalc998();
 	}
-	else if(n_A_ActiveSkill==40||n_A_ActiveSkill==70||n_A_ActiveSkill==111||n_A_ActiveSkill==192||n_A_ActiveSkill==76||n_A_ActiveSkill==418||n_A_ActiveSkill==391||n_A_ActiveSkill==429){
-		if(n_A_ActiveSkill==40){
-			n_Enekyori=1;
-			wbairitu += n_A_ActiveSkillLV *0.1 -0.1;
+	else if (n_A_ActiveSkill == 40 || n_A_ActiveSkill == 70 || n_A_ActiveSkill == 111 || n_A_ActiveSkill == 192 || n_A_ActiveSkill == 76 || n_A_ActiveSkill == 418 || n_A_ActiveSkill == 391 || n_A_ActiveSkill == 429) {
+		if (n_A_ActiveSkill == 40) {
+			n_Enekyori = 1;
+			wbairitu += n_A_ActiveSkillLV * 0.1 - 0.1;
 			wHITsuu = 2;
-		}else if(n_A_ActiveSkill==70){
-			wbairitu += n_A_ActiveSkillLV *0.1;
-			wHITsuu = n_B[4]+1;
-		}else if(n_A_ActiveSkill==76){
-			wbairitu += n_A_ActiveSkillLV *0.4;
+		} else if (n_A_ActiveSkill == 70) {
+			wbairitu += n_A_ActiveSkillLV * 0.1;
+			wHITsuu = n_B[4] + 1;
+		} else if (n_A_ActiveSkill == 76) {
+			wbairitu += n_A_ActiveSkillLV * 0.4;
 			wCast = 0.7 * n_A_CAST;
 			wHITsuu = 2;
-			if(n_A_ActiveSkillLV == 1)
+			if (n_A_ActiveSkillLV == 1)
 				wHITsuu = 1;
-			wLAch=1;
-			if(n_B_IJYOU[6] == 1){
+			wLAch = 1;
+			if (n_B_IJYOU[6] == 1) {
 				wHITsuu = 3;
-				if(n_A_ActiveSkillLV == 1)
+				if (n_A_ActiveSkillLV == 1)
 					wHITsuu = 2;
 			}
-		}else if(n_A_ActiveSkill==192){
-			wbairitu += n_A_ActiveSkillLV *0.5;
-			if(n_A_JOB==15||n_A_JOB==29)
+		} else if (n_A_ActiveSkill == 192) {
+			wbairitu += n_A_ActiveSkillLV * 0.5;
+			if (n_A_JOB == 15 || n_A_JOB == 29)
 				w = SkillSearch(185);
 			else
 				w = n_A_PassSkill2[10];
-			if(w > n_A_ActiveSkillLV){
+			if (w > n_A_ActiveSkillLV) {
 				w = n_A_ActiveSkillLV;
 			}
 			wHITsuu = w;
 			wCast = (1 + w) * n_A_CAST;
 			n_Delay[2] = 0.5;
-			n_Enekyori=1;
+			n_Enekyori = 1;
 		}
-		else if(n_A_ActiveSkill==418) // Triple Action#427
+		else if (n_A_ActiveSkill == 418) // Triple Action#427
 		{
 			wHITsuu = 3;
 			n_Enekyori = 1;
 			wbairitu += 0.5;
 		}
-		else if(n_A_ActiveSkill==391){
+		else if (n_A_ActiveSkill == 391) {
 			n_Delay[0] = 1;
-			n_Enekyori=1;
-			wbairitu += n_A_STR *0.08 - 0.5;
+			n_Enekyori = 1;
+			wbairitu += n_A_STR * 0.08 - 0.5;
 			wHITsuu = 2;
-		}else if(n_A_ActiveSkill==429){
-			n_Enekyori=0;
-			wbairitu += n_A_ActiveSkillLV *0.5 - 0.5;
+		} else if (n_A_ActiveSkill == 429) {
+			n_Enekyori = 0;
+			wbairitu += n_A_ActiveSkillLV * 0.5 - 0.5;
 			n_Delay[2] = 1;
-			var DEATH = [1,1.2,1.6,2,2.4,3,3.6,4,5,6,7,8,9,10];
+			var DEATH = [1, 1.2, 1.6, 2, 2.4, 3, 3.6, 4, 5, 6, 7, 8, 9, 10];
 			wHITsuu = DEATH[eval(document.calcForm.SkillSubNum.value)];
 		}
-		debug_atk+="\n --- (BattleCalc999) skill calc:40,77,111,192,76,418,391,429 ---";
-		debug_atk+="\nb_ATKbai02:"+n_A_DMG[1];
-		ATKbai02(wbairitu,0);
-		debug_atk+="\na_ATKbai02:"+n_A_DMG[1];
-		for(var i=0;i<=2;i++){
-			if (i==1) {
-				debug_atk+="\nb_BattleCalc (w_DMG[1]):"+w_DMG[i];
+		debug_atk += "\n --- (BattleCalc999) skill calc:40,77,111,192,76,418,391,429 ---";
+		debug_atk += "\nb_ATKbai02:" + n_A_DMG[1];
+		ATKbai02(wbairitu, 0);
+		debug_atk += "\na_ATKbai02:" + n_A_DMG[1];
+		for (var i = 0; i <= 2; i++) {
+			if (i == 1) {
+				debug_atk += "\nb_BattleCalc (w_DMG[1]):" + w_DMG[i];
 			}
-			w_DMG[i] = BattleCalc(n_A_DMG[i],i);
-			if (i==1) {
-				debug_atk+="\na_BattleCalc (w_DMG[1]):"+w_DMG[i];
+			w_DMG[i] = BattleCalc(n_A_DMG[i], i);
+			if (i == 1) {
+				debug_atk += "\na_BattleCalc (w_DMG[1]):" + w_DMG[i];
 			}
-			if(n_A_ActiveSkill==391 && n_B[2]!=2 && n_B[2]!=4)
+			if (n_A_ActiveSkill == 391 && n_B[2] != 2 && n_B[2] != 4)
 				w_DMG[i] = 0;
 
 			w_DMG[i] += EDP_DMG(i);
 			Last_DMG_B[i] = w_DMG[i];
-			if(n_A_ActiveSkill==76)
+			if (n_A_ActiveSkill == 76)
 				Last_DMG_B[i] = w_DMG[i] * 2;
 			Last_DMG_A[i] = w_DMG[i] * wHITsuu;
-			if(n_B_IJYOU[6] == 0 || wLAch==0)
-				InnStr[i] += Math.floor(w_DMG[i] * wHITsuu) + " ("+ w_DMG[i] + SubName[8] +wHITsuu+"hit)";
-			else{
-				InnStr[i] += w_DMG[i] * 3 +"("+ w_DMG[i] * 2 +"+"+ w_DMG[i] +")";
+			if (n_B_IJYOU[6] == 0 || wLAch == 0)
+				InnStr[i] += Math.floor(w_DMG[i] * wHITsuu) + " (" + w_DMG[i] + SubName[8] + wHITsuu + "hit)";
+			else {
+				InnStr[i] += w_DMG[i] * 3 + "(" + w_DMG[i] * 2 + "+" + w_DMG[i] + ")";
 				Last_DMG_B[i] = w_DMG[i] * 3;
 			}
 			w_DMG[i] -= EDP_DMG(i);
 			w_DMG[i] *= wHITsuu;
 		}
 		var wX = BattleCalc2(0);
-		w_DMG[1] = (w_DMG[1] * w_HIT + wX * wHITsuu *(100-w_HIT))/100;
+		w_DMG[1] = (w_DMG[1] * w_HIT + wX * wHITsuu * (100 - w_HIT)) / 100;
 
-		if(wHITsuu == 0 && n_A_ActiveSkill==192){
-			if(n_A_JobSearch2() == 15)
+		if (wHITsuu == 0 && n_A_ActiveSkill == 192) {
+			if (n_A_JobSearch2() == 15)
 				InnStr[0] = "<Font color=Red><B>Please change Summon Spirit<BR>Sphere to a value higher than 0</B></Font>";
 			else
 				InnStr[0] = "<Font color=Red><B>Please change the number of<BR>Spirit Spheres to a value higher than 0<BR>[At Supportive/Party Skills]</B></Font>";
@@ -1175,29 +1172,29 @@ function BattleCalc999()
 		EDPplus(wHITsuu);
 
 		n_PerHIT_DMG = wX * wHITsuu;
-		str_PerHIT_DMG = wX * wHITsuu +" ("+ wHITsuu + SubName[8] + wX +" Damage)";
+		str_PerHIT_DMG = wX * wHITsuu + " (" + wHITsuu + SubName[8] + wX + " Damage)";
 
 		CastAndDelay();
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==118 || n_A_ActiveSkill==271){ // Blitz Beat#118, Falcon Assault#271
+	else if (n_A_ActiveSkill == 118 || n_A_ActiveSkill == 271) { // Blitz Beat#118, Falcon Assault#271
 		n_PerHIT_DMG = 0;
 		n_A_Weapon_zokusei = 0;
-		n_Enekyori=1;
-		wBT = 80 + Math.floor(n_A_DEX /10)*2 + Math.floor(n_A_INT/2)*2 + SkillSearch(119) *6;
-		if(n_A_ActiveSkill==271){
-			wBT = Math.floor(wBT * (150 + 70 * n_A_ActiveSkillLV) /100);
+		n_Enekyori = 1;
+		wBT = 80 + Math.floor(n_A_DEX / 10) * 2 + Math.floor(n_A_INT / 2) * 2 + SkillSearch(119) * 6;
+		if (n_A_ActiveSkill == 271) {
+			wBT = Math.floor(wBT * (150 + 70 * n_A_ActiveSkillLV) / 100);
 			// Artemis Bow#1377#11th Bonus - [Falcon Assault#271] ignores Neutral Resist
 			if (1377 != n_A_Equip[0] || SQI_Bonus_Effect.findIndex(x => x == 11) == -1)
 				wBT = Math.floor(wBT * zokusei[n_B[3]][0]);
 			wBT = tPlusDamCut(wBT);
 			wBT *= 5;
-			if(n_B[19] == 5)
+			if (n_B[19] == 5)
 				wBT = 1;
 			wCast = 1 * n_A_CAST;
 			n_Delay[2] = 3;
-		}else{
+		} else {
 			// Artemis Bow#1377#11th Bonus - [Blitz Beat#118] ignores Neutral Resist
 			if (1377 != n_A_Equip[0] || SQI_Bonus_Effect.findIndex(x => x == 11) == -1)
 				wBT = Math.floor(wBT * zokusei[n_B[3]][0]);
@@ -1207,12 +1204,12 @@ function BattleCalc999()
 			n_Delay[2] = 1;
 		}
 
-		for(var i=0;i<=2;i++){
+		for (var i = 0; i <= 2; i++) {
 			Last_DMG_A[i] = Last_DMG_B[i] = ApplySkillAtkBonus(wBT);
 			InnStr[i] += Last_DMG_A[i];
-			if(n_A_ActiveSkill==118){
+			if (n_A_ActiveSkill == 118) {
 				Last_DMG_B[i] = wBT / n_A_ActiveSkillLV;
-				InnStr[i] += " ("+ Last_DMG_B[i] +" x "+ n_A_ActiveSkillLV +"Hit)";
+				InnStr[i] += " (" + Last_DMG_B[i] + " x " + n_A_ActiveSkillLV + "Hit)";
 			}
 			w_DMG[i] = wBT;
 		}
@@ -1221,20 +1218,20 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==17 || (n_A_ActiveSkill==86 && (n_B[3] < 50 ||  60 <= n_B[3]))){
-		ATKbai02(wbairitu,0);
+	else if (n_A_ActiveSkill == 17 || (n_A_ActiveSkill == 86 && (n_B[3] < 50 || 60 <= n_B[3]))) {
+		ATKbai02(wbairitu, 0);
 		n_A_Weapon_zokusei = 5;
 		wINV = Math.floor(BattleCalc2(0) * zokusei[n_B[3]][5]);
 		n_PerHIT_DMG = wINV;
 
-		for(var i=0;i<=2;i++){
-			w_DMG[i] = BattleCalc(n_A_DMG[i],i);
+		for (var i = 0; i <= 2; i++) {
+			w_DMG[i] = BattleCalc(n_A_DMG[i], i);
 			w_DMG[i] = Math.floor(w_DMG[i] * zokusei[n_B[3]][5]);
 
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] + EDP_DMG(i);
 			InnStr[i] += Last_DMG_A[i];
 		}
-		w_DMG[1] = (w_DMG[1] * w_HIT + wINV *(100-w_HIT))/100;
+		w_DMG[1] = (w_DMG[1] * w_HIT + wINV * (100 - w_HIT)) / 100;
 
 		EDPplus(1);
 		CastAndDelay();
@@ -1251,8 +1248,8 @@ function BattleCalc999()
 		n_A_Weapon_zokusei = 0;
 		is_piercing_attack = 0; // Ice Pick 
 		shield_refine = n_A_LEFT_DEF_PLUS;
-		shield_weight  = ItemOBJ[n_A_Equip[5]][6];
-		
+		shield_weight = ItemOBJ[n_A_Equip[5]][6];
+
 		if (n_A_ActiveSkill == 159 || n_A_ActiveSkill == 384) // Shield Boomerang#159#384
 		{
 			wCast = 0;
@@ -1263,17 +1260,17 @@ function BattleCalc999()
 
 		skill_ratio = (1 + n_A_ActiveSkillLV * 0.3);
 
-		damage = [0,0,0].map(x => Math.floor((n_A_ATK + shield_weight) * skill_ratio));
+		damage = [0, 0, 0].map(x => Math.floor((n_A_ATK + shield_weight) * skill_ratio));
 
 		// Apply skill modifiers
 		damage = damage.map(x => ApplySkillAtkBonus(x));
-		
+
 		// Apply status modifiers, in that case soul link
 		damage = damage.map(x => (n_A_ActiveSkill == 384 ? x * 2 : x));
 
 		// Apply defense reduction
 		damage = ApplyDefReduction(damage, 0, is_piercing_attack);
-		
+
 		// Take into consideration monster element
 		// Aegis Shield#1376#8th Bonus - [Shield Chain] and [Shield Boomerang] ignores Neutral Resist.
 		if (1376 != n_A_Equip[5] || SQI_Bonus_Effect.findIndex(x => x == 8) == -1)
@@ -1286,73 +1283,70 @@ function BattleCalc999()
 		damage = damage.map(x => BaiCI(x));
 
 		total_damage = damage.map(x => Math.floor(x * nb_hits));
-		
-		for (i = 0; i <= 2; ++i)
-		{
-			InnStr[i] += total_damage[i] + (nb_hits - 1 ? " ("+ damage[i] + SubName[8] + nb_hits + " hits)" : "");
+
+		for (i = 0; i <= 2; ++i) {
+			InnStr[i] += total_damage[i] + (nb_hits - 1 ? " (" + damage[i] + SubName[8] + nb_hits + " hits)" : "");
 			w_DMG[i] = total_damage[i] * w_HIT / 100;
 		}
 
 		CastAndDelay();
 		BattleCalc998();
 	}
-	else if(n_A_ActiveSkill==259)
-	{
-		n_Enekyori=1;
+	else if (n_A_ActiveSkill == 259) {
+		n_Enekyori = 1;
 
 		wSPP2 = n_A_WeaponLV_seirenATK * zokusei[n_B[3]][n_A_Weapon_zokusei];
 		wSPP2 = BaiCI(wSPP2);
 		wSPP2 = tPlusDamCut(wSPP2);
 		n_PerHIT_DMG = wSPP2 * 5;
 
-		if(n_A_ActiveSkillLV == 5)
+		if (n_A_ActiveSkillLV == 5)
 			wCast = 1 * n_A_CAST;
 		else
 			wCast = (0.1 + 0.2 * n_A_ActiveSkillLV) * n_A_CAST;
-		n_Delay[2] = 1+ 0.2 * n_A_ActiveSkillLV;
+		n_Delay[2] = 1 + 0.2 * n_A_ActiveSkillLV;
 
 		wSPP = Math.floor(n_A_STR / 10);
 		w_DMG[2] = wSPP * wSPP + ItemOBJ[n_A_Equip[0]][6] * 0.8 * (1 + 0.5 * n_A_ActiveSkillLV);
-		wSPP = 1.25 -(n_B[4] * 0.25); // Size modifier
+		wSPP = 1.25 - (n_B[4] * 0.25); // Size modifier
 		w_DMG[2] = Math.floor(w_DMG[2] * wSPP + n_A_WeaponLV_seirenATK);
 		w_DMG[2] += SkillSearch(69) * (4 + Math.min(1, SkillSearch(78))); // Spear Mastery
 		w_DMG[2] = w_DMG[2] * zokusei[n_B[3]][n_A_Weapon_zokusei];
 		w_DMG[2] = BaiCI(w_DMG[2]);
 		w_DMG[0] = w_DMG[1] = w_DMG[2];
-		for(var i=0;i<=2;i++){
+		for (var i = 0; i <= 2; i++) {
 			Last_DMG_B[i] = w_DMG[i] + EDP_DMG(i);
 			Last_DMG_A[i] = Last_DMG_B[i] * 5;
-			InnStr[i] += Last_DMG_A[i] + " ("+ Last_DMG_B[i] + SubName[8] +"5hit)";
+			InnStr[i] += Last_DMG_A[i] + " (" + Last_DMG_B[i] + SubName[8] + "5hit)";
 			w_DMG[i] = Last_DMG_A[i];
 		}
-		w_DMG[1] = w_DMG[1] * w_HIT /100 + n_PerHIT_DMG * (100- w_HIT)/100;
+		w_DMG[1] = w_DMG[1] * w_HIT / 100 + n_PerHIT_DMG * (100 - w_HIT) / 100;
 
 		EDPplus(5);
 		CastAndDelay();
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==88)
-	{
+	else if (n_A_ActiveSkill == 88) {
 		n_PerHIT_DMG = 0;
 		not_use_card = 1;
 		n_Delay[0] = 1;
 		wCast = 1 * n_A_CAST;
 
-		if(n_B[19] == 0){
-			wbairitu += (400 + 50 * n_A_ActiveSkillLV + 20 * eval(document.calcForm.SkillSubNum.value)) /100;
-			ATKbai02(wbairitu,0);
+		if (n_B[19] == 0) {
+			wbairitu += (400 + 50 * n_A_ActiveSkillLV + 20 * eval(document.calcForm.SkillSubNum.value)) / 100;
+			ATKbai02(wbairitu, 0);
 
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = BattleCalc(n_A_DMG[i],i);
+			for (var i = 0; i <= 2; i++) {
+				w_DMG[i] = BattleCalc(n_A_DMG[i], i);
 				w_DMG[i] = Math.floor(w_DMG[i]);
 			}
-		}else if(n_B[19] == 5){
+		} else if (n_B[19] == 5) {
 			w_DMG[0] = w_DMG[1] = w_DMG[2] = 1;
-		}else{
+		} else {
 			w_DMG[0] = w_DMG[1] = w_DMG[2] = 0;
 		}
-		for(var i=0;i<=2;i++){
+		for (var i = 0; i <= 2; i++) {
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
 			InnStr[i] += Last_DMG_A[i];
 		}
@@ -1361,40 +1355,40 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==263) // Soul Breaker#263
+	else if (n_A_ActiveSkill == 263) // Soul Breaker#263
 	{
 		not_use_card = 1;
-		n_Enekyori=1;
+		n_Enekyori = 1;
 		wCast = 0.5 * n_A_CAST;
 		n_Delay[2] = 0.8 + 0.2 * n_A_ActiveSkillLV;
 
 		w_SBr = new Array();
 		w = n_A_INT * 5 * n_A_ActiveSkillLV;
-		w_SBr[2] = w + 1000 - Math.floor((n_B[14] + n_B[15] + n_B_MDEF2 + n_B_DEF2[2])/2);
-		w_SBr[1] = w + 750 - Math.floor((n_B[14] + n_B[15] + n_B_MDEF2 + n_B_DEF2[1])/2);
-		w_SBr[0] = w + 500 - Math.floor((n_B[14] + n_B[15] + n_B_MDEF2 + n_B_DEF2[0])/2);
-		for(var i=0;i<=2;i++)
+		w_SBr[2] = w + 1000 - Math.floor((n_B[14] + n_B[15] + n_B_MDEF2 + n_B_DEF2[2]) / 2);
+		w_SBr[1] = w + 750 - Math.floor((n_B[14] + n_B[15] + n_B_MDEF2 + n_B_DEF2[1]) / 2);
+		w_SBr[0] = w + 500 - Math.floor((n_B[14] + n_B[15] + n_B_MDEF2 + n_B_DEF2[0]) / 2);
+		for (var i = 0; i <= 2; i++)
 			w_SBr[i] = tPlusDamCut(w_SBr[i]);
 
-		for(var i=0;i<=2;i++){
-			w_DMG[i] = BattleCalc(n_A_DMG[i],i);
+		for (var i = 0; i <= 2; i++) {
+			w_DMG[i] = BattleCalc(n_A_DMG[i], i);
 			w_DMG[i] *= n_A_ActiveSkillLV;
 
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] + w_SBr[i];
-			InnStr[i] += Last_DMG_A[i] +" ("+ w_DMG[i] +" + "+ w_SBr[i] +")";
+			InnStr[i] += Last_DMG_A[i] + " (" + w_DMG[i] + " + " + w_SBr[i] + ")";
 			w_DMG[i] = Last_DMG_A[i];
 		}
 		var wX = BattleCalc2(0) * n_A_ActiveSkillLV;
 
 		n_PerHIT_DMG = wX + w_SBr[1];
-		str_PerHIT_DMG = (wX + w_SBr[0]) +"~"+ (wX + w_SBr[2]);
-		if(n_B[19] == 5){
-			for(var i=0;i<=2;i++){
+		str_PerHIT_DMG = (wX + w_SBr[0]) + "~" + (wX + w_SBr[2]);
+		if (n_B[19] == 5) {
+			for (var i = 0; i <= 2; i++) {
 				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = 1;
 				InnStr[i] += Last_DMG_A[i];
 			}
 		}
-		w_DMG[1] = (w_DMG[1] * w_HIT + n_PerHIT_DMG *(100-w_HIT))/100;
+		w_DMG[1] = (w_DMG[1] * w_HIT + n_PerHIT_DMG * (100 - w_HIT)) / 100;
 
 		CastAndDelay();
 		BattleCalc998();
@@ -1404,82 +1398,81 @@ function BattleCalc999()
 	{
 		n_PerHIT_DMG = 0;
 
-		myInnerHtml("CRIATKname",'<Font color="#FF0000">Health Drain</Font>',0);
-		myInnerHtml("CRIATK",'<Font color="#FF0000">'+ Math.floor(n_A_MaxHP /5) +"</Font>",0);
+		myInnerHtml("CRIATKname", '<Font color="#FF0000">Health Drain</Font>', 0);
+		myInnerHtml("CRIATK", '<Font color="#FF0000">' + Math.floor(n_A_MaxHP / 5) + "</Font>", 0);
 
-		myInnerHtml("CRInumname",'<Font color="#FF0000">Damage Backlash</Font>',0);
+		myInnerHtml("CRInumname", '<Font color="#FF0000">Damage Backlash</Font>', 0);
 
-		w_DMG = [0,0,0];
-		work_A_VITDEF = [0,0,0];
+		w_DMG = [0, 0, 0];
+		work_A_VITDEF = [0, 0, 0];
 		work_A_VITDEF[0] = n_A_VITDEF[2];
 		work_A_VITDEF[1] = n_A_VITDEF[1];
 		work_A_VITDEF[2] = n_A_VITDEF[0];
-		n_A_INTMDEF = n_A_INT + Math.floor(n_A_VIT /2);
+		n_A_INTMDEF = n_A_INT + Math.floor(n_A_VIT / 2);
 
 
 		// Aegis Shield#1376#9th Bonus - Ignore [Grand Cross] holy self-damage
-		if ((1376 != n_A_Equip[5] || SQI_Bonus_Effect.findIndex(x => x == 9) == -1) && !CardNumSearch(126))
-		{
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = BK_n_A_DMG[i] * (100 - n_A_DEF) /100 - work_A_VITDEF[i] + n_A_WeaponLV_seirenATK;
+		if ((1376 != n_A_Equip[5] || SQI_Bonus_Effect.findIndex(x => x == 9) == -1) && !CardNumSearch(126)) {
+			for (var i = 0; i <= 2; i++) {
+				w_DMG[i] = BK_n_A_DMG[i] * (100 - n_A_DEF) / 100 - work_A_VITDEF[i] + n_A_WeaponLV_seirenATK;
 				w_DMG[i] = Math.floor(w_DMG[i] * (wbairitu + n_A_ActiveSkillLV * 0.4));
 
-				w = BK_n_A_MATK[i] *(100 - n_A_MDEF)/100 - n_A_INTMDEF;
-				w = Math.floor(w * (n_A_ActiveSkillLV * 0.4 +1));
+				w = BK_n_A_MATK[i] * (100 - n_A_MDEF) / 100 - n_A_INTMDEF;
+				w = Math.floor(w * (n_A_ActiveSkillLV * 0.4 + 1));
 
 				w_DMG[i] += w;
-				w_DMG[i] = Math.floor(w_DMG[i] * (100-n_tok[57]) /100);
-				w_DMG[i] = Math.floor(w_DMG[i] * (100-n_tok[66]) /100);
-				w_DMG[i] = Math.floor(w_DMG[i] * (100-n_tok[78]) /100);
-				if(eval(document.calcForm.A_youshi.checked))
-					w_DMG[i] = Math.floor(w_DMG[i] * (100-n_tok[190]) /100);
+				w_DMG[i] = Math.floor(w_DMG[i] * (100 - n_tok[57]) / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * (100 - n_tok[66]) / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * (100 - n_tok[78]) / 100);
+				if (eval(document.calcForm.A_youshi.checked))
+					w_DMG[i] = Math.floor(w_DMG[i] * (100 - n_tok[190]) / 100);
 				else
-					w_DMG[i] = Math.floor(w_DMG[i] * (100-n_tok[191]) /100);
-				w_DMG[i] = Math.floor(w_DMG[i] * zokusei[n_A_BodyZokusei * 10 +1][6]);
+					w_DMG[i] = Math.floor(w_DMG[i] * (100 - n_tok[191]) / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * zokusei[n_A_BodyZokusei * 10 + 1][6]);
 
-				w_DMG[i] = Math.floor(w_DMG[i] /2);
+				w_DMG[i] = Math.floor(w_DMG[i] / 2);
 			}
 		}
-		myInnerHtml("CRInum",'<Font color="#FF0000">'+3+ SubName[8] + w_DMG[0] +"~"+ w_DMG[2] +" Damage</Font>",0);
+		myInnerHtml("CRInum", '<Font color="#FF0000">' + 3 + SubName[8] + w_DMG[0] + "~" + w_DMG[2] + " Damage</Font>", 0);
 
 
-		n_Enekyori=2;
+		n_Enekyori = 2;
 		n_A_Weapon_zokusei = 6;
 		wCast = 3 * n_A_CAST;
 		n_Delay[2] = 1.5;
-		wLAch=1;
+		wLAch = 1;
 
-		for(var i=0;i<=2;i++){
-			w_DMG[i] = BK_n_A_DMG[i] * (100 - n_B[14]) /100 - n_B_DEF2[i] + n_A_WeaponLV_seirenATK;
+		for (var i = 0; i <= 2; i++) {
+			w_DMG[i] = BK_n_A_DMG[i] * (100 - n_B[14]) / 100 - n_B_DEF2[i] + n_A_WeaponLV_seirenATK;
 			w_DMG[i] *= wbairitu + n_A_ActiveSkillLV * 0.4;
 			w_DMG[i] = Math.floor(w_DMG[i] * zokusei[n_B[3]][6]);
-			w = BK_n_A_MATK[i] *(100 - n_B[15])/100 -n_B_MDEF2;
-			w *= (n_A_ActiveSkillLV * 0.4 +1);
+			w = BK_n_A_MATK[i] * (100 - n_B[15]) / 100 - n_B_MDEF2;
+			w *= (n_A_ActiveSkillLV * 0.4 + 1);
 			w = Math.floor(w * zokusei[n_B[3]][6]);
 
 			//custom Talon Tales added bonus damage for Imperial Spear + Imperial Guard Combo
 			//works with every gear which has bonus for 5162 (5000+skillID)
 			wcustomtromod = 0;
-			wcustomtromod += StPlusCalc2(5000+n_A_ActiveSkill)+StPlusCard(5000+n_A_ActiveSkill);
+			wcustomtromod += StPlusCalc2(5000 + n_A_ActiveSkill) + StPlusCard(5000 + n_A_ActiveSkill);
 			//end damage calculation needed to be adjusted for above bonus
-			w_DMG[i] = tPlusDamCut(Math.floor((w+w_DMG[i])*((100+wcustomtromod) /100)*zokusei[n_B[3]][6]));
+			w_DMG[i] = tPlusDamCut(Math.floor((w + w_DMG[i]) * ((100 + wcustomtromod) / 100) * zokusei[n_B[3]][6]));
 			//original end damage calculation:
 			//w_DMG[i] = tPlusDamCut(Math.floor((w+w_DMG[i])*zokusei[n_B[3]][6]));
 
-			if(w_DMG[i] < 1)w_DMG[i]=1;
-			if(60<=n_B[3]&&n_B[3]<=69)w_DMG[i]=0;
+			if (w_DMG[i] < 1) w_DMG[i] = 1;
+			if (60 <= n_B[3] && n_B[3] <= 69) w_DMG[i] = 0;
 		}
 
-		if(n_B_IJYOU[6] == 0){
-			for(var b=0;b<=2;b++){
+		if (n_B_IJYOU[6] == 0) {
+			for (var b = 0; b <= 2; b++) {
 				Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * 3;
-				InnStr[b] += Last_DMG_A[b] + " ("+w_DMG[b]+ SubName[8] +"3hit)";
+				InnStr[b] += Last_DMG_A[b] + " (" + w_DMG[b] + SubName[8] + "3hit)";
 				w_DMG[b] = Last_DMG_A[b];
 			}
-		}else{
-			for(var b=0;b<=2;b++){
+		} else {
+			for (var b = 0; b <= 2; b++) {
 				Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * 4;
-				InnStr[b] += Last_DMG_A[b] + " ("+ (w_DMG[b] * 2) +" + " +w_DMG[b]+ SubName[8] +"2hit)";
+				InnStr[b] += Last_DMG_A[b] + " (" + (w_DMG[b] * 2) + " + " + w_DMG[b] + SubName[8] + "2hit)";
 				w_DMG[b] = Last_DMG_A[b];
 			}
 		}
@@ -1488,39 +1481,39 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==66) // Cart Revolution#66
+	else if (n_A_ActiveSkill == 66) // Cart Revolution#66
 	{
 		wCR = 100;
 		n_PerHIT_DMG = Math.floor(BattleCalc2(0) * 2 * zokusei[n_B[3]][0]);
 
-		if(SkillSearch(327)){
+		if (SkillSearch(327)) {
 			wCR += 20 * SkillSearch(327);
 		}
-		else{
-			if(SkillSearch(154))
+		else {
+			if (SkillSearch(154))
 				wCR += SkillSearch(154) * 5;
-			if(SkillSearch(154)==0 && n_A_PassSkill2[8])
+			if (SkillSearch(154) == 0 && n_A_PassSkill2[8])
 				wCR += n_A_PassSkill2[8] * 5 / 10;
 		}
-		CR_n_A_DMG = [0,0,0];
+		CR_n_A_DMG = [0, 0, 0];
 
 		CRbai = retrieve_cart_weight(n_A_ActiveSkill) / 8000;
-		for(b=0;b<=2;b++)
+		for (b = 0; b <= 2; b++)
 			CR_n_A_DMG[b] = Math.floor(n_A_DMG[b] * wCR / 100);
 
 		wbairitu += 0.5;
-		ATKbai02(wbairitu,0);
+		ATKbai02(wbairitu, 0);
 
-		for(var b=0;b<=2;b++){
-			w_DMG[b] = BattleCalc(n_A_DMG[b],b);
-			w_DMG[b] += Math.floor(BattleCalc(CR_n_A_DMG[b],b) * CRbai);
+		for (var b = 0; b <= 2; b++) {
+			w_DMG[b] = BattleCalc(n_A_DMG[b], b);
+			w_DMG[b] += Math.floor(BattleCalc(CR_n_A_DMG[b], b) * CRbai);
 			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);
 
 			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] + EDP_DMG(b);
 			InnStr[b] += Last_DMG_A[b];
 		}
 
-		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * 2 *(100-w_HIT))/100;
+		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * 2 * (100 - w_HIT)) / 100;
 		w_DMG[1] = Math.floor(w_DMG[1] * zokusei[n_B[3]][0]);
 
 		EDPplus(1);
@@ -1529,25 +1522,25 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==283) // Pressure#283
+	else if (n_A_ActiveSkill == 283) // Pressure#283
 	{
 		n_PerHIT_DMG = 0;
 		w_DMG[2] = 500 + 300 * n_A_ActiveSkillLV;
-		if(n_B[19] == 5)
+		if (n_B[19] == 5)
 			w_DMG[2] = 1;
 		w_DMG[0] = w_DMG[1] = w_DMG[2];
-		for(var i=0;i<=2;i++){
+		for (var i = 0; i <= 2; i++) {
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
 			InnStr[i] += Last_DMG_A[i];
 		}
-		wCast = (1.5+ 0.5 * n_A_ActiveSkillLV) * n_A_CAST;
-		n_Delay[2] = (1.5 + n_A_ActiveSkillLV *0.5)/2;
+		wCast = (1.5 + 0.5 * n_A_ActiveSkillLV) * n_A_CAST;
+		n_Delay[2] = (1.5 + n_A_ActiveSkillLV * 0.5) / 2;
 		w_HIT_HYOUJI = 100;
 		CastAndDelay();
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==284) // Sacrifice#284
+	else if (n_A_ActiveSkill == 284) // Sacrifice#284
 	{
 		n_PerHIT_DMG = 0;
 		n_A_Weapon_zokusei = 0;
@@ -1555,7 +1548,7 @@ function BattleCalc999()
 		w_DMG[2] = BaiCI(w_DMG[2]);
 		w_DMG[2] = Math.floor(w_DMG[2] * zokusei[n_B[3]][0]);
 		w_DMG[0] = w_DMG[1] = w_DMG[2];
-		for(var i=0;i<=2;i++){
+		for (var i = 0; i <= 2; i++) {
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
 			InnStr[i] += Last_DMG_A[i];
 		}
@@ -1564,22 +1557,21 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==193)
-	{
+	else if (n_A_ActiveSkill == 193) {
 		n_PerHIT_DMG = 0;
 		w_HIT_HYOUJI = 100;
 		n_A_Weapon_zokusei = 0;
-		ATKbai02(wbairitu,0);
-		wbairitu += n_A_ActiveSkillLV *0.75;
+		ATKbai02(wbairitu, 0);
+		wbairitu += n_A_ActiveSkillLV * 0.75;
 
 
-		work_B_DEF2 = [0,0,0];
+		work_B_DEF2 = [0, 0, 0];
 		work_B_DEF2[0] = n_B_DEF2[2];
 		work_B_DEF2[1] = n_B_DEF2[1];
 		work_B_DEF2[2] = n_B_DEF2[0];
 
-		for(var b=0;b<=2;b++){
-			w_DMG[b] = Math.floor(Math.floor(BK_n_A_DMG[b] * wbairitu) * (work_B_DEF2[b]+n_B[14]) /50);
+		for (var b = 0; b <= 2; b++) {
+			w_DMG[b] = Math.floor(Math.floor(BK_n_A_DMG[b] * wbairitu) * (work_B_DEF2[b] + n_B[14]) / 50);
 			w_DMG[b] = BaiCI(w_DMG[b]);
 			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);
 
@@ -1595,30 +1587,30 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==197 || n_A_ActiveSkill==321) // Asura Strike#197#321 (MaxSP - 1)
+	else if (n_A_ActiveSkill == 197 || n_A_ActiveSkill == 321) // Asura Strike#197#321 (MaxSP - 1)
 	{
 		n_PerHIT_DMG = 0;
 		w_HIT_HYOUJI = 100;
 		n_A_Weapon_zokusei = 0;
-		ATKbai02(wbairitu,0);
-		
+		ATKbai02(wbairitu, 0);
+
 		sp_used = (197 == n_A_ActiveSkill ? eval(document.calcForm.SkillSubNum.value) : n_A_MaxSP - 1);
 		skill_ratio = 1 + Math.floor(7 + sp_used / 10);
 		skill_damage_constant = 250 + n_A_ActiveSkillLV * 150;
 
-		for(var b=0;b<=2;b++){
+		for (var b = 0; b <= 2; b++) {
 			w_DMG[b] = Math.floor(BK_n_A_DMG[b] * skill_ratio) + skill_damage_constant;	//Asura calculation (dmg * sp-calc + skilllvl-specific-atk)
 			w_DMG[b] = BaiCI(w_DMG[b]);													//weap (i.e. Nemesis) & card modifier
 			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);						//Enemy element reduction for ghost
 			w_DMG[b] = ApplySkillAtkBonus(w_DMG[b]);
 
 			// Lex Aeterna for Asura Strike before soft-cap
-			if (n_B_IJYOU[6] && wLAch==0)
+			if (n_B_IJYOU[6] && wLAch == 0)
 				w_DMG[b] *= 2;
 
 			if (w_DMG[b] > 200000) // Apply soft-cap
 				w_DMG[b] = Math.floor(w_DMG[b] / (w_DMG[b] + 300000) * 500000);
-			
+
 			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b]
 
 			InnStr[b] += Last_DMG_A[b];
@@ -1635,22 +1627,22 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==394){ // Throw Shuriken#394
-		n_Enekyori=1;
+	else if (n_A_ActiveSkill == 394) { // Throw Shuriken#394
+		n_Enekyori = 1;
 		w_HIT = 100;
 		w_HIT_HYOUJI = 100;
 		not_use_card = 1;
-		ATKbai02(wbairitu,0);
+		ATKbai02(wbairitu, 0);
 
-		for(var b=0;b<=2;b++){
-			w_DMG[b] = BattleCalc(n_A_DMG[b],b);
+		for (var b = 0; b <= 2; b++) {
+			w_DMG[b] = BattleCalc(n_A_DMG[b], b);
 			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);
 
 			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b];
 			InnStr[b] += Last_DMG_A[b];
 		}
 
-		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * zokusei[n_B[3]][0] *(100-w_HIT))/100;
+		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * zokusei[n_B[3]][0] * (100 - w_HIT)) / 100;
 
 		n_PerHIT_DMG = BattleCalc2(0) * zokusei[n_B[3]][0];
 
@@ -1658,28 +1650,28 @@ function BattleCalc999()
 		BattleCalc998();
 	}
 
-	else if(n_A_ActiveSkill==395){
-		n_Enekyori=1;
+	else if (n_A_ActiveSkill == 395) {
+		n_Enekyori = 1;
 		n_Delay[2] = 1;
 		not_use_card = 1;
-		ATKbai02(wbairitu,0);
+		ATKbai02(wbairitu, 0);
 
 		n_A_Weapon_zokusei = KunaiOBJ[eval(document.calcForm.SkillSubNum.value)][1];
 
-		for(var b=0;b<=2;b++){
-			w_DMG[b] = BattleCalc(n_A_DMG[b],b);
+		for (var b = 0; b <= 2; b++) {
+			w_DMG[b] = BattleCalc(n_A_DMG[b], b);
 			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);
 
 			Last_DMG_B[b] = w_DMG[b];
 			Last_DMG_A[b] = w_DMG[b] * 3;
-			InnStr[b] += Last_DMG_A[b] + " ("+ Last_DMG_B[b] + SubName[8] +"3hit)";
+			InnStr[b] += Last_DMG_A[b] + " (" + Last_DMG_B[b] + SubName[8] + "3hit)";
 			w_DMG[b] = Last_DMG_A[b];
 		}
 		var wX = Math.floor(BattleCalc2(0) * zokusei[n_B[3]][0]);
 
-		w_DMG[1] = (w_DMG[1] * w_HIT + wX * 3 *(100-w_HIT))/100;
+		w_DMG[1] = (w_DMG[1] * w_HIT + wX * 3 * (100 - w_HIT)) / 100;
 		n_PerHIT_DMG = wX * 3;
-		str_PerHIT_DMG = wX * 3 +" (3"+ SubName[8] + wX +" Damage)"
+		str_PerHIT_DMG = wX * 3 + " (3" + SubName[8] + wX + " Damage)"
 
 		CastAndDelay();
 		BattleCalc998();
@@ -1687,31 +1679,31 @@ function BattleCalc999()
 
 	else if (n_A_ActiveSkill == 396) // Throw Huuma Shuriken#396
 	{
-		n_Enekyori=1;
+		n_Enekyori = 1;
 		n_Delay[2] = 3;
 		wCast = 3 * n_A_CAST;
-		wbairitu += (n_A_ActiveSkillLV * 1.5 +0.5);
+		wbairitu += (n_A_ActiveSkillLV * 1.5 + 0.5);
 		wActiveHitNum = 2 + Math.round(n_A_ActiveSkillLV / 2);
-		
+
 		monsters_targeted_nb = eval(document.calcForm.SkillSubNum.value);
-		
+
 		// Huuma Swirling Petal#1770 - Hira Shurikat#1385#8th Bonus - [Throw Huuma Shuriken] no longer split damage.
 		if ((1385 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 8) > -1) || EquipNumSearch(1770))
 			monsters_targeted_nb = 1;
 
-		ATKbai02(wbairitu,0);
-		for(var b=0;b<=2;b++){
-			w_DMG[b] = BattleCalc(n_A_DMG[b],b);
-			if(wActiveHitNum > 1)
+		ATKbai02(wbairitu, 0);
+		for (var b = 0; b <= 2; b++) {
+			w_DMG[b] = BattleCalc(n_A_DMG[b], b);
+			if (wActiveHitNum > 1)
 				w_DMG[b] = Math.floor(w_DMG[b] / wActiveHitNum) * wActiveHitNum;
 
 			Last_DMG_A[b] = Last_DMG_B[b] = Math.floor(w_DMG[b] / monsters_targeted_nb);
 			InnStr[b] += Last_DMG_A[b];
-			InnStr[b] += " ("+ (Last_DMG_A[b] / wActiveHitNum) +" x "+ wActiveHitNum +"Hit)";
+			InnStr[b] += " (" + (Last_DMG_A[b] / wActiveHitNum) + " x " + wActiveHitNum + "Hit)";
 		}
 
 		// FIXME, most probably not required
-		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * (100-w_HIT))/100;
+		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * (100 - w_HIT)) / 100;
 		n_PerHIT_DMG = BattleCalc2(0);
 
 		CastAndDelay();
