@@ -1709,7 +1709,35 @@ function BattleCalc999() {
 		CastAndDelay();
 		BattleCalc998();
 	}
+	else if (397 == n_A_ActiveSkill) // Throw Zeny#397
+	{
+		n_Enekyori = 1;
+		n_Delay[2] = 5;
+		w_HIT_HYOUJI = 100;
 
+		// Ignore BG restriction
+		// No attack card modifier for MISC attacks
+
+		damage = [0, 0, 0].map(x => 500 * n_A_ActiveSkillLV) // Zeny requirement
+		damage[1] += Math.floor(damage[0] / 2);
+		damage[2] += damage[0];
+
+		if (n_B[19])
+			damage = damage.map(x => Math.floor(x / 3));
+		else if (Taijin)
+			damage = damage.map(x => Math.floor(x / 2));
+
+		// Ignore defense but not script sub reduction FIXME for PvP
+
+		for (i = 0; i <= 2; ++i)
+		{
+			w_DMG[i] = damage[i];
+			InnStr[i] += damage[i];
+		}
+
+		CastAndDelay();
+		BattleCalc998();
+    }
 	else if(n_A_ActiveSkill==405 || n_A_ActiveSkill==438)
 	{
 		n_PerHIT_DMG = 0;
