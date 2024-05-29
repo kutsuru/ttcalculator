@@ -1016,6 +1016,8 @@ MonsterOBJ = [
 ,[891,"1st Guard Dog",2,31,1,75,41599,35,66,55,64,30,1947,2351,29,38,19344,15158,,0,0,2545]
 ,[892,"2nd Guard Dog",2,21,1,88,55278,25,86,55,94,50,2473,2851,34,45,23514,17673,,0,0,2546]
 ,[893,"Doyen Irene",7,1,1,98,866110,40,86,100,152,88,4249,5360,38,47,101360,207032,,1,0,2542]
+// [Custom Talon Tales - 2024-05-28 Wild Rider from Malangdo Cave]
+,[894,"Wild Rider",5,12,2,73,47300,15,100,70,100,30,1820,2448,49,16,130400,58400,,1,0,2208]
 ];
 
 //[id, "name",race,element,size,lvl,hp,vit,agi,int,dex,luk,minatk,maxatk,def,mdef,baseexp@1x_rate,jobexp@1x_rate,,1 boss/0 non-boss,1 range/0 melee, monster ID]
