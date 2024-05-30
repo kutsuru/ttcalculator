@@ -2886,7 +2886,8 @@ function BattleCalc998()
 	}
 
 	// amotion: n_Delay[1], cast time: wCast and minimum skil delay: n_Delay[4] are updating the canact tick at castbegin and not castend
-	damage_per_second = 1 / (Math.max(Math.max(0, wCast - n_Delay[1]), wCast - n_Delay[4]) + wDelay) * w_DMG[1];
+	// Apply hit ratio to dps computation as well
+	damage_per_second = 1 / (Math.max(Math.max(0, wCast - n_Delay[1]), wCast - n_Delay[4]) + wDelay) * w_DMG[1] * w_HIT_HYOUJI / 100;
 	
 	if (2 == n_Enekyori)
 	{
