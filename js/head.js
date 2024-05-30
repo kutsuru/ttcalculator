@@ -1004,6 +1004,7 @@ function BattleCalc999() {
 			w_HIT = 100;
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
+			n_A_Weapon_zokusei = GrenadeOBJ[n_A_Arrow][1];
 
 			// Scouter#1387#5th Bonus - PvM: [Ground Drift#437] Add 4 more Mines
 			if (!Taijin && 21 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 5) > -1)
@@ -1116,8 +1117,9 @@ function BattleCalc999() {
 			n_Enekyori = 1;
 			wbairitu += n_A_STR * 0.08 - 0.5;
 			wHITsuu = 2;
-		} else if (n_A_ActiveSkill == 429) {
+		} else if (n_A_ActiveSkill == 429) { // Desperado#429
 			n_Enekyori = 0;
+			n_A_Weapon_zokusei = BulletOBJ[n_A_Arrow][1];
 			wbairitu += n_A_ActiveSkillLV * 0.5 - 0.5;
 			n_Delay[2] = 1;
 			var DEATH = [1, 1.2, 1.6, 2, 2.4, 3, 3.6, 4, 5, 6, 7, 8, 9, 10];
