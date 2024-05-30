@@ -1475,39 +1475,18 @@ function BattleCalc999() {
 
 	else if (n_A_ActiveSkill == 66) // Cart Revolution#66
 	{
-		wCR = 100;
-		n_PerHIT_DMG = Math.floor(BattleCalc2(0) * 2 * zokusei[n_B[3]][0]);
-
-		if (SkillSearch(327)) {
-			wCR += 20 * SkillSearch(327);
-		}
-		else {
-			if (SkillSearch(154))
-				wCR += SkillSearch(154) * 5;
-			if (SkillSearch(154) == 0 && n_A_PassSkill2[8])
-				wCR += n_A_PassSkill2[8] * 5 / 10;
-		}
-		CR_n_A_DMG = [0, 0, 0];
-
-		CRbai = retrieve_cart_weight(n_A_ActiveSkill) / 8000;
-		for (b = 0; b <= 2; b++)
-			CR_n_A_DMG[b] = Math.floor(n_A_DMG[b] * wCR / 100);
-
-		wbairitu += 0.5;
+		wBCEDPch = 1 // Damage bonus is not missing on ghost element
+		n_PerHIT_DMG = BattleCalc2(0);
+		wbairitu += 0.5 + Math.floor(100 * retrieve_cart_weight(n_A_ActiveSkill) / 8000) / 100;
 		ATKbai02(wbairitu, 0);
 
 		for (var b = 0; b <= 2; b++) {
-			w_DMG[b] = BattleCalc(n_A_DMG[b], b);
-			w_DMG[b] += Math.floor(BattleCalc(CR_n_A_DMG[b], b) * CRbai);
-			w_DMG[b] = Math.floor(w_DMG[b] * zokusei[n_B[3]][0]);
+			w_DMG[b] = Math.floor(BattleCalc(n_A_DMG[b], b) * zokusei[n_B[3]][0]) + n_PerHIT_DMG;
+			w_DMG[b] = Math.max(w_DMG[b], w_DMG[Math.max(0, b - 1)]);
 
-			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] + EDP_DMG(b);
+			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b];
 			InnStr[b] += Last_DMG_A[b];
 		}
-
-		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * 2 * (100 - w_HIT)) / 100;
-		w_DMG[1] = Math.floor(w_DMG[1] * zokusei[n_B[3]][0]);
-
 		EDPplus(1);
 
 		CastAndDelay();
