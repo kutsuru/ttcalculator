@@ -8393,9 +8393,9 @@ function ApplySkillAtkBonus(dmg)
 	if(n_A_ActiveSkill == 84 && EquipNumSearch(1091))
 		skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
 
-	// Glorious Fist#1097 - [Every Refine Level] - Increases [Finger Offensive]#192 damage by 5%.
+	// Glorious Fist#1097 - [Every Refine Level] - Increases [Finger Offensive]#192 damage by 1%, 2% instead if refine > 5.
 	if (n_A_ActiveSkill == 192 && EquipNumSearch(1097))
-		skill_atk_bonus_ratio += n_A_Weapon_ATKplus * 5;
+		skill_atk_bonus_ratio += n_A_Weapon_ATKplus + (Math.max(0, n_A_Weapon_ATKplus - 5));
 
 	// Soldier Revolver#925 - [Refine Level >=7] - Increases [Rapid Shower]#428 damage by 10%.
 	if(n_A_ActiveSkill == 428 && n_A_Weapon_ATKplus >= 7 && EquipNumSearch(925))

@@ -3568,8 +3568,8 @@ with(document.calcForm){
 	if (n_A_ActiveSkill == 76 && n_A_Weapon_ATKplus >= 6 && EquipNumSearch(1080))
 		skill_cast_reduction -= 10 * (n_A_Weapon_ATKplus - 5);
 
-	// Glorious Fists#1097 - Gives -3% less casting time for [Finger Offensive] per refine] [Amor]
-	if (n_A_ActiveSkill == 192 && EquipNumSearch(1097))
+	// Glorious Fists#1097 - Gives -5% less casting time for [Asura Strike] per refine [Amor]
+	if ((n_A_ActiveSkill == 197 || n_A_ActiveSkill == 321) && EquipNumSearch(1097))
 		skill_cast_reduction -= 3 * (n_A_Weapon_ATKplus);
 
 	// Glorious Holy Avenger#1079 - [Grand Cross] -2% cast time per refine] [Amor] - Aegis Shield#1376 doubles the cast time reduction bonus
