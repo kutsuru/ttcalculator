@@ -1477,13 +1477,12 @@ function BattleCalc999() {
 
 	else if (n_A_ActiveSkill == 66) // Cart Revolution#66
 	{
-		wBCEDPch = 1 // Damage bonus is not missing on ghost element
 		n_PerHIT_DMG = BattleCalc2(0);
 		wbairitu += 0.5 + Math.floor(100 * retrieve_cart_weight(n_A_ActiveSkill) / 8000) / 100;
 		ATKbai02(wbairitu, 0);
 
 		for (var b = 0; b <= 2; b++) {
-			w_DMG[b] = Math.floor(BattleCalc(n_A_DMG[b], b) * zokusei[n_B[3]][0]) + n_PerHIT_DMG;
+			w_DMG[b] = Math.floor(BattleCalc(n_A_DMG[b], b) * zokusei[n_B[3]][0]);
 			w_DMG[b] = Math.max(w_DMG[b], w_DMG[Math.max(0, b - 1)]);
 
 			Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b];
