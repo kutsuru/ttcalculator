@@ -765,7 +765,7 @@ AutoSpellSkill = [
 [121,1,124,3,3,4], //custom Talon Tales Mental Stick & Telekinetic Orb combo Sightrasher lv 3 on magic (3%) - Unused, old behaviour
 [122,1,319,1,10,1], //custom Talon Tales Sura's Rampage lv1 Heaven's Drive (10%) on physical attack  - Unused, old behaviour
 [123,1,193,1,10,1], //custom Talon Tales Sura's Rampage lv1 Investigate (10%) on physical attack  - Unused, old behaviour
-[124,1,40,5,2,5], //custom Talon Tales Catapult lv5 Double Strafe (2%) on attacking
+[124,1,40,5,2,1], //custom Talon Tales Catapult lv5 Double Strafe (2%) on attacking
 [125,1,260,2,10,1], //custom Talon Tales Cannon Spear lv 2 Head Crush (10%) on physical attack
 [126,1,83,1,0.5,2], //custom Talon Tales Krishna Sonic Blow lv 1 (small/0.5%) on physical melee attack
 [127,1,51,5,1,5], //When performing a ATK/magic based attack, there's a low chance to cast the skill [Fire Bolt]Lv 5
