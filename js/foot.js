@@ -3070,7 +3070,11 @@ with(document.calcForm){
 		n_tok[28] += bonus;
 		n_tok[29] += bonus;
 		w += bonus;
-    }
+	}
+	// King Ernst Von Wolff#1867 - [Desert Baby Wolf] Damage on [Small] size monsters + 5%, 10% if loyal
+	if (EquipNumSearch(1867) && 10 == n_A_PassSkill8[0])
+		n_tok[27] += 10; // pet is considered loyal as no such option available in front end
+
 	//custom Talon Tales Halloween Midas Whisper
 	if(SU_INT >= 80 && EquipNumSearch(1526))
 		w += 3;
