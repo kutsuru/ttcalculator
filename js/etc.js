@@ -426,6 +426,7 @@ PET_OBJ = [[0,"No Pet",0,0]
 ,[171,"Creeper [STR +2, VIT +2, Wind element resistance increased by 2%]",0,1,2,3,2,64,2,0]
 ,[172,"Phylla [ASPD +2%, Increase Physical against Water element monsters by 2%]",0,12,2,41,2,0]
 ,[173,"Rhyncho [ASPD +1%, Increase Physical against Water element monsters by 2%]",0,12,1,41,2,0]
+,[174,"Green Petite [ASPD +1%, DEF/MDEF -2]",0,12,1,18,-2,19,-2,0]
 ];
 
 ITEM_SP_TIME_OBJ =[
