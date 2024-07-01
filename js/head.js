@@ -7508,24 +7508,28 @@ Race - n_B[2] = raceID - example n_B[2] = 3, Plant
 		n_B[27] = eval(document.calcForm.monster_flee.value);	// FLEE
 	}
 
-	var w = 0;
-	w += n_tok[295];
-	w += n_tok[310+n_B[2]];
-	w += n_tok[360+Math.floor(n_B[3] / 10)];
-	
-	if(w){
-		if(w < 0)
-			w = 0;
-		n_B[15] -= Math.floor(n_B[15] * w /100);
-	}
-	
-	if (n_B[19] == 0 && n_B[2] != 1) // SC_FREEZE & SC_STONE increase MDEF by 25%
-			n_B[15] += Math.floor(n_B[15] * 25 /100) * (n_B_IJYOU[4] || n_B_IJYOU[9]);
+	// Status affecting MDEF
+	mdef_sc_reduction = 1;
 
-	if(n_B[19] == 0){
-		if(n_B_IJYOU[18] && n_B[3]<90)
-			n_B[25] -= Math.floor(n_B[25] * (n_B_IJYOU[18] * 12) / 100);
-	}
+	if (eska_mdef_reduction) // Replace [Eska] effect with 20% MDEF Reduction on the target for 10 seconds.
+		mdef_sc_reduction *= 0.8;
+
+	if (n_B[19] == 0 && n_B[2] != 1 && (n_B_IJYOU[4] || n_B_IJYOU[9])) // SC_FREEZE & SC_STONE increase MDEF by 25%
+		mdef_sc_reduction *= 1.25;
+
+	if (n_B[19] == 0 && n_B_IJYOU[18] && n_B[3] < 90)
+		mdef_sc_reduction *= 1 - (n_B_IJYOU[18] * 12 / 100);
+
+	var mdef_reduction = n_tok[295];
+	mdef_reduction += n_tok[310+n_B[2]];
+	mdef_reduction += n_tok[360 + Math.floor(n_B[3] / 10)];
+	mdef_reduction = Math.max(0, mdef_reduction);
+
+	// Apply MDEF reduction
+	n_B[15] -= Math.floor(n_B[15] * mdef_reduction /100);
+
+	// Apply status MDEF reduction
+	n_B[15] = Math.floor(n_B[15] * mdef_sc_reduction);
 
 	if (Taijin == 0 && n_B_IJYOU[21]) // Eska set INT MDEF to 90
 			n_B[25] = 90;

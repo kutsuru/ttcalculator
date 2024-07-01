@@ -4173,10 +4173,6 @@ with(document.calcForm){
 		n_A_zokusei[i] = n_A_zokusei[i] - Math.floor(n_A_zokusei[i] * n_tok[60+i]) / 100;
 	}
 
-	// Replace [Eska] effect with 20% MDEF Reduction on the target for 10 seconds.
-	if (eska_mdef_reduction)
-		n_tok[295] += 20;
-
 	if(EquipNumSearch(645))
 		n_tok[295] += 10 + n_A_Weapon_ATKplus;
 	if(n_A_WeaponType==9)
