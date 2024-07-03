@@ -5150,10 +5150,6 @@ function StPlusCalc() {
 		if(n_A_JobSearch()==1)
 			n_tok[1] += Math.floor(n_A_HEAD_DEF_PLUS /3);
 
-	// Tarou#98 + Cramp#273 Combo
-	if ((n_A_card[14] == 98 || n_A_card[15] == 98) && CardNumSearch(273))
-		n_tok[1] += 3;
-
 	if(CardNumSearch(405)){
 		if(n_A_JobSearch()==1 || n_A_JobSearch()==2 || n_A_JobSearch()==6)
 			n_tok[1] += 2;
