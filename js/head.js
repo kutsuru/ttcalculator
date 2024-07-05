@@ -2163,22 +2163,27 @@ function BattleCalc999() {
 				n_Delay[2] = 0.8 + n_A_ActiveSkillLV / 2 *0.2;
 			else
 				n_Delay[2] = 1 + (n_A_ActiveSkillLV+1) / 2 *0.2;
-		}else if(n_A_ActiveSkill==373){
+		} else if (n_A_ActiveSkill == 373) // Estin#373
+		{
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			wCast = 0.1;
 			n_Delay[2] = 0.5;
-			if(n_B[4] == 0)
-				wbairitu = n_A_ActiveSkillLV * 0.1;
-			else
-				wbairitu = 0.01;
-			if(Taijin==1)
+
+			//Target size must be small (0) for full damage
+			wbairitu += (n_B[4] ? -0.99 : 0.1 * n_A_ActiveSkillLV);
+
+			if (Taijin == 1)
 				wbairitu = 0;
 		}
-		else if(n_A_ActiveSkill==374){
+		else if (n_A_ActiveSkill == 374) // Estun#374
+		{
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			wCast = 0.1;
 			n_Delay[2] = 0.5;
-			wbairitu = n_A_ActiveSkillLV * 0.05;
+
+			//Full damage is dealt on small/medium targets
+			wbairitu += (n_B[4] != 2 ? 0.05 * n_A_ActiveSkillLV : -0.99);
+
 			if(Taijin==1)
 				wbairitu = 0;
 		}
