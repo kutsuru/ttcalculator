@@ -3359,7 +3359,7 @@ function BattleMagicCalc(wBMC) {
 		wX += 10;
 
 	// Elemental Boots#1819 - [Refine Level +7 or Higher] 5% more damage with [Fire Bolt], [Cold Bolt], [Lightning Bolt], [Earth Spike].
-	if ((n_A_ActiveSkill == 51 || n_A_ActiveSkill == 54 || n_A_ActiveSkill == 56 || n_A_ActiveSkill == 132) && n_A_SHOES_DEF_PLUS > 6)
+	if (EquipNumSearch(1819) && (n_A_ActiveSkill == 51 || n_A_ActiveSkill == 54 || n_A_ActiveSkill == 56 || n_A_ActiveSkill == 132) && n_A_SHOES_DEF_PLUS > 6)
 		wX += 5;
 
 	// Mental Stick#1508 - [Every Refine Level] 2% more damage with [Fire Bolt]#51, [Cold Bolt]#54, [Lightning Bolt]#56
