@@ -391,8 +391,12 @@ with(document.calcForm){
 		if(201 <= cardOBJ[n_A_card[4]][0] && cardOBJ[n_A_card[4]][0] <= 204)
 			n_A_Weapon2_zokusei = cardOBJ[n_A_card[4]][0] -200;
 
-		if(n_A_WeaponType==10 || (17 <= n_A_WeaponType && n_A_WeaponType <=21))
+		if (10 == n_A_WeaponType)
 			n_A_Weapon_zokusei = ArrowOBJ[n_A_Arrow][1];
+		else if (17 <= n_A_WeaponType && n_A_WeaponType <= 20)
+			n_A_Weapon_zokusei = BulletOBJ[n_A_Arrow][1];
+		else if (21 == n_A_WeaponType)
+			n_A_Weapon_zokusei = GrenadeOBJ[n_A_Arrow][1];
 	}
 	
 	// Manage Neutral endow from SQI Bonus

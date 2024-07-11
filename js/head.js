@@ -1004,7 +1004,6 @@ function BattleCalc999() {
 			w_HIT = 100;
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
-			n_A_Weapon_zokusei = GrenadeOBJ[n_A_Arrow][1];
 
 			// Scouter#1387#5th Bonus - PvM: [Ground Drift#437] Add 4 more Mines
 			if (!Taijin && 21 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 5) > -1)
@@ -8172,8 +8171,7 @@ function BattleCalc2(w999)
 
 	if(n_A_ActiveSkill==423)
 		w999 = w999 * zokusei[n_B[3]][8];
-	if(n_A_ActiveSkill==437)
-		w999 = w999 * zokusei[n_B[3]][0];
+
 	if(Taijin==1)
 		if(n_A_ActiveSkill==317 || n_A_ActiveSkill==318)
 			w999 = 0;
