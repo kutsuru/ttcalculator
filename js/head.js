@@ -1673,8 +1673,6 @@ function BattleCalc999() {
 			InnStr[b] += " (" + (Last_DMG_A[b] / wActiveHitNum) + " x " + wActiveHitNum + "Hit)";
 		}
 
-		// FIXME, most probably not required
-		w_DMG[1] = (w_DMG[1] * w_HIT + BattleCalc2(0) * (100 - w_HIT)) / 100;
 		n_PerHIT_DMG = BattleCalc2(0);
 
 		CastAndDelay();
