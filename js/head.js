@@ -178,7 +178,7 @@ JobEquipItemOBJ = [
 [0, 1, 52,102, 72, 74, 75,78, 80,83,84,85,90,91,92,93,94,97,999], //Thief
 [0, 1, 53,103, 71, 73, 74, 77,78,85,89,95,96,152,999], //Acolyte
 [0, 1, 54,104, 75, 76,83,89,92,999], //Archer
-[0, 1, 55, 57,105, 71, 77,89,96,152,999], //Mage
+[0, 1, 55, 57,105, 71, 77, 89, 93, 96,152,999], //Mage
 [0, 1, 56,106, 70, 71, 72, 73, 74, 75,78,83,84,85,86,90,91,93,94,95,999], //Merchant
 [0, 1, 51, 61,107, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,999], //Knight
 [0, 1, 52, 62,108, 72, 74, 75,78,79,81,83,84,85,90,91,93,94,97,999], //Assassin
@@ -198,7 +198,7 @@ JobEquipItemOBJ = [
 [0, 1, 52, 62,108,122, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,97,999], //Assassin Cross
 [0, 1, 53, 63,109,123, 71, 73, 74, 77,78,79,81,82,85,89,95,96,151,152,999], //High Priest
 [0, 1, 54, 60, 64,110,124, 75, 76,79,80,82,83,88,89,92,999], //Sniper
-[0, 1, 55, 57, 65,111,125, 71, 77,79,82,89,96,151,152,999], //High Wizard
+[0, 1, 55, 57, 65,111,125, 71, 77,79,82,89,93,96,151,152,999], //High Wizard
 [0, 1, 56, 66,112,126, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,135,999], //Whitesmith
 [0, 1, 51, 61,113,127, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,999], //Paladin
 [0, 1, 52, 62,114,128, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,97,999], //Stalker
@@ -269,7 +269,7 @@ JobEquipItemOBJ = [
 		90 = novice, swordman class, merchant class, thief, assassin
 		91 = swordman class, merchant class, thief class, star gladiator, ninja
 		92 = archer class, thief, rogue
-		93 = novice, swordman class, merchant class, thief class, ninja, soul linker
+		93 = novice, swordman class, merchant class, thief class, mage class, ninja, soul linker
 		94 = novice, swordman class, merchant class, thief class
 		95 = novice, swordman class, merchant class, acolyte class
 		96 = novice, mage class, acolyte class, soul linker
