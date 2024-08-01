@@ -8244,6 +8244,12 @@ function BaiCI(wBaiCI)
 			// This modifier does not increase Shadow Slash#401 and Sharpshoot#272 damage
 			crit_dmg_modifier = (272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill) ? 0 : n_tok[70];
 			
+			// Temporal Boots - 2nd Enchant - Lucky Day - 2% chance to increase critical damage by 15% for 10 seconds
+			// Bonus applied independently for Shadow Slash#401 and Sharpshoot#272 as this bonus is included in n_tok[70]
+			let second_enchant_index = eval(document.calcForm.temporal_2nd_enchant_select.value);
+			if (6 == second_enchant_index && (272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill))
+				crit_dmg_modifier += 15;
+	
 			// Temporal Boots (LUK)#1841 - [Every 19 Base LUK] - Increases critical attack/skills attack by 3%
 			let enchant_category = 0;
 			let third_enchant_index = eval(document.calcForm.temporal_3rd_enchant_select.value);
