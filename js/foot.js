@@ -4542,12 +4542,12 @@ with(document.calcForm){
 	}
 	
 	// Southern Cross#1793 - [+Sphere Ammunition] - Increases damage inflicted on Neutral Property by 40%
-	//										  		[Every Refine Level] - Ignore [Normal] and [Boss] class monsters defense by 3%
+	//										  		[Every Refine Level] - Ignore [Normal] and [Boss] class monsters defense by 2%
 	if (EquipNumSearch(1793))
 	{
 		n_tok[40] += 40;
-		n_tok[21] += n_A_Weapon_ATKplus * 3;
-		n_tok[22] += n_A_Weapon_ATKplus * 3;
+		n_tok[21] += n_A_Weapon_ATKplus * 2;
+		n_tok[22] += n_A_Weapon_ATKplus * 2;
 	}
 	
 	/* 
@@ -7295,9 +7295,9 @@ function manage_sqi_bonus()
 		if (18 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 3) > -1)
 			n_tok[10] += 15;
 		
-		// #4th Bonus - Shotgun Equipped: ASPD + 25%
+		// #4th Bonus - Shotgun Equipped: ASPD + 15%
 		if (19 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 4) > -1)
-			n_tok[12] += 25;
+			n_tok[12] += 15;
 
 		// #6th Bonus - Gatling Gun Equipped: 20% more damage with Long Range Attacks and Critical Hits
 		if (20 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)

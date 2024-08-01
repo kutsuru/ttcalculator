@@ -995,6 +995,7 @@ function BattleCalc999() {
 			n_Delay[2] = 1 + n_A_ActiveSkillLV * 0.2;
 		} else if (n_A_ActiveSkill == 436) // Spread Attack#436
 		{
+			n_Delay[2] = 0.5;
 			n_Enekyori = 1;
 			wbairitu += n_A_ActiveSkillLV * 0.2 - 0.2;
 		}
@@ -1005,9 +1006,9 @@ function BattleCalc999() {
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
 
-			// Scouter#1387#5th Bonus - PvM: [Ground Drift#437] Add 4 more Mines
+			// Scouter#1387#5th Bonus - PvM: [Ground Drift#437] Add 3 more Mines
 			if (!Taijin && 21 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 5) > -1)
-				wHITsuu = 5;
+				wHITsuu = 4;
 		}
 
 		ATKbai02(wbairitu, 0);
@@ -8608,9 +8609,9 @@ function ApplySkillAtkBonus(dmg)
 	if (429 == n_A_ActiveSkill && EquipNumSearch(1785))
 		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus;
 
-	// Color Scope#1786 - [Every Refine Level] - 3% more damage with [Piercing Shot#432]
+	// Color Scope#1786 - [Every Refine Level] - 2.5% more damage with [Piercing Shot#432]
 	if (432 == n_A_ActiveSkill && EquipNumSearch(1786))
-		skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
+		skill_atk_bonus_ratio += Math.floor(2.5 * n_A_Weapon_ATKplus);
 	
 	// Rolling Thunder#1790 - [Every Refine Level] - 5% more damage with [Spread Attack#436]
 	if (436 == n_A_ActiveSkill && EquipNumSearch(1790))
@@ -8638,9 +8639,13 @@ function ApplySkillAtkBonus(dmg)
 			skill_atk_bonus_ratio += 50;
 	}
 	
-	// Scouter#1387#10th Bonus - Rifle equipped: 25% more damage with [Piercing Shot#432] and [Tracking#430]
-	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 10) > -1 && (430 == n_A_ActiveSkill || 432 == n_A_ActiveSkill))
-		skill_atk_bonus_ratio += 25;
+	// Scouter#1387#10th Bonus - Rifle equipped: 20% more damage with [Piercing Shot#432] and 25% with [Tracking#430]
+	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 10) > -1) {
+		if (430 == n_A_ActiveSkill)
+			skill_atk_bonus_ratio += 25;
+		else if (432 == n_A_ActiveSkill)
+			skill_atk_bonus_ratio += 20;
+	}
 
 	// Glorious Spear#1081
 	if (EquipNumSearch(1081))
