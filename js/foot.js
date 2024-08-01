@@ -4549,7 +4549,18 @@ with(document.calcForm){
 		n_tok[21] += n_A_Weapon_ATKplus * 2;
 		n_tok[22] += n_A_Weapon_ATKplus * 2;
 	}
-	
+
+	if (0 == Taijin && document.calcForm.B_ENSKSW.checked) // Only applies to PvM [FIXME]
+	{
+		// Reduces Thanatos Card effect on long range attack by 5% on normal monsters and 10% on boss monsters for each equipped Thanatos Card
+		let thanatos_cards_equipped = CardNumSearch(166);
+		let is_range_attack = eval(document.calcForm.skill_range_control.value);
+		if (thanatos_cards_equipped && is_range_attack) {
+			n_tok[21] -= 5 * thanatos_cards_equipped;
+			n_tok[22] -= 10 * thanatos_cards_equipped;
+		}
+	}
+
 	/* 
 		[PvM Only]
 		Amdarais Card#604 - Increases short range physical damage inflicted on [Neutral] Element monsters by 15% and on [Ghost] Element monsters by 25%.
@@ -7372,14 +7383,6 @@ function manage_sqi_bonus()
 		// #8th Bonus - + 15 FLEE on [Wind Walk]
 		if (SQI_Bonus_Effect.findIndex(x => x == 8) > -1 && SkillSearch(273))
 			n_tok[9] += 15;
-		
-		// #9th Bonus - Reduces Thanatos Card effect by 15% for each equipped Thanatos Card
-		if (SQI_Bonus_Effect.findIndex(x => x == 9) > -1)
-		{
-			let thanatos_cards_equipped = CardNumSearch(166);
-			n_tok[21] -= 15 * thanatos_cards_equipped;
-			n_tok[22] -= 15 * thanatos_cards_equipped;
-		}
 	}
 	
 	// Aegis Shield#1376 - Crusader/Paladin

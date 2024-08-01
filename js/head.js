@@ -2753,8 +2753,8 @@ with(document.calcForm){
 			str += '<TR><TD id="EN_SK1"></TD><TD id="B_SK1"/>';
 			str += '<TD>Players in Range:&nbsp;</TD><TD id="B_SK0"></TD><TR>';
 			str += '<TR><TD id="EN_SK4"></TD>';
-			str += '<TD><input type="radio" id="melee_eq_button" onclick="BattleCalc998()" name="skill_range_control" value="0" checked><label for="melee_eq_button">Melee</label></input></TD>';
-			str += '<TD><input type="radio" id="range_eq_button" onclick="BattleCalc998()" name="skill_range_control" value="1"><label for="range_eq_button">Range</label></input></TD><TR>';
+			str += '<TD><input type="radio" id="melee_eq_button" onclick="calc()" name="skill_range_control" value="0" checked><label for="melee_eq_button">Melee</label></input></TD>';
+			str += '<TD><input type="radio" id="range_eq_button" onclick="calc()" name="skill_range_control" value="1"><label for="range_eq_button">Range</label></input></TD><TR>';
 		}
 		str += '</TABLE>';
 		myInnerHtml("MONSTER_SKILLS",str,0);

@@ -606,7 +606,7 @@ sqi_bonus_db = {
 			,["Increase Trap Skill Trigger AoE (except Ankle Snare) to 5x5. Increase [Claymore Trap], [Land Mine], and [Blast Mine] splash AoE to 7x7",0]
 			,["Add a 20% chance to auto-cast Level 2 [NPC_BLEEDING] when attacking normally (not calced)",0]
 			,["FLEE + 15 on [Wind Walk]",0]
-			,["10% more damage with [Double Strafing], reduces Thanatos Card effect by 15% for each equipped Thanatos Card.",5040,10,0]
+			,["10% more damage with [Double Strafing]",5040,10,0]
 			,["Triple [True Sight] duration",0]
 			,["[Blitz Beat] and [Falcon Assault] ignore Neutral Resist",0]
 			,["25% more damage and 20% less aftercast delay with [Falcon Assault]",5271,25,8271,20,0]

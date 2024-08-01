@@ -185,7 +185,7 @@ cardOBJ = [
 ,[163,1,"Breeze",0,17,5,138,5,0]
 ,[164,1,"Solace","When equipped by a priest:<BR>When attacking with an ATK based attack, adds a chance to autocast [Grand Cross]Lv 5",0]
 ,[165,1,"Thanatos Maero",0,17,5,221,55,0]
-,[166,1,"Thanatos",0,18,-15,9,-15,21,30,22,30,0] //custom Talon Tales 30% def bypass (boss+non-boss), def-15;flee-15;no ice pick effect
+,[166,1,"Thanatos","<br><b>[Long-range Distance Attacks (3+ cell distance to target)]</b><br>Disregard 25% of non-boss monsters and 20% of boss monsters defense instead.<br><br><b>[Range can be controlled under 'Monster Skills' section]</b>",18,-10,9,-10,72,10,22,30,21,30,0] //custom Talon Tales 30% def bypass (boss+non-boss), def-10;flee-10,sp consumption +10%;no ice pick effect
 ,[167,1,"Hill Wind","When unequipping the weapon with this card, drains 50 sp from you",5057,5,5126,5,5127,5,0]
 ,[168,1,"Laurell Weinder","When un equipping the weapon with this card, drains 50 sp from you.",5130,3,5131,3,0]
 ,[169,1,"Deathword","When un equipping the weapon with this card, drains 50 sp from you",5046,5,5047,5,5277,5,0]
