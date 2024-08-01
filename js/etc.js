@@ -1552,10 +1552,10 @@ TEMPORAL_ENCHANTABLE = [
 
 TEMPORAL_1ST_ENCHANTS = [
 	 ["(No Enchant)",[], ""]
-	,["Fighting Spirit Lv.1",[17,4,8,2],  "HIT + 2<br>ATK + 4"]
-	,["Fighting Spirit Lv.2",[17,6,8,3],  "HIT + 3<br>ATK + 6"]
-	,["Fighting Spirit Lv.3",[17,8,8,4],  "HIT + 4<br>ATK + 8"]
 	,["Fighting Spirit Lv.4",[17,10,8,5], "HIT + 5<br>ATK + 10"]
+	,["Fighting Spirit Lv.5",[17,12,8,5], "HIT + 5<br>ATK + 12"]
+	,["Fighting Spirit Lv.6",[17,14,8,5], "HIT + 5<br>ATK + 14"]
+	,["Fighting Spirit Lv.7",[17,16,8,5], "HIT + 5<br>ATK + 16"]
 	,["Berserker Lv.1",[106,2], "Auto Physical ATK + 2%"]
 	,["Berserker Lv.2",[106,4], "Auto Physical ATK + 4%"]
 	,["Berserker Lv.3",[106,6], "Auto Physical ATK + 6%"]
