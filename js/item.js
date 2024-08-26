@@ -1922,6 +1922,7 @@ ItemOBJ = [
 ,[1865,50,0,1,0,1,35,1,"Small Deviling Hat","","<b>[Refine Rate 8~10]</b> MaxHP + 1% per refine",57,5,0]
 ,[1866,50,0,3,0,1,25,0,"Torch Cap","","Cannot be refined",63,20,220,34,0]
 ,[1867,50,0,0,0,1,30,1,"King Ernst Von Wolff","","<b>[+ Desert Wolf Baby Pet]</b><br>Damage to [Small] size monsters increased by 5%, 10% instead if pet is loyal.",27,5,0]
+,[1868,50,0,2,0,1,20,1,"Critura Hat","","A rain cap for strong adventurers who step into the world for the first time.",15,6,15,3,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3823,6 +3824,7 @@ ItemID = [
 ,[1865,1,18843]
 ,[1866,1,5430]
 ,[1867,1,18629]
+,[1868,1,18730]
 ];
 
 /*
