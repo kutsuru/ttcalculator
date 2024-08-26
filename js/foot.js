@@ -2291,6 +2291,9 @@ with(document.calcForm){
 
 	// Antonio's Coat + Red Stocking Boots Combo#1731 - [Every Refine Level] of Shoes - FLEE + 1
 	n_tok[9] += n_A_SHOES_DEF_PLUS * EquipNumSearch(1731);
+
+	// Baba Yaga#565 - [Every Refine Level] of Shoes - FLEE + 1
+	n_tok[9] += n_A_SHOES_DEF_PLUS * CardNumSearch(565);
 	
 	n_A_FLEE += n_tok[9];
 
