@@ -4481,10 +4481,6 @@ with(document.calcForm){
 		if(n_A_HEAD_DEF_PLUS >= 9) n_tok[172] += 5;
 	}
 
-	// Naght Sieger Card#579 [Soul Linker] Ghost property magical attack is 15% instead of 30%.	
-	if (n_A_JOB == 43)
-		n_tok[348] -= 15 * CardNumSearch(579);
-	
 	/*
 		Gloomy Coelacanth#644
 		[Each Refine Level] - [Water] and [Wind] element magic increased by (WeaponLv + 1)/2 %

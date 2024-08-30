@@ -603,7 +603,7 @@ cardOBJ = [
 ,[576,100,"Entweihen Crothen + Naght Sieger",0,73,-10,0]
 ,[577,100,"Entweihen Crothen + Dark Illusion",0,15,-10,16,-10,73,5,0]
 ,[578,4,"Nidhoggur Shadow","[Swordman Class, Merchant Class, Thief Class, Super Novice]<br/>When using short-range physical skills, monsters will not switch targets to you if they are currently attacking another target.<br/>Lose 1% HP every 2 seconds.", 0]
-,[579,2,"Naght Sieger","[Soul Linker]<br/>Ghost property magical attack is 15% instead.",19,5,348,30,350,10,0]
+,[579,2,"Naght Sieger",0,19,5,348,30,350,30,0]
 ,[580,100,"Rhyncho + Phylla","Add a 3% chance of auto casting level 3 [Deluge] on the user when attacking normally.",0]
 ,[581,4,"Hardrock Mammoth","[Every Refine Level]<br/>MaxHP + 2%",15,10,18,5,19,5,0]
 ,[582,1,"Tendrillion",0,8,35,17,45,0]
