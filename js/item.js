@@ -864,7 +864,7 @@ ItemOBJ = [
 ,[841,64,124,0,0,0,10,70,"Feather of Icarus","",0,5,3,14,50,0]
 ,[842,64,124,0,0,0,20,70,"Renown Archer's Scarf","",0,5,3,14,50,0]
 ,[843,64,1,0,0,1,5,80,"Cursed Hand","","When attacking there is a 3% chance to autocast Level 1 Critical Wounds",8,10,75,20,0]
-,[844,64,1079,0,0,1,5,0,"Diablos Ring","",0,13,100,14,100,91,5,93,5,94,5,1495,10,1496,10,0]
+,[844,64,1001,0,0,1,5,0,"Diablos Ring","",0,13,100,14,100,91,5,93,5,94,5,1495,10,1496,10,0]
 ,[845,64,1,0,0,1,5,80,"Continental Guard Seal","",0,12,3,13,50,0]
 ,[846,64,1,0,0,1,5,80,"Rune Charm Stone","",0,73,-1,14,50,0]
 ,[847,64,1,0,0,1,5,80,"Death Medalion","",0,10,5,0]
@@ -1020,7 +1020,7 @@ ItemOBJ = [
 ,[997,62,1063,2,0,1,50,70,"Mushika","","Add a chance of auto casting Level 1 Heal on yourself when the user receiving physical damage<br>If you know a higher level of heal, you will cast that level instead",19,3,0]
 ,[998,63,1079,2,0,1,30,70,"Sprint Shoes","",0,2,1,76,5,0]
 ,[999,100,0,0,0,0,0,0,"Sprint Set",0,0,15,7,16,7,73,-3,74,15,0]
-,[1000,64,1079,0,0,0,10,70,"Angelic Ring","","When using Heal, Sanctuary or Potion Pitcher there is a chance for 3 seconds that gives you the ability + 20% Heal more",4,2,5,1,19,2,0]
+,[1000,64,1001,0,0,0,10,70,"Angelic Ring","","When using Heal, Sanctuary or Potion Pitcher there is a chance for 3 seconds that gives you the ability + 20% Heal more",4,2,5,1,19,2,0]
 ,[1001,64,1079,0,0,0,10,70,"Sprint Ring","",0,73,-10,74,-5,0]
 ,[1002,64,1079,0,0,1,20,70,"Pinguicura's Corsage","",0,19,2,14,25,0]
 ,[1003,64,122,1,0,0,10,80,"Cold Heart","",0,2,3,0]
@@ -1408,7 +1408,7 @@ ItemOBJ = [
 ,[1381,14,0,190,4,3,100,0,"-Electric Guitar","","Ignore [Adpation to Circumstances] delay.<br><br><font color='blue'>SQI</font>",4,4,3,4,5,15,20,4,89,15,220,49,0]
 ,[1382,8,109,250,4,3,150,0,"-Evangelist","","<br><b>[Super Novice]</b><br>INT + 5<br>DEX + 5<br>Allows usage of the skill [Magic Crasher]Lv 1<br><br><font color='blue'>SQI</font>",4,15,5,15,8,35,20,1,89,15,220,50,0] //custom Talon Tales SQI
 ,[1383,63,150,5,0,1,150,0,"-Eversong Greaves","","Fast movement all the time.<br><br><b>[Taekwon]</b><br>ASPD + 30%<br>HIT + 75<br><br><b>[Taekwon Master]</b><br>DEX + 10<br>LUK + 15<br><br><font color='blue'>SQI</font>",15,20,16,10,17,130,19,10,0] //custom Talon Tales SQI
-,[1384,9,143,250,4,3,150,0,"-Ghostdancer Staff","","[Esma] may be cast after any Es-Skill<br><br><b>[Super Novice]</b><br>INT + 5<br>DEX + 5<br>MATK + 15%<br><br><font color='blue'>SQI</font>",4,15,5,15,15,20,16,20,89,20,220,50,0] //custom Talon Tales SQI
+,[1384,9,143,250,4,3,80,0,"-Ghostdancer Staff","","[Esma] may be cast after any Es-Skill<br><br><b>[Super Novice]</b><br>INT + 5<br>DEX + 5<br>MATK + 15%<br><br><font color='blue'>SQI</font>",4,15,5,15,15,20,16,20,89,20,220,50,0] //custom Talon Tales SQI
 ,[1385,16,144,250,4,4,100,0,"-Hira Shurikat","","Negates the need for ninja stones<br><font color='blue'>SQI</font>",20,2,5,15,12,13,15,20,16,20,18,8,77,20,79,20,89,20,0] //custom Talon Tales SQI
 ,[1386,4,107,200,4,3,550,0,"-Nibelungen","","Enable to use Level 4 [Warm Wind], dispell [Warm Wind] on unequip<BR><font color='blue'>SQI</font>",1,5,8,50,12,13,0] //custom Talon Tales SQI
 ,[1387,51,145,7,0,1,10,0,"-Scouter","","Ignore [Madness Canceller] delay.<br>Enable use of [Monster Property] and [Body Relocation]<br><br><b>[Super Novice]</b><br>DEX + 10<br>ASPD + 15%<br>Enable use of [Monster Property]<br><br><font color='blue'>SQI</font>",5,10,12,25,15,20,16,20,77,20,79,20,0] //custom Talon Tales SQI
