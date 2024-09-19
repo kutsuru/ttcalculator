@@ -688,7 +688,7 @@ sqi_bonus_db = {
 			,["[Taekwon] Ignore 20% of enemy Defense; [Star Gladiator] PvM: [Union] HP recoil is reduced to 1%, reduce HP leech bonus by 50%",0]
 			,["[Taekwon] +15% Kick Skill Rate; [Star Gladiator] Triple Miracle Mode rate, if [Heat] is not learned Miracle Mode Rate is 2%",0]
 			,["+30 FLEE",9,30,0]
-			,["+10 CRIT, +15% more damage with Critical Hits",10,10,70,15,0]
+			,["+10 CRIT, +20% more damage with Critical Hits",10,10,70,20,0]
 			,["[Peaceful Rest] and [Enjoyable Rest] always enabled and ignores overweight tick penalties below 90%; But disables GEC Effect!",0]
 			,["50% more damage with [Flying Side Kick]",5305,50,5339,50,0]
 			,["25% more damage with [Axe Kick] and [Counter Kick]",5333,25,5337,25,0]
