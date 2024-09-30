@@ -1087,7 +1087,7 @@ with(document.calcForm){
 	}
 	
 	// Angra Mantis Card#422 - [Thief Class][Every Refine] Critical Damage + 1%
-	if (CardNumSearch(422) && n_A_JobSearch() == 2)
+	if (n_A_card[8] == 422 && n_A_JobSearch() == 2)
 		n_tok[70] += n_A_HEAD_DEF_PLUS;
 	
 	// Elite Engineer Armor & Battle Greaves & Captain's Manteau Equip Set#972 - Increases the effectiveness of heal received from [Heal] and [Potion Pitcher] by 10%
@@ -4383,7 +4383,7 @@ with(document.calcForm){
 	}
 	
 	/*
-		Green Lichtern Card
+		Yellow Lichtern Card
 		[Refine Rate +7 or higher]
 		Increases Earth elemental magic damage by an additional 5%.
 		[Refine Rate +9 or higher]
@@ -5150,19 +5150,20 @@ function StPlusCalc() {
 	if(CardNumSearch(277))n_tok[6] += Math.floor(SU_STR /11)*2*CardNumSearch(277);
 
 	//custom Talon Tales Dolomedes Card
-	if(CardNumSearch(514))
-		if(n_A_JobSearch()==4)
-			n_tok[5] += Math.floor(n_A_HEAD_DEF_PLUS /3);
+	if (n_A_card[8] == 514) {
+		if (n_A_JobSearch() == 4)
+			n_tok[5] += Math.floor(n_A_HEAD_DEF_PLUS / 3);
 		else
-			n_tok[4] += Math.floor(n_A_HEAD_DEF_PLUS /3);
+			n_tok[4] += Math.floor(n_A_HEAD_DEF_PLUS / 3);
+	}
+
 	//custom Talon Tales Cendrawasih Card
-	if(CardNumSearch(517))
-		if(n_A_JobSearch()==5)
-			n_tok[4] += Math.floor(n_A_HEAD_DEF_PLUS /3);
+	if (n_A_card[8] == 517 && n_A_JobSearch() == 5)
+		n_tok[4] += Math.floor(n_A_HEAD_DEF_PLUS / 3);
+
 	//custom Talon Tales King Dramoh
-	if(CardNumSearch(527))
-		if(n_A_JobSearch()==1)
-			n_tok[1] += Math.floor(n_A_HEAD_DEF_PLUS /3);
+	if (n_A_card[8] == 527 && n_A_JobSearch() == 1)
+		n_tok[1] += Math.floor(n_A_HEAD_DEF_PLUS / 3);
 
 	if(CardNumSearch(405)){
 		if(n_A_JobSearch()==1 || n_A_JobSearch()==2 || n_A_JobSearch()==6)
@@ -5355,8 +5356,8 @@ function StPlusCalc() {
 		n_tok[6] = -1 * n_A_LUK;
 
 	// Siorava Card#535 - [Merchant Class] - [Every 3 Refine Levels] - LUK + 1
-	if(CardNumSearch(535) && (n_A_JobSearch() == 6 || n_A_JobSearch() == 12 || n_A_JobSearch() == 26 || n_A_JobSearch() == 19 || n_A_JobSearch() == 33))
-		n_tok[6] += Math.floor(n_A_HEAD_DEF_PLUS/3);
+	if (n_A_card[8] == 535 && n_A_JobSearch() == 6)
+		n_tok[6] += Math.floor(n_A_HEAD_DEF_PLUS / 3);
 	
 	// Antique Book Card#609
 	if (CardNumSearch(609))
