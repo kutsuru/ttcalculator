@@ -3370,7 +3370,7 @@ function BattleMagicCalc(wBMC) {
 			wX += 15 * EquipNumSearch(1116)
 	}
 	
-	// Yellow Lichtern Card#612 - [Ninja Class] - 25% more damage with [Wind Blade]
+	// Green Lichtern Card#612 - [Ninja Class] - 25% more damage with [Wind Blade]
 	if (44 == n_A_JOB)
 		wX += 25 * CardNumSearch(612);
 
