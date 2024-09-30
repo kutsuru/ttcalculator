@@ -1139,7 +1139,7 @@ ItemOBJ = [
 ,[1116,64,50,0,0,0,20,0,"Novice Figure","","<br><b>[INT > 90]</b><br>MATK + 25<br>After cast delay - 10%<br>[Fire Bolt],[Cold Bolt] and [Lighting Bolt] damage increased by 15%<br><br><b>[STR > 90]</b><br>[Magnum Break] after cast delay reduced by 10%<br>[Bash],[Mammonite] and [Magnum Break] damage increased by 15%<br>",13,200,14,100,0]
 ,[1117,64,51,0,0,0,20,0,"Swordsman Figure","","<b>[Vanilla Mode]</b><br>[Brandish Spear] and [Holy Cross] damage increased by 25%",3,4,5007,25,0]
 ,[1118,64,53,0,0,0,20,0,"Acolyte Figure","",0,4,4,14,50,76,10,91,5,93,5,94,5,0]
-,[1119,64,57,0,0,0,20,0,"Mage Figure","",0,4,4,73,8,76,5,0]
+,[1119,64,57,0,0,0,20,0,"Mage Figure","",0,4,4,73,-8,76,5,0]
 ,[1120,64,60,0,0,0,20,0,"Archer Figure","",0,5,4,17,10,5271,5,0]
 ,[1121,64,97,0,0,0,20,0,"Thief Figure","","<b>[Vanilla Mode]</b><br>[Double Attack] rate + 5%<br><br><b>[PvM Only]</b><br>HIT + 10%",2,4,12,4,0]
 ,[1122,64,56,0,0,0,20,0,"Merchant Figure","",0,1,4,5066,25,0]
