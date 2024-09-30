@@ -1667,7 +1667,7 @@ restrictedEquips = restrictedEquips.concat([1681,1682,1683,1689,1690,1713,1728,1
 // Manage restriction regarding Vanilla Cards
 restrictedCards = [32,42,44,45,47,52,95,119,120,126,127,134,136,138,140,141,152,161,162,166,178,219,255,256,277,284,310,312,313,320,322,323,332,338,349,357,361,363,374,375,392,394,404,409,420,421,423,424,425,463,475,478,486,492,515,521,526,529,532,551,552,553,567,574,578,579,581,582];
 // April 2021 Patch - Eclage, Biolab 4 and OGH cards
-restrictedCards = restrictedCards.concat(Array.from({ length: 630 + 1 - 601},(_,k) => 601 + k))
+restrictedCards = restrictedCards.concat(Array.from({ length: 649 + 1 - 601},(_,k) => 601 + k))
 
 //GameID, 1=HP 0=SP, minHeal, maxHeal, Name, Weight, Vanilla flag
 ITEM_HEAL = [
