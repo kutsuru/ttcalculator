@@ -5844,7 +5844,7 @@ function JobEquipItemSearch(nJEIS)
 	if(nJEIS >= 1000){
 		if(n_Tensei == 1)
 			nJEIS -= 1000;
-		else
+		else if (nJEIS != 1200) // Rebirth + Extended
 			return 0;
 	}
 	for(var j=0;JobEquipItemOBJ[n_A_JOB][j] != 999;j++)
