@@ -7465,12 +7465,16 @@ Race - n_B[2] = raceID - example n_B[2] = 3, Plant
 	
 	def_sc_reduction *= 1 - 0.50 * n_B_IJYOU[22]; // SC_SKE
 	def_sc_reduction *= 1 - 0.05 * n_B_IJYOU[24]; // SC_FLING
+	def_sc_reduction = Math.min(1, def_sc_reduction);
+	n_B[14] = Math.floor(n_B[14] * def_sc_reduction);
+	// vit def reduced later, after checking for poison status
+
+	// Status that only affect vit def
 	
 	if (!n_B[19])
 		def_sc_reduction *= 1 - 0.25 * n_B_IJYOU[2]; // SC_POISON
 	
 	def_sc_reduction = Math.min(1, def_sc_reduction);
-	n_B[14] = Math.floor(n_B[14] * def_sc_reduction);
 	n_B[23] = Math.floor(n_B[23] * def_sc_reduction);
 	n_B[24] = Math.floor(n_B[24] * def_sc_reduction);
 	
