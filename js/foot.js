@@ -901,7 +901,7 @@ with(document.calcForm){
 		n_tok[10] += Math.max(0, n_A_SHOES_DEF_PLUS - 3);
 
 		// [Every Refine Level >= +5] - Crafting/Brewing Rates + 0.5%
-		n_tok[108] += Math.max(0, n_A_SHOES_DEF_PLUS - 4) * 5; // * 10 / 2
+		n_tok[108] += Math.max(0, n_A_SHOES_DEF_PLUS - 4) * 0.5;
 	}
 
 	//Jolly Roger Hat -[Loa] - 2018-07-03
@@ -6698,7 +6698,7 @@ function KakutyouKansuu(){
 				pharmacyboost *= 2;
 			adopted = eval(document.calcForm.A_youshi.checked);
 			//Brewing rework - [Loa] - 2018-06-17
-			srate = potionr * 50 + preparep * 300 + n_A_JobLV * 20 + (n_A_DEX + n_A_LUK + (n_A_INT/2)) * 10 + potrate * 100 + pharmacyboost * 100 + n_tok[108];
+			srate = potionr * 50 + preparep * 300 + n_A_JobLV * 20 + (n_A_DEX + n_A_LUK + (n_A_INT / 2)) * 10 + (potrate + pharmacyboost + n_tok[108]) * 100 ;
 			//selpot values in etc.js
 			if(selpot == 3 //blue pot
 				|| selpot == 4 //slim red
@@ -6873,11 +6873,11 @@ function KakutyouKansuu(){
 		if((Flv1 == 8 && FStat1 == 5) || Flv1 == 9){ItemN = 7;}
 		if(Flv1 == 10){ItemN = 8;}
 
-		Food_Powa = (1200 * (CKit1+1)) + (20*(n_A_BaseLV+1)) + (20*(n_A_DEX)) - (Flv1*400) - (10*(100-(n_A_LUK + 1))) - (500*(ItemN-1)) + n_tok[108];
+		Food_Powa = (1200 * (CKit1+1)) + (20*(n_A_BaseLV+1)) + (20*(n_A_DEX)) - (Flv1*400) - (10*(100-(n_A_LUK + 1))) - (500*(ItemN-1));
 
-		Food_MIN = Math.round(Food_Powa + (100*(0 + (6 + CExp1/80)))*adp)/100;
-		Food_AVG = Math.round(Food_Powa + (100*(12 + (6 + CExp1/80)))*adp)/100;
-		Food_MAX = Math.round(Food_Powa + (100*(24 + (6 + CExp1/80)))*adp)/100;
+		Food_MIN = Math.round(Food_Powa + (100 * (0 + (6 + CExp1 / 80))) * adp) / 100 + n_tok[108];
+		Food_AVG = Math.round(Food_Powa + (100 * (12 + (6 + CExp1 / 80))) * adp) / 100 + n_tok[108];
+		Food_MAX = Math.round(Food_Powa + (100 * (24 + (6 + CExp1 / 80))) * adp) / 100 + n_tok[108];
 		FDA1 = Math.round((Food_MIN - 5)*100)/100;
 		FDA2 = Math.round((Food_MIN - 1)*100)/100;
 		FDB1 = Math.round((Food_AVG - 5)*100)/100;

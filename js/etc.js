@@ -1625,13 +1625,13 @@ TEMPORAL_3RD_ENCHANTS = [
 	,["(+8)  Temporal DEX",[8,16,25,2], "HIT + 16<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
 	,["(+9)  Temporal DEX",[8,18,25,2], "HIT + 18<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
 	,["(+10) Temporal DEX",[8,20,25,2], "HIT + 20<br>Long Range ATK + 2%<br><b>[Base DEX >= 95]</b> 5% Less Aftercast Delay"]
-	,["(+4)  Temporal LUK",[10,1],        "CRIT + 1<br>Crafting/Brewing Success + 0%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
-	,["(+5)  Temporal LUK",[10,2,108,5],  "CRIT + 2<br>Crafting/Brewing Success + 0.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
-	,["(+6)  Temporal LUK",[10,3,108,10], "CRIT + 3<br>Crafting/Brewing Success + 1%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
-	,["(+7)  Temporal LUK",[10,4,108,15], "CRIT + 4<br>Crafting/Brewing Success + 1.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
-	,["(+8)  Temporal LUK",[10,5,108,20], "CRIT + 5<br>Crafting/Brewing Success + 2%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
-	,["(+9)  Temporal LUK",[10,6,108,25], "CRIT + 6<br>Crafting/Brewing Success + 2.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
-	,["(+10) Temporal LUK",[10,7,108,30], "CRIT + 7<br>Crafting/Brewing Success + 3%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+4)  Temporal LUK",[10,1],			"CRIT + 1<br>Crafting/Brewing Success + 0%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+5)  Temporal LUK",[10,2,108,0.5],  "CRIT + 2<br>Crafting/Brewing Success + 0.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+6)  Temporal LUK",[10,3,108,1],	"CRIT + 3<br>Crafting/Brewing Success + 1%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+7)  Temporal LUK",[10,4,108,1.5],	"CRIT + 4<br>Crafting/Brewing Success + 1.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+8)  Temporal LUK",[10,5,108,2],	"CRIT + 5<br>Crafting/Brewing Success + 2%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+9)  Temporal LUK",[10,6,108,2.5],	"CRIT + 6<br>Crafting/Brewing Success + 2.5%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
+	,["(+10) Temporal LUK",[10,7,108,3],	"CRIT + 7<br>Crafting/Brewing Success + 3%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
 ];
 
 ENCHANT_TYPES = {
