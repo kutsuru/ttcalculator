@@ -4281,11 +4281,11 @@ function Item_Setumei(nC1,nC2)
 	if(292 == nC1)
 		CBIstr += "On Bosstype monsters, ignore "+ nC2 +"% DEF<BR>";
 	if(295 == nC1)
-		CBIstr += "On (all?) monsters, ignore "+ nC2 +"% MDEF<BR>";
+		CBIstr += "Ignores "+ nC2 +"% of monster's MDEF<BR>";
 	if(296 == nC1)
-		CBIstr += "On Normal monsters, ignore "+ nC2 +"% MDEF<BR>";
+		CBIstr += "Ignores "+ nC2 +"% of normal monster's MDEF<BR>";
 	if(297 == nC1)
-		CBIstr += "On Bosstype monsters, ignore "+ nC2 +"% MDEF<BR>";
+		CBIstr += "Ignores "+ nC2 +"% of boss monster's MDEF<BR>";
 	if(300 <= nC1 && nC1 <=309)
 		CBIstr += "Increases short range damage on [" + ZokuseiOBJ2[nC1-300] +"] monsters by "+ nC2 +"%<BR>";
 	if(310 <= nC1 && nC1 <=319)

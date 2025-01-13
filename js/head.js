@@ -3372,15 +3372,17 @@ function BattleMagicCalc(wBMC) {
 			wX += 15 * EquipNumSearch(1116)
 	}
 	
-	// Green Lichtern Card#612 - [Ninja Class] - 25% more damage with [Wind Blade]
-	if (44 == n_A_JOB)
+	// Green Lichtern Card#612 - [Ninja Class] - 25% more damage with [Wind Blade#413]
+	if (44 == n_A_JOB && 413 == n_A_ActiveSkill)
 		wX += 25 * CardNumSearch(612);
 
-
 	wBMC = wBMC * (100 + wX) / 100;
-	
-	wBMC_MDEF = n_B[15];
-	var MDEF_Musi = 0;
+
+	let mdef_skill_reduction = 0;
+	if (47 == n_A_ActiveSkill && CardNumSearch(650)) // Cursed Butler & Phantom of Himmelmez Card Combo#650 - [Soul Strike#47] bypasses 25% Magical Defense
+		mdef_skill_reduction += 0.25;
+
+	wBMC_MDEF = n_B[15] - Math.floor(n_B[15] * Math.min(1, mdef_skill_reduction));
 
 	if(n_A_ActiveSkill==122)
 		wBMC2 = Math.floor(wBMC + 50);
@@ -8685,6 +8687,13 @@ function ApplySkillAtkBonus(dmg)
 	// Star Gladiator BG Set#1862 - Increases damage of all kick skills 10%
 	if (42 == n_A_JOB && EquipNumSearch(1862) && n_A_ActiveSkill != 317 && n_A_ActiveSkill != 318)
 		skill_atk_bonus_ratio += 10;
+
+	// Atroce Card#463 - Increases Cart Termination#326 and Mammonite#65 damage by 20% (only applied once)
+	if (CardNumSearch(463) && (326 == n_A_ActiveSkill || 65 == n_A_ActiveSkill)) {
+		skill_atk_bonus_ratio += 20;
+		if (7 == n_A_WeaponType) // 15% additional damage when using a Two-Handed Axe
+			skill_atk_bonus_ratio += 15;
+    }
 
 	dmg = dmg * (100 + StPlusCalc2 (5000 + n_A_ActiveSkill) + StPlusCard(5000 + n_A_ActiveSkill) + skill_atk_bonus_ratio) / 100;
 

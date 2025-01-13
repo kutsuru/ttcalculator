@@ -482,10 +482,10 @@ cardOBJ = [
 ,[460,100,0,"<b>[Sage Class]</b><br>Cast Time -20%<BR>5% chance of reflecting the damage received from a targetted magical attack<br>Adds a 1% chance of gaining [Red Gemstone] or [Yellow Gemstone] item each time a monster is killed",4,3,5057,10,5133,10,0]
 ,[461,100,0,"Disables the SP drain<BR><b>[Alchemist Class]</b><br>1% chance of casting [Adrenaline Rush] when doing an ATK based attack<BR>0.1% chance of [Stem] item dropping when killing a monster<BR>0.03% chance of [Coating Bottle] item dropping when killing a monster",1,4,15,7,16,7,5065,20,0]
 ,[462,1,"Drosera","Adds CRIT + 15 for long range ATK based attacks",0]
-,[463,1,"Atros","When performing a ATK based attack there is a 0.5% chance that will set your attack speed to 190 for 10seconds",17,25,0]
+,[463,1,"Atroce","When performing a regular attack there is a 0.5% chance that will set your attack speed to 190 for 10 seconds.<br>Increases [Cart Termination] and [Mammonite] damage by 20% (only applied once).<br><b>[Two-Handed Axe Equipped]</b> 15% additional damage with [Cart Termination] and [Mammonite]",17,30,0]
 ,[464,1,"Sword Guardian","When equipped with a [Sword] or [Two-Handed Sword] class weapon, CRIT + 5, HIT + 5, and increases the damage of the skill [Bowling Bash] by 25%",0]
 ,[465,1,"Bow Guardian","When slotted into a [Bow] class weapon, CRIT + 5, HIT + 5, and increases the damage of the skill [Arrow Shower] by 50%",0]
-,[466,1,"Necromancer","When equipped with a [Rod] class weapon, INT + 1 and 2% magic defense bypassing.",0]
+,[466,1,"Necromancer","<b>[Two-Handed Staff or Huuma Shuriken Equipped]</b> Adds additional 3% Magical Defense Bypass.",4,1,295,2,0]
 ,[467,3,"Hodremlin","When receiving ATK based damage there is a 0.3% chance to gain Perfect Dodge + 30 for 10 seconds",190,15,191,15,192,15,0]
 ,[468,3,"Seeker",0,220,30,159,30,19,10,0]
 ,[469,3,"Muscipular",0,221,89,221,90,0]
@@ -677,6 +677,8 @@ cardOBJ = [
 ,[647,2,"Giant Octopus","<b>[Two-handed Melee Weapon]</b><br>MaxHP + 10%<br>Magic resistance + 25%",0]
 ,[648,1,"Payon Soldier","<b>[Crusader]</b><br>Increases the level of [Brandish Spear] according to the level of [Spear Quicken] learned.",8,10,5070,15,5073,15,220,67,0]
 ,[649,5,"Irene High Elder","<b>[Every 10 Base STR]</b> HIT Rate + 3%<br><b>[Every 10 Base INT]</b> Min MATK + 10<br><b>[Every 3 Refine Levels]</b> STR + 1, INT + 1",8,10,89,2,0]
+,[650,100,"Cursed Butler + Phantom of Himmelmez","[Soul Strike] bypasses 25% of target Magical Defense",5047,25,0]
+,[651,100,"Necromancer + Gold Queen Scaraba",0,295,5,0]
 ];
 /*
 ID, Location, description, 0 - seperator, stat, value added/subtracted
@@ -1361,6 +1363,8 @@ cardID = [
 ,[647,1,4534]
 ,[648,1,27169]
 ,[649,1,27168]
+,[650,2,0]
+,[651,2,0]
 ];
 
 CardNum = cardOBJ.length -1;
@@ -1581,6 +1585,8 @@ w_SC = [[429,235,306,"NULL"],
 [635,603,634,"NULL"],
 [638,636,637,"NULL"],
 [641,640,639,"NULL"],
+[650,642,631,"NULL"],
+[651,466,529,"NULL"],
 ];
 SC_MAXnum = w_SC.length;
 

@@ -476,9 +476,9 @@ Effect list:
 	288: Ignore [Ghost] race monsters defense by [value]%
 	289: Ignore [Undead] race monsters defense by [value]%
 	290-294: (unused)
-	295: On (all?) monsters, ignore [value]% MDEF
-	296: On Normal monsters, ignore [value]% MDEF
-	297: On Bosstype monsters, ignore [value]% MDEF
+	295: Ignores [value]% of monster's MDEF
+	296: Ignores [value]% of normal monster's MDEF
+	297: Ignores [value]% of boss monster's MDEF
 	298-299: (unused)
 	300: Increases short range damage on [Neutral] monsters by [value]%
 	301: Increases short range damage on [Water] monsters by [value]%

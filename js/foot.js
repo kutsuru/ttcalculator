@@ -4182,8 +4182,11 @@ with(document.calcForm){
 
 	if(EquipNumSearch(645))
 		n_tok[295] += 10 + n_A_Weapon_ATKplus;
-	if(n_A_WeaponType==9)
-		n_tok[295] += 2 * CardNumSearch(466);
+
+	// Necromancer Card#466 - [Two-Handed Staff or Huuma Shuriken Equipped] - Adds additional 3% MDEF reduction.
+	if ((9 == n_A_WeaponType && n_tok[195]) || 16 == n_A_WeaponType)
+		n_tok[295] += 3 * CardNumSearch(466);
+
 	if(EquipNumSearch(936))
 		n_tok[295] += (n_A_Weapon_ATKplus * 1);
 	if(n_B[19]==1 && EquipNumSearch(1228)){
