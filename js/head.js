@@ -393,9 +393,9 @@ function BattleCalc999() {
 			myInnerHtml("CRInumname", SubName[4], 0);
 		}
 
-		if (n_A_ActiveSkill == 86 || 447 == n_A_ActiveSkill) {
+		if (n_A_ActiveSkill == 86)
 			n_Delay[0] = 1;
-		}
+		
 		debug_atk += "\n --- (BattleCalc999) skill calc:0,86 ---";
 		if (n_Nitou) {
 			TyouEnkakuSousa3dan = 0;
@@ -519,6 +519,7 @@ function BattleCalc999() {
 				TyouEnkakuSousa3dan = -1;
 				wBC3_3danAtkBairitu = SkillSearch(187) * 0.2;
 				san = [0, 0, 0];
+				str_bSUBname += "Triple Attack Damage<BR>";
 				// Force active skill to Triple Attack#187 during the damage computation
 				let previous_active_skill = n_A_ActiveSkill;
 
@@ -538,23 +539,34 @@ function BattleCalc999() {
 
 					let selected_combo_sequence = eval(document.calcForm.SkillSubNum.value);
 					skills_triggered = combo_skills[selected_combo_sequence];
-					str_bSUBname += "Combo Damage<BR>";
-				}
-				else
-					str_bSUBname += "Triple Attack Damage<BR>";
+					
+				}					
 
 				san = [0, 0, 0];
+				combo_damage_detail = ["", "", ""];
 
 				for (let skill_id of skills_triggered) {
 					n_A_ActiveSkill = skill_id;
-					for (var i = 0; i <= 2; i++) {
-						san[i] += BattleCalc(n_A_DMG[i] * (wbairitu + wBC3_3danAtkBairitu), i) + EDP_DMG(i);
-
-						if (187 == skill_id) {
-							san[i] += Math.floor(san[i] / 3) * 3;
+					n_A_ActiveSkillLV = SkillOBJ[skill_id][1];
+					if (187 == skill_id) {
+						for (let i = 0; i <= 2; i++) {
+							san[i] = BattleCalc(n_A_DMG[i] * (wbairitu + wBC3_3danAtkBairitu), i) + EDP_DMG(i);
+							san[i] = Math.floor(san[i] / 3) * 3;
 							if (n_B[19] == 5) // Triple attack on plant type monsters
 								san[i] = 3; // FIXME supposed to miss ?
+							combo_damage_detail[i] += san[i];
 						}
+					}
+					else {
+						n_A_DMG = calc_base_atk(n_A_ATK, false, false, n_Enekyori); // Reset based damage
+						ATKbai01();
+						ATKbai02(1, 1);
+						BattleCalc999();
+						for (let i = 0; i <= 2; i++) {
+							san[i] += w_DMG[i];
+							combo_damage_detail[i] += "+" + w_DMG[i];
+						}
+						str_bSUB = ""; // Reinitailise sub text value in case of combo to avoid leftover from cast time
 					}
 				}
 
@@ -648,11 +660,27 @@ function BattleCalc999() {
 			w_DMG[1] += wTAKA;
 			w_DMG[1] += EDP_DMG(1);
 
+			if (447 == n_A_ActiveSkill) { // Combo Sequence#447
+				// Manage damage, cast and delay display
+				wCast = 0;
+				n_Delay[0] = 1;
+				n_Delay[2] = 0;
+				n_Delay[3] = 0;
+				str_bSUBname = "Combo Damage<BR>";
+
+				if (!triple_attack_lv)
+					str_bSUB = "Triple Attack not enabled";
+
+				for (let i = 0; i <= 2; i++)
+					InnStr[i] = combo_damage_detail[i] + " = " + san[i];
+			}
+
 			CastAndDelay();
 			BattleCalc998();
 		}
 		if (debug_mode)
 			alert(debug_atk);
+
 		return;
 	} else if (n_A_ActiveSkill == 272 || n_A_ActiveSkill == 401) { // Sharp Shooting#272, Shadow Slash#401
 		myInnerHtml("CRIATKname", "Critical Hit", 0);
@@ -825,12 +853,12 @@ function BattleCalc999() {
 			wActiveHitNum = 4;
 			wbairitu += 0.5 + n_A_ActiveSkillLV * 0.5;
 			n_Delay[0] = 1;
-			n_Delay[1] = 0.1;
+			//n_Delay[1] = 0.1;
 			n_Delay[3] = 1 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 		} else if (n_A_ActiveSkill == 189) {
 			wbairitu += 1.4 + n_A_ActiveSkillLV * 0.6;
 			n_Delay[0] = 1;
-			n_Delay[1] = 0.1;
+			//n_Delay[1] = 0.1;
 			n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 		} else if (n_A_ActiveSkill == 199 || n_A_ActiveSkill == 207) {
 			wCast = 1.5;
@@ -877,7 +905,7 @@ function BattleCalc999() {
 		} else if (n_A_ActiveSkill == 289) {
 			n_Delay[0] = 1;
 			wbairitu += n_A_ActiveSkillLV - 0.6;
-			n_Delay[1] = 0.1;
+			//n_Delay[1] = 0.1;
 			n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 		} else if (n_A_ActiveSkill == 290) {
 			n_Delay[0] = 1;
