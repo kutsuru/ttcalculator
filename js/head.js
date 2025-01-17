@@ -387,11 +387,13 @@ function BattleCalc999() {
 		n_Enekyori = 1;
 
 
-	if (n_A_ActiveSkill == 0 || (n_A_ActiveSkill == 86 && (50 <= n_B[3] && n_B[3] < 60))) { // Poison React [Counter]#86
-		myInnerHtml("CRIATKname", SubName[3], 0);
-		myInnerHtml("CRInumname", SubName[4], 0);
+	if (n_A_ActiveSkill == 0 || n_A_ActiveSkill == 447 || (n_A_ActiveSkill == 86 && (50 <= n_B[3] && n_B[3] < 60))) { // Poison React [Counter]#86
+		if (n_A_ActiveSkill != 447) {
+			myInnerHtml("CRIATKname", SubName[3], 0);
+			myInnerHtml("CRInumname", SubName[4], 0);
+		}
 
-		if (n_A_ActiveSkill == 86) {
+		if (n_A_ActiveSkill == 86 || 447 == n_A_ActiveSkill) {
 			n_Delay[0] = 1;
 		}
 		debug_atk += "\n --- (BattleCalc999) skill calc:0,86 ---";
@@ -516,20 +518,47 @@ function BattleCalc999() {
 			if (triple_attack_lv) {
 				TyouEnkakuSousa3dan = -1;
 				wBC3_3danAtkBairitu = SkillSearch(187) * 0.2;
-				var san = [0, 0, 0];
+				san = [0, 0, 0];
 				// Force active skill to Triple Attack#187 during the damage computation
 				let previous_active_skill = n_A_ActiveSkill;
-				n_A_ActiveSkill = 187;
 
-				for (var i = 0; i <= 2; i++) {
-					san[i] = BattleCalc(n_A_DMG[i] * (wbairitu + wBC3_3danAtkBairitu), i) + EDP_DMG(i);
-					san[i] = Math.floor(san[i] / 3) * 3;
-					if (n_B[19] == 5)
-						san[i] = 3;
+				let skills_triggered = [187]
+				if (447 == previous_active_skill) // Manage combo sequence)
+				{
+					combo_skills = [
+						[187, 188],						// Triple Attack > Chain Combo
+						[187, 188, 189],				// Triple Attack > Chain Combo > Combo Finish
+						[187, 188, 189, 321],			// Triple Attack > Chain Combo > Combo Finish > Asura Strike
+						[187, 188, 189, 289],			// Triple Attack > Chain Combo > Combo Finish > Tiger Knuckle Fist
+						[187, 188, 189, 289, 290],		// Triple Attack > Chain Combo > Combo Finish > Tiger Knuckle Fist > Chain Crush Combo
+						[187, 188, 189, 289, 290, 321],	// Triple Attack > Chain Combo > Combo Finish > Tiger Knuckle Fist > Chain Crush Combo > Asura Strike
+						[187, 188, 189, 290],			// Triple Attack > Chain Combo > Combo Finish > Chain Crush Combo
+						[187, 188, 189, 290, 321]		// Triple Attack > Chain Combo > Combo Finish > Chain Crush Combo > Asura Strike
+					];
+
+					let selected_combo_sequence = eval(document.calcForm.SkillSubNum.value);
+					skills_triggered = combo_skills[selected_combo_sequence];
+					str_bSUBname += "Combo Damage<BR>";
+				}
+				else
+					str_bSUBname += "Triple Attack Damage<BR>";
+
+				san = [0, 0, 0];
+
+				for (let skill_id of skills_triggered) {
+					n_A_ActiveSkill = skill_id;
+					for (var i = 0; i <= 2; i++) {
+						san[i] += BattleCalc(n_A_DMG[i] * (wbairitu + wBC3_3danAtkBairitu), i) + EDP_DMG(i);
+
+						if (187 == skill_id) {
+							san[i] += Math.floor(san[i] / 3) * 3;
+							if (n_B[19] == 5) // Triple attack on plant type monsters
+								san[i] = 3; // FIXME supposed to miss ?
+						}
+					}
 				}
 
 				n_A_ActiveSkill = previous_active_skill;
-				str_bSUBname += "Raging Trifecta Blow Damage<BR>";
 
 				let triple_attack_rate = get_triple_attack_rate();
 
@@ -2832,6 +2861,10 @@ function BattleCalc998()
 	tPlusAG();
 	var w;
 	w = Math.floor(n_B[6] / w_DMG[2]);
+
+	if (447 == n_A_ActiveSkill) // Manage hit counts for combo sequences
+		w = Math.floor(n_B[6] / san[2]);
+
 	if(n_B[6] % Math.floor(w_DMG[2]) != 0)
 		w += 1;
 	if(w<10000)
@@ -2880,9 +2913,13 @@ function BattleCalc998()
 		myInnerHtml("MaxATKnum","<Font size=2>Infinite (no 100% Hit)</Font>",0);
 	}else{
 		var wX = w_DMG[0];
+		if (447 == n_A_ActiveSkill) // Manage hit counts for combo sequences
+			wX = san[0];
+
 		if(w_HIT_HYOUJI < 100)
 			wX = n_PerHIT_DMG;
 		w = Math.floor(n_B[6] / wX);
+
 		if(n_B[6] % Math.floor(wX) != 0)
 			w += 1;
 		if(w<10000)
@@ -2912,6 +2949,8 @@ function BattleCalc998()
 		myInnerHtml("AveSecondATK", damage_per_second, 0);
 
 	w = Math.ceil(n_B[6] / w_DMG[1]);
+	if (447 == n_A_ActiveSkill) // Manage hit counts for combo sequences
+		w = Math.ceil(n_B[6] / san[1]);
 
 	if(Taijin==0){
 		if(w<10000){
@@ -2952,8 +2991,10 @@ function BattleCalc998()
 			sp_cost = 0;
 			skill_info = SkillOBJ[n_A_ActiveSkill];
 			
-			if (skill_info.length > 3)
-				sp_cost = skill_info[Math.min(2 + n_A_ActiveSkillLV, skill_info.length - 1)];
+			if (skill_info.length > 3) {
+				sp_cost_index = 447 == n_A_ActiveSkill ? eval(document.calcForm.SkillSubNum.value) + 1 : n_A_ActiveSkillLV;
+				sp_cost = skill_info[Math.min(2 + sp_cost_index, skill_info.length - 1)];
+            }
 			
 			// Flat sp cost reduction
 			
@@ -3915,6 +3956,24 @@ with(document.calcForm){
 			SkillSubNum.options[i - 1] = new Option(i,i);
 		SkillSubNum.value = 1;
 	}
+	else if (447 == n_A_ActiveSkill) // Combo Sequence
+	{
+		myInnerHtml("AASkillName", "", 0);
+		myInnerHtml("AASkill", '<select name="SkillSubNum"onChange="calc()"></select>', 0);
+		let allowed_sequences = [
+			"Triple Attack > Chain Combo",
+			"Triple Attack > Chain Combo > Combo Finish",
+			"Triple Attack > Chain Combo > Combo Finish > Asura Strike",
+			"Triple Attack > Chain Combo > Combo Finish > Tiger Knuckle Fist",
+			"Triple Attack > Chain Combo > Combo Finish > Tiger Knuckle Fist > Chain Crush Combo",
+			"Triple Attack > Chain Combo > Combo Finish > Tiger Knuckle Fist > Chain Crush Combo > Asura Strike",
+			"Triple Attack > Chain Combo > Combo Finish > Chain Crush Combo",
+			"Triple Attack > Chain Combo > Combo Finish > Chain Crush Combo > Asura Strike"
+		];
+		for (i = 0; i < allowed_sequences.length; ++i)
+			SkillSubNum.options[i] = new Option(allowed_sequences[i], i);
+		SkillSubNum.value = 1;
+    }
 	else{
 		myInnerHtml("AASkillName","",0);
 		myInnerHtml("AASkill","",0);
