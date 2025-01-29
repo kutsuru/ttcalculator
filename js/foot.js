@@ -1,4 +1,51 @@
-myInnerHtml("DELHTML",' <Font size=2><A Href="del.html">[delete saved data]</A></Font>',0);
+JobName = [
+	"Novice", //0
+	"Swordsman", //1
+	"Thief", //2
+	"Acolyte", //3
+	"Archer", //4
+	"Magician", //5
+	"Merchant", //6
+	"Knight", //7
+	"Assassin", //8
+	"Priest", //9
+	"Hunter", //10
+	"Wizard", //11
+	"Blacksmith", //12
+	"Crusader", //13
+	"Rogue", //14
+	"Monk", //15
+	"Bard", //16
+	"Dancer", //17
+	"Sage", //18
+	"Alchemist", //19
+	"Super Novice", //20
+	"Lord Knight", //21
+	"Assassin Cross", //22
+	"High Priest", //23
+	"Sniper", //24
+	"High Wizard", //25
+	"Whitesmith", //26
+	"Paladin", //27
+	"Stalker", //28
+	"Champion", //29
+	"Clown", //30
+	"Gypsy", //31
+	"Professor", //32
+	"Creator", //33
+	"High Novice", //34
+	"High Swordsman", //35
+	"High Thief", //36
+	"High Acolyte", //37
+	"High Archer", //38
+	"High Magician", //39
+	"High Merchant", //40
+	"Taekwon Kid", //41
+	"Star Gladiator", //42
+	"Soul Linker", //43
+	"Ninja", //44
+	"Gunslinger"]; //45
+
 //array of armor select elements
 armorLoc = [document.calcForm.A_head1, document.calcForm.A_head2, document.calcForm.A_head3, document.calcForm.A_body, document.calcForm.A_left, document.calcForm.A_shoulder, document.calcForm.A_shoes, document.calcForm.A_acces1, document.calcForm.A_acces2];
 //array of card select elements not including left weapon cards
@@ -10609,54 +10656,6 @@ with(document.calcForm){
 		calc();
 	}
 }}
-
-JobName =
-["Novice", //0
-"Swordsman", //1
-"Thief", //2
-"Acolyte", //3
-"Archer", //4
-"Magician", //5
-"Merchant", //6
-"Knight", //7
-"Assassin", //8
-"Priest", //9
-"Hunter", //10
-"Wizard", //11
-"Blacksmith", //12
-"Crusader", //13
-"Rogue", //14
-"Monk", //15
-"Bard", //16
-"Dancer", //17
-"Sage", //18
-"Alchemist", //19
-"Super Novice", //20
-"Lord Knight", //21
-"Assassin Cross", //22
-"High Priest", //23
-"Sniper", //24
-"High Wizard", //25
-"Whitesmith", //26
-"Paladin", //27
-"Stalker", //28
-"Champion", //29
-"Clown", //30
-"Gypsy", //31
-"Professor", //32
-"Creator", //33
-"High Novice", //34
-"High Swordsman", //35
-"High Thief", //36
-"High Acolyte", //37
-"High Archer", //38
-"High Magician", //39
-"High Merchant", //40
-"Taekwon Kid", //41
-"Star Gladiator", //42
-"Soul Linker", //43
-"Ninja", //44
-"Gunslinger"]; //45
 
 for (i=0;i<=45;i++)
 	document.calcForm.A_JOB.options[i] = new Option(JobName[i],i);
