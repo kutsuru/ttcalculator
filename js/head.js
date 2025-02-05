@@ -2877,7 +2877,7 @@ function BattleCalc998()
 
 	myInnerHtml("bSUBname",str_bSUBname,0);
 	myInnerHtml("bSUB",str_bSUB,0);
-	myInnerHtml("BattleHIT",w_HIT_HYOUJI.toFixed(2),0);
+	myInnerHtml("BattleHIT",w_HIT_HYOUJI,0);
 
 	if(n_B[0]==44 && n_A_ActiveSkill != 0 && n_A_ActiveSkill != 325){
 		for(i=0;i<=2;i++){
@@ -7966,7 +7966,7 @@ function calc()
 		// So critical rate even at 100% should reflect that missed/TA/DA attacked cannot be counted as crit
 		crit_rate = Math.min(Math.max(0, 100 - non_crit_rate), w_Cri);
 
-		w_HIT = Math.min(100, crit_rate + non_crit_rate * w_HIT / 100);
+		w_HIT = Math.round(100 * Math.min(100, crit_rate + non_crit_rate * w_HIT / 100)) / 100;
 		w_HIT_HYOUJI = w_HIT;
 	}
 	
