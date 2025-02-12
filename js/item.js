@@ -1213,7 +1213,7 @@ ItemOBJ = [
 ,[1190,60,1072,7,0,1,100,85,"Bone Plate","","Adds a 1% chance to cause External Bleeding status ailment all enemies in a 5x5 area around you when taking ATK based damage",1,1,19,3,187,10,182,10,0]
 ,[1191,61,1079,5,0,1,180,65,"Bradium Shield","",0,13,500,5159,60,5384,60,2,-1,0]
 ,[1192,62,1001,5,0,1,100,0,"Dragon Manteau","",0,2,1,19,5,0]
-,[1193,62,1001,5,0,1,40,90,"Proxy Skin Fragment","","Increases SP by Level/3 + [Refine Rate * 10]<br>When dealing physical damage there's a 1% chance that you'll recover 1% of your damage as SP",382,1,383,1,19,3,61,3,62,3,63,3,64,3,65,3,66,3,67,3,68,3,69,3,0]
+,[1193,62,1001,5,0,1,40,90,"Proxy Skin Fragment","","Increases SP by Level/3 + [Refine Rate * 10]<br>When dealing physical damage there's a 0.1% chance that you'll recover 1% of your damage as SP",382,1,383,1,19,3,61,3,62,3,63,3,64,3,65,3,66,3,67,3,68,3,69,3,0]
 ,[1194,63,1001,4,0,0,50,60,"Life Tree Wooden Shoes","","Recover 30 HP every 10 seconds",15,10,3,2,19,3,92,5,93,5,95,5,199,5,218,5,0]
 ,[1195,64,0,0,0,0,10,0,"Ring of Wisdom","",0,13,50,14,20,0]
 ,[1196,64,0,0,0,1,10,70,"Eye Ring","",0,10,2,14,25,0]
