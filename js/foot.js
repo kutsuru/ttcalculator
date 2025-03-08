@@ -5185,9 +5185,6 @@ function StPlusCalc() {
 	if(CardNumSearch(406))n_tok[2] += n_A_SHOES_DEF_PLUS;
 	if(CardNumSearch(198))n_tok[3] += n_A_BODY_DEF_PLUS;
 	if(n_A_card[8] == 180)n_tok[1] += n_A_HEAD_DEF_PLUS;
-	
-	if(n_A_WeaponType==9)
-		n_tok[4] += CardNumSearch(466);
 
 	if(CardNumSearch(185))n_tok[3] += Math.floor(SU_DEX /18);
 	if(CardNumSearch(187))n_tok[1] += Math.floor(SU_INT /18);
