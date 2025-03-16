@@ -3556,6 +3556,10 @@ function BattleMagicCalc(wBMC) {
 	if (temporal_spell && IsAnOGHMonster())
 		wBMC2 = wBMC2 * 1.10;
 
+	// {Faceworm Egg card, Dark Faceworm card} + Faceworm Queen card Combos#657#658 - Increases magical damage against Faceworm Nest monsters by 25 %.
+	if (IsAFacewormMonster() && (CardNumSearch(657) || CardNumSearch(658)))
+		wBMC2 = wBMC2 * 1.25;
+
 	wBMC2 = Math.floor(wBMC2);
 
 	return wBMC2;
@@ -8452,6 +8456,10 @@ function BaiCI(wBaiCI)
 	// Temporal Spell - Increases physical damage against Old Glast Heim monsters by 10%
 	if (temporal_spell && IsAnOGHMonster())
 		wBaiCI = wBaiCI * 1.10;
+
+	// {Faceworm Egg card, Dark Faceworm card} + Faceworm Queen card Combos#657#658 - Increases physical damage against Faceworm Nest monsters by 10 %.
+	if (IsAFacewormMonster() && (CardNumSearch(657) || CardNumSearch(658)))
+		wBMC2 = wBMC2 * 1.10;
 
 	return wBaiCI;
 }

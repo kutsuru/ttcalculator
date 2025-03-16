@@ -4247,7 +4247,9 @@ function Item_Setumei(nC1,nC2)
 	if(197 == nC1)
 		CBIstr += "Experience gained from bosstype monsters "+ wIS + nC2 +"%<BR>";
 	if(198 == nC1)
-		CBIstr += "Armor becomes "+ ZokuseiOBJ[nC2] +" element<BR>";
+		CBIstr += "Armor becomes " + ZokuseiOBJ[nC2] + " element<BR>";
+	if (202 == nC1)
+		CBIstr += "Min MATK +"+ nC2 +"<BR>";
 	if (218 == nC1 || 219 == nC1)
 	{
 		if (nC2.constructor === Array)

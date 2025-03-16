@@ -679,6 +679,15 @@ cardOBJ = [
 ,[649,5,"Irene High Elder","<b>[Every 10 Base STR]</b> HIT Rate + 3%<br><b>[Every 10 Base INT]</b> Min MATK + 10<br><b>[Every 3 Refine Levels]</b> STR + 1, INT + 1",8,10,89,2,0]
 ,[650,100,"Cursed Butler + Phantom of Himmelmez","[Soul Strike] bypasses 25% of target Magical Defense",5047,25,0]
 ,[651,100,"Necromancer + Gold Queen Scaraba",0,295,5,0]
+,[652,7,"Faceworm",0,2,2,12,3,0]
+,[653,7,"Dark Faceworm",0,4,3,12,3,0]
+,[654,100,"Faceworm + Dark Faceworm",0,4,3,12,2,74,5,0]
+,[655,7,"Faceworm Egg","<br><b>[Every 10 Job Levels]</b><br>Min MATK + 5",4,2,89,3,0]
+,[656,7,"Faceworm Queen","MATK % & INT + (JobLvl / 14)<br>Min MATK + (JobLvl / 2)",0]
+,[657,100,"Faceworm Queen + Dark Faceworm","Increase Physical damage against Faceworm Nest monsters by 10 %.<br>Increase Magical damage against Faceworm Nest monsters by 25 %.",202,25,0]
+,[658,100,"Faceworm Queen + Faceworm Egg","Increase Physical damage against Faceworm Nest monsters by 10 %.<br>Increase Magical damage against Faceworm Nest monsters by 25 %.",202,25,0]
+,[659,7,"Faceworm Larva",0,355,10,0]
+,[660,100,"Faceworm Larva + Faceworm Egg",0,174,20,0]
 ];
 /*
 ID, Location, description, 0 - seperator, stat, value added/subtracted
@@ -1365,6 +1374,15 @@ cardID = [
 ,[649,1,27168]
 ,[650,2,0]
 ,[651,2,0]
+,[652,1,27163]
+,[653,1,27165]
+,[654,2,0]
+,[655,1,27166]
+,[656,1,27164]
+,[657,2,0]
+,[658,2,0]
+,[659,1,27167]
+,[660,2,0]
 ];
 
 CardNum = cardOBJ.length -1;
@@ -1587,6 +1605,10 @@ w_SC = [[429,235,306,"NULL"],
 [641,640,639,"NULL"],
 [650,642,631,"NULL"],
 [651,466,529,"NULL"],
+[654,652,653,"NULL"],
+[657,653,656,"NULL"],
+[658,655,656,"NULL"],
+[660,655,659,"NULL"],
 ];
 SC_MAXnum = w_SC.length;
 

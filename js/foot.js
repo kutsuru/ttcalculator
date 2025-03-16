@@ -4925,6 +4925,18 @@ function StPlusCalc() {
 	if(EquipNumSearch(1172))
 		n_tok[4] += Math.floor(n_A_Weapon_ATKplus / 2);
 
+	/*
+	 * Faceworm Queen card#656
+	 *		MATK% & INT + (JobLvl / 14)
+	 *		Min MATK + (JobLvl / 2)
+	*/
+	if (CardNumSearch(656)) {
+		let bonus = Math.floor(n_A_JobLV / 14);
+		n_tok[4] += bonus;
+		n_tok[89] += bonus;
+		n_tok[202] += Math.floor(n_A_JobLV / 2);
+    }
+
 	if(EquipNumSearch(649))
 		n_tok[5] -= SU_DEX;
 	
@@ -5233,6 +5245,9 @@ function StPlusCalc() {
 		n_tok[202] += 10 * Math.floor(SU_INT / 10);
     }
 
+	// Faceworm Egg#655 - [Every 10 Job Levels] Min MATK + 5
+	if (CardNumSearch(655))
+		n_tok[202] += 5 * Math.floor(n_A_JobLV / 10);
 
 	// Girl Sun Hat#1830 - [Every 3 Refine Levels] INT + 2
 	if (EquipNumSearch(1830))
@@ -8692,9 +8707,14 @@ function IsABiolabMonster() {
 	return (MonMap[10].findIndex( (x) => x == n_B[0] ) > -1);
 }
 
+// Faceworm Nest
+function IsAFacewormMonster() {
+	return (MonMap[26].findIndex((x) => x == n_B[0]) > -1);
+}
+
 // Old Glast Heim & Old Glast Heim Challenge
 function IsAnOGHMonster() {
-	return (MonMap[58].findIndex( (x) => x == n_B[0] ) > -1) || (MonMap[59].findIndex( (x) => x == n_B[0] ) > -1)
+	return (MonMap[59].findIndex((x) => x == n_B[0]) > -1) || (MonMap[60].findIndex((x) => x == n_B[0]) > -1);
 }
 
 function apply_temporal_enchants()
