@@ -1927,7 +1927,7 @@ ItemOBJ = [
 ,[1869,62,0,0,0,"0/1",40,80,"Giant Snake Skin","","<b>[Every 3 Refine Levels]</b><br>MDEF + 1<br><b>[+ Temporal Boots]</b><br>MaxHP + 15%<br>MaxSP + 10%",0]
 ,[1870,1,69,70,3,4,50,40,"Faceworm Leg","","<br><b>[Every Refine Level]</b><br>HIT + 2",12,2,0]
 ,[1871,1,1068,135,4,3,50,55,"Faceworm Queen's Leg","","<br><b>[Every Refine Level]</b><br>Increases Physical and Magical damage against Insect race monsters by 3%.<br><b>[Every 2 Refine Levels]</b><br>INT + 1, ATK + 5",4,2,89,15,0]
-,[1872,50,0,2,0,1,50,1,"Faceworm Egg Shell","","Increase Physical and Magical damage against Faceworm Nest monsters by 10%.<br><b>[Every Refine +5~10]</b><br>Increase Physical and Magical damage against Faceworm Nest monsters by 2%.",8,20,0]
+,[1872,50,0,2,0,1,50,1,"Faceworm Egg Shell","","Increases Physical and Magical damage against Faceworm Nest monsters by 10%.<br><b>[Every Refine +5~10]</b><br>Increase Physical and Magical damage against Faceworm Nest monsters by 2%.",8,20,0]
 ,[1873,52,0,2,0,0,10,1,"Giant Snake Breath","","<b>[+ Kasa Card]</b><br>Triple the chance to auto-cast its respective spells.<b>[+ Gopinich Card or Mutant Dragonoid Card]</b><br>Double the chance to auto-cast their respective spells.",343,2,0]
 ,[1874,100,0,0,0,0,0,0,"Faceworm Leg + Faceworm Queen's Leg","",0,184,50,5263,10,0]
 ,[1875,100,0,0,0,0,0,0,"Giant Snake Skin + Faceworm Queen's Leg","Has a 1.5% chance of auto casting Illusion of Faceworm Queen (transform into a Faceworm Queen monster) for 7 seconds when dealing physical attacks or skills, including magic. While transformed, ignore 50% Defense and 30% MDEF of Insect race monsters",0,0]

@@ -2213,6 +2213,12 @@ with(document.calcForm){
 	// Death Fire#1791 [Every Refine Level] - HIT + 4
 	n_tok[8] += n_A_Weapon_ATKplus * 4 * EquipNumSearch(1791);
 
+	// Faceworm Leg#1870 - [Every Refine Level] HIT + 2
+	if (1870 == n_A_Equip[0])
+		n_tok[8] += n_A_Weapon_ATKplus * 2;
+	if (1870 == n_A_Equip[1])
+		n_tok[8] += n_A_Weapon2_ATKplus * 2;
+
 	n_A_HIT += n_tok[8];
 
 	if(EquipNumSearch(656))
@@ -4875,54 +4881,51 @@ function StPlusCalc() {
 	 * ATK + 100
 	 * Reduces SP cost of skill by 10%
 	 */
-	if (43 == n_A_JOB && EquipNumSearch(1862))
-	{
+	if (43 == n_A_JOB && EquipNumSearch(1862)) {
 		n_tok[5] += 3
 		n_tok[14] += 500;
 		n_tok[17] += 100;
 		n_tok[72] -= 10;
-    }
+	}
 
 	// Chrome Metal Sword#1623 - [Every Refine] AGI + 1, ATK + 4
-	if (EquipNumSearch(1623))
-	{
+	if (EquipNumSearch(1623)) {
 		n_tok[2] += n_A_Weapon_ATKplus;
 		n_tok[17] += 4 * n_A_Weapon_ATKplus;
 	}
-	
+
 	// Dance Shoes#1314 - [Dancer][Every 2 Refines] AGI + 2, ASPD + 1%
-	if (17 == n_A_JobSearch2() && EquipNumSearch(1314))
-	{
+	if (17 == n_A_JobSearch2() && EquipNumSearch(1314)) {
 		n_tok[2] += Math.floor(n_A_SHOES_DEF_PLUS / 2);
 		n_tok[12] += Math.floor(n_A_SHOES_DEF_PLUS / 2);
 	}
 
-	if(SkillSearch(422)) // Increase Accuracy#422
+	if (SkillSearch(422)) // Increase Accuracy#422
 	{
 		n_tok[5] += 4;
 		n_tok[2] += 4;
 	}
 
 	// Equipment bonus
-	if(n_A_JobSearch()==41 && EquipNumSearch(672))
+	if (n_A_JobSearch() == 41 && EquipNumSearch(672))
 		n_tok[2] += 1;
-	if(n_A_JobSearch()==41 && EquipNumSearch(673))
+	if (n_A_JobSearch() == 41 && EquipNumSearch(673))
 		n_tok[4] += 1;
-	if(n_A_JobSearch()==41 && EquipNumSearch(675))
+	if (n_A_JobSearch() == 41 && EquipNumSearch(675))
 		n_tok[6] += 2;
-	if(n_A_JobSearch()==41 && EquipNumSearch(676))
+	if (n_A_JobSearch() == 41 && EquipNumSearch(676))
 		n_tok[5] += 2;
-	if(n_A_JobSearch()==41 && EquipNumSearch(678))
+	if (n_A_JobSearch() == 41 && EquipNumSearch(678))
 		n_tok[6] += 1;
-	if(n_A_SHOES_DEF_PLUS >= 9 && EquipNumSearch(717))
+	if (n_A_SHOES_DEF_PLUS >= 9 && EquipNumSearch(717))
 		n_tok[2] += 2;
-	if(n_A_HEAD_DEF_PLUS >= 5 && EquipNumSearch(1069))
+	if (n_A_HEAD_DEF_PLUS >= 5 && EquipNumSearch(1069))
 		n_tok[6] += (n_A_HEAD_DEF_PLUS - 4);
-	if(n_A_Weapon_ATKplus >= 6 && EquipNumSearch(1168))
+	if (n_A_Weapon_ATKplus >= 6 && EquipNumSearch(1168))
 		n_tok[4] += (n_A_Weapon_ATKplus - 5);
-	if(EquipNumSearch(1171) && SkillSearch(234) == 5)
+	if (EquipNumSearch(1171) && SkillSearch(234) == 5)
 		n_tok[4] += 3;
-	if(EquipNumSearch(1172))
+	if (EquipNumSearch(1172))
 		n_tok[4] += Math.floor(n_A_Weapon_ATKplus / 2);
 
 	/*
@@ -4935,7 +4938,28 @@ function StPlusCalc() {
 		n_tok[4] += bonus;
 		n_tok[89] += bonus;
 		n_tok[202] += Math.floor(n_A_JobLV / 2);
+	}
+
+	/*
+	 * Faceworm Queen's Leg#1871
+	 *		[Every Refine Level] - Increases Physical and Magical damage against Insect race monsters by 3%
+	 *		[Every 2 Refine Levels] - INT + 1, ATK + 5
+	*/
+	if (1871 == n_A_Equip[0]) {
+		let refine_bonus = Math.floor(n_A_Weapon2_ATKplus / 2);
+		n_tok[4] += n_A_Weapon_ATKplus * refine_bonus;
+		n_tok[17] += n_A_Weapon_ATKplus * refine_bonus * 5;
+		n_tok[34] += n_A_Weapon_ATKplus * 3;
+		n_tok[174] += n_A_Weapon_ATKplus * 3;
+	}
+	if (1871 == n_A_Equip[1]) {
+		let refine_bonus = Math.floor(n_A_Weapon2_ATKplus / 2);
+		n_tok[4] += n_A_Weapon2_ATKplus * refine_bonus;
+		n_tok[17] += n_A_Weapon2_ATKplus * refine_bonus * 5;
+		n_tok[34] += n_A_Weapon2_ATKplus * 3;
+		n_tok[174] += n_A_Weapon2_ATKplus * 3;
     }
+
 
 	if(EquipNumSearch(649))
 		n_tok[5] -= SU_DEX;

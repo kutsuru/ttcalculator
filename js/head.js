@@ -3556,9 +3556,16 @@ function BattleMagicCalc(wBMC) {
 	if (temporal_spell && IsAnOGHMonster())
 		wBMC2 = wBMC2 * 1.10;
 
-	// {Faceworm Egg card, Dark Faceworm card} + Faceworm Queen card Combos#657#658 - Increases magical damage against Faceworm Nest monsters by 25 %.
-	if (IsAFacewormMonster() && (CardNumSearch(657) || CardNumSearch(658)))
-		wBMC2 = wBMC2 * 1.25;
+	
+	if (IsAFacewormMonster()) {
+		// {Faceworm Egg card, Dark Faceworm card} + Faceworm Queen card Combos#657#658 - Increases magical damage against Faceworm Nest monsters by 25%.
+		if (CardNumSearch(657) || CardNumSearch(658))
+			wBMC2 = wBMC2 * 1.25;
+
+		// Faceworm Egg Shell#1872 - Increases magical damage against Faceworm Nest monsters by 10% + 2% for every refine above safe refine
+		if (EquipNumSearch(1872))
+			wBMC2 = wBMC2 * (1.1 + 0.02 * Math.max(0, n_A_HEAD_DEF_PLUS - 4))
+	}
 
 	wBMC2 = Math.floor(wBMC2);
 
