@@ -5762,6 +5762,22 @@ function PopulateCombos() {
 		temporal_1st_enchant_select.value = 0;
 		temporal_2nd_enchant_select.value = 0;
 		temporal_3rd_enchant_select.value = 0;
+
+		// Faceworm Enchants (Footgear)
+		myInnerHtml("faceworm_1st_enchant", "1st Enchant: ", 0);
+		myInnerHtml("faceworm_2nd_enchant", "2nd Enchant: ", 0);
+		myInnerHtml("faceworm_3rd_enchant", "3rd Enchant: ", 0);
+
+		for (i = 0; i < FACEWORM_1ST_ENCHANTS.length; ++i)
+			faceworm_1st_enchant_select.options[i] = new Option(FACEWORM_1ST_ENCHANTS[i][0], i);
+		for (i = 0; i < FACEWORM_2ND_ENCHANTS.length; ++i)
+			faceworm_2nd_enchant_select.options[i] = new Option(FACEWORM_2ND_ENCHANTS[i][0], i);
+		for (i = 0; i < FACEWORM_3RD_ENCHANTS.length; ++i)
+			faceworm_3rd_enchant_select.options[i] = new Option(FACEWORM_3RD_ENCHANTS[i][0], i);
+
+		faceworm_1st_enchant_select.value = 0;
+		faceworm_2nd_enchant_select.value = 0;
+		faceworm_3rd_enchant_select.value = 0;
 	}
 }
 
@@ -6711,6 +6727,20 @@ with(document.calcForm) {
 	}
 }
 }
+
+function Click_FacewormEnchantment() {
+	with (document.calcForm) {
+		let bEnchant = (1869 == n_A_Equip[7]);
+		document.getElementById("faceworm_enchant_block").style.display = ((bEnchant) ? "" : "none");
+
+		if (!bEnchant) {
+			document.calcForm.faceworm_1st_enchant_select.value = 0;
+			document.calcForm.faceworm_2nd_enchant_select.value = 0;
+			document.calcForm.faceworm_3rd_enchant_select.value = 0;
+		}
+	}
+}
+
 
 function Click_Skill9SW(){
 with(document.calcForm){
@@ -8366,6 +8396,12 @@ function BaiCI(wBaiCI)
 
 			if (EquipNumSearch(1841) || 5 == enchant_category)
 				crit_dmg_modifier += Math.floor(SU_LUK / 19) * 3;
+
+			// Faceworm Special LUK enchant - [Every 2 Unsafe Refines] - Increases critical attack/skills attack by 1%
+			third_enchant_index = eval(document.calcForm.faceworm_3rd_enchant_select.value);
+
+			if (EquipNumSearch(1869) || 12 == third_enchant_index)
+				crit_dmg_modifier += Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 4) / 2));
 			
 			if (272 == n_A_ActiveSkill)  // Sharpshoot#272
 			{

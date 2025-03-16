@@ -1924,13 +1924,19 @@ ItemOBJ = [
 ,[1867,50,0,0,0,1,30,1,"King Ernst Von Wolff","","<b>[+ Desert Wolf Baby Pet]</b><br>Damage to [Small] size monsters increased by 5%, 10% instead if pet is loyal.",27,5,0]
 ,[1868,50,0,2,0,1,20,1,"Critura Hat","","A rain cap for strong adventurers who step into the world for the first time.",15,6,15,3,0]
 // Faceworm Nest
-,[1869,62,0,0,0,"0/1",40,80,"Giant Snake Skin","","<b>[Every 3 Refine Levels]</b><br>MDEF + 1<br><b>[+ Temporal Boots]</b><br>MaxHP + 15%<br>MaxSP + 10%",0]
+,[1869,62,0,0,0,"0/1",40,80,"Giant Snake Skin","","<b>[Every 3 Refine Levels]</b><br>MDEF + 1",0]
 ,[1870,1,69,70,3,4,50,40,"Faceworm Leg","","<br><b>[Every Refine Level]</b><br>HIT + 2",12,2,0]
 ,[1871,1,1068,135,4,3,50,55,"Faceworm Queen's Leg","","<br><b>[Every Refine Level]</b><br>Increases Physical and Magical damage against Insect race monsters by 3%.<br><b>[Every 2 Refine Levels]</b><br>INT + 1, ATK + 5",4,2,89,15,0]
 ,[1872,50,0,2,0,1,50,1,"Faceworm Egg Shell","","Increases Physical and Magical damage against Faceworm Nest monsters by 10%.<br><b>[Every Refine +5~10]</b><br>Increase Physical and Magical damage against Faceworm Nest monsters by 2%.",8,20,0]
 ,[1873,52,0,2,0,0,10,1,"Giant Snake Breath","","<b>[+ Kasa Card]</b><br>Triple the chance to auto-cast its respective spells.<b>[+ Gopinich Card or Mutant Dragonoid Card]</b><br>Double the chance to auto-cast their respective spells.",343,2,0]
 ,[1874,100,0,0,0,0,0,0,"Faceworm Leg + Faceworm Queen's Leg","",0,184,50,5263,10,0]
 ,[1875,100,0,0,0,0,0,0,"Giant Snake Skin + Faceworm Queen's Leg","Has a 1.5% chance of auto casting Illusion of Faceworm Queen (transform into a Faceworm Queen monster) for 7 seconds when dealing physical attacks or skills, including magic. While transformed, ignore 50% Defense and 30% MDEF of Insect race monsters",0,0]
+,[1876,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots STR","",0,15,15,16,10,0]
+,[1877,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots AGI","",0,15,15,16,10,0]
+,[1878,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots VIT","",0,15,15,16,10,0]
+,[1879,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots INT","",0,15,15,16,10,0]
+,[1880,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots DEX","",0,15,15,16,10,0]
+,[1881,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots LUK","",0,15,15,16,10,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3840,6 +3846,12 @@ ItemID = [
 ,[1873,1,19268]
 ,[1874,2,13089,13090]
 ,[1875,2,32500,32501,13090]
+,[1876,2,32500,32501,22100]
+,[1877,2,32500,32501,22105]
+,[1878,2,32500,32501,22101]
+,[1879,2,32500,32501,22103]
+,[1880,2,32500,32501,22102]
+,[1881,2,32500,32501,22105]
 ];
 
 /*
@@ -4536,6 +4548,12 @@ w_SE = [[737,436,475,"NULL"]
 ,[1864,1863,1111,"NULL"] //Custom Talon Tales - Apprentice Badge + Glorious Ring
 ,[1874,1870,1871,"NULL"] //Custom Talon Tales - Faceworm Leg + Faceworm Queen's Leg
 ,[1875,1869,1871,"NULL"] //Custom Talon Tales - Giant Snake Skin + Faceworm Queen's Leg
+,[1876,1869,1836,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots STR
+,[1877,1869,1837,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots AGI
+,[1878,1869,1838,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots VIT
+,[1879,1869,1839,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots INT
+,[1880,1869,1840,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots DEX
+,[1881,1869,1841,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots LUK
 ];
 
 SE_MAXnum = w_SE.length -1;

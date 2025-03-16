@@ -259,12 +259,12 @@ I would like all of you to test this calc and compare it to the actual PVP damag
 				</select>
 			</td>
 			<td class="calc">
-					<span id="A_seirenchi_name"></span>
-					<select name="A_Weapon_ATKplus" style="visibility:hidden" onchange="StAllCalc()"></select>
+				<span id="A_seirenchi_name"></span>
+				<select name="A_Weapon_ATKplus" style="visibility:hidden" onchange="StAllCalc()"></select>
 			</td>
 			<td class="calc">
 				<span id="nm030">Attribute: </span>
-					<select name="A_Weapon_zokusei"></select>
+				<select name="A_Weapon_zokusei"></select>
 			</td>
 			<td class="calc">
 				<select name="A_cardshort" onchange="SetCardShort()|StAllCalc()|ActiveSkillSetPlus()"></select>
@@ -418,7 +418,7 @@ I would like all of you to test this calc and compare it to the actual PVP damag
 
 		<tr>
 			<td class="calc">
-			<select name="A_HEAD_DEF_PLUS" onchange="StAllCalc()"></select>
+				<select name="A_HEAD_DEF_PLUS" onchange="StAllCalc()"></select>
 				<select name="A_head1" onchange="StAllCalc()|ClickB_Item(this[this.selectedIndex].value)"></select>
 			</td>
 			<td class="calc">
@@ -444,13 +444,6 @@ I would like all of you to test this calc and compare it to the actual PVP damag
 				<select name="A_BEH2" onchange="StAllCalc()"></select>
 			</td>
 			<!-- Eden Enchant Headgear 2 -->
-			<!--
-			<td class="calc" style="display: none" id="T_EEH2">
-				<span id="A_EETextH2"></span>
-				<select name="A_EEH2" onchange="StAllCalc()"></select>
-			</td>
-			-->
-			<!-- Placeholder 2 -->
 			<td class="calc" id="T_HEAD2_TEMP"></td>
 
 		</tr>
@@ -566,6 +559,24 @@ I would like all of you to test this calc and compare it to the actual PVP damag
 			</td>
 			<td class="calc">
 				<select name="A_acces1_card" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)"></select>
+			</td>
+		</tr>
+
+		<tr id="faceworm_enchant_block" style="display: none">
+			<td class="calc">
+				<span id="faceworm_enchant_label">Faceworm Enchants</span>
+			</td>
+			<td class="calc">
+				<span id="faceworm_1st_enchant"></span>
+				<select name="faceworm_1st_enchant_select" onchange="StAllCalc() | display_enchant_info('faceworm_1st_enchant', this[this.selectedIndex].value)"></select>
+			</td>
+			<td class="calc">
+				<span id="faceworm_2nd_enchant"></span>
+				<select name="faceworm_2nd_enchant_select" onchange="StAllCalc() | display_enchant_info('faceworm_2nd_enchant', this[this.selectedIndex].value)"></select>
+			</td>
+			<td id="faceworm_enchant_sleipnir" class="calc">
+				<span id="faceworm_3rd_enchant"></span>
+				<select name="faceworm_3rd_enchant_select" onchange="StAllCalc() | display_enchant_info('faceworm_3rd_enchant', this[this.selectedIndex].value)"></select>
 			</td>
 		</tr>
 
@@ -730,7 +741,7 @@ I would like all of you to test this calc and compare it to the actual PVP damag
 				<select name="A_EDF3" onchange="StAllCalc()"></select>
 			</td>
 		</tr>
-		
+
 		<tr id="temporal_enchant_block" style="display: none">
 			<td class="calc">
 				<span id="temporal_enchant_label">Temporal Enchants</span>

@@ -1701,10 +1701,55 @@ TEMPORAL_3RD_ENCHANTS = [
 	,["(+10) Temporal LUK",[10,7,108,3],	"CRIT + 7<br>Crafting/Brewing Success + 3%<br><b>[Every 19 Base LUK]</b> Critical ATK/Skills + 3%"]
 ];
 
+FACEWORM_1ST_ENCHANTS = [
+	 ["(No Enchant)",[], ""]
+	,["STR+1",[1,1], "STR + 1"]
+	,["AGI+1",[2,1], "AGI + 1"]
+	,["VIT+1",[3,1], "VIT + 1"]
+	,["INT+1",[4,1], "INT + 1"]
+	,["LUK+1",[6,1], "LUK + 1"]
+	,["HIT+4",[8,4], "ASPD + 1%"]
+	,["ASPD+1%",[12,1], "ASPD + 1%"]
+];
+
+FACEWORM_2ND_ENCHANTS = [
+	 ["(No Enchant)",[], ""]
+	,["STR+1",[1,1], "STR + 1"]
+	,["AGI+1",[2,1], "AGI + 1"]
+	,["AGI+2",[2,2], "AGI + 2"]
+	,["VIT+1",[3,1], "VIT + 1"]
+	,["VIT+2",[3,2], "VIT + 2"]
+	,["INT+1",[4,1], "INT + 1"]
+	,["LUK+1",[6,1], "LUK + 1"]
+	,["LUK+2",[6,2], "LUK + 2"]
+	,["HIT+4",[8,4], "ASPD + 1%"]
+	,["ASPD+1%",[12,1], "ASPD + 1%"]
+	,["ASPD+2%",[12,2], "ASPD + 2%"]
+];
+
+FACEWORM_3RD_ENCHANTS = [
+	["(No Enchant)", [], ""]
+	,["Semi Special STR", [88, 1], "<b>[Whitesmith]</b><br>Total ATK + 1%<br><b>[Other Classes]</b><br>Short Range ATK + 1%"]
+	,["Semi Special AGI",[9,4], "FLEE + 4"]
+	,["Semi Special VIT",[13,300], "MaxHP + 300"]
+	,["Semi Special INT",[14,30,202,20], "MaxSP + 30<br>Min MATK + 20"]
+	,["Semi Special DEX",[5,1], "DEX + 1"]
+	,["Semi Special LUK",[10,3], "CRIT + 3"]
+	,["Special STR", [88, 1], "<b>[Whitesmith]</b><br>Total ATK + 1%<br><b>[Other Classes]</b><br>Short Range ATK + 1%<br><br><b>[Every 2 Unsafe Refines]</b><br><b>[Whitesmith]</b><br>Total ATK + 1%<br><b>[Other Classes]</b><br>Short Range ATK + 1%"]
+	,["Special AGI",[9,4], "FLEE + 4<br><br><b>[Every 2 Unsafe Refines]</b><br>FLEE + 3<br>ASPD + 1%"]
+	,["Special VIT",[13,300], "MaxHP + 300<br><br><b>[Every 2 Unsafe Refines]</b><br>MaxHP + 1%<br>Reduces Neutral property damage by 1%."]
+	,["Special INT",[14,30,202,20], "MaxSP + 30<br>Min MATK + 20<br><br><b>[Every 2 Unsafe Refines]</b><br>MaxSP + 1%<br>Min MATK + 10"]
+	,["Special DEX",[5,1], "DEX + 1<br><br><b>[Every 2 Unsafe Refines]</b><br>Increases damage with Ranged Attacks by 1%."]
+	,["Special LUK",[10,3], "CRIT + 3<br><br><b>[Every 2 Unsafe Refines]</b><br>Increases Crit ATK/Skills Damage by 1%."]
+];
+
 ENCHANT_TYPES = {
 	"temporal_1st_enchant": TEMPORAL_1ST_ENCHANTS,
 	"temporal_2nd_enchant": TEMPORAL_2ND_ENCHANTS,
 	"temporal_3rd_enchant": TEMPORAL_3RD_ENCHANTS,
+	"faceworm_1st_enchant": FACEWORM_1ST_ENCHANTS,
+	"faceworm_2nd_enchant": FACEWORM_2ND_ENCHANTS,
+	"faceworm_3rd_enchant": FACEWORM_3RD_ENCHANTS,
 }
 
 function display_enchant_info(enchant_type, enchant_index)

@@ -359,6 +359,9 @@ with(document.calcForm){
 	// Manage Temporal Enchants
 	Click_TemporalEnchantment(n_A_Equip[8]);
 
+	// Manage Faceworm Enchants
+	Click_FacewormEnchantment();
+
 	if(n_Nitou){
 		W_REF2 = 0;
 		n_A_Weapon2LV = ItemOBJ[n_A_Equip[1]][4];
@@ -754,6 +757,9 @@ with(document.calcForm){
 
 	// Manage Temporal Enchants
 	apply_temporal_enchants();
+
+	// Manage Faceworm Enchants
+	apply_faceworm_enchants();
 
 	StPlusCalc();
 	
@@ -2086,6 +2092,9 @@ with(document.calcForm){
 
 	// Red Stocking Boots#1730 - [Every Refine Level] MDEF + 1
 	n_tok[19] += n_A_SHOES_DEF_PLUS * EquipNumSearch(1730);
+
+	// Giant Snake Skin#1869 - [Every Refine Level] MDEF + 1
+	n_tok[19] += n_A_SHOULDER_DEF_PLUS * EquipNumSearch(1869);
 
 	n_A_MDEF = n_tok[19];
 
@@ -8728,17 +8737,17 @@ function IsAKielDungeonMonster(){
 
 // Biolab Dungeon
 function IsABiolabMonster() {
-	return (MonMap[10].findIndex( (x) => x == n_B[0] ) > -1);
+	return !Taijin && (MonMap[10].findIndex( (x) => x == n_B[0] ) > -1);
 }
 
 // Faceworm Nest
 function IsAFacewormMonster() {
-	return (MonMap[26].findIndex((x) => x == n_B[0]) > -1);
+	return !Taijin && (MonMap[26].findIndex((x) => x == n_B[0]) > -1);
 }
 
 // Old Glast Heim & Old Glast Heim Challenge
 function IsAnOGHMonster() {
-	return (MonMap[59].findIndex((x) => x == n_B[0]) > -1) || (MonMap[60].findIndex((x) => x == n_B[0]) > -1);
+	return !Taijin && ((MonMap[59].findIndex((x) => x == n_B[0]) > -1) || (MonMap[60].findIndex((x) => x == n_B[0]) > -1));
 }
 
 function apply_temporal_enchants()
@@ -8789,6 +8798,57 @@ function apply_temporal_enchants()
 		// Managed later due to crit modifier applied to skills as well
 	}
 }
+
+
+function apply_faceworm_enchants() {
+	let first_enchant_bonii = FACEWORM_1ST_ENCHANTS[eval(document.calcForm.faceworm_1st_enchant_select.value)][1];
+	let second_enchant_bonii = FACEWORM_2ND_ENCHANTS[eval(document.calcForm.faceworm_2nd_enchant_select.value)][1];
+	let third_enchant_bonii = FACEWORM_3RD_ENCHANTS[eval(document.calcForm.faceworm_3rd_enchant_select.value)][1];
+	let script_bonii = [first_enchant_bonii, second_enchant_bonii, third_enchant_bonii];
+
+	for (enchant_index = 0; enchant_index < script_bonii.length; ++enchant_index) {
+		let script_bonus = script_bonii[enchant_index];
+		for (i = 0; i < script_bonus.length; i += 2)
+			n_tok[script_bonus[i]] += script_bonus[i + 1];
+	}
+
+	// Manage unsafe refine bonus for complete 3rd enchant bonus - [Every 2 Unsafe Refines]
+	let third_enchant_index = eval(document.calcForm.faceworm_3rd_enchant_select.value);
+	if (third_enchant_index > 6) {
+		let unsafe_refine_bonus = Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 4) / 2));
+
+		switch (third_enchant_index) {
+			case 7: // Special STR - HIT + 4 - [Whitesmith] Total ATK + 1% - [Other Classes] Short Range ATK + 1%
+				n_tok[8] += unsafe_refine_bonus * 4;
+
+				if (26 == n_A_JOB) // Whitesmith
+					n_tok[87] += unsafe_refine_bonus;
+				else
+					n_tok[88] += unsafe_refine_bonus;
+				break;
+			case 8: // Special AGI - FLEE + 3 - ASPD + 1%
+				n_tok[9] += unsafe_refine_bonus * 3;
+				n_tok[12] += unsafe_refine_bonus;
+				break;
+			case 9: // Special VIT - MaxHP + 1% - Reduces Neutral property damage by 1%
+				n_tok[15] += unsafe_refine_bonus;
+				n_tok[60] += unsafe_refine_bonus;
+				break;
+			case 10: // Special INT - MaxSP + 1% - Min MATK + 10
+				n_tok[16] += unsafe_refine_bonus;
+				n_tok[202] += unsafe_refine_bonus * 10;
+				break;
+			case 11: // Special DEX - Increases damage with Ranged Attacks by 1%.
+				n_tok[25] += unsafe_refine_bonus;
+				break;
+			case 12: // Special LUK - Increases Crit ATK/Skills Damage by 1%
+				// Managed later due to crit modifier applied to skills as well
+				break;
+			default:
+        }
+	}
+}
+
 
 n_NtoS =["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
@@ -9076,9 +9136,21 @@ with(document.calcForm){
 		SaveData[148] = ((A_MORAEA1.value) ? eval(A_MORAEA1.value) : 0);
 		SaveData[149] = ((A_MORAEA2.value) ? eval(A_MORAEA2.value) : 0);
 		SaveData[150] = ((A_MORAEA3.value) ? eval(A_MORAEA3.value) : 0);
-		SaveData[151] = ((A_MORAEG1.value) ? eval(A_MORAEG1.value) : 0);
-		SaveData[152] = ((A_MORAEG2.value) ? eval(A_MORAEG2.value) : 0);
-		SaveData[153] = ((A_MORAEG3.value) ? eval(A_MORAEG3.value) : 0);
+
+		// Use same emplacement for Faceworm and Mora garment enchantments
+		let bFacewormEnchant = (1869 == A_shoulder.value);
+
+		if (bFacewormEnchant) {
+			SaveData[151] = ((faceworm_1st_enchant_select.value) ? eval(faceworm_1st_enchant_select.value) : 0);
+			SaveData[152] = ((faceworm_2nd_enchant_select.value) ? eval(faceworm_2nd_enchant_select.value) : 0);
+			SaveData[153] = ((faceworm_3rd_enchant_select.value) ? eval(faceworm_3rd_enchant_select.value) : 0);
+		}
+		else {
+			SaveData[151] = ((A_MORAEG1.value) ? eval(A_MORAEG1.value) : 0);
+			SaveData[152] = ((A_MORAEG2.value) ? eval(A_MORAEG2.value) : 0);
+			SaveData[153] = ((A_MORAEG3.value) ? eval(A_MORAEG3.value) : 0);
+		}
+
 		SaveData[154] = ((A_MORAEAC11.value) ? eval(A_MORAEAC11.value) : 0);
 		SaveData[155] = ((A_MORAEAC12.value) ? eval(A_MORAEAC12.value) : 0);
 		SaveData[156] = ((A_MORAEAC13.value) ? eval(A_MORAEAC13.value) : 0);
@@ -9594,9 +9666,21 @@ with(document.calcForm){
 	A_MORAEA1.value = SaveData[148];
 	A_MORAEA2.value = SaveData[149];
 	A_MORAEA3.value = SaveData[150];
-	A_MORAEG1.value = SaveData[151];
-	A_MORAEG2.value = SaveData[152];
-	A_MORAEG3.value = SaveData[153];
+
+	// Use same emplacement for Faceworm and Mora garment enchantments
+	let bFacewormEnchant = (1869 == A_shoulder.value);
+
+	if (bFacewormEnchant) {
+		faceworm_1st_enchant_select.value = SaveData[151];
+		faceworm_2nd_enchant_select.value = SaveData[152];
+		faceworm_3rd_enchant_select.value = SaveData[153];
+	}
+	else {
+		A_MORAEG1.value = SaveData[151];
+		A_MORAEG2.value = SaveData[152];
+		A_MORAEG3.value = SaveData[153];
+	}
+
 	A_MORAEAC11.value = SaveData[154];
 	A_MORAEAC12.value = SaveData[155];
 	A_MORAEAC13.value = SaveData[156];
@@ -10061,9 +10145,21 @@ with(document.calcForm){
 	SaveData[x+1] = NtoS2(parseInt(A_MORAEA1.value),2);
 	SaveData[x+2] = NtoS2(parseInt(A_MORAEA2.value),2);
 	SaveData[x+3] = NtoS2(parseInt(A_MORAEA3.value),2);
-	SaveData[x+4] = NtoS2(parseInt(A_MORAEG1.value),2);
-	SaveData[x+5] = NtoS2(parseInt(A_MORAEG2.value),2);
-	SaveData[x+6] = NtoS2(parseInt(A_MORAEG3.value),2);
+
+	// Use same emplacement for Faceworm and Mora garment enchantments
+	let bFacewormEnchant = (1869 == A_shoulder.value);
+
+	if (bFacewormEnchant) {
+		SaveData[x + 4] = NtoS2(parseInt(faceworm_1st_enchant_select.value), 2);
+		SaveData[x + 5] = NtoS2(parseInt(faceworm_2nd_enchant_select.value), 2);
+		SaveData[x + 6] = NtoS2(parseInt(faceworm_3rd_enchant_select.value), 2);
+	}
+	else {
+		SaveData[x + 4] = NtoS2(parseInt(A_MORAEG1.value), 2);
+		SaveData[x + 5] = NtoS2(parseInt(A_MORAEG2.value), 2);
+		SaveData[x + 6] = NtoS2(parseInt(A_MORAEG3.value), 2);
+	}
+
 	SaveData[x+7] = NtoS2(parseInt(A_MORAEAC11.value),2);
 	SaveData[x+8] = NtoS2(parseInt(A_MORAEAC12.value),2);
 	SaveData[x+9] = NtoS2(parseInt(A_MORAEAC13.value),2);
@@ -10663,9 +10759,21 @@ with(document.calcForm){
 		A_MORAEA1.value = StoN2(w.substr(x+1,2));
 		A_MORAEA2.value = StoN2(w.substr(x+3,2));
 		A_MORAEA3.value = StoN2(w.substr(x+5,2));
-		A_MORAEG1.value = StoN2(w.substr(x+7,2));
-		A_MORAEG2.value = StoN2(w.substr(x+9,2));
-		A_MORAEG3.value = StoN2(w.substr(x+11,2));
+
+		// Use same emplacement for Faceworm and Mora garment enchantments
+		let bFacewormEnchant = (1869 == A_shoulder.value);
+
+		if (bFacewormEnchant) {
+			faceworm_1st_enchant_select.value = StoN2(w.substr(x + 7, 2));
+			faceworm_2nd_enchant_select.value = StoN2(w.substr(x + 9, 2));
+			faceworm_3rd_enchant_select.value = StoN2(w.substr(x + 11, 2));
+		}
+		else {
+			A_MORAEG1.value = StoN2(w.substr(x + 7, 2));
+			A_MORAEG2.value = StoN2(w.substr(x + 9, 2));
+			A_MORAEG3.value = StoN2(w.substr(x + 11, 2));
+		}
+
 		A_MORAEAC11.value = StoN2(w.substr(x+13,2));
 		A_MORAEAC12.value = StoN2(w.substr(x+15,2));
 		A_MORAEAC13.value = StoN2(w.substr(x+17,2));
