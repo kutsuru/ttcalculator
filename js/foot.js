@@ -4942,11 +4942,12 @@ function StPlusCalc() {
 	 *		MATK% & INT + (JobLvl / 14)
 	 *		Min MATK + (JobLvl / 2)
 	*/
-	if (CardNumSearch(656)) {
-		let bonus = Math.floor(n_A_JobLV / 14);
+	let card_amount = CardNumSearch(656);
+	if (card_amount) {
+		let bonus = Math.floor(n_A_JobLV / 14) * card_amount;
 		n_tok[4] += bonus;
 		n_tok[89] += bonus;
-		n_tok[202] += Math.floor(n_A_JobLV / 2);
+		n_tok[202] += Math.floor(n_A_JobLV / 2) * card_amount;
 	}
 
 	/*
