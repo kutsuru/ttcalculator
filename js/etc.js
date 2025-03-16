@@ -556,6 +556,7 @@ ITEM_SP_TIME_OBJ =[
 ,[57,"Invective Robe", "Activate level 1 [Attention Concentrate].",1,1818,0]
 ,[58,"Valorous Assassin Damascus", "Enable Ice Pick effect.",1,898,23,1,0]
 ,[59,"Glorious Staff of Destruction", "MATK + 3% for each refine level for 6 seconds when using magic attacks at a 1% chance per refine.",1,1083,0]
+,[60,"Illusion of Faceworm Queen", "Ignores 50% defense and 30% MDEF of Insect race monsters.",1,1875,184,50,314,30,0]
 ];
 //ITEM_SP_TIME_OBJ_SORT = [0,5,10,4,27,3,44,37,30,31,26,39,49,45,46,18,48,15,11,12,14,13,17,32,1,7,47,35,33,21,16,40,28,34,38,42,19,22,23,24,36,41,25,6,20,8,29,43];
 

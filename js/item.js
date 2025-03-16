@@ -1923,6 +1923,14 @@ ItemOBJ = [
 ,[1866,50,0,3,0,1,25,0,"Torch Cap","","Cannot be refined",63,20,220,34,0]
 ,[1867,50,0,0,0,1,30,1,"King Ernst Von Wolff","","<b>[+ Desert Wolf Baby Pet]</b><br>Damage to [Small] size monsters increased by 5%, 10% instead if pet is loyal.",27,5,0]
 ,[1868,50,0,2,0,1,20,1,"Critura Hat","","A rain cap for strong adventurers who step into the world for the first time.",15,6,15,3,0]
+// Faceworm Nest
+,[1869,62,0,0,0,"0/1",40,80,"Giant Snake Skin","","<b>[Every 3 Refine Levels]</b><br>MDEF + 1<br><b>[+ Temporal Boots]</b><br>MaxHP + 15%<br>MaxSP + 10%",0]
+,[1870,1,69,70,3,4,50,40,"Faceworm Leg","","<br><b>[Every Refine Level]</b><br>HIT + 2",12,2,0]
+,[1871,1,1068,135,4,3,50,55,"Faceworm Queen's Leg","","<br><b>[Every Refine Level]</b><br>Increases Physical and Magical damage against Insect race monsters by 3%.<br><b>[Every 2 Refine Levels]</b><br>INT + 1, ATK + 5",4,2,89,15,0]
+,[1872,50,0,2,0,1,50,1,"Faceworm Egg Shell","","Increase Physical and Magical damage against Faceworm Nest monsters by 10%.<br><b>[Every Refine +5~10]</b><br>Increase Physical and Magical damage against Faceworm Nest monsters by 2%.",8,20,0]
+,[1873,52,0,2,0,0,10,1,"Giant Snake Breath","","<b>[+ Kasa Card]</b><br>Triple the chance to auto-cast its respective spells.<b>[+ Gopinich Card or Mutant Dragonoid Card]</b><br>Double the chance to auto-cast their respective spells.",343,2,0]
+,[1874,100,0,0,0,0,0,0,"Faceworm Leg + Faceworm Queen's Leg","",0,184,50,5263,10,0]
+,[1875,100,0,0,0,0,0,0,"Giant Snake Skin + Faceworm Queen's Leg","Has a 1.5% chance of auto casting Illusion of Faceworm Queen (transform into a Faceworm Queen monster) for 7 seconds when dealing physical attacks or skills, including magic. While transformed, ignore 50% Defense and 30% MDEF of Insect race monsters",0,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3825,6 +3833,13 @@ ItemID = [
 ,[1866,1,5430]
 ,[1867,1,18629]
 ,[1868,1,18730]
+,[1869,1,32500,32501]
+,[1870,1,13089]
+,[1871,1,13090]
+,[1872,1,19081]
+,[1873,1,19268]
+,[1874,2,13089,13090]
+,[1875,2,32500,32501,13090]
 ];
 
 /*
@@ -4517,6 +4532,8 @@ w_SE = [[737,436,475,"NULL"]
 ,[1858,1855,1856,1857,"NULL"] //Custom Talon Tales - Striking Mail + Mikoshi + Tabi
 ,[1862,1859,1860,1861,"NULL"] //Custom Talon Tales - Wolf Gi + Wolf Muffler + Wolf Boots
 ,[1864,1863,1111,"NULL"] //Custom Talon Tales - Apprentice Badge + Glorious Ring
+,[1874,1870,1871,"NULL"] //Custom Talon Tales - Faceworm Leg + Faceworm Queen's Leg
+,[1875,1869,1871,"NULL"] //Custom Talon Tales - Giant Snake Skin + Faceworm Queen's Leg
 ];
 
 SE_MAXnum = w_SE.length -1;
