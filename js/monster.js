@@ -1029,6 +1029,16 @@ MonsterOBJ = [
 ,[902,"Eden Shadow Ball",0,73,1,1,999999999,0,0,0,0,0,0,0,0,0,0,0,,0,0,1792]
 ,[903,"Eden Ghost Ball",0,83,1,1,999999999,0,0,0,0,0,0,0,0,0,0,0,,0,0,1792]
 ,[904,"Eden Undead Ball",0,93,1,1,999999999,0,0,0,0,0,0,0,0,0,0,0,,0,0,1792]
+// Faceworm Nest
+,[905,"Faceworm",4,52,2,95,200000,60,70,110,110,50,2400,3600,30,30,38800,4356,,0,0,2528]
+,[906,"Faceworm Egg",4,51,1,75,25,10,10,10,10,10,150,300,10,10,10,12,,0,0,2540]
+,[907,"Faceworm Larva",4,52,1,88,108000,25,75,50,150,30,1692,3250,10,10,10,12,,0,0,2541]
+,[908,"Dark Faceworm",4,52,2,98,2500000,100,120,150,150,100,3800,5400,45,30,100000,80000,,1,0,2530]
+,[909,"Faceworm Queen",4,54,2,125,25000000,100,100,175,175,100,7148,10366,40,40,200000,200000,,0,1,2529]
+,[910,"Red Faceworm Queen",4,31,2,125,25000000,100,120,125,125,100,20500,30100,80,80,200000,200000,,1,0,2532]
+,[911,"Green Faceworm Queen",4,21,2,125,25000000,150,70,125,110,100,8910,12705,80,10,200000,200000,,1,0,2533]
+,[912,"Blue Faceworm Queen",4,11,2,125,25000000,100,110,200,150,100,8910,12705,20,60,200000,200000,,1,0,2534]
+,[913,"Yellow Faceworm Queen",4,41,2,125,25000000,50,180,100,110,100,8910,12705,20,25,200000,200000,,1,0,2535]
 ];
 
 //[id, "name",race,element,size,lvl,hp,vit,agi,int,dex,luk,minatk,maxatk,def,mdef,baseexp@1x_rate,jobexp@1x_rate,,1 boss/0 non-boss,1 range/0 melee, monster ID]
@@ -1055,7 +1065,7 @@ MonsterABC.push("N")
 
 var tiiki = ["All Regions","SQI Instances","GMC","Abyss Lake Dungeon","Amatsu","Ancient Tower","Ant Hell","Ayothaya","Battlegrounds","Bibilan",
 "Bio Labs","Bitfrost","Brasilis","Clock Tower","Coal Mine","Comodo Caves","Comodo Fields","Culverts","Dewata","Dimensional Crack","Eclage","Einbroch Dungeon",
-"Einbroch Fields","Elysian Garden","El Dicastes","Endless Tower Finale","Geffenia","Geffen Dungeon","Geffen Fields","Glast Heim","Glast Heim Dungeons","Gonryun",
+"Einbroch Fields","Elysian Garden","El Dicastes","Endless Tower Finale","Faceworm Nest","Geffenia","Geffen Dungeon","Geffen Fields","Glast Heim","Glast Heim Dungeons","Gonryun",
 "Guild Dungeon [Aldebaran]","Guild Dungeon [Arunafeltz]","Guild Dungeon [Geffen]","Guild Dungeon [Morroc]","Guild Dungeon [Payon]","Guild Dungeon [Prontera]",
 "Guild Dungeon [Schwartzvald]","Hidden Temple","Hugel Fields","Ice Cave","Juperos Dungeon","Kiel Dungeon","Lighthalzen Fields",
 "Louyang","Lutie & Toy Factory","Magma Dungeon","Malangdo","Malangdo Culvert","Manuk","Morroc Fields","Moscovia","Mt. Mjolnir","Nameless Island","Nidhoggr's Nest",
@@ -1095,6 +1105,7 @@ Array.from({ length: 861 + 1 - 806},(_,k) => 806 + k),// SQI Instances
 [718,719,720,721,722,723,724,725,726,727,728,729,730,732,733,734,735,736,737,738,739,740,741,742,743,744,745,747,748,749,750,751,752,753,754,755,756,757,758,759,760,761,762,763,764,765,766,767,768,769,770,771,772,773,774,775,776,"N"],// Elysian Garden
 [528,530,531,555,541,"N"],// El Dicastes
 [505,506,507,508,509,510,"N"],// Endless Tower Finale
+Array.from({ length: 913 + 1 - 905 }, (_, k) => 905 + k),// Faceworm Nest
 [23,25,35,48,66,123,144,193,247,253,291,296,"N"],// Geffenia
 [26,48,85,139,170,193,206,207,213,215,216,244,267,271,283,396,458,"N"],// Geffen Dungeon
 [19,49,50,54,55,56,92,103,106,108,109,110,111,112,113,115,116,117,118,119,120,127,153,161,177,183,184,203,221,242,250,252,267,271,272,289,307,319,321,323,429,"N"],// Geffen Fields
