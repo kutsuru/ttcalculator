@@ -8502,7 +8502,7 @@ function BaiCI(wBaiCI)
 
 	// {Faceworm Egg card, Dark Faceworm card} + Faceworm Queen card Combos#657#658 - Increases physical damage against Faceworm Nest monsters by 10 %.
 	if (IsAFacewormMonster() && (CardNumSearch(657) || CardNumSearch(658)))
-		wBMC2 = wBMC2 * 1.10;
+		wBaiCI = wBaiCI * 1.10;
 
 	return wBaiCI;
 }
