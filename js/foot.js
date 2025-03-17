@@ -4956,16 +4956,16 @@ function StPlusCalc() {
 	 *		[Every 2 Refine Levels] - INT + 1, ATK + 5
 	*/
 	if (1871 == n_A_Equip[0]) {
-		let refine_bonus = Math.floor(n_A_Weapon2_ATKplus / 2);
-		n_tok[4] += n_A_Weapon_ATKplus * refine_bonus;
-		n_tok[17] += n_A_Weapon_ATKplus * refine_bonus * 5;
+		let refine_bonus = Math.floor(n_A_Weapon_ATKplus / 2);
+		n_tok[4] += refine_bonus;
+		n_tok[17] += refine_bonus * 5;
 		n_tok[34] += n_A_Weapon_ATKplus * 3;
 		n_tok[174] += n_A_Weapon_ATKplus * 3;
 	}
 	if (1871 == n_A_Equip[1]) {
 		let refine_bonus = Math.floor(n_A_Weapon2_ATKplus / 2);
-		n_tok[4] += n_A_Weapon2_ATKplus * refine_bonus;
-		n_tok[17] += n_A_Weapon2_ATKplus * refine_bonus * 5;
+		n_tok[4] += refine_bonus;
+		n_tok[17] += refine_bonus * 5;
 		n_tok[34] += n_A_Weapon2_ATKplus * 3;
 		n_tok[174] += n_A_Weapon2_ATKplus * 3;
     }
