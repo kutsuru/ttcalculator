@@ -547,7 +547,7 @@ ITEM_SP_TIME_OBJ =[
 ,[48,"Djinn","40% damage reflection",1,1380,71,40,0] //custom Talon Tales
 ,[49,"Chicken Hat","Loud Exclamation",1,1422,1,4,0] //custom Talon Tales
 ,[50,"Ancient Horns","ATK + 100",1,1538,17,100,0] //custom Talon Tales,
-,[51,"Duneyrr Card","Perfect Dodge + 10, [Lord Knight] Additional + 10 under Berserk",2,511,11,10,0]
+,[51,"Duneyrr Card","Perfect Dodge + 10, [Lord Knight] Additional + 10 under Berserk",2,511,0]
 ,[52,"Rhyncho Card","Increase Resistance to Fire property by 10%",2,513,63,10,0]
 ,[53,"Color Scope","[Every Refine Level] Add a 0.5% chance that you will increase Critical ATK by 10% for 15 seconds.",1,1786,70,10,0]
 ,[54,"Brindle Eel [Rental]","When long range attacking, has a chance of adding ASPD + 10% for 7 seconds.",1,1807,12,10,0]
