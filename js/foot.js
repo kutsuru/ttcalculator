@@ -2093,8 +2093,8 @@ with(document.calcForm){
 	// Red Stocking Boots#1730 - [Every Refine Level] MDEF + 1
 	n_tok[19] += n_A_SHOES_DEF_PLUS * EquipNumSearch(1730);
 
-	// Giant Snake Skin#1869 - [Every Refine Level] MDEF + 1
-	n_tok[19] += n_A_SHOULDER_DEF_PLUS * EquipNumSearch(1869);
+	// Giant Snake Skin#1869 - [Every 3 Refine Levels] MDEF + 1
+	n_tok[19] += Math.floor(n_A_SHOULDER_DEF_PLUS / 3) * EquipNumSearch(1869);
 
 	n_A_MDEF = n_tok[19];
 
