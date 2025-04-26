@@ -8748,7 +8748,7 @@ function IsAFacewormMonster() {
 
 // Old Glast Heim & Old Glast Heim Challenge
 function IsAnOGHMonster() {
-	return !Taijin && ((MonMap[59].findIndex((x) => x == n_B[0]) > -1) || (MonMap[60].findIndex((x) => x == n_B[0]) > -1));
+	return !Taijin && ((MonMap[60].findIndex((x) => x == n_B[0]) > -1) || (MonMap[61].findIndex((x) => x == n_B[0]) > -1));
 }
 
 function apply_temporal_enchants()
