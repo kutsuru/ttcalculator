@@ -8816,7 +8816,7 @@ function apply_faceworm_enchants() {
 	// Manage unsafe refine bonus for complete 3rd enchant bonus - [Every 2 Unsafe Refines]
 	let third_enchant_index = eval(document.calcForm.faceworm_3rd_enchant_select.value);
 	if (third_enchant_index > 6) {
-		let unsafe_refine_bonus = Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 4) / 2));
+		let unsafe_refine_bonus = Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 2) / 2));
 
 		switch (third_enchant_index) {
 			case 7: // Special STR - HIT + 4 - [Whitesmith] Total ATK + 1% - [Other Classes] Short Range ATK + 1%
