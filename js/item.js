@@ -339,7 +339,7 @@ ItemOBJ = [
 ,[316,62,84,4,0,"0 / 1",60,0,"Manteau","",0,0]
 ,[317,63,0,0,0,0,0,0,"(No Footgear)","",0,0]
 ,[318,63,1,0,0,0,10,0,"Crystal Pumps","",0,19,10,6,5,0]
-,[319,63,0,5,0,"0 / 1",150,80,"Sleipnir","","Movement speed increased (same as Increase AGI)",15,20,16,20,19,10,76,15,0] //custom Talon Tales SQI - added slot // Fixed weight and lvl required [NattWara]
+,[319,63,0,5,0,"0 / 1",150,80,"-Sleipnir","","Movement speed increased (same as Increase AGI)",15,20,16,20,19,10,76,15,0] //custom Talon Tales SQI - added slot // Fixed weight and lvl required [NattWara]
 ,[320,63,0,1,0,"0 / 1",20,0,"Sandals","",0,0]
 ,[321,63,1,2,0,"0 / 1",40,0,"Shoes","",0,0]
 ,[322,63,1,2,0,"0 / 1",60,0,"High Heels","",0,19,5,0]
