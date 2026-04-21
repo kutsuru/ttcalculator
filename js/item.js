@@ -567,7 +567,7 @@ ItemOBJ = [
 ,[544,1,58,125,4,0,90,70,"Kamaitachi","","Weapon Range + 1</br>10% more damage with [Wind Blade].",20,4,12,5,70,10,0]
 ,[545,16,58,100,4,"3 / 4",200,12,"Huuma Giant Wheel Shuriken","",0,138,5,194,1,0]
 ,[546,16,58,225,4,2,150,45,"Huuma Blaze Shuriken","","<font color=blue>[SQI Ingredient]</font><br>A <font color=red>Fire</font> Property Huuma shuriken that sparks like a firecracker when it strikes enemies.</br><b>[Base INT >= 40]</b></br>Increase [Fireball] chance to 20%.</br><b>[Every Refine Level]</b></br>MATK + 1%",20,3,89,10,221,14,194,1,0]
-,[547,16,58,200,4,2,150,45,"Huuma Wing Shuriken","","<b>[Every Refine Level]</b><br>AGI + 1<br><b>[Every 2 Refine Levels]</b><br>DEX + 1",0,20,4,9,10,194,1,0]
+,[547,16,58,200,4,2,150,45,"Huuma Wing Shuriken","","<b>[Every Refine Level]</b><br>AGI + 1<br><b>[Every 2 Refine Levels]</b><br>DEX + 1",20,4,9,10,194,1,0]
 ,[548,17,59,30,1,"1 / 2",40,10,"Six Shooter","",0,8,-10,0]
 ,[549,17,59,45,2,"1 / 2",45,35,"Crimson Bolt","",0,8,-10,0]
 ,[550,17,59,70,2,"1 / 2",50,55,"Garrison","",0,8,-10,0]
