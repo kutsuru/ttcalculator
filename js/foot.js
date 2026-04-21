@@ -1351,6 +1351,9 @@ with(document.calcForm){
 		n_tok[285] += 15 * anacondaq_cards;
 		n_tok[17] += 25 * (snake_cards + sidewinder_cards);
 	}
+
+	//Huuma Blaze Shuriken#546 - [Every Refine Level] MATK + 1%
+	n_tok[89] += n_A_Weapon_ATKplus * EquipNumSearch(546);
 	
 	// Antonio's Coat#1728 - [Every Refine Level] ATK & MATK + 1
 	if (EquipNumSearch(1728)) {
@@ -2707,6 +2710,10 @@ with(document.calcForm){
 	//custom Talon Tales Halloween Midas Whisper
 	if(SU_LUK >= 80 && EquipNumSearch(1526))
 		n_tok[10] += 5;
+
+	//custom Talon Tales Murasame +15 crit against water and wind
+	if(EquipNumSearch(541) && ([11,12,13,14,41,42,43,44].includes(n_B[3])))
+		n_tok[10] += 15;
 
 	//[Custom Talon Tales - 2018-06-02 - Aegir shoes + helm combo(CRIT + 1% * refinement for Fish type monsters)] [Kato/Nattwara]
 	if (n_B[2] == 5 && EquipNumSearch(1554)) // Race = 5 (Fish)
@@ -5478,6 +5485,12 @@ function StPlusCalc() {
 			n_tok[2] += Math.floor(n_A_SHOULDER_DEF_PLUS / 2); // [Every 2 Refine Levels] - AGI + 1
 	}
 
+	//Huuma wing Shuriken#547 - [Every Refine Level] AGI + 1 & [Every 2 Refine Level] DEX + 1 
+	if (EquipNumSearch(547)) {
+		n_tok[5] += Math.floor(n_A_Weapon_ATKplus/2);
+		n_tok[2] += n_A_Weapon_ATKplus;
+	}
+
 	wSPC_STR = n_tok[1] + n_tok[7];
 	wSPC_AGI = n_tok[2] + n_tok[7];
 	wSPC_VIT = n_tok[3] + n_tok[7];
@@ -5941,6 +5954,7 @@ function JobEquipItemSearch(nJEIS)
 		if(n_Tensei == 1)
 			nJEIS -= 1000;
 		else if (nJEIS != 1200) // Rebirth + Extended
+		else if (nJEIS != 1200 && nJEIS != 1201) // Rebirth + Extended or Extended + ninja only
 			return 0;
 	}
 	for(var j=0;JobEquipItemOBJ[n_A_JOB][j] != 999;j++)

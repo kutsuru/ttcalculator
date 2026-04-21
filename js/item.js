@@ -560,14 +560,14 @@ ItemOBJ = [
 ,[537,61,58,5,0,"0 / 1",15,20,"Arm Guard","",0,0]
 ,[538,61,58,4,0,"0 / 1",15,50,"Improved Arm Guard","",0,19,5,0]
 ,[539,1,58,50,1,"2 / 3",60,12,"Ashura","",0,89,10,0]
-,[540,1,58,70,2,"0 / 1",40,35,"Jitte","",0,140,2,0]
-,[541,1,58,95,2,"1 / 2",70,24,"Murasame","",0,20,1,117,10,0]
-,[542,1,58,120,3,"0 / 1",80,42,"Hakujin","","A dagger that has a shining white blade crafted of bone, and is designed for stabbing, rather than slashing.",4,2,221,13,0]
-,[543,1,58,150,3,0,60,65,"Gokurin","",0,20,7,133,10,0]
-,[544,1,58,125,4,0,90,70,"Kamaitachi","","Weapon Range + 1",20,4,12,3,10,3,0]
-,[545,16,58,50,4,"3 / 4",250,42,"Huuma Giant Wheel Shuriken","",0,138,1,194,1,0]
-,[546,16,58,185,4,0,150,55,"Huuma Blaze Shuriken","","<font color=blue>[SQI Ingredient]</font><br>A <font color=red>Fire</font> Property Huuma shuriken that sparks like a firecracker when it strikes enemies.",20,3,5,-2,221,14,194,1,0]
-,[547,16,58,150,4,0,300,65,"Huuma Wing Shuriken","",0,20,4,2,-1,5,-2,194,1,0]
+,[540,1,58,95,2,"2 / 3",40,35,"Jitte","","10% more damage with [Crimson Fire Blossom].",20,3,140,5,0]
+,[541,1,58,95,2,"2 / 3",70,24,"Murasame","","CRIT + 15 against <font color=blue>Water</font> or <font color=green>Wind</font> Element.</br> Enables use of level 3 [Warm Wind]. </br> Dispel [Warm Wind] when unequipping Murasame.",0,20,1,0]
+,[542,1,58,120,3,"1 / 2",80,42,"Hakujin",""," Add a 10% chance to gain 10% of the damage inflicted on an enemy as HP when using [Mist Slash] or [Shadow Slash].",20,6,89,10,0]
+,[543,1,58,150,3,3,60,65,"Gokurin","",0,20,7,46,20,0]
+,[544,1,58,125,4,0,90,70,"Kamaitachi","","Weapon Range + 1</br>10% more damage with [Wind Blade].",20,4,12,5,70,10,0]
+,[545,16,58,100,4,"3 / 4",200,12,"Huuma Giant Wheel Shuriken","",0,138,5,194,1,0]
+,[546,16,58,225,4,2,150,45,"Huuma Blaze Shuriken","","<font color=blue>[SQI Ingredient]</font><br>A <font color=red>Fire</font> Property Huuma shuriken that sparks like a firecracker when it strikes enemies.</br><b>[Base INT >= 40]</b></br>Increase [Fireball] chance to 20%.</br><b>[Every Refine Level]</b></br>MATK + 1%",20,3,89,10,221,14,194,1,0]
+,[547,16,58,200,4,2,150,45,"Huuma Wing Shuriken","","<b>[Every Refine Level]</b><br>AGI + 1<br><b>[Every 2 Refine Levels]</b><br>DEX + 1",0,20,4,9,10,194,1,0]
 ,[548,17,59,30,1,"1 / 2",40,10,"Six Shooter","",0,8,-10,0]
 ,[549,17,59,45,2,"1 / 2",45,35,"Crimson Bolt","",0,8,-10,0]
 ,[550,17,59,70,2,"1 / 2",50,55,"Garrison","",0,8,-10,0]
@@ -680,7 +680,7 @@ ItemOBJ = [
 ,[657,18,145,138,3,2,77,70,"Lever Action Rifle","",0,8,20,10,50,12,-5,0]
 ,[658,19,145,200,4,0,130,70,"Gate Keeper-DD","","Inflicts splash damage.<br>DEF increases by Refine Rate",5,1,221,31,0]
 ,[659,19,145,80,3,"1 / 2",70,70,"Thunder-P","","Inflicts splash damage.<br><br><b>[Note] NPC item cannot be enchanted with Malangdo enchants.<b>",8,-5,12,20,0]
-,[660,16,0,112,3,2,155,70,"Huuma Calm Mind","","Casting cannot be interrupted (does not work in WoE)",5396,30,0]
+,[660,16,0,175,3,2,150,45,"Huuma Calm Mind","","Casting cannot be interrupted (does not work in WoE)",5396,30,89,10,5,2,0]
 ,[661,50,1,5,0,0,100,65,"Magni's Cap","",0,1,2,0]
 ,[662,50,1,3,0,1,50,65,"Ulle's Cap","",0,5,2,2,1,0]
 ,[663,50,1,3,0,0,30,65,"Frigg's Circlet","",0,19,10,4,2,14,50,0]
@@ -738,7 +738,7 @@ ItemOBJ = [
 ,[715,63,1001,3,0,0,50,85,"Variant Shoes","","Maximum HP / Maximum SP reduced by 1% per refine rate<br>Added +1 DEF for every 2 refinement",15,20,16,20,0]
 ,[716,63,1001,3,0,1,30,55,"Tidal Shoes","",0,61,5,0]
 ,[717,63,1001,4,0,"0 / 1",50,55,"Black Leather Boots","","<b>[Refine Rate 9~10]</b><br>AGI + 2",2,1,0]
-,[718,63,1001,0,0,0,200,75,"Shadow Walk","","Whenever you receive a Magical Damage, there is a small chance to activate [Cloaking]Lv 3<br>If the user knows Lv 4 or more, that Lv will be used",19,10,0]
+,[718,63,1201,1,0,0,75,75,"Shadow Walk","","Whenever you receive a Magical Damage, there is a small chance to activate [Cloaking]Lv 3<br>If the user knows Lv 4 or more, that Lv will be used",19,10,0]
 ,[719,64,1,0,0,0,10,33,"Morpheus's Ring","",0,4,1,16,5,0]
 ,[720,64,1,0,0,0,10,33,"Morpheus's Bracelet","",0,4,1,16,5,0]
 ,[721,64,1,0,0,0,20,61,"Morrigane's Belt","",0,17,5,10,3,0]
@@ -1409,7 +1409,7 @@ ItemOBJ = [
 ,[1382,8,109,250,4,3,150,0,"-Evangelist","","<br><b>[Super Novice]</b><br>INT + 5<br>DEX + 5<br>Allows usage of the skill [Magic Crasher]Lv 1<br><br><font color='blue'>SQI</font>",4,15,5,15,8,35,20,1,89,15,220,50,0] //custom Talon Tales SQI
 ,[1383,63,150,5,0,1,150,0,"-Eversong Greaves","","Fast movement all the time.<br><br><b>[Taekwon]</b><br>ASPD + 30%<br>HIT + 75<br><br><b>[Taekwon Master]</b><br>DEX + 10<br>LUK + 15<br><br><font color='blue'>SQI</font>",15,20,16,10,17,130,19,10,0] //custom Talon Tales SQI
 ,[1384,9,143,250,4,3,80,0,"-Ghostdancer Staff","","[Esma] may be cast after any Es-Skill<br><br><b>[Super Novice]</b><br>INT + 5<br>DEX + 5<br>MATK + 15%<br><br><font color='blue'>SQI</font>",4,15,5,15,15,20,16,20,89,20,220,50,0] //custom Talon Tales SQI
-,[1385,16,144,250,4,4,100,0,"-Hira Shurikat","","Negates the need for ninja stones<br><font color='blue'>SQI</font>",20,2,5,15,12,13,15,20,16,20,18,8,77,20,79,20,89,20,0] //custom Talon Tales SQI
+,[1385,16,144,250,4,4,100,0,"-Hira Shurikat","","Negates the need for ninja stones<br><font color='blue'>SQI</font>",20,2,5,15,15,20,16,20,18,8,77,20,79,20,89,20,0] //custom Talon Tales SQI
 ,[1386,4,107,200,4,3,550,0,"-Nibelungen","","Enable to use Level 4 [Warm Wind], dispell [Warm Wind] on unequip<BR><font color='blue'>SQI</font>",1,5,8,50,12,13,0] //custom Talon Tales SQI
 ,[1387,51,145,7,0,1,10,0,"-Scouter","","Ignore [Madness Canceller] delay.<br>Enable use of [Monster Property] and [Body Relocation]<br><br><b>[Super Novice]</b><br>DEX + 10<br>ASPD + 15%<br>Enable use of [Monster Property]<br><br><font color='blue'>SQI</font>",5,10,12,25,15,20,16,20,77,20,79,20,0] //custom Talon Tales SQI
 ,[1388,10,114,225,4,3,150,0,"-Sherwood Bow","","Enable to use [Arrow Crafting]<BR>Additional Range + 6<br><font color='blue'>SQI</font>",2,20,5,15,9,15,89,15,0] //custom Talon Tales SQI
@@ -1819,7 +1819,7 @@ ItemOBJ = [
 ,[1768,51,0,1,0,1,10,0,"+1 LUK [1]","",0,6,1,0] //custom Talon Tales +1 LUK Middle Headgear
 ,[1769,100,0,0,0,0,0,0,"Surfer Swimsuit + Antonio's Red Bag","",0,152,-20,0]
 // ---
-,[1770,16,58,175,4,3,150,60,"Huuma Swirling Petal","","<b>[Throw Huuma Shuriken]</b> no longer split damage and delay converted into a cooldown.<br><br><b>[With Black Earth Kunai]</b><br>50% more damage with [Throw Kunai].<br><b>[Every Refine Level]</b><br>5% more damage with [Throw Huuma Shuriken].<br>2% less aftercast delay with [Throw Huuma Shuriken].",8,25,5,4,20,2,0]
+,[1770,16,58,175,4,3,150,60,"Huuma Swirling Petal","","<b>[With Black Earth Kunai]</b><br>50% more damage with [Throw Kunai].<br><b>[Every Refine Level]</b><br>5% more damage with [Throw Huuma Shuriken].<br>2% less aftercast delay with [Throw Huuma Shuriken].",8,20,5,4,20,2,0]
 ,[1771,16,58,175,4,3,150,60,"Huuma Thunderstorm","","<br><b>[With High Wind Kunai]</b><br>50% more damage with [Throw Kunai].<br><b>[Every Refine Level]</b><br>3% less SP cost with [Wind Blade], [Lightning Crash], and [North Wind].",5,4,89,15,20,4,344,10,0]
 ,[1772,16,58,175,4,3,150,60,"Huuma Fluttering Snow","","<br><b>[With Icicle Kunai]</b><br>50% more damage with [Throw Kunai].<br><b>[Every Refine Level]</b><br>3% less SP cost with [Lightning Spear of Ice], [Water Escape Technique], and [Falling Ice Pillar].",5,4,89,15,20,1,341,10,0]
 ,[1773,16,58,175,4,3,150,60,"Huuma Fierce Inferno","","<br><b>[With Heat Wave Kunai]</b><br>50% more damage with [Throw Kunai].<br><b>[Every Refine Level]</b><br>3% less SP cost with [Crimson Fire Blossom], [Crimson Fire Formation] and [Dragon Fire Formation].",5,4,89,15,20,3,343,10,0]
@@ -1937,6 +1937,8 @@ ItemOBJ = [
 ,[1879,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots INT","",0,15,15,16,10,0]
 ,[1880,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots DEX","",0,15,15,16,10,0]
 ,[1881,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots LUK","",0,15,15,16,10,0]
+// Ninja Update Oct 2025
+,[1882,1,58,140,4,1,90,70,"Mikatsuki","",0,20,8,89,15,5,2,72,-10,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3852,6 +3854,7 @@ ItemID = [
 ,[1879,2,32500,32501,22103]
 ,[1880,2,32500,32501,22102]
 ,[1881,2,32500,32501,22105]
+,[1882,1,13078,24111]
 ];
 
 /*
