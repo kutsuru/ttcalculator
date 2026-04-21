@@ -5953,7 +5953,6 @@ function JobEquipItemSearch(nJEIS)
 	if(nJEIS >= 1000){
 		if(n_Tensei == 1)
 			nJEIS -= 1000;
-		else if (nJEIS != 1200) // Rebirth + Extended
 		else if (nJEIS != 1200 && nJEIS != 1201) // Rebirth + Extended or Extended + ninja only
 			return 0;
 	}
