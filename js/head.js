@@ -3433,10 +3433,6 @@ function BattleMagicCalc(wBMC) {
 	if (SU_STR >= 90 && (407 == n_A_ActiveSkill || 410 == n_A_ActiveSkill || 415 == n_A_ActiveSkill) && 1385 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 13) > -1)
 		wX += 10;
 
-	// Oct25 - Jitte 10% more damage with [Crimson Fire Blossom#407]
-	if (n_A_ActiveSkill == 407 && n_A_Equip[0] == 540 )
-		wX += 10;
-
 	// Elemental Boots#1819 - [Refine Level +7 or Higher] 5% more damage with [Fire Bolt], [Cold Bolt], [Lightning Bolt], [Earth Spike].
 	if (EquipNumSearch(1819) && (n_A_ActiveSkill == 51 || n_A_ActiveSkill == 54 || n_A_ActiveSkill == 56 || n_A_ActiveSkill == 132) && n_A_SHOES_DEF_PLUS > 6)
 		wX += 5;

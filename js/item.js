@@ -560,7 +560,7 @@ ItemOBJ = [
 ,[537,61,58,5,0,"0 / 1",15,20,"Arm Guard","",0,0]
 ,[538,61,58,4,0,"0 / 1",15,50,"Improved Arm Guard","",0,19,5,0]
 ,[539,1,58,50,1,"2 / 3",60,12,"Ashura","",0,89,10,0]
-,[540,1,58,95,2,"2 / 3",40,35,"Jitte","","10% more damage with [Crimson Fire Blossom].",20,3,140,5,0]
+,[540,1,58,95,2,"2 / 3",40,35,"Jitte","",0,20,3,140,5,5407,10,0]
 ,[541,1,58,95,2,"2 / 3",70,24,"Murasame","","CRIT + 15 against <font color=blue>Water</font> or <font color=green>Wind</font> Element.</br> Enables use of level 3 [Warm Wind]. </br> Dispel [Warm Wind] when unequipping Murasame.",0,20,1,0]
 ,[542,1,58,120,3,"1 / 2",80,42,"Hakujin",""," Add a 10% chance to gain 10% of the damage inflicted on an enemy as HP when using [Mist Slash] or [Shadow Slash].",20,6,89,10,0]
 ,[543,1,58,150,3,3,60,65,"Gokurin","",0,20,7,46,20,0]
