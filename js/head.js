@@ -619,7 +619,7 @@ function BattleCalc999() {
 			if (Last_DMG_A[0] < n_Min_DMG && w998G < 100)
 				n_Min_DMG = Last_DMG_A[0];
 			if (w998D) {
-				if (n_A_WeaponType == 17 && SkillSearch(427)) {
+				if ((n_A_WeaponType == 17 || n_A_WeaponType == 21 )  && SkillSearch(427)) {
 					if (CardNumSearch(43) || EquipNumSearch(570))
 						str_bSUBname += "Double attack chance<BR>";
 					else
@@ -1012,11 +1012,15 @@ function BattleCalc999() {
 			n_Delay[2] = 0.5;
 			n_A_Weapon_zokusei = 8;
 			not_use_card = 1;
-		} else if (n_A_ActiveSkill == 428) {
+
+		} else if (n_A_ActiveSkill == 428) { //Rapid Shower#428
 			n_Enekyori = 1;
 			wActiveHitNum = 5;
 			wbairitu += n_A_ActiveSkillLV * 0.5 + 4;
 			n_Delay[2] = 1;
+
+		} else if (n_A_ActiveSkill == 429) { //Desperado#429
+
 		} else if (n_A_ActiveSkill == 430) { // Tracking#430
 			if (n_A_Weapon_ATKplus > 8 && EquipNumSearch(1100)) { TCcast = 1.25; }
 			else if (EquipNumSearch(926)) { TCcast = .75; }
@@ -1037,7 +1041,7 @@ function BattleCalc999() {
 				n_Delay[3] = 1; // 1 second irreducible delay
 			}
 
-		} else if (n_A_ActiveSkill == 431) {
+		} else if (n_A_ActiveSkill == 431) { //Disarm#431
 			wCast = 2;
 			n_Delay[2] = 1;
 			n_Enekyori = 1;
@@ -1060,16 +1064,12 @@ function BattleCalc999() {
 			n_Enekyori = 1;
 			wbairitu += n_A_ActiveSkillLV * 0.2 - 0.2;
 		}
-		else if (n_A_ActiveSkill == 437) // Ground Drift#437
+		else if (n_A_ActiveSkill == 437) // Ground Drift [Under Entity]#437
 		{
 			wCast = 2;
 			w_HIT = 100;
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
-
-			// Scouter#1387#5th Bonus - PvM: [Ground Drift#437] Add 3 more Mines
-			if (!Taijin && 21 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 5) > -1)
-				wHITsuu = 4;
 		}
 
 		ATKbai02(wbairitu, 0);
@@ -7984,13 +7984,20 @@ function calc()
 	if (document.calcForm.vanilla.checked)
 		wDA += 5 * EquipNumSearch(1121);
 
-	// Chain Action#427 - Similar behaviour as Double Attack
-	if (n_A_WeaponType == 17){
+	// Chain Action#427 - Similar behaviour as Double Attack. Can be used with Revolvers + Gatling Guns
+	if (n_A_WeaponType == 17 || n_A_WeaponType == 20){
 		wDA = SkillSearch(427) * 5;
-		if(CardNumSearch(43))
-			wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 5 /100);
-		if(EquipNumSearch(570))
-			wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 10 /100);
+		
+		// #6th Bonus - Gatling Gun Equipped: 10% more damage with Long Range Attacks and [Chain Action#427] Rate + 10%.
+		if (20 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)
+			wDA += 10;
+
+		// Its not clear that these cards/equips affect chain action rate, or that it is implemented correctly. The rates should be added based on
+		// # of sidewinder cards + equips additively. I also dont see why it wouldnt be a flat 5% per sidewinder card instead of 50*5/100=2.5%
+		//if(CardNumSearch(43))
+			//wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 5 /100);
+		//if(EquipNumSearch(570))
+			//wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 10 /100);
 	}
 
 	// For basic attack and skills relying on crit rate, crit rate is giving perfect hit
@@ -8775,30 +8782,36 @@ function ApplySkillAtkBonus(dmg)
 	if (Taijin && 1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 11) > -1)
 		skill_atk_bonus_ratio -= 10;
 	
-	// Scouter#1387#4th Bonus - Shotgun equipped: ASPD + 25%. 20% more damage with [Full Buster#435]. 50% more damage with [Spread Attack#436].
+	// Scouter#1387#4th Bonus - Shotgun Equipped: 20% Short Range Resistance. 20% more damage with [Spread Attack#436].
 	if (19 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 4) > -1)
 	{
-		if (435 == n_A_ActiveSkill)
+		if (436 == n_A_ActiveSkill)
 			skill_atk_bonus_ratio += 20;
-		else if (436 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 50;
 	}
 
-	// Scouter#1387#5th Bonus - Grenade Launcher equipped: 50% more damage with [Triple Action#418], PvP: 50% more damage with [Ground Drift]"
+	// Scouter#1387#5th Bonus - Grenade Launcher Equipped: 10% more damage with [Ground Drift#437] and [Triple Action#418]
 	if (21 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 5) > -1)
 	{
 		if (418 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 50;
-		else if (Taijin && 437 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 50;
+			skill_atk_bonus_ratio += 10;
+		else if (437 == n_A_ActiveSkill)
+			skill_atk_bonus_ratio += 10;
 	}
 	
-	// Scouter#1387#10th Bonus - Rifle equipped: 20% more damage with [Piercing Shot#432] and 25% with [Tracking#430]
-	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 10) > -1) {
-		if (430 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 25;
-		else if (432 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 20;
+	// Scouter#1387#8th Bonus - Rifle Equipped: 25% less Cast Time when using [Tracking]. 10% more damage with [Piercing Shot#432]
+	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 8) > -1)
+	{
+		if (432 == n_A_ActiveSkill)
+			skill_atk_bonus_ratio += 10;
+	}
+
+	// Scouter#1387#9th Bonus - Revolver Equipped: 20% Short Range Resistance. 10% more damage with [Rapid Shower#428] and [Desperado#429].
+	if (17 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 9) > -1)
+	{
+		if (428 == n_A_ActiveSkill)
+				skill_atk_bonus_ratio += 10;
+		else if (429 == n_A_ActiveSkill)
+				skill_atk_bonus_ratio += 10;
 	}
 
 	// Glorious Spear#1081
