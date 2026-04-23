@@ -698,7 +698,7 @@ function BattleCalc999() {
 		} else {
 			n_Delay[0] = 1;
 			n_Enekyori = 0;
-			wbairitu += (1.4 * n_A_ActiveSkillLV - 1);
+			wbairitu += ((1.4 * n_A_ActiveSkillLV) - 1);
 		}
 
 
@@ -8030,7 +8030,7 @@ function calc()
 	//w998K = w998B +w998E +w998G +w998I;
 	w998L = 100 - w_HIT;
 
-	//fix a bug where crit rate was not updated if it was 0
+	// Fixes a bug where crit rate was not updated if it was 0
 	myInnerHtml("CRInum", w_Cri.toFixed(2) + SubName[0],0);
 
 	w_FLEE = n_A_FLEE + 20 - (n_B_HIT);

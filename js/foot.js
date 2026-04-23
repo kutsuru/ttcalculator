@@ -1352,7 +1352,7 @@ with(document.calcForm){
 		n_tok[17] += 25 * (snake_cards + sidewinder_cards);
 	}
 
-	//Huuma Blaze Shuriken#546 - [Every Refine Level] MATK + 1%
+	// Huuma Blaze Shuriken#546 - [Every Refine Level] MATK + 1%
 	n_tok[89] += n_A_Weapon_ATKplus * EquipNumSearch(546);
 	
 	// Antonio's Coat#1728 - [Every Refine Level] ATK & MATK + 1
@@ -2711,8 +2711,8 @@ with(document.calcForm){
 	if(SU_LUK >= 80 && EquipNumSearch(1526))
 		n_tok[10] += 5;
 
-	//custom Talon Tales Murasame +15 crit against water and wind
-	if(EquipNumSearch(541) && ([11,12,13,14,41,42,43,44].includes(n_B[3])))
+	// Custom Talon Tales Murasame +15 crit against water and wind
+	if (EquipNumSearch(541) && ([11,12,13,14,41,42,43,44].includes(n_B[3])))
 		n_tok[10] += 15;
 
 	//[Custom Talon Tales - 2018-06-02 - Aegir shoes + helm combo(CRIT + 1% * refinement for Fish type monsters)] [Kato/Nattwara]
@@ -5485,7 +5485,7 @@ function StPlusCalc() {
 			n_tok[2] += Math.floor(n_A_SHOULDER_DEF_PLUS / 2); // [Every 2 Refine Levels] - AGI + 1
 	}
 
-	//Huuma wing Shuriken#547 - [Every Refine Level] AGI + 1 & [Every 2 Refine Level] DEX + 1 
+	// Huuma wing Shuriken#547 - [Every Refine Level] AGI + 1 & [Every 2 Refine Level] DEX + 1 
 	if (EquipNumSearch(547)) {
 		n_tok[5] += Math.floor(n_A_Weapon_ATKplus/2);
 		n_tok[2] += n_A_Weapon_ATKplus;

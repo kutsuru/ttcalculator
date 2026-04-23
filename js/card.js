@@ -634,7 +634,7 @@ cardOBJ = [
 ,[605,1,"Menblatt",0,8,5,5394,50,5395,50,0]
 ,[606,5,"Petal","<b>[Every 10 Base LUK]</b> Critical Attack + 2%",0]
 ,[607,1,"Cenere","[Shadow Slash] Critical Damage +10%",70,10,5401,25,0]
-,[608,100,"Cenere + Naga","[Mist Slash] HIT Rate + 50%.",5400,65,0] // removed oct 2025
+,[608,999,0]
 ,[609,5,"Antique Book","<b>[Every 10 Base AGI]</b> ASPD + 1%<br><b>[Every 2 Refine Levels]</b> AGI + 1",0]
 ,[610,2,"Faithful Manager","<b>[If Book Equipped]</b><br>ATK + 20<br>CRIT + 12<br><b>[Every Book Refine Level]</b><br>ASPD + 1%",0]
 ,[611,2,"Red Lichtern","[Refine Rate +7 or higher]<br/>Increases Fire elemental magic damage by an additional 5%<br/>[Refine Rate +9 or higher]<br/>Increases Fire elemental magic damage by an additional 5%",98,10,343,5,0]
