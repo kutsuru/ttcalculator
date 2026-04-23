@@ -3506,6 +3506,10 @@ with(document.calcForm){
 	if (spammers_heaven_cocktail)
 		n_tok[12] += 10;
 
+	// If [Ground Drift#437] active, and Under Entity selection: False = Set ASPD to 190
+	if (n_A_ActiveSkill == 437 && 0 == document.calcForm.SkillSubNum.value)
+		n_tok[12] = 100;
+
 	aspd_rate -= n_tok[12] * 10;
 	attack_motion = Math.floor(attack_motion * aspd_rate / 1000);
 	raw_aspd = (2000 - attack_motion) / 10;
@@ -3648,9 +3652,9 @@ with(document.calcForm){
 	if (EquipNumSearch(1100) && n_A_ActiveSkill == 430)
 		skill_cast_reduction -= 2 * n_A_Weapon_ATKplus;
 
-	// Scouter#1387#8th Bonus - Rifle Equipped: 25% less Cast Time when using [Tracking] (stacks multiplicatively with global cast redux gears, not additevely). 10% more damage with [Piercing Shot]
+	// Scouter#1387#8th Bonus - Rifle Equipped: 25% less Cast Time when using [Tracking] (stacks multiplicatively with global cast redux gears, not additevely)
 	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 8) > -1)
-		skill_cast_reduction = skill_cast_reduction*0.75
+		skill_cast_reduction = skill_cast_reduction * 0.75
 	
 	skill_cast_reduction -= StPlusCalc2(7000 + n_A_ActiveSkill);
 	skill_cast_reduction = Math.max(0, skill_cast_reduction - StPlusCard(7000 + n_A_ActiveSkill));
@@ -7393,26 +7397,25 @@ function manage_sqi_bonus()
 	// Scouter#1387 - Gunslinger
 	if (45 == n_A_JOB && 1387 == n_A_Equip[3])
 	{
-		// Base Stats
+		// Base Effects
 		n_tok[151] += SU_AGI >= 87 ? 100 : 0;
 		n_tok[155] += SU_VIT >= 87 ? 100 : 0;
-		if (17 == n_A_WeaponType || 18 == n_A_WeaponType || 20 == n_A_WeaponType) //Revolver 17, Rifle 18, Gatling 20
+		if (17 == n_A_WeaponType || 18 == n_A_WeaponType || 20 == n_A_WeaponType) // ASPD+ 25% for Revolver#17, Rifle#18, and Gatling Gun#20
 			n_tok[12] += 25
-		if (19 == n_A_WeaponType || 21 == n_A_WeaponType) //Shotgun 19, Grenade 21
+		if (19 == n_A_WeaponType || 21 == n_A_WeaponType) // ASPD+15% for Shotgun#19, and Grenade Launcher#21
 			n_tok[12] += 15
 		
-		// #4th Bonus - Shotgun Equipped: 20% Short Range Resistance. 20% more damage with [Spread Attack]
+		// #4th Bonus - Shotgun Equipped: 20% Short Range Resistance
 		if (19 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 4) > -1)
 			n_tok[100] += 20;
 		
-		// #6th Bonus - Gatling Gun Equipped: 10% more damage with Long Range Attacks and [Chain Action] Rate + 10%.
+		// #6th Bonus - Gatling Gun Equipped: 10% more damage with Long Range Attacks
 		if (20 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)
 			n_tok[25] += 10;
 
-		// #9th Bonus - Revolver Equipped: 20% Short Range Resistance. 10% more damage with [Rapid Shower] and [Desperado].
+		// #9th Bonus - Revolver Equipped: 20% Short Range Resistance
 		if (17 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 9) > -1)
 			n_tok[100] += 20;
-		
 	}
 
 	// Eversong Greaves#1383 - Taekwon
@@ -7515,7 +7518,7 @@ function manage_sqi_bonus()
 		}
 		else if (1387 == n_A_Equip[3]) // Scouter#1387
 		{
-			n_tok[5] += 0; // DEX + 10 remains unchanged
+			// DEX + 10 remains unchanged
 			n_tok[12] += 15; // ASPD + 15% added since base scouter no longer has inherent ASPD
 			n_tok[15] -= 20; // MHP bonus disabled
 			n_tok[16] -= 20; // MSP bonus disabled

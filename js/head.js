@@ -1013,13 +1013,11 @@ function BattleCalc999() {
 			n_A_Weapon_zokusei = 8;
 			not_use_card = 1;
 
-		} else if (n_A_ActiveSkill == 428) { //Rapid Shower#428
+		} else if (n_A_ActiveSkill == 428) { // Rapid Shower#428
 			n_Enekyori = 1;
 			wActiveHitNum = 5;
 			wbairitu += n_A_ActiveSkillLV * 0.5 + 4;
 			n_Delay[2] = 1;
-
-		} else if (n_A_ActiveSkill == 429) { //Desperado#429
 
 		} else if (n_A_ActiveSkill == 430) { // Tracking#430
 			if (n_A_Weapon_ATKplus > 8 && EquipNumSearch(1100)) { TCcast = 1.25; }
@@ -1041,7 +1039,7 @@ function BattleCalc999() {
 				n_Delay[3] = 1; // 1 second irreducible delay
 			}
 
-		} else if (n_A_ActiveSkill == 431) { //Disarm#431
+		} else if (n_A_ActiveSkill == 431) { // Disarm#431
 			wCast = 2;
 			n_Delay[2] = 1;
 			n_Enekyori = 1;
@@ -1064,12 +1062,17 @@ function BattleCalc999() {
 			n_Enekyori = 1;
 			wbairitu += n_A_ActiveSkillLV * 0.2 - 0.2;
 		}
-		else if (n_A_ActiveSkill == 437) // Ground Drift [Under Entity]#437
+		else if (n_A_ActiveSkill == 437) // Ground Drift#437
 		{
-			wCast = 2;
+			wCast = 1;
 			w_HIT = 100;
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
+			if (1 == document.calcForm.SkillSubNum.value) // If [Under Entity] selection = True
+				wHITsuu = 3;
+			else {
+				wHITsuu = 1;
+			}
 		}
 
 		ATKbai02(wbairitu, 0);
@@ -3995,6 +3998,14 @@ with(document.calcForm){
 		myInnerHtml("AASkill",'<select name="SkillSubNum"onChange="calc()"></select>',0);
 		for (i = 1; i <= 30; ++i)
 			SkillSubNum.options[i - 1] = new Option(i,i);
+		SkillSubNum.value = 1;
+	}
+	else if (n_A_ActiveSkill == 437) // Ground Drift#437
+	{
+		myInnerHtml("AASkillName","Under Entity :",0);
+		myInnerHtml("AASkill",'<select name="SkillSubNum"onChange="calc()"></select>',0);
+			SkillSubNum.options[0] = new Option("True", 1);
+			SkillSubNum.options[1] = new Option("False", 0);
 		SkillSubNum.value = 1;
 	}
 	else if (447 == n_A_ActiveSkill) // Combo Sequence
@@ -7958,19 +7969,10 @@ function calc()
 	if (EquipNumSearch(1495) && n_A_WeaponType)
 		wDA = Math.max((EquipNumSearch(1820) ? Math.max(1,n_A_Weapon_ATKplus) * 5 : 5), SkillSearch(13) * 5);
 	
-	// Tempest#1789 - If [Chain Action Learned] enables [Double Attack] according to the level of [Chain Action] learned
-	// [Every Refine Level] - Increase [Double Attack] rate further by 3%
-	if (EquipNumSearch(1789))
-		wDA = SkillSearch(427) * 5 + 3 * n_A_Weapon_ATKplus;
-	
 	// Sherwood Bow#1388 - Rogue/Stalker
 	// #7th Bonus - Enable [Double Attack] usage
 	if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
 		wDA = Math.max(wDA, SkillSearch(13) * 5);
-
-	// Stalker Card#619 - [Rogue Class, Super Novice] - [Double Attack] Rate + 10%
-	if (20 == n_A_JOB || n_A_JobSearch2() == 14)
-		wDA += 10 * CardNumSearch(619);
 
 	// Blade of Angels#1379#12th Bonus - [Double Attack] Rate + 10%
 	if (1379 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 12) > -1)
@@ -7984,11 +7986,12 @@ function calc()
 	if (document.calcForm.vanilla.checked)
 		wDA += 5 * EquipNumSearch(1121);
 
-	// Chain Action#427 - Similar behaviour as Double Attack. Can be used with Revolvers + Gatling Guns
-	if (n_A_WeaponType == 17 || n_A_WeaponType == 20){
-		wDA = SkillSearch(427) * 5;
+	// Chain Action#427 - Similar behaviour as Double Attack. Can be used with Revolver#17 + Gatling Gun#20
+	if (n_A_WeaponType == 17 || n_A_WeaponType == 20)
+	{
+		wDA = SkillSearch(427) * 5; // Double attack rate value set to [Chain Action#427] level * 5
 		
-		// #6th Bonus - Gatling Gun Equipped: 10% more damage with Long Range Attacks and [Chain Action#427] Rate + 10%.
+		// Scouter#1387#6th Bonus - Gatling Gun Equipped: [Chain Action#427] Rate + 10%.
 		if (20 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)
 			wDA += 10;
 
@@ -7999,6 +8002,10 @@ function calc()
 		//if(EquipNumSearch(570))
 			//wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 10 /100);
 	}
+
+	// Gertie Card#619 - [Rogue Class, Super Novice, Gunslinger] - [Double Attack] Rate + 10%, or [Chain Action] Rate + 10%
+	if (20 == n_A_JOB || 45 == n_A_JOB || n_A_JobSearch2() == 14)
+		wDA += 10 * CardNumSearch(619);
 
 	// For basic attack and skills relying on crit rate, crit rate is giving perfect hit
 	let crit_rate = 0;
@@ -8782,7 +8789,7 @@ function ApplySkillAtkBonus(dmg)
 	if (Taijin && 1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 11) > -1)
 		skill_atk_bonus_ratio -= 10;
 	
-	// Scouter#1387#4th Bonus - Shotgun Equipped: 20% Short Range Resistance. 20% more damage with [Spread Attack#436].
+	// Scouter#1387#4th Bonus - Shotgun Equipped: 20% more damage with [Spread Attack#436].
 	if (19 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 4) > -1)
 	{
 		if (436 == n_A_ActiveSkill)
@@ -8798,14 +8805,14 @@ function ApplySkillAtkBonus(dmg)
 			skill_atk_bonus_ratio += 10;
 	}
 	
-	// Scouter#1387#8th Bonus - Rifle Equipped: 25% less Cast Time when using [Tracking]. 10% more damage with [Piercing Shot#432]
+	// Scouter#1387#8th Bonus - Rifle Equipped: 10% more damage with [Piercing Shot#432]
 	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 8) > -1)
 	{
 		if (432 == n_A_ActiveSkill)
 			skill_atk_bonus_ratio += 10;
 	}
 
-	// Scouter#1387#9th Bonus - Revolver Equipped: 20% Short Range Resistance. 10% more damage with [Rapid Shower#428] and [Desperado#429].
+	// Scouter#1387#9th Bonus - Revolver Equipped: 10% more damage with [Rapid Shower#428] and [Desperado#429].
 	if (17 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 9) > -1)
 	{
 		if (428 == n_A_ActiveSkill)
