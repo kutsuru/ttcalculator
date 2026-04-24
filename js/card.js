@@ -279,7 +279,7 @@ cardOBJ = [
 ,[257,6,"Gajomart",0,123,10,53,-20,0]
 ,[258,5,"Kapha","If refined to +5 or less, gain MDEF+8",0]
 ,[259,1,"Crab",0,1240,30,17,5,0]
-,[260,7,"Shinobi","10% chance of casting lv5 [Cloaking] when receiving ATK based damage",2,1,0]
+,[260,7,"Shinobi","10% chance of casting lv5 [Cloaking] when receiving ATK based damage<br><b>[Ninja]</b><br>Ignore the normal wall check.<br><b>[Cloaking Learned]</b><br>Level learned is used instead.",2,1,0]
 ,[261,4,"Karakasa","[Base Strenght >= 77] [Confusion] chance is increased by 6%.",397,3,0]
 ,[262,7,"Galapago","3% chance of obtaining Apple Juice, Banana Juice and Carrot Juice when killing an Insect race monster",218,[531,50,1],218,[532,50,1],218,[534,50,1],0]
 ,[263,1,"Gig","Regain 5 SP when killing a Insect race monster with a ATK based attack<BR>Drains 5 SP when the weapon is unequipped",0]
@@ -615,7 +615,7 @@ cardOBJ = [
 ,[588,100,"Beholder Master + Beholder",0,12,10,5,3,0]
 ,[589,100,"Beholder Master + Seeker",0,57,15,0]
 ,[590,6,"Heavy Metaling",0,1,2,5066,50,0]
-,[591,1,"Naga","Causes Sleep effect to enemies when using [Mist Slash] at a 20% chance.",5400,50,0]
+,[591,1,"Naga","Causes Sleep effect to enemies when using [Mist Slash] at a 20% chance.",5400,25,0]
 ,[592,1,"Draco Egg","[Crimson Fire Formation] shoves the enemy 2 cells back <b>does not stack</b>.",5053,25,5408,25,0]
 ,[593,1,"Bradium Golem","Increase Kick Skill rate by 5%.",8,15,5331,15,5333,15,5335,15,5337,15,0]
 ,[594,1,"Ancient Tree",0,75,25,76,25,5375,7,0]
@@ -634,7 +634,7 @@ cardOBJ = [
 ,[605,1,"Menblatt",0,8,5,5394,50,5395,50,0]
 ,[606,5,"Petal","<b>[Every 10 Base LUK]</b> Critical Attack + 2%",0]
 ,[607,1,"Cenere","[Shadow Slash] Critical Damage +10%",70,10,5401,25,0]
-,[608,100,"Cenere + Naga","[Mist Slash] HIT Rate + 50%.",5400,65,0]
+,[608,999,0]
 ,[609,5,"Antique Book","<b>[Every 10 Base AGI]</b> ASPD + 1%<br><b>[Every 2 Refine Levels]</b> AGI + 1",0]
 ,[610,2,"Faithful Manager","<b>[If Book Equipped]</b><br>ATK + 20<br>CRIT + 12<br><b>[Every Book Refine Level]</b><br>ASPD + 1%",0]
 ,[611,2,"Red Lichtern","[Refine Rate +7 or higher]<br/>Increases Fire elemental magic damage by an additional 5%<br/>[Refine Rate +9 or higher]<br/>Increases Fire elemental magic damage by an additional 5%",98,10,343,5,0]
@@ -1596,7 +1596,7 @@ w_SC = [[429,235,306,"NULL"],
 [596,595,190,"NULL"],
 [598,597,184,"NULL"],
 [600,599,225,"NULL"],
-[608,607,591,"NULL"],
+//[608,607,591,"NULL"],
 [628,620,627,"NULL"],
 [630,621,620,"NULL"],
 [633,604,632,"NULL"],
