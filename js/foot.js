@@ -3512,7 +3512,7 @@ with(document.calcForm){
 	n_A_ASPD = Math.min(Math.floor(raw_aspd), 190);
 
 	// If [Ground Drift#437] active, and Under Entity selection: False = Set ASPD to 190
-	if (n_A_ActiveSkill == 437 && 0 == document.calcForm.SkillSubNum.value)
+	if (n_A_ActiveSkill == 437 && 0 == eval(document.calcForm.SkillSubNum.value))
 		n_A_ASPD = 190;
 
 	myInnerHtml("A_ASPD", n_A_ASPD + " (" + raw_aspd + ")", 0);
