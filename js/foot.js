@@ -3506,14 +3506,14 @@ with(document.calcForm){
 	if (spammers_heaven_cocktail)
 		n_tok[12] += 10;
 
-	// If [Ground Drift#437] active, and Under Entity selection: False = Set ASPD to 190
-	if (n_A_ActiveSkill == 437 && 0 == document.calcForm.SkillSubNum.value)
-		n_tok[12] = 100;
-
 	aspd_rate -= n_tok[12] * 10;
 	attack_motion = Math.floor(attack_motion * aspd_rate / 1000);
 	raw_aspd = (2000 - attack_motion) / 10;
 	n_A_ASPD = Math.min(Math.floor(raw_aspd), 190);
+
+	// If [Ground Drift#437] active, and Under Entity selection: False = Set ASPD to 190
+	if (n_A_ActiveSkill == 437 && 0 == document.calcForm.SkillSubNum.value)
+		n_A_ASPD = 190;
 
 	myInnerHtml("A_ASPD", n_A_ASPD + " (" + raw_aspd + ")", 0);
 

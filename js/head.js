@@ -1068,11 +1068,7 @@ function BattleCalc999() {
 			w_HIT = 100;
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
-			if (1 == document.calcForm.SkillSubNum.value) // If [Under Entity] selection = True
-				wHITsuu = 3;
-			else {
-				wHITsuu = 1;
-			}
+			wHITsuu = document.calcForm.SkillSubNum.value ? 3 : 1 // If [Under Entity] selection is True = 3 hits, else 1 hit
 		}
 
 		ATKbai02(wbairitu, 0);
@@ -7947,8 +7943,12 @@ function calc()
 	TyouEnkakuSousa3dan = 0;
 	let triple_attack_rate = get_triple_attack_rate();
 
-	// Manage [Double Attack]
+	// Manage [Double Attack#13] + [Chain Action#427]. Two separate variables are stored in game. Certain cards/equips grant Double Attack skill
+	// (Sidewinder Card#43, Snake Head Hat#1495 etc). Certain cards/bonuses grant Double Attack RATE (Blade of Angels#1379#12th Bonus, Gertie Card#619).
+	// Rate is only added if wDA != 0. Only Dagger#1, Revolver#17, Gatling Gun#20 can [Double Attack] / [Chain Action] by default regardless
+	// of [Double Attack] value. [StroopDoop]
 	wDA = 0;
+	wCA = 0;
 	
 	if (1 == n_A_WeaponType) // Only applies to Dagger
 		wDA = SkillSearch(13) * 5;
@@ -7976,36 +7976,36 @@ function calc()
 
 	// Blade of Angels#1379#12th Bonus - [Double Attack] Rate + 10%
 	if (1379 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 12) > -1)
-		wDA += 10;
+		wDA = wDA ? wDA + 10 : wDA;
 
 	// Sherwood Bow#1388#7th Bonus - [Double Attack] Rate + 10%
 	if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
-		wDA += 10;
+		wDA = wDA ? wDA + 10 : wDA;
 
 	// Thief Figure#1121 - [Vanilla Mode] - [Double Attack] Rate + 5%
 	if (document.calcForm.vanilla.checked)
-		wDA += 5 * EquipNumSearch(1121);
+		wDA = wDA ? wDA + 5 * EquipNumSearch(1121) : wDA;
 
 	// Chain Action#427 - Similar behaviour as Double Attack. Can be used with Revolver#17 + Gatling Gun#20
 	if (n_A_WeaponType == 17 || n_A_WeaponType == 20)
-	{
-		wDA = SkillSearch(427) * 5; // Double attack rate value set to [Chain Action#427] level * 5
+		wCA = SkillSearch(427) * 5; // value set to [Chain Action#427] level * 5
 		
-		// Scouter#1387#6th Bonus - Gatling Gun Equipped: [Chain Action#427] Rate + 10%.
-		if (20 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)
-			wDA += 10;
+	// Scouter#1387#6th Bonus - Gatling Gun Equipped: [Chain Action#427] Rate + 10%.
+	if (20 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)
+		wCA = wCA ? wCA + 10 : wCA;
 
-		// Its not clear that these cards/equips affect chain action rate, or that it is implemented correctly. The rates should be added based on
-		// # of sidewinder cards + equips additively. I also dont see why it wouldnt be a flat 5% per sidewinder card instead of 50*5/100=2.5%
-		//if(CardNumSearch(43))
-			//wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 5 /100);
-		//if(EquipNumSearch(570))
-			//wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 10 /100);
+	// Gertie Card#619
+	if (CardNumSearch(619))
+	{
+		if(20 == n_A_JOB || n_A_JobSearch2() == 14) // Super Novice or Rogue Class [Double Attack] Rate + 10%
+			wDA = wDA ? wDA + 10 * CardNumSearch(619) : wDA;
+
+		if(45 == n_A_JOB) // Gunslinger [Chain Action] Rate + 10%
+			wCA = wCA ? wCA + 10 * CardNumSearch(619) : wCA; 
 	}
 
-	// Gertie Card#619 - [Rogue Class, Super Novice, Gunslinger] - [Double Attack] Rate + 10%, or [Chain Action] Rate + 10%
-	if (20 == n_A_JOB || 45 == n_A_JOB || n_A_JobSearch2() == 14)
-		wDA += 10 * CardNumSearch(619);
+	// Combining wDA + wCA since its possible to have both combine in certain situations (gunslinger using revolver with sidewinder card). and only wDA is used in future calculations
+	wDA = wDA + wCA * (1 - wDA / 100);
 
 	// For basic attack and skills relying on crit rate, crit rate is giving perfect hit
 	let crit_rate = 0;
@@ -8027,18 +8027,20 @@ function calc()
 		w_HIT_HYOUJI = w_HIT;
 	}
 	
-	w998A = 100 - triple_attack_rate;
-	w998B = triple_attack_rate * w_HIT /100;
-	w998C = triple_attack_rate - w998B;
-	w998D = w998A * wDA /100;
-	w998E = w998D * w_HIT /100;
-	//w998F = w998D - w998E;
-	w998G = (100 - triple_attack_rate - w998D) * w_Cri /100;
-	w998H = 100 - triple_attack_rate - w998D - crit_rate;
-	w998I = w998H * w_HIT /100;
-	//w998J = w998H - w998I;
-	//w998K = w998B +w998E +w998G +w998I;
-	w998L = 100 - w_HIT;
+	// For all normal attacks and skills. Starting with 100%, Determining % that are [Triple Attack], [Double Attack], hits that crit, hits that dont crit, misses
+	// triple_attack_rate = % of attacks that are [Triple Attack]
+	w998A = 100 - triple_attack_rate; // A = % of attacks that are not [Triple Attack]
+	w998B = triple_attack_rate * w_HIT /100; // B = % of attacks that are [Triple Attack] that hit
+	w998C = triple_attack_rate - w998B; // C = % of attacks that are [Triple Attack] that miss
+	w998D = w998A * wDA /100; // D = % of attacks that are [Double Attack]
+	w998E = w998D * w_HIT /100; // % of [Double Attacks] that hit
+	//w998F = w998D - w998E; // % of [Double Attacks] that miss
+	w998G = (100 - triple_attack_rate - w998D) * w_Cri /100; // G = % of attacks that are remaining (normal attacks) that crit. (used for Sharpshooting and skills that crit)
+	w998H = 100 - triple_attack_rate - w998D - crit_rate; // H = % of attacks that are non-TA,non-DA,non-crit
+	w998I = w998H * w_HIT /100; // I = % of attacks that are non-TA,non-DA,non-crit that hits
+	//w998J = w998H - w998I; // J = % of attacks that are non-TA,non-DA,non-crit that miss
+	//w998K = w998B +w998E +w998G +w998I; // K = % of all attacks that hit. TA hit + DA hit + crits + normal hits
+	w998L = 100 - w_HIT; // L = % chance to miss
 
 	if (crit_rate)
 		myInnerHtml("CRInum", w_Cri.toFixed(2) + SubName[0],0);
