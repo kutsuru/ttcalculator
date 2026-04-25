@@ -2486,11 +2486,6 @@ with(document.calcForm){
 	if(SkillSearch(421)){
 		n_A_FLEE += 30;}
 	
-	// Gatling Fever#433 - Decreases Flee by 5 * SkillLV
-	// Scouter#1387#6th Bonus - Ignore [Gatling Fever] FLEE and Movement Speed penalties. Dispell [Gatling Fever] on unequip
-	if (20 == n_A_WeaponType && SkillSearch(433) && (1387 != n_A_Equip[3] || SQI_Bonus_Effect.findIndex(x => x == 6) == -1))
-			n_A_FLEE -= 5 * SkillSearch(433);
-
 	// Manage FLEE % modifier
 	n_A_FLEE = Math.floor(n_A_FLEE * (1 + n_tok[107] / 100));
 
@@ -3523,6 +3518,10 @@ with(document.calcForm){
 	raw_aspd = (2000 - attack_motion) / 10;
 	n_A_ASPD = Math.min(Math.floor(raw_aspd), 190);
 
+	// If [Ground Drift#437] active, and Under Entity selection: False = Set ASPD to 190
+	if (n_A_ActiveSkill == 437 && 0 == eval(document.calcForm.SkillSubNum.value))
+		n_A_ASPD = 190;
+
 	myInnerHtml("A_ASPD", n_A_ASPD + " (" + raw_aspd + ")", 0);
 
 	n_A_ASPD = (200 - n_A_ASPD) / 50;
@@ -3660,9 +3659,9 @@ with(document.calcForm){
 	if (EquipNumSearch(1100) && n_A_ActiveSkill == 430)
 		skill_cast_reduction -= 2 * n_A_Weapon_ATKplus;
 
-	// Scouter#1387#10th Bonus - Rifle equipped: 25% less cast time with [Tracking#430]
-	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 10) > -1 && 430 == n_A_ActiveSkill)
-		skill_cast_reduction -= 25;
+	// Scouter#1387#8th Bonus - Rifle Equipped: 25% less Cast Time when using [Tracking] (stacks multiplicatively with global cast redux gears, not additevely)
+	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 8) > -1)
+		skill_cast_reduction = skill_cast_reduction * 0.75
 	
 	skill_cast_reduction -= StPlusCalc2(7000 + n_A_ActiveSkill);
 	skill_cast_reduction = Math.max(0, skill_cast_reduction - StPlusCard(7000 + n_A_ActiveSkill));
@@ -7411,27 +7410,25 @@ function manage_sqi_bonus()
 	// Scouter#1387 - Gunslinger
 	if (45 == n_A_JOB && 1387 == n_A_Equip[3])
 	{
-		// #3rd Bonus - CRIT + 15 (30 with Rifles) and 20% more damage with Critical Hits
-		if (18 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 3) > -1)
-			n_tok[10] += 15;
+		// Base Effects
+		n_tok[151] += SU_AGI >= 87 ? 100 : 0;
+		n_tok[155] += SU_VIT >= 87 ? 100 : 0;
+		if (17 == n_A_WeaponType || 18 == n_A_WeaponType || 20 == n_A_WeaponType) // ASPD+ 25% for Revolver#17, Rifle#18, and Gatling Gun#20
+			n_tok[12] += 25
+		if (19 == n_A_WeaponType || 21 == n_A_WeaponType) // ASPD+15% for Shotgun#19, and Grenade Launcher#21
+			n_tok[12] += 15
 		
-		// #4th Bonus - Shotgun Equipped: ASPD + 15%
+		// #4th Bonus - Shotgun Equipped: 20% Short Range Resistance
 		if (19 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 4) > -1)
-			n_tok[12] += 15;
-
-		// #6th Bonus - Gatling Gun Equipped: 20% more damage with Long Range Attacks and Critical Hits
+			n_tok[100] += 20;
+		
+		// #6th Bonus - Gatling Gun Equipped: 10% more damage with Long Range Attacks
 		if (20 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)
-		{
-			n_tok[25] += 20;
-			n_tok[70] += 20;
-		}
+			n_tok[25] += 10;
 
-		// #13th Bonus - Base AGI >= 88: Immunity to Stun Status. Base VIT >= 88: Immunity to Sleep Status
-		if (SQI_Bonus_Effect.findIndex(x => x == 13) > -1)
-		{
-			n_tok[151] += SU_AGI >= 87 ? 100 : 0;
-			n_tok[155] += SU_VIT >= 87 ? 100 : 0;
-		}
+		// #9th Bonus - Revolver Equipped: 20% Short Range Resistance
+		if (17 == n_A_WeaponType && SQI_Bonus_Effect.findIndex(x => x == 9) > -1)
+			n_tok[100] += 20;
 	}
 
 	// Eversong Greaves#1383 - Taekwon
@@ -7534,11 +7531,11 @@ function manage_sqi_bonus()
 		}
 		else if (1387 == n_A_Equip[3]) // Scouter#1387
 		{
-			n_tok[12] -= 10; // ASPD + 15%
+			// DEX + 10 remains unchanged
+			n_tok[12] += 15; // ASPD + 15% added since base scouter no longer has inherent ASPD
 			n_tok[15] -= 20; // MHP bonus disabled
 			n_tok[16] -= 20; // MSP bonus disabled
-			n_tok[77] -= 20; // Non-boss resistance bonus disabled
-			n_tok[79] -= 20; // Boss resistance bonus disabled
+			n_tok[154] -= 100; // Blind resistance removed
 		}
 		else if (1389 == n_A_Equip[0]) // Staff of Magi#1389
 			n_tok[5] -= 10; // DEX + 5
