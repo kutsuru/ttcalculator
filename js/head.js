@@ -1068,7 +1068,7 @@ function BattleCalc999() {
 			w_HIT = 100;
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
-			wHITsuu = document.calcForm.SkillSubNum.value ? 3 : 1 // If [Under Entity] selection is True = 3 hits, else 1 hit
+			wHITsuu = eval(document.calcForm.SkillSubNum.value) ? 3 : 1 // If [Under Entity] selection is True = 3 hits, else 1 hit
 		}
 
 		ATKbai02(wbairitu, 0);
