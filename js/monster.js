@@ -1105,7 +1105,7 @@ var tiiki = ["All Regions","SQI Instances","GMC","Abyss Lake Dungeon","Amatsu","
 "Louyang","Lutie & Toy Factory","Magma Dungeon","Malangdo","Malangdo Culvert","Manuk","Morroc Fields","Moscovia","Mt. Mjolnir","Mystic Tower","Nameless Island","Nidhoggr's Nest",
 "Niflheim","Odins Shrine","Old Glast Heim","Old Glast Heim Challenge","Orc Dungeon","Payon Dungeon","Payon Fields","Poring Island","Port Malaya Instance","Prontera Fields","Pyramid","Pyramid [Nightmare]","Rachel Fields",
 "Rachel Sanctuary","Sarah's Memory","Scaraba Hole","Sphinx","Splendide","Seals(Old)","Sunken Ship","Thanatos Tower","Thors Volcano","Turtle Island","Umbala Dungeon",
-"Umbala Fields","Valkyries' Realm","Veins Fields","War of Emperium","Yuno Fields"];
+"Umbala Fields","Valkyries' Realm","Veins Fields","War of Emperium","Yuno Fields","BotN Valkyries"];
 
 if(Taijin==0){
 	for(var i=0;i < tiiki.length;i++)
@@ -1199,5 +1199,6 @@ Array.from({ length: 893 + 1 - 889 }, (_, k) => 889 + k),// Sarah's Memory
 Array.from({ length: 759 + 1 - 717},(_,k) => 717 + k).concat(Array.from({ length: 796 + 1 - 776},(_,k) => 776 + k)).concat(Array.from({ length: 878 + 1 - 874},(_,k) => 874 + k)),// Valkyries' Realm
 [59,122,127,131,162,188,214,240,301,317,445,446,447,448,449,450,464,"N"],// Veins Fields
 [63,64,65,503,504,44,547,548,"N"],// War of Emperium
-[0,41,87,91,92,98,105,121,122,130,134,136,151,162,177,187,193,211,214,219,232,235,252,271,272,273,278,279,293,323,340,400,401,402,"N"] // Yuno Fields
+[0,41,87,91,92,98,105,121,122,130,134,136,151,162,177,187,193,211,214,219,232,235,252,271,272,273,278,279,293,323,340,400,401,402,"N"],// Yuno Fields
+[731,795,741,945,876,746,875,931,877,878,874,750,928,"N"] // BOTN Valkyries
 ];
