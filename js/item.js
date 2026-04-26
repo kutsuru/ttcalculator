@@ -1939,6 +1939,31 @@ ItemOBJ = [
 ,[1881,100,0,0,0,0,0,0,"Giant Snake Skin + Temporal Boots LUK","",0,15,15,16,10,0]
 // Ninja Update Oct 2025
 ,[1882,1,58,140,4,1,90,70,"Mikatsuki","",0,20,8,89,15,5,2,72,-10,0]
+// Valkyrie gear
+,[1883,6,99,90,4,4,150,1,"Geiravor's Will","","15% more physical and magical damage against all BoTN Valkyries.",89,10,66,10,67,10,5066,25,5326,25,0]
+,[1884,60,0,6,0,1,100,80,"Herja's Fury","","Ignore 10% of Physical Reflect Damage.<br>10% more physical and magical damage against Valkyrie Herja.",194,1,7,1,188,10,186,10,58,5,0]
+,[1885,60,0,6,0,1,100,80,"Kara's Blessing","","Ignore 10% of Magical Reflect Damage.<br>10% more physical and magical damage against Valkyrie Kara.<br>10% resistance against Valkyrie Kara.",194,1,7,1,58,5,155,100,0]
+,[1886,61,1,3,0,1,50,65,"Brynhildr's Stand","",0,19,5,64,20,62,20,66,20,65,20,0]
+,[1887,62,0,5,0,1,50,1,"Hildr's Veil","","10% more physical and magical damage against Valkyrie Hildr.<br>10% resistance against Valkyrie Hildr.",194,1,7,1,15,4,58,5,0]
+,[1888,62,0,5,0,1,50,1,"Reginleif's Brand","","5% more physical and magical damage against Valkyrie Reginlief and Valkyrie Prima.<br>10% resistance against Valkyrie Reginlief.",194,1,7,1,19,4,58,5,0]
+,[1889,63,0,3,0,1,100,70,"Prima's Vanity","","Fast movement all the time<br>Ignore 20% of Holy and Shadow elemental resistance with Fire/Water/Wind/Earth magic.<br>5% more physical and magical damage against Valkyrie Reginlief and Valkyrie Prima.<br>10% resistance against Valkyrie Prima.",194,1,7,1,58,5,0]
+,[1890,63,0,3,0,1,100,70,"Sigrun's Journey","","Fast movement all the time<br>Ignore 20% of Magical Reflect Damage.<br>5% more physical and magical damage against Valkyrie Sigrun and Valkyrie Olrun.<br>10% resistance against Valkyrie Sigrun and Valkyrie Olrun.",194,1,7,1,0]
+,[1891,100,0,0,0,0,0,0,"Herja's Fury and Hildr's Veil and Prima's Vanity","","5% more Physical and Magical damage against All BoTN Valkyries" ,7,1,0]
+,[1892,100,0,0,0,0,0,0,"Herja's Fury and Hildr's Veil and Sigrun's Journey","","5% more Physical and Magical damage against All BoTN Valkyries",7,1,0]
+,[1893,100,0,0,0,0,0,0,"Herja's Fury and Reginleif's Brand and Prima's Vanity","","5% more Physical and Magical damage against All BoTN Valkyries",7,1,0]
+,[1894,100,0,0,0,0,0,0,"Herja's Fury and Reginleif's Brand and Sigrun's Journey","","5% more Physical and Magical damage against All BoTN Valkyries",7,1,0]
+,[1895,100,0,0,0,0,0,0,"Kara's Blessing and Hildr's Veil and Prima's Vanity","","5% more Physical and Magical damage against All BoTN Valkyries",7,1,0]
+,[1896,100,0,0,0,0,0,0,"Kara's Blessing and Hildr's Veil and Sigrun's Journey","","5% more Physical and Magical damage against All BoTN Valkyries",7,1,0]
+,[1897,100,0,0,0,0,0,0,"Kara's Blessing and Reginleif's Brand and Prima's Vanity","","5% more Physical and Magical damage against All BoTN Valkyries",7,1,0]
+,[1898,100,0,0,0,0,0,0,"Kara's Blessing and Reginleif's Brand and Sigrun's Journey","","5% more Physical and Magical damage against All BoTN Valkyries",7,1,0]
+,[1899,100,0,0,0,0,0,0,"Herja's Fury and Hildr's Veil and Prima's Vanity and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
+,[1900,100,0,0,0,0,0,0,"Herja's Fury and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
+,[1901,100,0,0,0,0,0,0,"Herja's Fury and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
+,[1902,100,0,0,0,0,0,0,"Herja's Fury and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
+,[1903,100,0,0,0,0,0,0,"Kara's Blessing and Hildr's Veil and Prima's Vanity and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
+,[1904,100,0,0,0,0,0,0,"Kara's Blessing and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
+,[1905,100,0,0,0,0,0,0,"Kara's Blessing and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
+,[1906,100,0,0,0,0,0,0,"Kara's Blessing and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3855,6 +3880,14 @@ ItemID = [
 ,[1880,2,32500,32501,22102]
 ,[1881,2,32500,32501,22105]
 ,[1882,1,13078,24111]
+,[1883,1,24000]
+,[1884,1,24002]
+,[1885,1,24003]
+,[1886,1,24001]
+,[1887,1,24004]
+,[1888,1,24005]
+,[1889,1,24006]
+,[1890,1,24007]
 ];
 
 /*
@@ -4557,6 +4590,22 @@ w_SE = [[737,436,475,"NULL"]
 ,[1879,1869,1839,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots INT
 ,[1880,1869,1840,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots DEX
 ,[1881,1869,1841,"NULL"] //Custom Talon Tales - Giant Snake Skin + Temporal Boots LUK
+,[1891,1884,1887,1889,"NULL"] //Custom Talon Tales - Herja's Fury and Hildr's Veil and Prima's Vanity
+,[1892,1884,1887,1890,"NULL"] //Custom Talon Tales - Herja's Fury and Hildr's Veil and Sigrun's Journey
+,[1893,1884,1888,1889,"NULL"] //Custom Talon Tales - Herja's Fury and Reginleif's Brand and Prima's Vanity
+,[1894,1884,1888,1890,"NULL"] //Custom Talon Tales - Herja's Fury and Reginleif's Brand and Sigrun's Journey
+,[1895,1885,1887,1889,"NULL"] //Kara's Blessing and Hildr's Veil and Prima's Vanity
+,[1896,1885,1887,1890,"NULL"] //Kara's Blessing and Hildr's Veil and Sigrun's Journey
+,[1897,1885,1888,1889,"NULL"] //Kara's Blessing and Reginleif's Brand and Prima's Vanity
+,[1898,1885,1888,1890,"NULL"] //Kara's Blessing and Reginleif's Brand and Sigrun's Journey
+,[1899,1884,1887,1889,1886,"NULL"] //Herja's Fury and Hildr's Veil and Prima's Vanity and Brynhildr's Stand
+,[1900,1884,1887,1890,1886,"NULL"] //Herja's Fury and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand
+,[1901,1884,1888,1889,1886,"NULL"] //Herja's Fury and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand
+,[1902,1884,1888,1890,1886,"NULL"] //Herja's Fury and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand
+,[1903,1885,1887,1889,1886,"NULL"] //Kara's Blessing and Hildr's Veil and Prima's Vanity and Brynhildr's Stand
+,[1904,1885,1887,1890,1886,"NULL"] //Kara's Blessing and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand
+,[1905,1885,1888,1889,1886,"NULL"] //Kara's Blessing and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand
+,[1906,1885,1888,1890,1886,"NULL"] //Kara's Blessing and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand
 ];
 
 SE_MAXnum = w_SE.length -1;
