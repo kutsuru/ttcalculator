@@ -3628,35 +3628,35 @@ function BattleMagicCalc(wBMC) {
 
 	if (IsABotNValkMonster())
 	{
-		// Geiravor's Will#1883 - 15% more physical against all BoTN Valkyries.
+		// Geiravor's Will#1883 - 15% more magical damage against all BoTN Valkyries.
 		if (EquipNumSearch(1883))
 			wBMC2 = wBMC2 * 1.15;
 	
-		// Herja's Fury#1884 - 10% more physical against Valkyrie Herja#731/795. 
+		// Herja's Fury#1884 - 10% more magical damage against Valkyrie Herja#731/795. 
 		if (EquipNumSearch(1884) && [731,795].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.10;
 
-		// Kara's Blessing#1885 - 10% more physical against Valkyrie Kara (not yet in calc)
+		// Kara's Blessing#1885 - 10% more magical damage against Valkyrie Kara (not yet in calc)
 		//if (EquipNumSearch(1885) && [731,795].includes(n_B[0])
 			//wBMC2 = wBMC2 * 1.10;
 
-		// Hildr's Veil#1887 - 10% more physical against Valkyrie Hildr#931/875. 
+		// Hildr's Veil#1887 - 10% more phymagical damageical against Valkyrie Hildr#931/875. 
 		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.10;	
 
-		// Reginleif's Brand#1888 - 5% more physical against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
+		// Reginleif's Brand#1888 - 5% more magical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
 		if (EquipNumSearch(1888) && [877,878,876,746,945].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.05;	
 
-		// Prima's Vanity#1889 - 5% more physical against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
+		// Prima's Vanity#1889 - 5% more magical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
 		if (EquipNumSearch(1889) && [877,878,876,746,945].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.05;	
 
-		// Sigrun's Journey#1890 - 5% more physical against Valkyrie Sigrun#874 and Valkyrie Olrun (not yet on calc). 
+		// Sigrun's Journey#1890 - 5% more magical damage against Valkyrie Sigrun#874 and Valkyrie Olrun (not yet on calc). 
 		if (EquipNumSearch(1890) && [874].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.05;
 
-		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical against all BoTN Valkyries.
+		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more magical damage against all BoTN Valkyries.
 		if (EquipNumSearch(1891) || EquipNumSearch(1892) || EquipNumSearch(1893) || EquipNumSearch(1894) || EquipNumSearch(1895) || EquipNumSearch(1896) || EquipNumSearch(1897) || EquipNumSearch(1898))
 			wBMC2 = wBMC2 * 1.05;
 	}
@@ -8600,35 +8600,35 @@ function BaiCI(wBaiCI)
 
 	if (IsABotNValkMonster())
 	{
-		// Geiravor's Will#1883 - 15% more physical against all BoTN Valkyries.
+		// Geiravor's Will#1883 - 15% more physical damage against all BoTN Valkyries.
 		if (EquipNumSearch(1883))
 			wBaiCI = wBaiCI * 1.15;
 
-		// Herja's Fury#1884 - 10% more physical against Valkyrie Herja#731/795. 
+		// Herja's Fury#1884 - 10% more physical damage against Valkyrie Herja#731/795. 
 		if (EquipNumSearch(1884) && [731,795].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.10;
 
-		// Kara's Blessing#1885 - 10% more physical against Valkyrie Kara (not yet in calc)
+		// Kara's Blessing#1885 - 10% more physical damage against Valkyrie Kara (not yet in calc)
 		//if (EquipNumSearch(1885) && [731,795].includes(n_B[0])
 			//wBaiCI = wBaiCI * 1.10;
 
-		// Hildr's Veil#1887 - 10% more physical against Valkyrie Hildr#931/875. 
+		// Hildr's Veil#1887 - 10% more physical damage against Valkyrie Hildr#931/875. 
 		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.10;	
 
-		// Reginleif's Brand#1888 - 5% more physical against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
+		// Reginleif's Brand#1888 - 5% more physical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
 		if (EquipNumSearch(1888) && [877,878,876,746,945].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.05;	
 
-		// Prima's Vanity#1889 - 5% more physical against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
+		// Prima's Vanity#1889 - 5% more physical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
 		if (EquipNumSearch(1889) && [877,878,876,746,945].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.05;	
 
-		// Sigrun's Journey#1890 - 5% more physical against Valkyrie Sigrun#874 and Valkyrie Olrun (not yet on calc). 
+		// Sigrun's Journey#1890 - 5% more physical damage against Valkyrie Sigrun#874 and Valkyrie Olrun (not yet on calc). 
 		if (EquipNumSearch(1890) && [874].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.05;
 		
-		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical against all BoTN Valkyries.
+		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical damage against all BoTN Valkyries.
 		if (EquipNumSearch(1891)||EquipNumSearch(1892)||EquipNumSearch(1893)||EquipNumSearch(1894)||EquipNumSearch(1895)||EquipNumSearch(1896)||EquipNumSearch(1897)||EquipNumSearch(1898))
 			wBaiCI = wBaiCI * 1.05;
 	}
