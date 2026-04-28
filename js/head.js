@@ -3346,42 +3346,42 @@ function BattleHiDam(){
 	// Valyrie gear
 	if (IsABotNValkMonster())
 	{
-		//Kara's Blessing#1885 - 10% resistance against Valkyrie Kara (not in calc yet). 
+		// Kara's Blessing#1885 - 10% resistance against Valkyrie Kara (not in calc yet). 
 		//if (EquipNumSearch(1885) && [731,795].includes(n_B[0])
 		//{
 			//for (i = 0 ; i <= 6; ++i)
 				//w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
 		//}
 
-		//Hildr's Veil#1887 - 5% resistance against Valkyrie Hildr.
+		// Hildr's Veil#1887 - 5% resistance against Valkyrie Hildr.
 		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
 		{
 			for (i = 0 ; i <= 6; ++i)
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 5 / 100);
 		}
 
-		//Reginleif's Brand#1888 - 10% resistance against Valkyrie Reginleif. 
+		// Reginleif's Brand#1888 - 10% resistance against Valkyrie Reginleif. 
 		if (EquipNumSearch(1888) && [877,878,876,746,945].includes(n_B[0]))
 		{
 			for (i = 0 ; i <= 6; ++i)
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
 		}
 
-		//Prima's Vanity#1889 - 10% resistance against Valkyrie Prima. 
+		// Prima's Vanity#1889 - 10% resistance against Valkyrie Prima. 
 		if (EquipNumSearch(1889) && [877,878,876,746,945].includes(n_B[0]))
 		{
 			for (i = 0 ; i <= 6; ++i)
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
 		}
 
-		//Sigrun's Journey#1890 - 10% resistance against Valkyrie Sigrun and Valkyrie Olrun (not yet on calc). 
+		// Sigrun's Journey#1890 - 10% resistance against Valkyrie Sigrun and Valkyrie Olrun (not yet on calc). 
 		if (EquipNumSearch(1890) && [874].includes(n_B[0]))
 		{
 			for (i = 0 ; i <= 6; ++i)
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
 		}
 
-		//Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey and Brynhildr's Stand combos#1899-1906
+		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey and Brynhildr's Stand combos#1899-1906
 		if (EquipNumSearch(1899) || EquipNumSearch(1900) || EquipNumSearch(1901) || EquipNumSearch(1902) || EquipNumSearch(1903) || EquipNumSearch(1904) || EquipNumSearch(1905) || EquipNumSearch(1906))
 		{
 			for (i = 0 ; i <= 6; ++i)
