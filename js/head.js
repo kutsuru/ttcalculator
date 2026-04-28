@@ -3640,7 +3640,7 @@ function BattleMagicCalc(wBMC) {
 		//if (EquipNumSearch(1885) && [731,795].includes(n_B[0])
 			//wBMC2 = wBMC2 * 1.10;
 
-		// Hildr's Veil#1887 - 10% more phymagical damageical against Valkyrie Hildr#931/875. 
+		// Hildr's Veil#1887 - 10% more magical damage against Valkyrie Hildr#931/875. 
 		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.10;	
 
