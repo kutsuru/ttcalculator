@@ -3888,6 +3888,22 @@ ItemID = [
 ,[1888,1,24005]
 ,[1889,1,24006]
 ,[1890,1,24007]
+,[1891,2,24002,24004,24006]
+,[1892,2,24002,24004,24007]
+,[1893,2,24002,24005,24006]
+,[1894,2,24002,24005,24007]
+,[1895,2,24003,24004,24006]
+,[1896,2,24003,24004,24007]
+,[1897,2,24003,24005,24006]
+,[1898,2,24003,24005,24007]
+,[1899,2,24002,24004,24006,24001]
+,[1900,2,24002,24004,24007,24001]
+,[1901,2,24002,24005,24006,24001]
+,[1902,2,24002,24005,24007,24001]
+,[1903,2,24003,24004,24006,24001]
+,[1904,2,24003,24004,24007,24001]
+,[1905,2,24003,24005,24006,24001]
+,[1906,2,24003,24005,24007,24001]
 ];
 
 /*
@@ -4594,18 +4610,18 @@ w_SE = [[737,436,475,"NULL"]
 ,[1892,1884,1887,1890,"NULL"] //Custom Talon Tales - Herja's Fury and Hildr's Veil and Sigrun's Journey
 ,[1893,1884,1888,1889,"NULL"] //Custom Talon Tales - Herja's Fury and Reginleif's Brand and Prima's Vanity
 ,[1894,1884,1888,1890,"NULL"] //Custom Talon Tales - Herja's Fury and Reginleif's Brand and Sigrun's Journey
-,[1895,1885,1887,1889,"NULL"] //Kara's Blessing and Hildr's Veil and Prima's Vanity
-,[1896,1885,1887,1890,"NULL"] //Kara's Blessing and Hildr's Veil and Sigrun's Journey
-,[1897,1885,1888,1889,"NULL"] //Kara's Blessing and Reginleif's Brand and Prima's Vanity
-,[1898,1885,1888,1890,"NULL"] //Kara's Blessing and Reginleif's Brand and Sigrun's Journey
-,[1899,1884,1887,1889,1886,"NULL"] //Herja's Fury and Hildr's Veil and Prima's Vanity and Brynhildr's Stand
-,[1900,1884,1887,1890,1886,"NULL"] //Herja's Fury and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand
-,[1901,1884,1888,1889,1886,"NULL"] //Herja's Fury and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand
-,[1902,1884,1888,1890,1886,"NULL"] //Herja's Fury and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand
-,[1903,1885,1887,1889,1886,"NULL"] //Kara's Blessing and Hildr's Veil and Prima's Vanity and Brynhildr's Stand
-,[1904,1885,1887,1890,1886,"NULL"] //Kara's Blessing and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand
-,[1905,1885,1888,1889,1886,"NULL"] //Kara's Blessing and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand
-,[1906,1885,1888,1890,1886,"NULL"] //Kara's Blessing and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand
+,[1895,1885,1887,1889,"NULL"] //Custom Talon Tales - Kara's Blessing and Hildr's Veil and Prima's Vanity
+,[1896,1885,1887,1890,"NULL"] //Custom Talon Tales - Kara's Blessing and Hildr's Veil and Sigrun's Journey
+,[1897,1885,1888,1889,"NULL"] //Custom Talon Tales - Kara's Blessing and Reginleif's Brand and Prima's Vanity
+,[1898,1885,1888,1890,"NULL"] //Custom Talon Tales - Kara's Blessing and Reginleif's Brand and Sigrun's Journey
+,[1899,1884,1887,1889,1886,"NULL"] //Custom Talon Tales - Herja's Fury and Hildr's Veil and Prima's Vanity and Brynhildr's Stand
+,[1900,1884,1887,1890,1886,"NULL"] //Custom Talon Tales - Herja's Fury and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand
+,[1901,1884,1888,1889,1886,"NULL"] //Custom Talon Tales - Herja's Fury and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand
+,[1902,1884,1888,1890,1886,"NULL"] //Custom Talon Tales - Herja's Fury and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand
+,[1903,1885,1887,1889,1886,"NULL"] //Custom Talon Tales - Kara's Blessing and Hildr's Veil and Prima's Vanity and Brynhildr's Stand
+,[1904,1885,1887,1890,1886,"NULL"] //Custom Talon Tales - Kara's Blessing and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand
+,[1905,1885,1888,1889,1886,"NULL"] //Custom Talon Tales - Kara's Blessing and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand
+,[1906,1885,1888,1890,1886,"NULL"] //Custom Talon Tales - Kara's Blessing and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand
 ];
 
 SE_MAXnum = w_SE.length -1;

@@ -3628,7 +3628,7 @@ function BattleMagicCalc(wBMC) {
 
 	if (IsABotNValkMonster())
 	{
-		//Geiravor's Will#1883 - 15% more physical against all BoTN Valkyries.
+		// Geiravor's Will#1883 - 15% more physical against all BoTN Valkyries.
 		if (EquipNumSearch(1883))
 			wBMC2 = wBMC2 * 1.15;
 	
@@ -3656,7 +3656,7 @@ function BattleMagicCalc(wBMC) {
 		if (EquipNumSearch(1890) && [874].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.05;
 
-		//Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical against all BoTN Valkyries.
+		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical against all BoTN Valkyries.
 		if (EquipNumSearch(1891) || EquipNumSearch(1892) || EquipNumSearch(1893) || EquipNumSearch(1894) || EquipNumSearch(1895) || EquipNumSearch(1896) || EquipNumSearch(1897) || EquipNumSearch(1898))
 			wBMC2 = wBMC2 * 1.05;
 	}
@@ -8600,7 +8600,7 @@ function BaiCI(wBaiCI)
 
 	if (IsABotNValkMonster())
 	{
-		//Geiravor's Will#1883 - 15% more physical against all BoTN Valkyries.
+		// Geiravor's Will#1883 - 15% more physical against all BoTN Valkyries.
 		if (EquipNumSearch(1883))
 			wBaiCI = wBaiCI * 1.15;
 
@@ -8628,7 +8628,7 @@ function BaiCI(wBaiCI)
 		if (EquipNumSearch(1890) && [874].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.05;
 		
-		//Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical against all BoTN Valkyries.
+		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical against all BoTN Valkyries.
 		if (EquipNumSearch(1891)||EquipNumSearch(1892)||EquipNumSearch(1893)||EquipNumSearch(1894)||EquipNumSearch(1895)||EquipNumSearch(1896)||EquipNumSearch(1897)||EquipNumSearch(1898))
 			wBaiCI = wBaiCI * 1.05;
 	}
