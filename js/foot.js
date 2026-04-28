@@ -1358,7 +1358,7 @@ with(document.calcForm){
 	// Geiravor's Will#1883 - If endow Holy or shadow: +50 ATK
 	if (EquipNumSearch(1883))
 	{
-		if(n_A_Weapon_zokusei == 6 || n_A_Weapon_zokusei == 7)
+		if (n_A_Weapon_zokusei == 6 || n_A_Weapon_zokusei == 7)
 		{
 			n_tok[17] += 50;
 		}

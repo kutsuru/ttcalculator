@@ -3361,14 +3361,14 @@ function BattleHiDam(){
 		}
 
 		// Reginleif's Brand#1888 - 10% resistance against Valkyrie Reginleif. 
-		if (EquipNumSearch(1888) && [877,878,876,746,945].includes(n_B[0]))
+		if (EquipNumSearch(1888) && [877,878].includes(n_B[0]))
 		{
 			for (i = 0 ; i <= 6; ++i)
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
 		}
 
 		// Prima's Vanity#1889 - 10% resistance against Valkyrie Prima. 
-		if (EquipNumSearch(1889) && [877,878,876,746,945].includes(n_B[0]))
+		if (EquipNumSearch(1889) && [876,746,945].includes(n_B[0]))
 		{
 			for (i = 0 ; i <= 6; ++i)
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
