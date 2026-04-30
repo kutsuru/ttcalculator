@@ -1354,6 +1354,15 @@ with(document.calcForm){
 
 	// Huuma Blaze Shuriken#546 - [Every Refine Level] MATK + 1%
 	n_tok[89] += n_A_Weapon_ATKplus * EquipNumSearch(546);
+
+	// Geiravor's Will#1883 - If endow Holy or shadow: +50 ATK
+	if (EquipNumSearch(1883))
+	{
+		if (n_A_Weapon_zokusei == 6 || n_A_Weapon_zokusei == 7)
+		{
+			n_tok[17] += 50;
+		}
+	}
 	
 	// Antonio's Coat#1728 - [Every Refine Level] ATK & MATK + 1
 	if (EquipNumSearch(1728)) {
@@ -8762,6 +8771,11 @@ function IsAFacewormMonster() {
 // Old Glast Heim & Old Glast Heim Challenge
 function IsAnOGHMonster() {
 	return !Taijin && ((MonMap[60].findIndex((x) => x == n_B[0]) > -1) || (MonMap[61].findIndex((x) => x == n_B[0]) > -1));
+}
+
+// BotN Valkyries
+function IsABotNValkMonster() {
+	return !Taijin && (MonMap[87].findIndex((x) => x == n_B[0]) > -1);
 }
 
 function apply_temporal_enchants()
