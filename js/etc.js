@@ -1743,6 +1743,67 @@ FACEWORM_3RD_ENCHANTS = [
 	,["Special LUK",[10,3], "CRIT + 3<br><br><b>[Every 2 Unsafe Refines]</b><br>Increases Crit ATK/Skills Damage by 1%."]
 ];
 
+VALKYRIE_TEAR_ENCHANTABLE = [
+	1907, 	// Prima's Tear
+	1908,	// Reginleif's Tear
+	1909,	// Herja's Tear
+	1910,	// Hildr's Tear
+	1911,	// Olrun's Tear
+	1912,	// Sigrun's Tear
+];
+
+VALKYRIE_TEAR_1ST_ENCHANTS = [
+	["(No Enchant)", [], ""]
+	,["ASPD Lv. 1",[12,2], "ASPD + 2%"]
+	,["ASPD Lv. 2",[12,3], "ASPD + 3%"]
+	,["ASPD Lv. 3",[12,4], "ASPD + 4%"]
+	,["Fire MATK Lv.1",[343,3], "Fire MATK + 3%"]
+	,["Fire MATK Lv.2",[343,5], "Fire MATK + 5%"]
+	,["Fire MATK Lv.3",[343,8], "Fire MATK + 8%"]
+	,["Water MATK Lv.1",[341.3], "Water MATK + 3%"]
+	,["Water MATK Lv.2",[341,5], "Water MATK + 5%"]
+	,["Water MATK Lv.3",[341,8], "Water MATK + 8%"]
+	,["Wind MATK Lv.1",[344.3], "Wind MATK + 3%"]
+	,["Wind MATK Lv.2",[344,5], "Wind MATK + 5%"]
+	,["Wind MATK Lv.3",[344,8], "Wind MATK + 8%"]
+	,["Earth MATK Lv.1",[342.3], "Earth MATK + 3%"]
+	,["Earth MATK Lv.2",[342,5], "Earth MATK + 5%"]
+	,["Earth MATK Lv.3",[342,8], "Earth MATK + 8%"]
+	,["Keen Eye Lv.1",[8,10,109,2], "HIT + 10<br>HIT + 2%"]
+	,["Keen Eye Lv.2",[8,10,109,4], "HIT + 10<br>HIT + 4%"]
+	,["Keen Eye Lv.3",[8,10,109,6], "HIT + 10<br>HIT + 6%"]
+	,["Reduce Delay Lv.2",[74,2], "2% Less Aftercast Delay"]
+	,["Reduce Delay Lv.3",[74,3], "3% Less Aftercast Delay"]
+	,["Reduce Delay Lv.4",[74,4], "4% Less Aftercast Delay"]
+	,["Fortune Lv.2",[6,2,70,2], "LUK + 2<br>Critical ATK + 2%"]
+	,["Fortune Lv.3",[6,3,70,3], "LUK + 3<br>Critical ATK + 3%"]
+	,["Fortune Lv.4",[6,4,70,4], "LUK + 4<br>Critical ATK + 4%"]
+	,["Reject Reflect (Melee) Lv.1",[], "Ignore 5% of Melee Reflect"]
+	,["Reject Reflect (Melee) Lv.2",[], "Ignore 10% of Melee Reflect"]
+	,["Reject Reflect (Melee) Lv.3",[], "Ignore 15% of Melee Reflect"]
+	,["Reject Reflect (Magic) Lv.3",[], "Ignore 15% of Magic Reflect"]
+	,["Reject Reflect (Magic) Lv.4",[], "Ignore 20% of Magic Reflect"]
+	,["Reject Reflect (Magic) Lv.5",[], "Ignore 25% of Magic Reflect"]
+	,["Cosmic Lv.1",[346,6,347,6,348,6], "Holy, Shadow & Ghost MATK + 6%"]
+	,["Cosmic Lv.2",[346,9,347,9,348,9], "Holy, Shadow & Ghost MATK + 9%"]
+	,["Cosmic Lv.3",[346,12,347,12,348,12], "Holy, Shadow & Ghost MATK + 12%"]
+	,["HP+ Lv.1",[13,300], "MaxHP + 300"]
+	,["HP+ Lv.2",[13,400], "MaxHP + 400"]
+	,["HP+ Lv.3",[13,500], "MaxHP + 500"]
+];
+
+VALKYRIE_TEAR_2ND_ENCHANTS = [
+	["(No Enchant)", [], ""]
+	,["Herja All Damage + 5%",[],"5% more physical and magical damage against Valkyrie Herja."]
+	,["Kara All Damage + 5%",[],"5% more physical and magical damage against Valkyrie Kara."]
+	,["Hildr All Damage + 5%",[],"5% more physical and magical damage against Valkyrie Hildr."]
+	,["Prima All Damage + 5%",[],"5% more physical and magical damage against Valkyrie Prima."]
+	,["Reginleif All Damage + 5%",[],"5% more physical and magical damage against Valkyrie Reginleif."]
+	,["Sigrun All Damage + 5%",[],"5% more physical and magical damage against Valkyrie Sigrun."]
+	,["Olrun All Damage + 5%",[],"5% more physical and magical damage against Valkyrie Olrun."]
+
+];
+
 ENCHANT_TYPES = {
 	"temporal_1st_enchant": TEMPORAL_1ST_ENCHANTS,
 	"temporal_2nd_enchant": TEMPORAL_2ND_ENCHANTS,
@@ -1750,6 +1811,8 @@ ENCHANT_TYPES = {
 	"faceworm_1st_enchant": FACEWORM_1ST_ENCHANTS,
 	"faceworm_2nd_enchant": FACEWORM_2ND_ENCHANTS,
 	"faceworm_3rd_enchant": FACEWORM_3RD_ENCHANTS,
+	"valkyrie_tear_1st_enchant": VALKYRIE_TEAR_1ST_ENCHANTS,
+	"valkyrie_tear_2nd_enchant": VALKYRIE_TEAR_2ND_ENCHANTS,
 }
 
 function display_enchant_info(enchant_type, enchant_index)

@@ -362,6 +362,9 @@ with(document.calcForm){
 	// Manage Faceworm Enchants
 	Click_FacewormEnchantment();
 
+	// Manage Valkyrie Tears Enchants
+	Click_ValkyrieTearEnchantment(n_A_Equip[9],n_A_Equip[10]);
+
 	if(n_Nitou){
 		W_REF2 = 0;
 		n_A_Weapon2LV = ItemOBJ[n_A_Equip[1]][4];
@@ -760,6 +763,9 @@ with(document.calcForm){
 
 	// Manage Faceworm Enchants
 	apply_faceworm_enchants();
+
+	// Manage Valkyrie Tear Enchants
+	apply_valkyrie_tear_enchants();
 
 	StPlusCalc();
 	
@@ -8874,6 +8880,20 @@ function apply_faceworm_enchants() {
 				break;
 			default:
         }
+	}
+}
+
+function apply_valkyrie_tear_enchants() {
+	let first_enchant_slot1_bonii = VALKYRIE_TEAR_1ST_ENCHANTS[eval(document.calcForm.valkyrie_tear_slot1_1st_enchant_select.value)][1];
+	let second_enchant_slot1_bonii = VALKYRIE_TEAR_2ND_ENCHANTS[eval(document.calcForm.valkyrie_tear_slot1_2nd_enchant_select.value)][1];
+	let first_enchant_slot2_bonii = VALKYRIE_TEAR_1ST_ENCHANTS[eval(document.calcForm.valkyrie_tear_slot2_1st_enchant_select.value)][1];
+	let second_enchant_slot2_bonii = VALKYRIE_TEAR_2ND_ENCHANTS[eval(document.calcForm.valkyrie_tear_slot2_2nd_enchant_select.value)][1];
+	let script_bonii = [first_enchant_slot1_bonii, second_enchant_slot1_bonii, first_enchant_slot2_bonii, second_enchant_slot2_bonii];
+
+	for (enchant_index = 0; enchant_index < script_bonii.length; ++enchant_index) {
+		let script_bonus = script_bonii[enchant_index];
+		for (i = 0; i < script_bonus.length; i += 2)
+			n_tok[script_bonus[i]] += script_bonus[i + 1];
 	}
 }
 
