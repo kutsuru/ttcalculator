@@ -3655,6 +3655,71 @@ function BattleMagicCalc(wBMC) {
 		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more magical damage against all BoTN Valkyries.
 		if (EquipNumSearch(1891) || EquipNumSearch(1892) || EquipNumSearch(1893) || EquipNumSearch(1894) || EquipNumSearch(1895) || EquipNumSearch(1896) || EquipNumSearch(1897) || EquipNumSearch(1898))
 			wBMC2 = wBMC2 * 1.05;
+
+		// Valkyrie Tear enchants - 5% more magical damage against specific Valkyrie
+		valkyrie_tear_slot1_2nd_enchant = eval(document.calcForm.valkyrie_tear_slot1_2nd_enchant_select.value);
+		if (valkyrie_tear_slot1_2nd_enchant > 0)
+		{
+			// Valkyrie Herja
+			if (valkyrie_tear_slot1_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Kara (not yet in calc)
+			//if (valkyrie_tear_slot1_2nd_enchant == 2 && [731,795].includes(n_B[0]))
+				//wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Hildr
+			if (valkyrie_tear_slot1_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Prima
+			if (valkyrie_tear_slot1_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Reginleif
+			if (valkyrie_tear_slot1_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Sigrun
+			if (valkyrie_tear_slot1_2nd_enchant == 6 && [874].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Olrun (not yet in calc)
+			//if (valkyrie_tear_slot1_2nd_enchant == 7 && [874].includes(n_B[0]))
+				//wBMC2 = wBMC2 * 1.05;
+		}
+
+		valkyrie_tear_slot2_2nd_enchant = eval(document.calcForm.valkyrie_tear_slot2_2nd_enchant_select.value);
+		if (valkyrie_tear_slot2_2nd_enchant > 0)
+		{
+			// Valkyrie Herja
+			if (valkyrie_tear_slot2_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Kara (not yet in calc)
+			//if (valkyrie_tear_slot2_2nd_enchant == 2 && [731,795].includes(n_B[0]))
+				//wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Hildr
+			if (valkyrie_tear_slot2_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Prima
+			if (valkyrie_tear_slot2_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Reginleif
+			if (valkyrie_tear_slot2_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Sigrun
+			if (valkyrie_tear_slot2_2nd_enchant == 6 && [874].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Olrun (not yet in calc)
+			//if (valkyrie_tear_slot2_2nd_enchant == 7 && [874].includes(n_B[0]))
+				//wBMC2 = wBMC2 * 1.05;
+		}
 	}
 
 	wBMC2 = Math.floor(wBMC2);
@@ -5868,6 +5933,24 @@ function PopulateCombos() {
 		faceworm_1st_enchant_select.value = 0;
 		faceworm_2nd_enchant_select.value = 0;
 		faceworm_3rd_enchant_select.value = 0;
+
+		// Valkyrie Tear Enchants
+		myInnerHtml("valkyrie_tear_slot1_1st_enchant", "1st Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_slot1_2nd_enchant", "2nd Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_slot2_1st_enchant", "1st Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_slot2_2nd_enchant", "2nd Enchant: ", 0);
+
+		for (i = 0; i < VALKYRIE_TEAR_1ST_ENCHANTS.length; ++i)
+		{
+			valkyrie_tear_slot1_1st_enchant_select.options[i] = new Option(VALKYRIE_TEAR_1ST_ENCHANTS[i][0], i);
+			valkyrie_tear_slot2_1st_enchant_select.options[i] = new Option(VALKYRIE_TEAR_1ST_ENCHANTS[i][0], i);
+		}
+		for (i = 0; i < VALKYRIE_TEAR_2ND_ENCHANTS.length; ++i)
+		{
+			valkyrie_tear_slot1_2nd_enchant_select.options[i] = new Option(VALKYRIE_TEAR_2ND_ENCHANTS[i][0], i);
+			valkyrie_tear_slot2_2nd_enchant_select.options[i] = new Option(VALKYRIE_TEAR_2ND_ENCHANTS[i][0], i);
+		}
+
 	}
 }
 
@@ -6831,6 +6914,39 @@ function Click_FacewormEnchantment() {
 	}
 }
 
+function Click_ValkyrieTearEnchantment( ac1, ac2) {
+	with (document.calcForm) {
+		var bEnchant1 = bEnchant2 = false;
+		if (ac1) {
+				for (i=0; i<VALKYRIE_TEAR_ENCHANTABLE.length; i++) {
+					if (VALKYRIE_TEAR_ENCHANTABLE[i] == ac1) {
+						bEnchant1 = true;
+						break;
+					}
+				}
+		}
+		if (ac2) {
+				for (i=0; i<VALKYRIE_TEAR_ENCHANTABLE.length; i++) {
+					if (VALKYRIE_TEAR_ENCHANTABLE[i] == ac2) {
+						bEnchant2 = true;
+						break;
+					}
+				}
+		}
+
+		document.getElementById("valkyrie_tear_slot1_enchant_block").style.display = ((bEnchant1) ? "" : "none");
+		document.getElementById("valkyrie_tear_slot2_enchant_block").style.display = ((bEnchant2) ? "" : "none");
+
+		if (bEnchant1 == false) {
+			document.calcForm.valkyrie_tear_slot1_1st_enchant_select.value = 0;
+			document.calcForm.valkyrie_tear_slot1_2nd_enchant_select.value = 0;
+		}
+		if (bEnchant2 == false) {
+			document.calcForm.valkyrie_tear_slot2_1st_enchant_select.value = 0;
+			document.calcForm.valkyrie_tear_slot2_2nd_enchant_select.value = 0;
+		}
+	}
+}
 
 function Click_Skill9SW(){
 with(document.calcForm){
@@ -8512,6 +8628,21 @@ function BaiCI(wBaiCI)
 				if (EquipNumSearch(897)) // Brave Assassin Damascus#897
 					crit_dmg_modifier += 10;
 			}
+
+			// Valkyrie Tear 1st enchant Fortune lv2,3,4 - Increases critical attack/skills attack by 2,3,4%
+			let slot1_enchant_category = 0;
+			let slot1_first_enchant_index = eval(document.calcForm.valkyrie_tear_slot1_1st_enchant_select.value);
+			let slot2_enchant_category = 0;
+			let slot2_first_enchant_index = eval(document.calcForm.valkyrie_tear_slot2_1st_enchant_select.value);
+
+			if (272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill)
+			{
+				if ([22,23,24].includes(slot1_first_enchant_index))
+					crit_dmg_modifier += (slot1_first_enchant_index - 20);
+				if ([22,23,24].includes(slot2_first_enchant_index))
+					crit_dmg_modifier += (slot2_first_enchant_index - 20);
+			}
+
 			damage_modifier = Math.floor(damage_modifier * (1 + crit_dmg_modifier / 100));
 		}
 
@@ -8624,8 +8755,73 @@ function BaiCI(wBaiCI)
 			wBaiCI = wBaiCI * 1.05;
 		
 		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical damage against all BoTN Valkyries.
-		if (EquipNumSearch(1891)||EquipNumSearch(1892)||EquipNumSearch(1893)||EquipNumSearch(1894)||EquipNumSearch(1895)||EquipNumSearch(1896)||EquipNumSearch(1897)||EquipNumSearch(1898))
+		if (EquipNumSearch(1891) || EquipNumSearch(1892) || EquipNumSearch(1893) || EquipNumSearch(1894) || EquipNumSearch(1895) || EquipNumSearch(1896) || EquipNumSearch(1897) || EquipNumSearch(1898))
 			wBaiCI = wBaiCI * 1.05;
+
+		// Valkyrie Tear enchants - 5% more physical damage against specific Valkyrie
+		valkyrie_tear_slot1_2nd_enchant = eval(document.calcForm.valkyrie_tear_slot1_2nd_enchant_select.value);
+		if (valkyrie_tear_slot1_2nd_enchant > 0)
+		{
+			// Valkyrie Herja
+			if (valkyrie_tear_slot1_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Kara (not yet in calc)
+			//if (valkyrie_tear_slot1_2nd_enchant == 2 && [731,795].includes(n_B[0]))
+				//wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Hildr
+			if (valkyrie_tear_slot1_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Prima
+			if (valkyrie_tear_slot1_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Reginleif
+			if (valkyrie_tear_slot1_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Sigrun
+			if (valkyrie_tear_slot1_2nd_enchant == 6 && [874].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Olrun (not yet in calc)
+			//if (valkyrie_tear_slot1_2nd_enchant == 7 && [874].includes(n_B[0]))
+				//wBaiCI = wBaiCI * 1.05;
+		}
+
+		valkyrie_tear_slot2_2nd_enchant = eval(document.calcForm.valkyrie_tear_slot2_2nd_enchant_select.value);
+		if (valkyrie_tear_slot2_2nd_enchant > 0)
+		{
+			// Valkyrie Herja
+			if (valkyrie_tear_slot2_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Kara (not yet in calc)
+			//if (valkyrie_tear_slot2_2nd_enchant == 2 && [731,795].includes(n_B[0]))
+				//wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Hildr
+			if (valkyrie_tear_slot2_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Prima
+			if (valkyrie_tear_slot2_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Reginleif
+			if (valkyrie_tear_slot2_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Sigrun
+			if (valkyrie_tear_slot2_2nd_enchant == 6 && [874].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Olrun (not yet in calc)
+			//if (valkyrie_tear_slot2_2nd_enchant == 7 && [874].includes(n_B[0]))
+				//wBaiCI = wBaiCI * 1.05;
+		}
 	}
 	return wBaiCI;
 }

@@ -1964,6 +1964,12 @@ ItemOBJ = [
 ,[1904,100,0,0,0,0,0,0,"Kara's Blessing and Hildr's Veil and Sigrun's Journey and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
 ,[1905,100,0,0,0,0,0,0,"Kara's Blessing and Reginleif's Brand and Prima's Vanity and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
 ,[1906,100,0,0,0,0,0,0,"Kara's Blessing and Reginleif's Brand and Sigrun's Journey and Brynhildr's Stand","","10% resistance against All BoTN Valkyries",7,1,0]
+,[1907,64,0,0,0,1,10,1,"Prima's Tear","",0,5,3,25,2,0]
+,[1908,64,0,0,0,1,10,1,"Reginleif's Tear","",0,4,3,89,2,0]
+,[1909,64,0,0,0,1,10,1,"Herja's Tear","",0,1,3,87,2,0]
+,[1910,64,0,0,0,1,10,1,"Hildr's Tear","",0,3,3,13,750,0]
+,[1911,64,0,0,0,1,10,1,"Olrun's Tear","",0,6,3,10,5,0]
+,[1912,64,0,0,0,1,10,1,"Sigrun's Tear","",0,2,3,9,2,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3904,6 +3910,12 @@ ItemID = [
 ,[1904,2,24003,24004,24007,24001]
 ,[1905,2,24003,24005,24006,24001]
 ,[1906,2,24003,24005,24007,24001]
+,[1907,1,24008]
+,[1908,1,24009]
+,[1909,1,24010]
+,[1910,1,24011]
+,[1911,1,24012]
+,[1912,1,24013]
 ];
 
 /*
