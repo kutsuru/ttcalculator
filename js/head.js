@@ -3657,67 +3657,67 @@ function BattleMagicCalc(wBMC) {
 			wBMC2 = wBMC2 * 1.05;
 
 		// Valkyrie Tear enchants - 5% more magical damage against specific Valkyrie
-		valkyrie_tear_slot1_2nd_enchant = eval(document.calcForm.valkyrie_tear_slot1_2nd_enchant_select.value);
-		if (valkyrie_tear_slot1_2nd_enchant > 0)
+		valkyrie_tear_left_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value);
+		if (valkyrie_tear_left_acc_2nd_enchant > 0)
 		{
 			// Valkyrie Herja
-			if (valkyrie_tear_slot1_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Kara (not yet in calc)
-			//if (valkyrie_tear_slot1_2nd_enchant == 2 && [731,795].includes(n_B[0]))
+			//if (valkyrie_tear_left_acc_2nd_enchant == 2 && [731,795].includes(n_B[0]))
 				//wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Hildr
-			if (valkyrie_tear_slot1_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Prima
-			if (valkyrie_tear_slot1_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Reginleif
-			if (valkyrie_tear_slot1_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 5 && [877,878].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Sigrun
-			if (valkyrie_tear_slot1_2nd_enchant == 6 && [874].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 6 && [874].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Olrun (not yet in calc)
-			//if (valkyrie_tear_slot1_2nd_enchant == 7 && [874].includes(n_B[0]))
+			//if (valkyrie_tear_left_acc_2nd_enchant == 7 && [874].includes(n_B[0]))
 				//wBMC2 = wBMC2 * 1.05;
 		}
 
-		valkyrie_tear_slot2_2nd_enchant = eval(document.calcForm.valkyrie_tear_slot2_2nd_enchant_select.value);
-		if (valkyrie_tear_slot2_2nd_enchant > 0)
+		valkyrie_tear_right_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value);
+		if (valkyrie_tear_right_acc_2nd_enchant > 0)
 		{
 			// Valkyrie Herja
-			if (valkyrie_tear_slot2_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Kara (not yet in calc)
-			//if (valkyrie_tear_slot2_2nd_enchant == 2 && [731,795].includes(n_B[0]))
+			//if (valkyrie_tear_right_acc_2nd_enchant == 2 && [731,795].includes(n_B[0]))
 				//wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Hildr
-			if (valkyrie_tear_slot2_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Prima
-			if (valkyrie_tear_slot2_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Reginleif
-			if (valkyrie_tear_slot2_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 5 && [877,878].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Sigrun
-			if (valkyrie_tear_slot2_2nd_enchant == 6 && [874].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 6 && [874].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Olrun (not yet in calc)
-			//if (valkyrie_tear_slot2_2nd_enchant == 7 && [874].includes(n_B[0]))
+			//if (valkyrie_tear_right_acc_2nd_enchant == 7 && [874].includes(n_B[0]))
 				//wBMC2 = wBMC2 * 1.05;
 		}
 	}
@@ -5935,20 +5935,20 @@ function PopulateCombos() {
 		faceworm_3rd_enchant_select.value = 0;
 
 		// Valkyrie Tear Enchants
-		myInnerHtml("valkyrie_tear_slot1_1st_enchant", "1st Enchant: ", 0);
-		myInnerHtml("valkyrie_tear_slot1_2nd_enchant", "2nd Enchant: ", 0);
-		myInnerHtml("valkyrie_tear_slot2_1st_enchant", "1st Enchant: ", 0);
-		myInnerHtml("valkyrie_tear_slot2_2nd_enchant", "2nd Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_left_acc_1st_enchant", "1st Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_left_acc_2nd_enchant", "2nd Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_right_acc_1st_enchant", "1st Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_right_acc_2nd_enchant", "2nd Enchant: ", 0);
 
 		for (i = 0; i < VALKYRIE_TEAR_1ST_ENCHANTS.length; ++i)
 		{
-			valkyrie_tear_slot1_1st_enchant_select.options[i] = new Option(VALKYRIE_TEAR_1ST_ENCHANTS[i][0], i);
-			valkyrie_tear_slot2_1st_enchant_select.options[i] = new Option(VALKYRIE_TEAR_1ST_ENCHANTS[i][0], i);
+			valkyrie_tear_left_acc_1st_enchant_select.options[i] = new Option(VALKYRIE_TEAR_1ST_ENCHANTS[i][0], i);
+			valkyrie_tear_right_acc_1st_enchant_select.options[i] = new Option(VALKYRIE_TEAR_1ST_ENCHANTS[i][0], i);
 		}
 		for (i = 0; i < VALKYRIE_TEAR_2ND_ENCHANTS.length; ++i)
 		{
-			valkyrie_tear_slot1_2nd_enchant_select.options[i] = new Option(VALKYRIE_TEAR_2ND_ENCHANTS[i][0], i);
-			valkyrie_tear_slot2_2nd_enchant_select.options[i] = new Option(VALKYRIE_TEAR_2ND_ENCHANTS[i][0], i);
+			valkyrie_tear_left_acc_2nd_enchant_select.options[i] = new Option(VALKYRIE_TEAR_2ND_ENCHANTS[i][0], i);
+			valkyrie_tear_right_acc_2nd_enchant_select.options[i] = new Option(VALKYRIE_TEAR_2ND_ENCHANTS[i][0], i);
 		}
 
 	}
@@ -6934,16 +6934,16 @@ function Click_ValkyrieTearEnchantment( ac1, ac2) {
 				}
 		}
 
-		document.getElementById("valkyrie_tear_slot1_enchant_block").style.display = ((bEnchant1) ? "" : "none");
-		document.getElementById("valkyrie_tear_slot2_enchant_block").style.display = ((bEnchant2) ? "" : "none");
+		document.getElementById("valkyrie_tear_left_acc_enchant_block").style.display = ((bEnchant1) ? "" : "none");
+		document.getElementById("valkyrie_tear_right_acc_enchant_block").style.display = ((bEnchant2) ? "" : "none");
 
 		if (bEnchant1 == false) {
-			document.calcForm.valkyrie_tear_slot1_1st_enchant_select.value = 0;
-			document.calcForm.valkyrie_tear_slot1_2nd_enchant_select.value = 0;
+			document.calcForm.valkyrie_tear_left_acc_1st_enchant_select.value = 0;
+			document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value = 0;
 		}
 		if (bEnchant2 == false) {
-			document.calcForm.valkyrie_tear_slot2_1st_enchant_select.value = 0;
-			document.calcForm.valkyrie_tear_slot2_2nd_enchant_select.value = 0;
+			document.calcForm.valkyrie_tear_right_acc_1st_enchant_select.value = 0;
+			document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value = 0;
 		}
 	}
 }
@@ -8631,9 +8631,9 @@ function BaiCI(wBaiCI)
 
 			// Valkyrie Tear 1st enchant Fortune lv2,3,4 - Increases critical attack/skills attack by 2,3,4%
 			let slot1_enchant_category = 0;
-			let slot1_first_enchant_index = eval(document.calcForm.valkyrie_tear_slot1_1st_enchant_select.value);
+			let slot1_first_enchant_index = eval(document.calcForm.valkyrie_tear_left_acc_1st_enchant_select.value);
 			let slot2_enchant_category = 0;
-			let slot2_first_enchant_index = eval(document.calcForm.valkyrie_tear_slot2_1st_enchant_select.value);
+			let slot2_first_enchant_index = eval(document.calcForm.valkyrie_tear_right_acc_1st_enchant_select.value);
 
 			if (272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill)
 			{
@@ -8759,67 +8759,67 @@ function BaiCI(wBaiCI)
 			wBaiCI = wBaiCI * 1.05;
 
 		// Valkyrie Tear enchants - 5% more physical damage against specific Valkyrie
-		valkyrie_tear_slot1_2nd_enchant = eval(document.calcForm.valkyrie_tear_slot1_2nd_enchant_select.value);
-		if (valkyrie_tear_slot1_2nd_enchant > 0)
+		valkyrie_tear_left_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value);
+		if (valkyrie_tear_left_acc_2nd_enchant > 0)
 		{
 			// Valkyrie Herja
-			if (valkyrie_tear_slot1_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Kara (not yet in calc)
-			//if (valkyrie_tear_slot1_2nd_enchant == 2 && [731,795].includes(n_B[0]))
+			//if (valkyrie_tear_left_acc_2nd_enchant == 2 && [731,795].includes(n_B[0]))
 				//wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Hildr
-			if (valkyrie_tear_slot1_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Prima
-			if (valkyrie_tear_slot1_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Reginleif
-			if (valkyrie_tear_slot1_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 5 && [877,878].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Sigrun
-			if (valkyrie_tear_slot1_2nd_enchant == 6 && [874].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 6 && [874].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Olrun (not yet in calc)
-			//if (valkyrie_tear_slot1_2nd_enchant == 7 && [874].includes(n_B[0]))
+			//if (valkyrie_tear_left_acc_2nd_enchant == 7 && [874].includes(n_B[0]))
 				//wBaiCI = wBaiCI * 1.05;
 		}
 
-		valkyrie_tear_slot2_2nd_enchant = eval(document.calcForm.valkyrie_tear_slot2_2nd_enchant_select.value);
-		if (valkyrie_tear_slot2_2nd_enchant > 0)
+		valkyrie_tear_right_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value);
+		if (valkyrie_tear_right_acc_2nd_enchant > 0)
 		{
 			// Valkyrie Herja
-			if (valkyrie_tear_slot2_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Kara (not yet in calc)
-			//if (valkyrie_tear_slot2_2nd_enchant == 2 && [731,795].includes(n_B[0]))
+			//if (valkyrie_tear_right_acc_2nd_enchant == 2 && [731,795].includes(n_B[0]))
 				//wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Hildr
-			if (valkyrie_tear_slot2_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Prima
-			if (valkyrie_tear_slot2_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Reginleif
-			if (valkyrie_tear_slot2_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 5 && [877,878].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Sigrun
-			if (valkyrie_tear_slot2_2nd_enchant == 6 && [874].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 6 && [874].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Olrun (not yet in calc)
-			//if (valkyrie_tear_slot2_2nd_enchant == 7 && [874].includes(n_B[0]))
+			//if (valkyrie_tear_right_acc_2nd_enchant == 7 && [874].includes(n_B[0]))
 				//wBaiCI = wBaiCI * 1.05;
 		}
 	}
