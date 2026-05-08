@@ -6914,34 +6914,22 @@ function Click_FacewormEnchantment() {
 	}
 }
 
-function Click_ValkyrieTearEnchantment( ac1, ac2) {
+function Click_ValkyrieTearEnchantment() {
 	with (document.calcForm) {
-		var bEnchant1 = bEnchant2 = false;
-		if (ac1) {
-				for (i=0; i<VALKYRIE_TEAR_ENCHANTABLE.length; i++) {
-					if (VALKYRIE_TEAR_ENCHANTABLE[i] == ac1) {
-						bEnchant1 = true;
-						break;
-					}
-				}
-		}
-		if (ac2) {
-				for (i=0; i<VALKYRIE_TEAR_ENCHANTABLE.length; i++) {
-					if (VALKYRIE_TEAR_ENCHANTABLE[i] == ac2) {
-						bEnchant2 = true;
-						break;
-					}
-				}
-		}
+
+		let leftAcc = n_A_Equip[9];
+		let rightAcc = n_A_Equip[10];
+		const bEnchant1 = leftAcc && VALKYRIE_TEAR_ENCHANTABLE.includes(leftAcc);
+		const bEnchant2 = rightAcc && VALKYRIE_TEAR_ENCHANTABLE.includes(rightAcc);
 
 		document.getElementById("valkyrie_tear_left_acc_enchant_block").style.display = ((bEnchant1) ? "" : "none");
 		document.getElementById("valkyrie_tear_right_acc_enchant_block").style.display = ((bEnchant2) ? "" : "none");
 
-		if (bEnchant1 == false) {
+		if (!bEnchant1) {
 			document.calcForm.valkyrie_tear_left_acc_1st_enchant_select.value = 0;
 			document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value = 0;
 		}
-		if (bEnchant2 == false) {
+		if (!bEnchant2) {
 			document.calcForm.valkyrie_tear_right_acc_1st_enchant_select.value = 0;
 			document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value = 0;
 		}

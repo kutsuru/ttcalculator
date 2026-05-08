@@ -363,7 +363,7 @@ with(document.calcForm){
 	Click_FacewormEnchantment();
 
 	// Manage Valkyrie Tears Enchants
-	Click_ValkyrieTearEnchantment(n_A_Equip[9],n_A_Equip[10]);
+	Click_ValkyrieTearEnchantment();
 
 	if(n_Nitou){
 		W_REF2 = 0;
