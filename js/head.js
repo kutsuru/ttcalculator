@@ -3658,7 +3658,7 @@ function BattleMagicCalc(wBMC) {
 
 		// Valkyrie Tear enchants - 5% more magical damage against specific Valkyrie
 		valkyrie_tear_left_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value);
-		if (valkyrie_tear_left_acc_2nd_enchant > 0)
+		if (valkyrie_tear_left_acc_2nd_enchant)
 		{
 			// Valkyrie Herja
 			if (valkyrie_tear_left_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
@@ -3690,7 +3690,7 @@ function BattleMagicCalc(wBMC) {
 		}
 
 		valkyrie_tear_right_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value);
-		if (valkyrie_tear_right_acc_2nd_enchant > 0)
+		if (valkyrie_tear_right_acc_2nd_enchant)
 		{
 			// Valkyrie Herja
 			if (valkyrie_tear_right_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
@@ -8760,7 +8760,7 @@ function BaiCI(wBaiCI)
 
 		// Valkyrie Tear enchants - 5% more physical damage against specific Valkyrie
 		valkyrie_tear_left_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value);
-		if (valkyrie_tear_left_acc_2nd_enchant > 0)
+		if (valkyrie_tear_left_acc_2nd_enchant)
 		{
 			// Valkyrie Herja
 			if (valkyrie_tear_left_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
@@ -8792,7 +8792,7 @@ function BaiCI(wBaiCI)
 		}
 
 		valkyrie_tear_right_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value);
-		if (valkyrie_tear_right_acc_2nd_enchant > 0)
+		if (valkyrie_tear_right_acc_2nd_enchant)
 		{
 			// Valkyrie Herja
 			if (valkyrie_tear_right_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
