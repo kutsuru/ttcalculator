@@ -2256,7 +2256,7 @@ function BattleCalc999() {
 			wHITsuu = n_A_ActiveSkillLV;
 			wCast = 2;
 			n_Delay[2] = 0.5;
-			wbairitu = 0.4 + n_A_BaseLV / 100;
+			wbairitu = (40 + n_A_BaseLV) / 100;
 			if(Taijin==1)
 				wbairitu = 0;
 		}
@@ -3347,11 +3347,11 @@ function BattleHiDam(){
 	if (IsABotNValkMonster())
 	{
 		// Kara's Blessing#1885 - 10% resistance against Valkyrie Kara (not in calc yet). 
-		//if (EquipNumSearch(1885) && [731,795].includes(n_B[0])
-		//{
-			//for (i = 0 ; i <= 6; ++i)
-				//w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
-		//}
+		if (EquipNumSearch(1885) && [948,952,953].includes(n_B[0]))
+		{
+			for (i = 0 ; i <= 6; ++i)
+				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
+		}
 
 		// Hildr's Veil#1887 - 5% resistance against Valkyrie Hildr.
 		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
@@ -3368,14 +3368,14 @@ function BattleHiDam(){
 		}
 
 		// Prima's Vanity#1889 - 10% resistance against Valkyrie Prima. 
-		if (EquipNumSearch(1889) && [876,746,945].includes(n_B[0]))
+		if (EquipNumSearch(1889) && [876,746,945,950].includes(n_B[0]))
 		{
 			for (i = 0 ; i <= 6; ++i)
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
 		}
 
-		// Sigrun's Journey#1890 - 10% resistance against Valkyrie Sigrun and Valkyrie Olrun (not yet on calc). 
-		if (EquipNumSearch(1890) && [874].includes(n_B[0]))
+		// Sigrun's Journey#1890 - 10% resistance against Valkyrie Sigrun and Valkyrie Olrun.
+		if (EquipNumSearch(1890) && [874,947,954,949,951].includes(n_B[0]))
 		{
 			for (i = 0 ; i <= 6; ++i)
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
@@ -3633,23 +3633,23 @@ function BattleMagicCalc(wBMC) {
 			wBMC2 = wBMC2 * 1.10;
 
 		// Kara's Blessing#1885 - 10% more magical damage against Valkyrie Kara (not yet in calc)
-		//if (EquipNumSearch(1885) && [731,795].includes(n_B[0])
-			//wBMC2 = wBMC2 * 1.10;
+		if (EquipNumSearch(1885) && [948,952,953].includes(n_B[0]))
+			wBMC2 = wBMC2 * 1.10;
 
 		// Hildr's Veil#1887 - 10% more magical damage against Valkyrie Hildr#931/875. 
 		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.10;	
 
 		// Reginleif's Brand#1888 - 5% more magical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
-		if (EquipNumSearch(1888) && [877,878,876,746,945].includes(n_B[0]))
+		if (EquipNumSearch(1888) && [877,878,876,746,945,950].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.05;	
 
 		// Prima's Vanity#1889 - 5% more magical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
-		if (EquipNumSearch(1889) && [877,878,876,746,945].includes(n_B[0]))
+		if (EquipNumSearch(1889) && [877,878,876,746,945,950].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.05;	
 
-		// Sigrun's Journey#1890 - 5% more magical damage against Valkyrie Sigrun#874 and Valkyrie Olrun (not yet on calc). 
-		if (EquipNumSearch(1890) && [874].includes(n_B[0]))
+		// Sigrun's Journey#1890 - 5% more magical damage against Valkyrie Sigrun#874 and Valkyrie Olrun. 
+		if (EquipNumSearch(1890) && [874,947,954,949,951].includes(n_B[0]))
 			wBMC2 = wBMC2 * 1.05;
 
 		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more magical damage against all BoTN Valkyries.
@@ -3664,16 +3664,16 @@ function BattleMagicCalc(wBMC) {
 			if (valkyrie_tear_left_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
-			// Valkyrie Kara (not yet in calc)
-			//if (valkyrie_tear_left_acc_2nd_enchant == 2 && [731,795].includes(n_B[0]))
-				//wBMC2 = wBMC2 * 1.05;
+			// Valkyrie Kara
+			if (valkyrie_tear_left_acc_2nd_enchant == 2 && [948,952,953].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Hildr
 			if (valkyrie_tear_left_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Prima
-			if (valkyrie_tear_left_acc_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 4 && [876,746,945,950].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Reginleif
@@ -3681,12 +3681,12 @@ function BattleMagicCalc(wBMC) {
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Sigrun
-			if (valkyrie_tear_left_acc_2nd_enchant == 6 && [874].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 6 && [874,947,954].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
-			// Valkyrie Olrun (not yet in calc)
-			//if (valkyrie_tear_left_acc_2nd_enchant == 7 && [874].includes(n_B[0]))
-				//wBMC2 = wBMC2 * 1.05;
+			// Valkyrie Olrun
+			if (valkyrie_tear_left_acc_2nd_enchant == 7 && [949,951].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
 		}
 
 		valkyrie_tear_right_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value);
@@ -3696,16 +3696,16 @@ function BattleMagicCalc(wBMC) {
 			if (valkyrie_tear_right_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
-			// Valkyrie Kara (not yet in calc)
-			//if (valkyrie_tear_right_acc_2nd_enchant == 2 && [731,795].includes(n_B[0]))
-				//wBMC2 = wBMC2 * 1.05;
+			// Valkyrie Kara
+			if (valkyrie_tear_right_acc_2nd_enchant == 2 && [948,952,953].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Hildr
 			if (valkyrie_tear_right_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Prima
-			if (valkyrie_tear_right_acc_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 4 && [876,746,945,950].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Reginleif
@@ -3713,12 +3713,12 @@ function BattleMagicCalc(wBMC) {
 				wBMC2 = wBMC2 * 1.05;
 
 			// Valkyrie Sigrun
-			if (valkyrie_tear_right_acc_2nd_enchant == 6 && [874].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 6 && [874,947,954].includes(n_B[0]))
 				wBMC2 = wBMC2 * 1.05;
 
-			// Valkyrie Olrun (not yet in calc)
-			//if (valkyrie_tear_right_acc_2nd_enchant == 7 && [874].includes(n_B[0]))
-				//wBMC2 = wBMC2 * 1.05;
+			// Valkyrie Olrun
+			if (valkyrie_tear_right_acc_2nd_enchant == 7 && [949,951].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
 		}
 	}
 
@@ -8722,24 +8722,24 @@ function BaiCI(wBaiCI)
 		if (EquipNumSearch(1884) && [731,795].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.10;
 
-		// Kara's Blessing#1885 - 10% more physical damage against Valkyrie Kara (not yet in calc)
-		//if (EquipNumSearch(1885) && [731,795].includes(n_B[0])
-			//wBaiCI = wBaiCI * 1.10;
+		// Kara's Blessing#1885 - 10% more physical damage against Valkyrie Kara
+		if (EquipNumSearch(1885) && [948,952,953].includes(n_B[0]))
+			wBaiCI = wBaiCI * 1.10;
 
 		// Hildr's Veil#1887 - 10% more physical damage against Valkyrie Hildr#931/875. 
 		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.10;	
 
 		// Reginleif's Brand#1888 - 5% more physical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
-		if (EquipNumSearch(1888) && [877,878,876,746,945].includes(n_B[0]))
+		if (EquipNumSearch(1888) && [877,878,876,746,945,950].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.05;	
 
 		// Prima's Vanity#1889 - 5% more physical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
-		if (EquipNumSearch(1889) && [877,878,876,746,945].includes(n_B[0]))
+		if (EquipNumSearch(1889) && [877,878,876,746,945,950].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.05;	
 
-		// Sigrun's Journey#1890 - 5% more physical damage against Valkyrie Sigrun#874 and Valkyrie Olrun (not yet on calc). 
-		if (EquipNumSearch(1890) && [874].includes(n_B[0]))
+		// Sigrun's Journey#1890 - 5% more physical damage against Valkyrie Sigrun#874 and Valkyrie Olrun. 
+		if (EquipNumSearch(1890) && [874,947,954,949,951].includes(n_B[0]))
 			wBaiCI = wBaiCI * 1.05;
 		
 		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical damage against all BoTN Valkyries.
@@ -8754,16 +8754,16 @@ function BaiCI(wBaiCI)
 			if (valkyrie_tear_left_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
-			// Valkyrie Kara (not yet in calc)
-			//if (valkyrie_tear_left_acc_2nd_enchant == 2 && [731,795].includes(n_B[0]))
-				//wBaiCI = wBaiCI * 1.05;
+			// Valkyrie Kara
+			if (valkyrie_tear_left_acc_2nd_enchant == 2 && [948,952,953].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Hildr
 			if (valkyrie_tear_left_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Prima
-			if (valkyrie_tear_left_acc_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 4 && [876,746,945,950].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Reginleif
@@ -8771,12 +8771,12 @@ function BaiCI(wBaiCI)
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Sigrun
-			if (valkyrie_tear_left_acc_2nd_enchant == 6 && [874].includes(n_B[0]))
+			if (valkyrie_tear_left_acc_2nd_enchant == 6 && [874,947,954].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
-			// Valkyrie Olrun (not yet in calc)
-			//if (valkyrie_tear_left_acc_2nd_enchant == 7 && [874].includes(n_B[0]))
-				//wBaiCI = wBaiCI * 1.05;
+			// Valkyrie Olrun
+			if (valkyrie_tear_left_acc_2nd_enchant == 7 && [949,951].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
 		}
 
 		valkyrie_tear_right_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value);
@@ -8786,16 +8786,16 @@ function BaiCI(wBaiCI)
 			if (valkyrie_tear_right_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
-			// Valkyrie Kara (not yet in calc)
-			//if (valkyrie_tear_right_acc_2nd_enchant == 2 && [731,795].includes(n_B[0]))
-				//wBaiCI = wBaiCI * 1.05;
+			// Valkyrie Kara
+			if (valkyrie_tear_right_acc_2nd_enchant == 2 && [948,952,953].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Hildr
 			if (valkyrie_tear_right_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Prima
-			if (valkyrie_tear_right_acc_2nd_enchant == 4 && [876,746,945].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 4 && [876,746,945,950].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Reginleif
@@ -8803,12 +8803,12 @@ function BaiCI(wBaiCI)
 				wBaiCI = wBaiCI * 1.05;
 
 			// Valkyrie Sigrun
-			if (valkyrie_tear_right_acc_2nd_enchant == 6 && [874].includes(n_B[0]))
+			if (valkyrie_tear_right_acc_2nd_enchant == 6 && [874,947,954].includes(n_B[0]))
 				wBaiCI = wBaiCI * 1.05;
 
-			// Valkyrie Olrun (not yet in calc)
-			//if (valkyrie_tear_right_acc_2nd_enchant == 7 && [874].includes(n_B[0]))
-				//wBaiCI = wBaiCI * 1.05;
+			// Valkyrie Olrun
+			if (valkyrie_tear_right_acc_2nd_enchant == 7 && [949,951].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
 		}
 	}
 	return wBaiCI;
