@@ -2256,7 +2256,7 @@ function BattleCalc999() {
 			wHITsuu = n_A_ActiveSkillLV;
 			wCast = 2;
 			n_Delay[2] = 0.5;
-			wbairitu = (40 + n_A_BaseLV) / 100;
+			wbairitu = 0.4 + n_A_BaseLV / 100;
 			if(Taijin==1)
 				wbairitu = 0;
 		}
