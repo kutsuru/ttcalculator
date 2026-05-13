@@ -1969,7 +1969,7 @@ ItemOBJ = [
 ,[1909,64,0,0,0,1,10,1,"Herja's Tear","",0,1,3,87,2,0]
 ,[1910,64,0,0,0,1,10,1,"Hildr's Tear","",0,3,3,13,750,0]
 ,[1911,64,0,0,0,1,10,1,"Olrun's Tear","",0,6,3,10,5,0]
-,[1912,64,0,0,0,1,10,1,"Sigrun's Tear","",0,2,3,9,2,0]
+,[1912,64,0,0,0,1,10,1,"Sigrun's Tear","",0,2,3,9,10,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
