@@ -463,7 +463,7 @@ function BattleCalc999() {
 
 			Last_DMG_A[0] = Last_DMG_B[0] = wX + w_left_Minatk;
 			InnStr[0] += wX + " (" + w_left_Minatk + ")";
-			if (w998D) {
+			if (DA_effective_rate) {
 				str_bSUBname += "Double Attack chance<BR>";
 				str_bSUB += (wX * 2 + w_left_Minatk) + "~";
 			}
@@ -476,9 +476,9 @@ function BattleCalc999() {
 			var wX = w_DMG[2] + EDP_DMG(2) + w_left_Maxatk;
 			Last_DMG_A[2] = Last_DMG_B[2] = wX + w_left_Maxatk;
 			InnStr[2] += w_DMG[2] + EDP_DMG(2) + " (" + w_left_Maxatk + ")";
-			if (w998D) {
+			if (DA_effective_rate) {
 				wX = (w_DMG[2] + EDP_DMG(2)) * 2 + w_left_Maxatk;
-				str_bSUB += wX + " (" + w998D + "%)<BR>";
+				str_bSUB += wX + " (" + DA_effective_rate + "%)<BR>";
 			}
 			if (wX > n_Max_DMG && NA_crits < 100)
 				n_Max_DMG = wX;
@@ -574,9 +574,9 @@ function BattleCalc999() {
 
 				n_A_ActiveSkill = previous_active_skill;
 
-				let triple_attack_rate = get_triple_attack_rate();
+				let wTA = get_triple_attack_rate();
 
-				str_bSUB += san[0] + "~" + san[2] + " (" + triple_attack_rate + "% Chance)<BR>";
+				str_bSUB += san[0] + "~" + san[2] + " (" + wTA + "% Chance)<BR>";
 				TyouEnkakuSousa3dan = 0;
 				if (n_Min_DMG > san[0])
 					n_Min_DMG = san[0];
@@ -7957,7 +7957,7 @@ function calc()
 	}
 
 	TyouEnkakuSousa3dan = 0;
-	let triple_attack_rate = get_triple_attack_rate();
+	let wTA = get_triple_attack_rate();
 
 	// Manage [Double Attack#13] + [Chain Action#427]. Two separate variables are stored in game. Certain cards/equips grant Double Attack skill
 	// (Sidewinder Card#43, Snake Head Hat#1495 etc). Certain cards/bonuses grant Double Attack RATE (Blade of Angels#1379#12th Bonus, Gertie Card#619).
@@ -8019,9 +8019,11 @@ function calc()
 		if(45 == n_A_JOB) // Gunslinger [Chain Action] Rate + 10%
 			wCA = wCA ? wCA + 10 * CardNumSearch(619) : wCA; 
 	}
-
+	
 	// For all normal attacks and skills. Starting with 100%, Determining % that are [Triple Attack], [Double Attack]/[Chain Action], hits that crit, hits that dont crit, misses
 	let current_attack_pct = 100;
+	if(n_A_ActiveSkill)
+		wTA = wDA = wCA = 0; //Only basic attacks can TA/DA/CA
 	
 	// wTA = % of attacks that are [Triple Attack]
 	current_attack_pct = wTA;
@@ -8047,8 +8049,9 @@ function calc()
 	// remaining attacks at this point (non-TA, non-DA, non-CA) which is all normal attacks
 	current_attack_pct = current_attack_pct - CA_effective_rate;
 	
-	// Normal Attacks
-	NA_crits = current_attack_pct * w_Cri / 100;
+	// Normal Attacks + Skills
+	if(can_attack_crit(n_A_ActiveSkill))
+		NA_crits = current_attack_pct * w_Cri / 100;
 	NA_hits = (current_attack_pct - NA_crits) * w_HIT / 100;
 	NA_miss = current_attack_pct - NA_crits - NA_hits;
 
@@ -9684,27 +9687,27 @@ function is_a_combo_skill(skill_id)
 
 function get_triple_attack_rate()
 {
-	let triple_attack_rate = 0;
+	let wTA = 0;
 	let triple_attack_lv = SkillSearch(187);
 	
 	if (triple_attack_lv)
 	{
 		// Gertie Card#619 - [Triple Attack#187] Rate + 10%
 		// Champion Chen Card#625 - [Triple Attack#187] rate + skill lv%
-		triple_attack_rate = 30 - SkillSearch(187) + 10 * CardNumSearch(619) + triple_attack_lv * CardNumSearch(625);
+		wTA = 30 - SkillSearch(187) + 10 * CardNumSearch(619) + triple_attack_lv * CardNumSearch(625);
 		
 		// Glorious Claw#1096 - [Every Refine Level] - [Triple Attack#187] rate + 3%
-		triple_attack_rate += EquipNumSearch(1096) * n_A_Weapon_ATKplus * 3;
+		wTA += EquipNumSearch(1096) * n_A_Weapon_ATKplus * 3;
 		
 		// Sura's Rampage#1512 - [Triple Attack] Rate + 20%
-		triple_attack_rate += 20 * EquipNumSearch(1512);
+		wTA += 20 * EquipNumSearch(1512);
 		
 		// Sherwood Bow#1388#7th Bonus - [Triple Attack#187] Rate + 10%
 		if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
-			triple_attack_rate += 10;
+			wTA += 10;
 	}
 	
-	return triple_attack_rate;
+	return wTA;
 }
 
 function can_attack_crit(active_skill)
