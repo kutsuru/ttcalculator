@@ -362,6 +362,9 @@ with(document.calcForm){
 	// Manage Faceworm Enchants
 	Click_FacewormEnchantment();
 
+	// Manage Valkyrie Tears Enchants
+	Click_ValkyrieTearEnchantment();
+
 	if(n_Nitou){
 		W_REF2 = 0;
 		n_A_Weapon2LV = ItemOBJ[n_A_Equip[1]][4];
@@ -760,6 +763,9 @@ with(document.calcForm){
 
 	// Manage Faceworm Enchants
 	apply_faceworm_enchants();
+
+	// Manage Valkyrie Tear Enchants
+	apply_valkyrie_tear_enchants();
 
 	StPlusCalc();
 	
@@ -1350,6 +1356,18 @@ with(document.calcForm){
 		n_tok[45] += 5 * anacondaq_cards;
 		n_tok[285] += 15 * anacondaq_cards;
 		n_tok[17] += 25 * (snake_cards + sidewinder_cards);
+	}
+
+	// Huuma Blaze Shuriken#546 - [Every Refine Level] MATK + 1%
+	n_tok[89] += n_A_Weapon_ATKplus * EquipNumSearch(546);
+
+	// Geiravor's Will#1883 - If endow Holy or shadow: +50 ATK
+	if (EquipNumSearch(1883))
+	{
+		if (n_A_Weapon_zokusei == 6 || n_A_Weapon_zokusei == 7)
+		{
+			n_tok[17] += 50;
+		}
 	}
 	
 	// Antonio's Coat#1728 - [Every Refine Level] ATK & MATK + 1
@@ -2702,6 +2720,10 @@ with(document.calcForm){
 	//custom Talon Tales Halloween Midas Whisper
 	if(SU_LUK >= 80 && EquipNumSearch(1526))
 		n_tok[10] += 5;
+
+	// Custom Talon Tales Murasame +15 crit against water and wind
+	if (EquipNumSearch(541) && ([11,12,13,14,41,42,43,44].includes(n_B[3])))
+		n_tok[10] += 15;
 
 	//[Custom Talon Tales - 2018-06-02 - Aegir shoes + helm combo(CRIT + 1% * refinement for Fish type monsters)] [Kato/Nattwara]
 	if (n_B[2] == 5 && EquipNumSearch(1554)) // Race = 5 (Fish)
@@ -5477,6 +5499,12 @@ function StPlusCalc() {
 			n_tok[2] += Math.floor(n_A_SHOULDER_DEF_PLUS / 2); // [Every 2 Refine Levels] - AGI + 1
 	}
 
+	// Huuma wing Shuriken#547 - [Every Refine Level] AGI + 1 & [Every 2 Refine Level] DEX + 1 
+	if (EquipNumSearch(547)) {
+		n_tok[5] += Math.floor(n_A_Weapon_ATKplus/2);
+		n_tok[2] += n_A_Weapon_ATKplus;
+	}
+
 	wSPC_STR = n_tok[1] + n_tok[7];
 	wSPC_AGI = n_tok[2] + n_tok[7];
 	wSPC_VIT = n_tok[3] + n_tok[7];
@@ -5939,7 +5967,7 @@ function JobEquipItemSearch(nJEIS)
 	if(nJEIS >= 1000){
 		if(n_Tensei == 1)
 			nJEIS -= 1000;
-		else if (nJEIS != 1200) // Rebirth + Extended
+		else if (nJEIS != 1200 && nJEIS != 1201) // Rebirth + Extended or Extended + ninja only
 			return 0;
 	}
 	for(var j=0;JobEquipItemOBJ[n_A_JOB][j] != 999;j++)
@@ -8748,6 +8776,11 @@ function IsAnOGHMonster() {
 	return !Taijin && ((MonMap[60].findIndex((x) => x == n_B[0]) > -1) || (MonMap[61].findIndex((x) => x == n_B[0]) > -1));
 }
 
+// BotN Valkyries
+function IsABotNValkMonster() {
+	return !Taijin && (MonMap[87].findIndex((x) => x == n_B[0]) > -1);
+}
+
 function apply_temporal_enchants()
 {
 	let first_enchant_bonii = TEMPORAL_1ST_ENCHANTS[eval(document.calcForm.temporal_1st_enchant_select.value)][1];
@@ -8844,6 +8877,20 @@ function apply_faceworm_enchants() {
 				break;
 			default:
         }
+	}
+}
+
+function apply_valkyrie_tear_enchants() {
+	let first_enchant_slot1_bonii = VALKYRIE_TEAR_1ST_ENCHANTS[eval(document.calcForm.valkyrie_tear_left_acc_1st_enchant_select.value)][1];
+	let second_enchant_slot1_bonii = VALKYRIE_TEAR_2ND_ENCHANTS[eval(document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value)][1];
+	let first_enchant_slot2_bonii = VALKYRIE_TEAR_1ST_ENCHANTS[eval(document.calcForm.valkyrie_tear_right_acc_1st_enchant_select.value)][1];
+	let second_enchant_slot2_bonii = VALKYRIE_TEAR_2ND_ENCHANTS[eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value)][1];
+	let script_bonii = [first_enchant_slot1_bonii, second_enchant_slot1_bonii, first_enchant_slot2_bonii, second_enchant_slot2_bonii];
+
+	for (enchant_index = 0; enchant_index < script_bonii.length; ++enchant_index) {
+		let script_bonus = script_bonii[enchant_index];
+		for (i = 0; i < script_bonus.length; i += 2)
+			n_tok[script_bonus[i]] += script_bonus[i + 1];
 	}
 }
 
@@ -9149,12 +9196,35 @@ with(document.calcForm){
 			SaveData[153] = ((A_MORAEG3.value) ? eval(A_MORAEG3.value) : 0);
 		}
 
-		SaveData[154] = ((A_MORAEAC11.value) ? eval(A_MORAEAC11.value) : 0);
-		SaveData[155] = ((A_MORAEAC12.value) ? eval(A_MORAEAC12.value) : 0);
-		SaveData[156] = ((A_MORAEAC13.value) ? eval(A_MORAEAC13.value) : 0);
-		SaveData[157] = ((A_MORAEAC21.value) ? eval(A_MORAEAC21.value) : 0);
-		SaveData[158] = ((A_MORAEAC22.value) ? eval(A_MORAEAC22.value) : 0);
-		SaveData[159] = ((A_MORAEAC23.value) ? eval(A_MORAEAC23.value) : 0);
+		// Use same emplacement for El Dicaste Accessory and Valkyrie's tear enchantments
+		let bValkyrieTearEnchantsLeftAcc = (VALKYRIE_TEAR_ENCHANTABLE.findIndex(x => x == A_acces1.value) > -1);
+		let bValkyrieTearEnchantsRightAcc = (VALKYRIE_TEAR_ENCHANTABLE.findIndex(x => x == A_acces2.value) > -1);
+
+		if (bValkyrieTearEnchantsLeftAcc)
+		{
+			SaveData[154] = ((valkyrie_tear_left_acc_1st_enchant_select.value) ? eval(valkyrie_tear_left_acc_1st_enchant_select.value) : 0);
+			SaveData[155] = ((valkyrie_tear_left_acc_2nd_enchant_select.value) ? eval(valkyrie_tear_left_acc_2nd_enchant_select.value) : 0);
+			SaveData[156] = 0;
+		}
+		else
+		{
+			SaveData[154] = ((A_MORAEAC11.value) ? eval(A_MORAEAC11.value) : 0);
+			SaveData[155] = ((A_MORAEAC12.value) ? eval(A_MORAEAC12.value) : 0);
+			SaveData[156] = ((A_MORAEAC13.value) ? eval(A_MORAEAC13.value) : 0);
+		}
+
+		if (bValkyrieTearEnchantsRightAcc)
+		{
+			SaveData[157] = ((valkyrie_tear_right_acc_1st_enchant_select.value) ? eval(valkyrie_tear_right_acc_1st_enchant_select.value) : 0);
+			SaveData[158] = ((valkyrie_tear_right_acc_2nd_enchant_select.value) ? eval(valkyrie_tear_right_acc_2nd_enchant_select.value) : 0);
+			SaveData[159] = 0;
+		}
+		else
+		{
+			SaveData[157] = ((A_MORAEAC21.value) ? eval(A_MORAEAC21.value) : 0);
+			SaveData[158] = ((A_MORAEAC22.value) ? eval(A_MORAEAC22.value) : 0);
+			SaveData[159] = ((A_MORAEAC23.value) ? eval(A_MORAEAC23.value) : 0);
+		}
 		
 		// Save build name in serialization
 		SaveData[160] = (document.calcForm.A_SlotName.value != document.calcForm.A_SlotName.defaultValue) ? document.calcForm.A_SlotName.value : "undefined";
@@ -9679,13 +9749,34 @@ with(document.calcForm){
 		A_MORAEG3.value = SaveData[153];
 	}
 
-	A_MORAEAC11.value = SaveData[154];
-	A_MORAEAC12.value = SaveData[155];
-	A_MORAEAC13.value = SaveData[156];
-	A_MORAEAC21.value = SaveData[157];
-	A_MORAEAC22.value = SaveData[158];
-	A_MORAEAC23.value = SaveData[159];
-	
+	// Use same emplacement for El Dicaste Accessory and Valkyrie's tear enchantments
+	let bValkyrieTearEnchantsLeftAcc = (VALKYRIE_TEAR_ENCHANTABLE.findIndex(x => x == A_acces1.value) > -1);
+	let bValkyrieTearEnchantsRightAcc = (VALKYRIE_TEAR_ENCHANTABLE.findIndex(x => x == A_acces2.value) > -1);
+
+	if (bValkyrieTearEnchantsLeftAcc)
+	{
+		valkyrie_tear_left_acc_1st_enchant_select.value = SaveData[154];
+		valkyrie_tear_left_acc_2nd_enchant_select.value = SaveData[155];
+	}
+	else
+	{
+		A_MORAEAC11.value = SaveData[154];
+		A_MORAEAC12.value = SaveData[155];
+		A_MORAEAC13.value = SaveData[156];
+	}
+
+	if (bValkyrieTearEnchantsRightAcc)
+	{
+		valkyrie_tear_right_acc_1st_enchant_select.value = SaveData[157];
+		valkyrie_tear_right_acc_2nd_enchant_select.value = SaveData[158];
+	}
+	else
+	{
+		A_MORAEAC21.value = SaveData[157];
+		A_MORAEAC22.value = SaveData[158];
+		A_MORAEAC23.value = SaveData[159];
+	}
+
 	// Retrieve build name
 	document.calcForm.A_SlotName.value = (SaveData[160] == "undefined") ? document.calcForm.A_SlotName.defaultValue : SaveData[160];
 
@@ -10158,12 +10249,35 @@ with(document.calcForm){
 		SaveData[x + 6] = NtoS2(parseInt(A_MORAEG3.value), 2);
 	}
 
-	SaveData[x+7] = NtoS2(parseInt(A_MORAEAC11.value),2);
-	SaveData[x+8] = NtoS2(parseInt(A_MORAEAC12.value),2);
-	SaveData[x+9] = NtoS2(parseInt(A_MORAEAC13.value),2);
-	SaveData[x+10] = NtoS2(parseInt(A_MORAEAC21.value),2);
-	SaveData[x+11] = NtoS2(parseInt(A_MORAEAC22.value),2);
-	SaveData[x+12] = NtoS2(parseInt(A_MORAEAC23.value),2);
+	// Use same emplacement for El Dicaste Accessory and Valkyrie's tear enchantments
+	let bValkyrieTearEnchantsLeftAcc = (VALKYRIE_TEAR_ENCHANTABLE.findIndex(x => x == A_acces1.value) > -1);
+	let bValkyrieTearEnchantsRightAcc = (VALKYRIE_TEAR_ENCHANTABLE.findIndex(x => x == A_acces2.value) > -1);
+
+	if (bValkyrieTearEnchantsLeftAcc)
+	{
+		SaveData[x+7] = NtoS2(parseInt(valkyrie_tear_left_acc_1st_enchant_select.value),2);
+		SaveData[x+8] = NtoS2(parseInt(valkyrie_tear_left_acc_2nd_enchant_select.value),2);
+		SaveData[x+9] = NtoS2(parseInt(0),2);
+	}
+	else
+	{
+		SaveData[x+7] = NtoS2(parseInt(A_MORAEAC11.value),2);
+		SaveData[x+8] = NtoS2(parseInt(A_MORAEAC12.value),2);
+		SaveData[x+9] = NtoS2(parseInt(A_MORAEAC13.value),2);
+	}
+
+	if (bValkyrieTearEnchantsRightAcc)
+	{
+		SaveData[x+10] = NtoS2(parseInt(valkyrie_tear_right_acc_1st_enchant_select.value),2);
+		SaveData[x+11] = NtoS2(parseInt(valkyrie_tear_right_acc_2nd_enchant_select.value),2);
+		SaveData[x+12] = NtoS2(parseInt(0),2);
+	}
+	else
+	{
+		SaveData[x+10] = NtoS2(parseInt(A_MORAEAC21.value),2);
+		SaveData[x+11] = NtoS2(parseInt(A_MORAEAC22.value),2);
+		SaveData[x+12] = NtoS2(parseInt(A_MORAEAC23.value),2);
+	}
 	x+=12;
 
 	wStr = "" +SaveData[0];
@@ -10772,14 +10886,35 @@ with(document.calcForm){
 			A_MORAEG3.value = StoN2(w.substr(x + 11, 2));
 		}
 
-		A_MORAEAC11.value = StoN2(w.substr(x+13,2));
-		A_MORAEAC12.value = StoN2(w.substr(x+15,2));
-		A_MORAEAC13.value = StoN2(w.substr(x+17,2));
-		A_MORAEAC21.value = StoN2(w.substr(x+19,2));
-		A_MORAEAC22.value = StoN2(w.substr(x+21,2));
-		A_MORAEAC23.value = StoN2(w.substr(x+23,2));
-		x+=24;
+		// Use same emplacement for El Dicaste Accessory and Valkyrie's tear enchantments
+		let bValkyrieTearEnchantsLeftAcc = (VALKYRIE_TEAR_ENCHANTABLE.findIndex(x => x == A_acces1.value) > -1);
+		let bValkyrieTearEnchantsRightAcc = (VALKYRIE_TEAR_ENCHANTABLE.findIndex(x => x == A_acces2.value) > -1);
 
+		if (bValkyrieTearEnchantsLeftAcc)
+		{
+			valkyrie_tear_left_acc_1st_enchant_select.value = StoN2(w.substr(x + 13, 2));
+			valkyrie_tear_left_acc_2nd_enchant_select.value = StoN2(w.substr(x + 15, 2));
+		}
+		else
+		{
+			A_MORAEAC11.value = StoN2(w.substr(x+13,2));
+			A_MORAEAC12.value = StoN2(w.substr(x+15,2));
+			A_MORAEAC13.value = StoN2(w.substr(x+17,2));
+		}
+
+		if (bValkyrieTearEnchantsRightAcc)
+		{
+			valkyrie_tear_right_acc_1st_enchant_select.value = StoN2(w.substr(x + 19, 2));
+			valkyrie_tear_right_acc_2nd_enchant_select.value = StoN2(w.substr(x + 21, 2));
+		}
+		else
+		{
+			A_MORAEAC21.value = StoN2(w.substr(x+19,2));
+			A_MORAEAC22.value = StoN2(w.substr(x+21,2));
+			A_MORAEAC23.value = StoN2(w.substr(x+23,2));
+		}
+		x+=24;
+	
 		// Retrieve build name
 		build_name = w.substr(x + 1, w.length - x);
 		document.calcForm.A_SlotName.value = ("" == build_name) ? document.calcForm.A_SlotName.defaultValue : build_name;
