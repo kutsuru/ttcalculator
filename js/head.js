@@ -173,40 +173,40 @@ KunaiOBJ = [
 ];
 
 JobEquipItemOBJ = [
-[0,50,69,90,93,94,95,96,100,999], //Novice
-[0, 1, 51,101, 68, 69, 70, 71, 72, 74, 75,78,83,84,85,86,87,90,91,93,94,95,200,999], //Swordman
-[0, 1, 52,102, 68, 69, 72, 74, 75,78, 80,83,84,85,90,91,92,93,94,97,200,999], //Thief
-[0, 1, 53,103, 71, 73, 74, 77,78,85,89,95,96,152,200,999], //Acolyte
-[0, 1, 54,104, 68, 69, 75, 76,83,89,92,200,999], //Archer
-[0, 1, 55, 57,105, 68, 69, 71, 77, 89, 93, 96,152,200,999], //Mage
-[0, 1, 56,106, 68, 69, 70, 71, 72, 73, 74, 75,78,83,84,85,86,90,91,93,94,95,200,999], //Merchant
-[0, 1, 51, 61,107, 68, 69, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,200,999], //Knight
-[0, 1, 52, 62,108, 68, 69, 72, 74, 75,78,79,81,83,84,85,90,91,93,94,97,200,999], //Assassin
-[0, 1, 53, 63,109, 71, 73, 74, 77,78,79,81,85,89,95,96,200,999], //Priest
-[0, 1, 54, 60, 64, 68, 69,110, 75, 76,79,80,83,88,89,92,200,999], //Hunter
-[0, 1, 55, 57, 65,111, 68, 69, 71, 77,79,89,96,200,999], //Wizard
-[0, 1, 56, 66,112, 68, 69, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,200,999], //Blacksmith
-[0, 1, 51, 61,113, 68, 69, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,200,999], //Crusader
-[0, 1, 52, 62,114, 68, 69, 72, 74, 75, 76,78,79,80,83,84,85,88,91,92,93,94,97,200,999], //Rogue
-[0, 1, 53, 63,115, 71, 73, 74, 77,78,79,85,89,95,96,200,999], //Monk
-[0, 1, 54, 60,64,116, 74, 75, 76,79,83,89,92,200,999], //Bard
-[0, 1, 54, 60,64,117, 74, 75, 76,79,83,89,92,200,999], //Dancer
-[0, 1, 55, 57, 65,118, 68, 69, 71, 77,79,89,96,200,999], //Sage
-[0, 1, 56, 66,119, 68, 69, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,200,999], //Alchemist
-[0,50,69,90,93,94,95,96,120,1200,999], // Super Novice
-[0, 1, 51, 61,107,121, 68, 69, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,135,200,999], //Lord Knight
-[0, 1, 52, 62,108,122, 68, 69, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,97,200,999], //Assassin Cross
-[0, 1, 53, 63,109,123, 71, 73, 74, 77,78,79,81,82,85,89,95,96,151,152,200,999], //High Priest
-[0, 1, 54, 60, 64,110,124, 68, 69, 75, 76,79,80,82,83,88,89,92,200,999], //Sniper
-[0, 1, 55, 57, 65,111,125, 68, 69, 71, 77,79,82,89,93,96,151,152,200,999], //High Wizard
-[0, 1, 56, 66,112,126, 68, 69, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,135,200,999], //Whitesmith
-[0, 1, 51, 61,113,127, 68, 69, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,200,999], //Paladin
-[0, 1, 52, 62,114,128, 68, 69, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,97,200,999], //Stalker
-[0, 1, 53, 63,115,129, 71, 73, 74,77,78,79,82,85,89,95,96,152,200,999], //Champion
-[0, 1, 54, 60, 64,116,130, 74, 75, 76,79,82,83,89,153,92,134,200,999], //Clown
-[0, 1, 54, 60, 64,117,131, 74, 75, 76,79,82,83,89,153,92,134,200,999], //Gypsy
-[0, 1, 55, 57, 65,118,132, 68, 69, 71,77,79,82,89,152,96,200,999], //Professor
-[0, 1, 56, 66,119,133, 68, 69, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,200,999], //Creator
+[0,50,69,90,93,94,95,96,99,100,999], //Novice
+[0, 1, 51,101, 68, 69, 70, 71, 72, 74, 75,78,83,84,85,86,87,90,91,93,94,95,99,200,201,999], //Swordman
+[0, 1, 52,102, 68, 69, 72, 74, 75,78, 80,83,84,85,90,91,92,93,94,97,200,201,999], //Thief
+[0, 1, 53,103, 71, 73, 74, 77,78,85,89,95,96,152,200,201,999], //Acolyte
+[0, 1, 54,104, 68, 69, 75, 76,83,89,92,200,201,999], //Archer
+[0, 1, 55, 57,105, 68, 69, 71, 77, 89, 93, 96,152,200,201,999], //Mage
+[0, 1, 56,106, 68, 69, 70, 71, 72, 73, 74, 75,78,83,84,85,86,90,91,93,94,95,99,200,201,999], //Merchant
+[0, 1, 51, 61,107, 68, 69, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,99,200,201,999], //Knight
+[0, 1, 52, 62,108, 68, 69, 72, 74, 75,78,79,81,83,84,85,90,91,93,94,97,200,201,999], //Assassin
+[0, 1, 53, 63,109, 71, 73, 74, 77,78,79,81,85,89,95,96,200,201,999], //Priest
+[0, 1, 54, 60, 64, 68, 69,110, 75, 76,79,80,83,88,89,92,200,201,999], //Hunter
+[0, 1, 55, 57, 65,111, 68, 69, 71, 77,79,89,96,200,201,999], //Wizard
+[0, 1, 56, 66,112, 68, 69, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,99,200,201,999], //Blacksmith
+[0, 1, 51, 61,113, 68, 69, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,99,200,201,999], //Crusader
+[0, 1, 52, 62,114, 68, 69, 72, 74, 75, 76,78,79,80,83,84,85,88,91,92,93,94,97,200,201,999], //Rogue
+[0, 1, 53, 63,115, 71, 73, 74, 77,78,79,85,89,95,96,200,201,999], //Monk
+[0, 1, 54, 60,64,116, 74, 75, 76,79,83,89,92,200,201,999], //Bard
+[0, 1, 54, 60,64,117, 74, 75, 76,79,83,89,92,200,201,999], //Dancer
+[0, 1, 55, 57, 65,118, 68, 69, 71, 77,79,89,96,200,201,999], //Sage
+[0, 1, 56, 66,119, 68, 69, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,99,200,201,999], //Alchemist
+[0,50,69,90,93,94,95,96,99,120,1200,999], // Super Novice
+[0, 1, 51, 61,107,121, 68, 69, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,99,135,200,201,999], //Lord Knight
+[0, 1, 52, 62,108,122, 68, 69, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,97,200,201,999], //Assassin Cross
+[0, 1, 53, 63,109,123, 71, 73, 74, 77,78,79,81,82,85,89,95,96,151,152,200,201,999], //High Priest
+[0, 1, 54, 60, 64,110,124, 68, 69, 75, 76,79,80,82,83,88,89,92,200,201,999], //Sniper
+[0, 1, 55, 57, 65,111,125, 68, 69, 71, 77,79,82,89,93,96,151,152,200,201,999], //High Wizard
+[0, 1, 56, 66,112,126, 68, 69, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,99,135,200,201,999], //Whitesmith
+[0, 1, 51, 61,113,127, 68, 69, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,99,200,201,999], //Paladin
+[0, 1, 52, 62,114,128, 68, 69, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,97,200,201,999], //Stalker
+[0, 1, 53, 63,115,129, 71, 73, 74,77,78,79,82,85,89,95,96,152,200,201,999], //Champion
+[0, 1, 54, 60, 64,116,130, 74, 75, 76,79,82,83,89,153,92,134,200,201,999], //Clown
+[0, 1, 54, 60, 64,117,131, 74, 75, 76,79,82,83,89,153,92,134,200,201,999], //Gypsy
+[0, 1, 55, 57, 65,118,132, 68, 69, 71,77,79,82,89,152,96,200,201,999], //Professor
+[0, 1, 56, 66,119,133, 68, 69, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,99,200,201,999], //Creator
 [0],
 [0],
 [0],
@@ -217,7 +217,7 @@ JobEquipItemOBJ = [
 [0, 1,141, 83,84,85,86,97,98,150,1200,999], //Taekwon Kid //custom
 [0, 1,142, 79,83,84,85,86,87,91,97,98,150,1200,999], //Star Gladiator
 [0, 1,143, 55, 57, 65, 69, 71, 77,79,89,93,96,98,1200,999], //Soul Linker
-[0, 1,144, 58, 52, 57, 69, 91, 93,1200,999], //Ninja
+[0, 1,144, 58, 52, 57, 69, 91, 93,1200,1201,999], //Ninja
 [0, 1,145, 59, 60, 83,145,1200,999], //Gunslinger
 ];
 
@@ -277,6 +277,7 @@ JobEquipItemOBJ = [
 		96 = novice, mage class, acolyte class, soul linker
 		97 = thief class, taekwon boy, star gladiator
 		98 = taekwon boy, star gladiator, soul linker
+		99 = novice, swordman class, merchant class
 
 		100 = novice ONLY
 		101 = swordman ONLY
@@ -325,8 +326,10 @@ JobEquipItemOBJ = [
 		150 = taekwon, star gladiator //for SQI
 		151 = priest, wizard
 		152 = mage ONLY, acolyte ONLY, high priest, high wizard, champion, professor
+		153 = clown/gypsy
 
 		1200 = Rebirth + Extended
+		1201 = Rebirth + Ninja only
 
 	Unless otherwise stated, upper classes are included.
 		Example 1: 109 = priest //includes high priest
@@ -707,7 +710,7 @@ function BattleCalc999() {
 		} else {
 			n_Delay[0] = 1;
 			n_Enekyori = 0;
-			wbairitu += (n_A_ActiveSkillLV - 1);
+			wbairitu = 1.4 * n_A_ActiveSkillLV
 		}
 
 
@@ -1008,8 +1011,8 @@ function BattleCalc999() {
 			n_Delay[2] = 3;
 		} else if (n_A_ActiveSkill == 400) {
 			n_Delay[0] = 1;
-			wbairitu += (n_A_ActiveSkillLV * 0.1);
-			n_Delay[2] = 1;
+			wbairitu += (n_A_ActiveSkillLV * 0.4);
+			n_Delay[2] = 0;
 		} else if (n_A_ActiveSkill == 419) {
 			not_use_card = 1;
 			wCast = 0.5;
@@ -1728,7 +1731,9 @@ function BattleCalc999() {
 		wbairitu += (n_A_ActiveSkillLV * 1.5 + 0.5);
 		wActiveHitNum = 2 + Math.round(n_A_ActiveSkillLV / 2);
 
-		monsters_targeted_nb = eval(document.calcForm.SkillSubNum.value);
+		// Oct25: Humma no longer split damage
+		// monsters_targeted_nb = eval(document.calcForm.SkillSubNum.value);
+		monsters_targeted_nb = 1;
 
 		// Huuma Swirling Petal#1770 - Hira Shurikat#1385#8th Bonus - [Throw Huuma Shuriken] no longer split damage.
 		if ((1385 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 8) > -1) || EquipNumSearch(1770))
@@ -3347,6 +3352,52 @@ function BattleHiDam(){
 				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
 	}
 
+	// Valyrie gear
+	if (IsABotNValkMonster())
+	{
+		// Kara's Blessing#1885 - 10% resistance against Valkyrie Kara (not in calc yet). 
+		if (EquipNumSearch(1885) && [948,952,953].includes(n_B[0]))
+		{
+			for (i = 0 ; i <= 6; ++i)
+				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
+		}
+
+		// Hildr's Veil#1887 - 5% resistance against Valkyrie Hildr.
+		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
+		{
+			for (i = 0 ; i <= 6; ++i)
+				w_HiDam[i] -= Math.floor(w_HiDam[i] * 5 / 100);
+		}
+
+		// Reginleif's Brand#1888 - 10% resistance against Valkyrie Reginleif. 
+		if (EquipNumSearch(1888) && [877,878].includes(n_B[0]))
+		{
+			for (i = 0 ; i <= 6; ++i)
+				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
+		}
+
+		// Prima's Vanity#1889 - 10% resistance against Valkyrie Prima. 
+		if (EquipNumSearch(1889) && [876,746,945,950].includes(n_B[0]))
+		{
+			for (i = 0 ; i <= 6; ++i)
+				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
+		}
+
+		// Sigrun's Journey#1890 - 10% resistance against Valkyrie Sigrun and Valkyrie Olrun.
+		if (EquipNumSearch(1890) && [874,947,954,949,951].includes(n_B[0]))
+		{
+			for (i = 0 ; i <= 6; ++i)
+				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
+		}
+
+		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey and Brynhildr's Stand combos#1899-1906
+		if (EquipNumSearch(1899) || EquipNumSearch(1900) || EquipNumSearch(1901) || EquipNumSearch(1902) || EquipNumSearch(1903) || EquipNumSearch(1904) || EquipNumSearch(1905) || EquipNumSearch(1906))
+		{
+			for (i = 0 ; i <= 6; ++i)
+				w_HiDam[i] -= Math.floor(w_HiDam[i] * 10 / 100);
+		}
+	}
+
 	for(i=0;i<=6;i++){
 		if(w_HiDam[i] < 1)
 			w_HiDam[i]=1;
@@ -3493,6 +3544,10 @@ function BattleMagicCalc(wBMC) {
 	if (SkillSearch(445) && (6 == target_element || 7 == target_element) && n_A_Weapon_zokusei > 0 && n_A_Weapon_zokusei < 5)
 		elemental_resistance = Math.min(elemental_resistance + 0.5, 1);
 
+	// [Prima's Vanity#1889] adds ignore 20% of Holy/Shadow element Fire/Water/Wind/Earth Resistance, limited to 100%.		
+	if (EquipNumSearch(1889) && (6 == target_element || 7 == target_element) && n_A_Weapon_zokusei > 0 && n_A_Weapon_zokusei < 5)
+		elemental_resistance = Math.min(elemental_resistance + 0.2, 1);
+	
 	wBMC2 = Math.floor(wBMC2 * elemental_resistance); // Apply elemental weakness
 	if (debug_dmg_avg)
 		debug_atk+="\na_wBMC2:"+wBMC2;
@@ -3574,6 +3629,106 @@ function BattleMagicCalc(wBMC) {
 		// Faceworm Egg Shell#1872 - Increases magical damage against Faceworm Nest monsters by 10% + 2% for every refine above safe refine
 		if (EquipNumSearch(1872))
 			wBMC2 = wBMC2 * (1.1 + 0.02 * Math.max(0, n_A_HEAD_DEF_PLUS - 4))
+	}
+
+	if (IsABotNValkMonster())
+	{
+		// Geiravor's Will#1883 - 15% more magical damage against all BoTN Valkyries.
+		if (EquipNumSearch(1883))
+			wBMC2 = wBMC2 * 1.15;
+	
+		// Herja's Fury#1884 - 10% more magical damage against Valkyrie Herja#731/795. 
+		if (EquipNumSearch(1884) && [731,795].includes(n_B[0]))
+			wBMC2 = wBMC2 * 1.10;
+
+		// Kara's Blessing#1885 - 10% more magical damage against Valkyrie Kara (not yet in calc)
+		if (EquipNumSearch(1885) && [948,952,953].includes(n_B[0]))
+			wBMC2 = wBMC2 * 1.10;
+
+		// Hildr's Veil#1887 - 10% more magical damage against Valkyrie Hildr#931/875. 
+		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
+			wBMC2 = wBMC2 * 1.10;	
+
+		// Reginleif's Brand#1888 - 5% more magical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
+		if (EquipNumSearch(1888) && [877,878,876,746,945,950].includes(n_B[0]))
+			wBMC2 = wBMC2 * 1.05;	
+
+		// Prima's Vanity#1889 - 5% more magical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
+		if (EquipNumSearch(1889) && [877,878,876,746,945,950].includes(n_B[0]))
+			wBMC2 = wBMC2 * 1.05;	
+
+		// Sigrun's Journey#1890 - 5% more magical damage against Valkyrie Sigrun#874 and Valkyrie Olrun. 
+		if (EquipNumSearch(1890) && [874,947,954,949,951].includes(n_B[0]))
+			wBMC2 = wBMC2 * 1.05;
+
+		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more magical damage against all BoTN Valkyries.
+		if (EquipNumSearch(1891) || EquipNumSearch(1892) || EquipNumSearch(1893) || EquipNumSearch(1894) || EquipNumSearch(1895) || EquipNumSearch(1896) || EquipNumSearch(1897) || EquipNumSearch(1898))
+			wBMC2 = wBMC2 * 1.05;
+
+		// Valkyrie Tear enchants - 5% more magical damage against specific Valkyrie
+		valkyrie_tear_left_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value);
+		if (valkyrie_tear_left_acc_2nd_enchant)
+		{
+			// Valkyrie Herja
+			if (valkyrie_tear_left_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Kara
+			if (valkyrie_tear_left_acc_2nd_enchant == 2 && [948,952,953].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Hildr
+			if (valkyrie_tear_left_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Prima
+			if (valkyrie_tear_left_acc_2nd_enchant == 4 && [876,746,945,950].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Reginleif
+			if (valkyrie_tear_left_acc_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Sigrun
+			if (valkyrie_tear_left_acc_2nd_enchant == 6 && [874,947,954].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Olrun
+			if (valkyrie_tear_left_acc_2nd_enchant == 7 && [949,951].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+		}
+
+		valkyrie_tear_right_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value);
+		if (valkyrie_tear_right_acc_2nd_enchant)
+		{
+			// Valkyrie Herja
+			if (valkyrie_tear_right_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Kara
+			if (valkyrie_tear_right_acc_2nd_enchant == 2 && [948,952,953].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Hildr
+			if (valkyrie_tear_right_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Prima
+			if (valkyrie_tear_right_acc_2nd_enchant == 4 && [876,746,945,950].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Reginleif
+			if (valkyrie_tear_right_acc_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Sigrun
+			if (valkyrie_tear_right_acc_2nd_enchant == 6 && [874,947,954].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+
+			// Valkyrie Olrun
+			if (valkyrie_tear_right_acc_2nd_enchant == 7 && [949,951].includes(n_B[0]))
+				wBMC2 = wBMC2 * 1.05;
+		}
 	}
 
 	wBMC2 = Math.floor(wBMC2);
@@ -5795,6 +5950,24 @@ function PopulateCombos() {
 		faceworm_1st_enchant_select.value = 0;
 		faceworm_2nd_enchant_select.value = 0;
 		faceworm_3rd_enchant_select.value = 0;
+
+		// Valkyrie Tear Enchants
+		myInnerHtml("valkyrie_tear_left_acc_1st_enchant", "1st Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_left_acc_2nd_enchant", "2nd Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_right_acc_1st_enchant", "1st Enchant: ", 0);
+		myInnerHtml("valkyrie_tear_right_acc_2nd_enchant", "2nd Enchant: ", 0);
+
+		for (i = 0; i < VALKYRIE_TEAR_1ST_ENCHANTS.length; ++i)
+		{
+			valkyrie_tear_left_acc_1st_enchant_select.options[i] = new Option(VALKYRIE_TEAR_1ST_ENCHANTS[i][0], i);
+			valkyrie_tear_right_acc_1st_enchant_select.options[i] = new Option(VALKYRIE_TEAR_1ST_ENCHANTS[i][0], i);
+		}
+		for (i = 0; i < VALKYRIE_TEAR_2ND_ENCHANTS.length; ++i)
+		{
+			valkyrie_tear_left_acc_2nd_enchant_select.options[i] = new Option(VALKYRIE_TEAR_2ND_ENCHANTS[i][0], i);
+			valkyrie_tear_right_acc_2nd_enchant_select.options[i] = new Option(VALKYRIE_TEAR_2ND_ENCHANTS[i][0], i);
+		}
+
 	}
 }
 
@@ -6758,6 +6931,27 @@ function Click_FacewormEnchantment() {
 	}
 }
 
+function Click_ValkyrieTearEnchantment() {
+	with (document.calcForm) {
+
+		let leftAcc = n_A_Equip[9];
+		let rightAcc = n_A_Equip[10];
+		const bEnchant1 = leftAcc && VALKYRIE_TEAR_ENCHANTABLE.includes(leftAcc);
+		const bEnchant2 = rightAcc && VALKYRIE_TEAR_ENCHANTABLE.includes(rightAcc);
+
+		document.getElementById("valkyrie_tear_left_acc_enchant_block").style.display = ((bEnchant1) ? "" : "none");
+		document.getElementById("valkyrie_tear_right_acc_enchant_block").style.display = ((bEnchant2) ? "" : "none");
+
+		if (!bEnchant1) {
+			document.calcForm.valkyrie_tear_left_acc_1st_enchant_select.value = 0;
+			document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value = 0;
+		}
+		if (!bEnchant2) {
+			document.calcForm.valkyrie_tear_right_acc_1st_enchant_select.value = 0;
+			document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value = 0;
+		}
+	}
+}
 
 function Click_Skill9SW(){
 with(document.calcForm){
@@ -8456,6 +8650,21 @@ function BaiCI(wBaiCI)
 				if (EquipNumSearch(897)) // Brave Assassin Damascus#897
 					crit_dmg_modifier += 10;
 			}
+
+			// Valkyrie Tear 1st enchant Fortune lv2,3,4 - Increases critical attack/skills attack by 2,3,4%
+			let slot1_enchant_category = 0;
+			let slot1_first_enchant_index = eval(document.calcForm.valkyrie_tear_left_acc_1st_enchant_select.value);
+			let slot2_enchant_category = 0;
+			let slot2_first_enchant_index = eval(document.calcForm.valkyrie_tear_right_acc_1st_enchant_select.value);
+
+			if (272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill)
+			{
+				if ([22,23,24].includes(slot1_first_enchant_index))
+					crit_dmg_modifier += (slot1_first_enchant_index - 20);
+				if ([22,23,24].includes(slot2_first_enchant_index))
+					crit_dmg_modifier += (slot2_first_enchant_index - 20);
+			}
+
 			damage_modifier = Math.floor(damage_modifier * (1 + crit_dmg_modifier / 100));
 		}
 
@@ -8537,6 +8746,105 @@ function BaiCI(wBaiCI)
 	if (IsAFacewormMonster() && (CardNumSearch(657) || CardNumSearch(658)))
 		wBaiCI = wBaiCI * 1.10;
 
+	if (IsABotNValkMonster())
+	{
+		// Geiravor's Will#1883 - 15% more physical damage against all BoTN Valkyries.
+		if (EquipNumSearch(1883))
+			wBaiCI = wBaiCI * 1.15;
+
+		// Herja's Fury#1884 - 10% more physical damage against Valkyrie Herja#731/795. 
+		if (EquipNumSearch(1884) && [731,795].includes(n_B[0]))
+			wBaiCI = wBaiCI * 1.10;
+
+		// Kara's Blessing#1885 - 10% more physical damage against Valkyrie Kara
+		if (EquipNumSearch(1885) && [948,952,953].includes(n_B[0]))
+			wBaiCI = wBaiCI * 1.10;
+
+		// Hildr's Veil#1887 - 10% more physical damage against Valkyrie Hildr#931/875. 
+		if (EquipNumSearch(1887) && [875,931].includes(n_B[0]))
+			wBaiCI = wBaiCI * 1.10;	
+
+		// Reginleif's Brand#1888 - 5% more physical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
+		if (EquipNumSearch(1888) && [877,878,876,746,945,950].includes(n_B[0]))
+			wBaiCI = wBaiCI * 1.05;	
+
+		// Prima's Vanity#1889 - 5% more physical damage against Valkyrie Reginlief#877-878 and Valkyrie Prima#876-746-945. 
+		if (EquipNumSearch(1889) && [877,878,876,746,945,950].includes(n_B[0]))
+			wBaiCI = wBaiCI * 1.05;	
+
+		// Sigrun's Journey#1890 - 5% more physical damage against Valkyrie Sigrun#874 and Valkyrie Olrun. 
+		if (EquipNumSearch(1890) && [874,947,954,949,951].includes(n_B[0]))
+			wBaiCI = wBaiCI * 1.05;
+		
+		// Herja's Fury or Kara's Blessing and Hildr's Veil or Reginleif's Brand and Prima's Vanity or Sigrun's Journey combos#1891-1898 - 5% more physical damage against all BoTN Valkyries.
+		if (EquipNumSearch(1891) || EquipNumSearch(1892) || EquipNumSearch(1893) || EquipNumSearch(1894) || EquipNumSearch(1895) || EquipNumSearch(1896) || EquipNumSearch(1897) || EquipNumSearch(1898))
+			wBaiCI = wBaiCI * 1.05;
+
+		// Valkyrie Tear enchants - 5% more physical damage against specific Valkyrie
+		valkyrie_tear_left_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_left_acc_2nd_enchant_select.value);
+		if (valkyrie_tear_left_acc_2nd_enchant)
+		{
+			// Valkyrie Herja
+			if (valkyrie_tear_left_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Kara
+			if (valkyrie_tear_left_acc_2nd_enchant == 2 && [948,952,953].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Hildr
+			if (valkyrie_tear_left_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Prima
+			if (valkyrie_tear_left_acc_2nd_enchant == 4 && [876,746,945,950].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Reginleif
+			if (valkyrie_tear_left_acc_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Sigrun
+			if (valkyrie_tear_left_acc_2nd_enchant == 6 && [874,947,954].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Olrun
+			if (valkyrie_tear_left_acc_2nd_enchant == 7 && [949,951].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+		}
+
+		valkyrie_tear_right_acc_2nd_enchant = eval(document.calcForm.valkyrie_tear_right_acc_2nd_enchant_select.value);
+		if (valkyrie_tear_right_acc_2nd_enchant)
+		{
+			// Valkyrie Herja
+			if (valkyrie_tear_right_acc_2nd_enchant == 1 && [731,795].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Kara
+			if (valkyrie_tear_right_acc_2nd_enchant == 2 && [948,952,953].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Hildr
+			if (valkyrie_tear_right_acc_2nd_enchant == 3 && [875,931].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Prima
+			if (valkyrie_tear_right_acc_2nd_enchant == 4 && [876,746,945,950].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Reginleif
+			if (valkyrie_tear_right_acc_2nd_enchant == 5 && [877,878].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Sigrun
+			if (valkyrie_tear_right_acc_2nd_enchant == 6 && [874,947,954].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+
+			// Valkyrie Olrun
+			if (valkyrie_tear_right_acc_2nd_enchant == 7 && [949,951].includes(n_B[0]))
+				wBaiCI = wBaiCI * 1.05;
+		}
+	}
 	return wBaiCI;
 }
 
