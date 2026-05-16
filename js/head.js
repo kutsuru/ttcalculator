@@ -466,11 +466,11 @@ function BattleCalc999() {
 
 			Last_DMG_A[0] = Last_DMG_B[0] = wX + w_left_Minatk;
 			InnStr[0] += wX + " (" + w_left_Minatk + ")";
-			if (w998D) {
+			if (DA_effective_rate) {
 				str_bSUBname += "Double Attack chance<BR>";
 				str_bSUB += (wX * 2 + w_left_Minatk) + "~";
 			}
-			if (wX + w_left_Minatk < n_Min_DMG && w998G < 100)
+			if (wX + w_left_Minatk < n_Min_DMG && NA_crits < 100)
 				n_Min_DMG = wX + w_left_Minatk;
 			w_DMG[0] = n_Min_DMG;
 
@@ -479,11 +479,11 @@ function BattleCalc999() {
 			var wX = w_DMG[2] + EDP_DMG(2) + w_left_Maxatk;
 			Last_DMG_A[2] = Last_DMG_B[2] = wX + w_left_Maxatk;
 			InnStr[2] += w_DMG[2] + EDP_DMG(2) + " (" + w_left_Maxatk + ")";
-			if (w998D) {
+			if (DA_effective_rate) {
 				wX = (w_DMG[2] + EDP_DMG(2)) * 2 + w_left_Maxatk;
-				str_bSUB += wX + " (" + w998D + "%)<BR>";
+				str_bSUB += wX + " (" + DA_effective_rate + "%)<BR>";
 			}
-			if (wX > n_Max_DMG && w998G < 100)
+			if (wX > n_Max_DMG && NA_crits < 100)
 				n_Max_DMG = wX;
 			w_DMG[2] = n_Max_DMG;
 
@@ -577,9 +577,9 @@ function BattleCalc999() {
 
 				n_A_ActiveSkill = previous_active_skill;
 
-				let triple_attack_rate = get_triple_attack_rate();
+				let wTA = get_triple_attack_rate();
 
-				str_bSUB += san[0] + "~" + san[2] + " (" + triple_attack_rate + "% Chance)<BR>";
+				str_bSUB += san[0] + "~" + san[2] + " (" + wTA + "% Chance)<BR>";
 				TyouEnkakuSousa3dan = 0;
 				if (n_Min_DMG > san[0])
 					n_Min_DMG = san[0];
@@ -619,18 +619,9 @@ function BattleCalc999() {
 			InnStr[0] += Last_DMG_A[0];
 			if (n_A_WeaponType == 11)
 				InnStr[0] = Last_DMG_A[0] + " (" + Last_DMG_B[0] + "+" + w_KATARU[0] + ")";
-			if (Last_DMG_A[0] < n_Min_DMG && w998G < 100)
+			if (Last_DMG_A[0] < n_Min_DMG && NA_crits < 100)
 				n_Min_DMG = Last_DMG_A[0];
-			if (w998D) {
-				if (n_A_WeaponType == 17 && SkillSearch(427)) {
-					if (CardNumSearch(43) || EquipNumSearch(570))
-						str_bSUBname += "Double attack chance<BR>";
-					else
-						str_bSUBname += "Chain action chance<BR>";
-				} else
-					str_bSUBname += "Double attack chance<BR>";
-				str_bSUB += Last_DMG_A[0] * 2 + "~";
-			}
+			
 			w_DMG[0] = n_Min_DMG;
 
 			Last_DMG_B[2] = w_DMG[2] + EDP_DMG(2);
@@ -641,15 +632,35 @@ function BattleCalc999() {
 			n_Max_DMG += n_TAKA_DMG;
 			var wX = Last_DMG_A[2];
 			wX += n_TAKA_DMG;
-			if (n_Max_DMG < wX && w998G < 100)
+			if (n_Max_DMG < wX && NA_crits < 100)
 				n_Max_DMG = wX;
-			if (w998D) {
+		
+			if (DA_effective_rate){
+				str_bSUBname += "Double Attack Damage<BR>";
+				str_bSUB += Last_DMG_A[0] * 2 + "~";
 				var wX = (w_DMG[2] + EDP_DMG(2) + w_KATARU[2]) * 2;
-				str_bSUB += wX + " (" + w998D + "%)<BR>";
+				str_bSUB += wX + " (" + DA_effective_rate + "% Chance)<BR>";
 				wX += n_TAKA_DMG;
 				if (n_Max_DMG < wX)
 					n_Max_DMG = wX;
 			}
+			
+			if (CA_effective_rate) {
+				str_bSUBname += "Chain Action Damage<BR>";
+				str_bSUB += Last_DMG_A[0] * 2 + "~";
+				var wX = (w_DMG[2] + EDP_DMG(2) + w_KATARU[2]) * 2;
+				str_bSUB += wX + " (" + CA_effective_rate + "% Chance)<BR>";
+				wX += n_TAKA_DMG;
+				if (n_Max_DMG < wX)
+					n_Max_DMG = wX;
+
+				if(SkillSearch(433)){ //If GatlingFever#433 active, Chain Action can crit (with reduced damage)
+					str_bSUBname += "Chain Action CRITs<BR>";
+					str_bSUB += n_A_CriATK[2] * 2 * (1 - (.75 - SkillSearch(433) * .05));
+					//str_bSUB += " (" + CA_crits.toFixed(1) + "% Chance)<BR>";
+				}
+			}
+
 			w_DMG[2] = n_Max_DMG;
 
 			Last_DMG_B[1] = w_DMG[1] + EDP_DMG(1);
@@ -718,9 +729,9 @@ function BattleCalc999() {
 		for (var i = 0; i <= 2; i++)
 			n_A_CriATK[i] += EDP_DMG(i);
 
-		if (w998G >= 100)
+		if (w_Cri >= 100)
 			n_Min_DMG = n_A_CriATK[0];
-		if (w998G > 0)
+		if (w_Cri > 0)
 			n_Max_DMG = n_A_CriATK[2];
 		myInnerHtml("CRIATK", n_A_CriATK[0] + "~" + n_A_CriATK[2], 0);
 
@@ -732,9 +743,9 @@ function BattleCalc999() {
 			InnStr[i] += Last_DMG_A[i];
 		}
 
-		if (w998G >= 100)
+		if (w_Cri >= 100)
 			w_DMG[0] = n_Min_DMG;
-		if (w998G > 0)
+		if (w_Cri > 0)
 			w_DMG[2] = n_Max_DMG;
 
 
@@ -1015,11 +1026,13 @@ function BattleCalc999() {
 			n_Delay[2] = 0.5;
 			n_A_Weapon_zokusei = 8;
 			not_use_card = 1;
-		} else if (n_A_ActiveSkill == 428) {
+
+		} else if (n_A_ActiveSkill == 428) { // Rapid Shower#428
 			n_Enekyori = 1;
 			wActiveHitNum = 5;
 			wbairitu += n_A_ActiveSkillLV * 0.5 + 4;
 			n_Delay[2] = 1;
+
 		} else if (n_A_ActiveSkill == 430) { // Tracking#430
 			if (n_A_Weapon_ATKplus > 8 && EquipNumSearch(1100)) { TCcast = 1.25; }
 			else if (EquipNumSearch(926)) { TCcast = .75; }
@@ -1040,7 +1053,7 @@ function BattleCalc999() {
 				n_Delay[3] = 1; // 1 second irreducible delay
 			}
 
-		} else if (n_A_ActiveSkill == 431) {
+		} else if (n_A_ActiveSkill == 431) { // Disarm#431
 			wCast = 2;
 			n_Delay[2] = 1;
 			n_Enekyori = 1;
@@ -1065,14 +1078,11 @@ function BattleCalc999() {
 		}
 		else if (n_A_ActiveSkill == 437) // Ground Drift#437
 		{
-			wCast = 2;
+			wCast = 1;
 			w_HIT = 100;
 			n_Enekyori = 1;
 			w_HIT_HYOUJI = 100;
-
-			// Scouter#1387#5th Bonus - PvM: [Ground Drift#437] Add 3 more Mines
-			if (!Taijin && 21 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 5) > -1)
-				wHITsuu = 4;
+			wHITsuu = eval(document.calcForm.SkillSubNum.value) ? 3 : 1 // If [Under Entity] selection is True = 3 hits, else 1 hit
 		}
 
 		ATKbai02(wbairitu, 0);
@@ -2964,8 +2974,7 @@ function BattleCalc998()
 	}
 
 	// amotion: n_Delay[1], cast time: wCast and minimum skil delay: n_Delay[4] are updating the canact tick at castbegin and not castend
-	// Apply hit ratio to dps computation as well
-	damage_per_second = 1 / (Math.max(Math.max(0, wCast - n_Delay[1]), wCast - n_Delay[4]) + wDelay) * w_DMG[1] * w_HIT_HYOUJI / 100;
+	damage_per_second = 1 / (Math.max(Math.max(0, wCast - n_Delay[1]), wCast - n_Delay[4]) + wDelay) * w_DMG[1];
 	
 	if (2 == n_Enekyori)
 	{
@@ -4150,6 +4159,14 @@ with(document.calcForm){
 		myInnerHtml("AASkill",'<select name="SkillSubNum"onChange="calc()"></select>',0);
 		for (i = 1; i <= 30; ++i)
 			SkillSubNum.options[i - 1] = new Option(i,i);
+		SkillSubNum.value = 1;
+	}
+	else if (n_A_ActiveSkill == 437) // Ground Drift#437
+	{
+		myInnerHtml("AASkillName","Under Entity :",0);
+		myInnerHtml("AASkill",'<select name="SkillSubNum"onChange="calc()"></select>',0);
+			SkillSubNum.options[0] = new Option("True", 1);
+			SkillSubNum.options[1] = new Option("False", 0);
 		SkillSubNum.value = 1;
 	}
 	else if (447 == n_A_ActiveSkill) // Combo Sequence
@@ -8112,7 +8129,13 @@ function calc()
 		w_HIT = w_HIT + (100 - w_HIT) * (StPlusCalc2(86)+StPlusCard(86)) / 100;
 
 	w_HIT = Math.floor(w_HIT *100)/100;
-	w_HIT_HYOUJI = w_HIT;
+
+	w_HIT_DA = n_A_HIT + 80 - (n_B_FLEE) + SkillSearch(13); // bonus hit for Double Attack of [Double Attack] skill Lvl
+	if(w_HIT_DA > 100){
+		w_HIT_DA = 100;
+	}else if(w_HIT_DA < 5){
+		w_HIT_DA = 5;
+	}
 	if(n_A_ActiveSkill==272)
 		n_A_CRI += 20;
 	if(n_A_ActiveSkill==401)
@@ -8128,10 +8151,14 @@ function calc()
 	}
 
 	TyouEnkakuSousa3dan = 0;
-	let triple_attack_rate = get_triple_attack_rate();
+	let wTA = get_triple_attack_rate();
 
-	// Manage [Double Attack]
+	// Manage [Double Attack#13] + [Chain Action#427]. Two separate variables are stored in game. Certain cards/equips grant Double Attack skill
+	// (Sidewinder Card#43, Snake Head Hat#1495 etc). Certain cards/bonuses grant Double Attack RATE (Blade of Angels#1379#12th Bonus, Gertie Card#619).
+	// Rate is only added if wDA != 0. Only Dagger#1, Revolver#17, Gatling Gun#20 can [Double Attack] / [Chain Action] by default regardless
+	// of [Double Attack] value. [StroopDoop]
 	wDA = 0;
+	wCA = 0;
 	
 	if (1 == n_A_WeaponType) // Only applies to Dagger
 		wDA = SkillSearch(13) * 5;
@@ -8152,75 +8179,82 @@ function calc()
 	if (EquipNumSearch(1495) && n_A_WeaponType)
 		wDA = Math.max((EquipNumSearch(1820) ? Math.max(1,n_A_Weapon_ATKplus) * 5 : 5), SkillSearch(13) * 5);
 	
-	// Tempest#1789 - If [Chain Action Learned] enables [Double Attack] according to the level of [Chain Action] learned
-	// [Every Refine Level] - Increase [Double Attack] rate further by 3%
-	if (EquipNumSearch(1789))
-		wDA = SkillSearch(427) * 5 + 3 * n_A_Weapon_ATKplus;
-	
 	// Sherwood Bow#1388 - Rogue/Stalker
 	// #7th Bonus - Enable [Double Attack] usage
 	if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
 		wDA = Math.max(wDA, SkillSearch(13) * 5);
 
-	// Stalker Card#619 - [Rogue Class, Super Novice] - [Double Attack] Rate + 10%
-	if (20 == n_A_JOB || n_A_JobSearch2() == 14)
-		wDA += 10 * CardNumSearch(619);
-
 	// Blade of Angels#1379#12th Bonus - [Double Attack] Rate + 10%
 	if (1379 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 12) > -1)
-		wDA += 10;
+		wDA = wDA ? wDA + 10 : wDA;
 
 	// Sherwood Bow#1388#7th Bonus - [Double Attack] Rate + 10%
 	if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
-		wDA += 10;
+		wDA = wDA ? wDA + 10 : wDA;
 
 	// Thief Figure#1121 - [Vanilla Mode] - [Double Attack] Rate + 5%
 	if (document.calcForm.vanilla.checked)
-		wDA += 5 * EquipNumSearch(1121);
+		wDA = wDA ? wDA + 5 * EquipNumSearch(1121) : wDA;
 
-	// Chain Action#427 - Similar behaviour as Double Attack
-	if (n_A_WeaponType == 17){
-		wDA = SkillSearch(427) * 5;
-		if(CardNumSearch(43))
-			wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 5 /100);
-		if(EquipNumSearch(570))
-			wDA = SkillSearch(427) * 5 + ((100 - SkillSearch(427) * 5) * 10 /100);
-	}
-
-	// For basic attack and skills relying on crit rate, crit rate is giving perfect hit
-	let crit_rate = 0;
-	if (can_attack_crit(n_A_ActiveSkill))
-	{
-		let non_crit_rate = wDA;
+	// Chain Action#427 - Similar behaviour as Double Attack. Can be used with Revolver#17 + Gatling Gun#20
+	if (n_A_WeaponType == 17 || n_A_WeaponType == 20)
+		wCA = SkillSearch(427) * 5; // value set to [Chain Action#427] level * 5
 		
-		if (wDA && n_A_WeaponType != 17) // Increased HIT rate per Double Attack level
-			non_crit_rate *= SkillSearch(13) / 100;
-		non_crit_rate += triple_attack_rate;
-		non_crit_rate += (100 - non_crit_rate) * (1 - w_Cri / 100);
-			
-		// Trigger sequence
-		// HIT rate -> TA rate -> DA rate -> Crit rate
-		// So critical rate even at 100% should reflect that missed/TA/DA attacked cannot be counted as crit
-		crit_rate = Math.min(Math.max(0, 100 - non_crit_rate), w_Cri);
+	// Scouter#1387#6th Bonus - Gatling Gun Equipped: [Chain Action#427] Rate + 10%.
+	if (20 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)
+		wCA = wCA ? wCA + 10 : wCA;
 
-		w_HIT = Math.round(100 * Math.min(100, crit_rate + non_crit_rate * w_HIT / 100)) / 100;
-		w_HIT_HYOUJI = w_HIT;
+	// Gertie Card#619
+	if (CardNumSearch(619))
+	{
+		if(20 == n_A_JOB || n_A_JobSearch2() == 14) // Super Novice or Rogue Class [Double Attack] Rate + 10%
+			wDA = wDA ? wDA + 10 * CardNumSearch(619) : wDA;
+
+		if(45 == n_A_JOB) // Gunslinger [Chain Action] Rate + 10%
+			wCA = wCA ? wCA + 10 * CardNumSearch(619) : wCA; 
 	}
 	
-	w998A = 100 - triple_attack_rate;
-	w998B = triple_attack_rate * w_HIT /100;
-	w998C = triple_attack_rate - w998B;
-	w998D = w998A * wDA /100;
-	w998E = w998D * w_HIT /100;
-	//w998F = w998D - w998E;
-	w998G = (100 - triple_attack_rate - w998D) * w_Cri /100;
-	w998H = 100 - triple_attack_rate - w998D - crit_rate;
-	w998I = w998H * w_HIT /100;
-	//w998J = w998H - w998I;
-	//w998K = w998B +w998E +w998G +w998I;
-	w998L = 100 - w_HIT;
+	// For all normal attacks and skills. Starting with 100%, Determining % that are [Triple Attack], [Double Attack]/[Chain Action], hits that crit, hits that dont crit, misses
+	let current_attack_pct = 100;
+	if(n_A_ActiveSkill)
+		wTA = wDA = wCA = 0; //Only basic attacks can TA/DA/CA
+	
+	// wTA = % of attacks that are [Triple Attack]
+	current_attack_pct = wTA;
+	TA_hits = current_attack_pct * w_HIT / 100;
+	TA_miss = current_attack_pct - TA_hits;
+	// remaining attacks at this point (non-TA)
+	current_attack_pct = 100 - wTA;
+	
+	// [Double Attack] procs before Chain Action hits (as per rA code rathena/blob/master/src/map/battle.cpp line 4324-4334)
+	DA_effective_rate = current_attack_pct * wDA / 100;
+	DA_hits = DA_effective_rate * (w_HIT_DA / 100); //uses w_HIT_DA which includes an extra +Hit bonus during Double Attack
+	DA_miss = DA_effective_rate - DA_hits;
+	// remaining attacks at this point (non-TA, non-DA)
+	current_attack_pct = current_attack_pct - DA_effective_rate;
+	
+	// [Chain Action]
+	CA_effective_rate = current_attack_pct * wCA / 100;
+	CA_crits = 0;
+	if(20 == n_A_WeaponType && SkillSearch(433))
+		CA_crits = CA_effective_rate * w_Cri / 100; // If Gatling Gun#20 && Gatling fever active, allow Chain Action crits
+	CA_hits =  (CA_effective_rate - CA_crits) * w_HIT /100;
+	CA_miss = CA_effective_rate - CA_crits - CA_hits;
+	// remaining attacks at this point (non-TA, non-DA, non-CA) which is all normal attacks
+	current_attack_pct = current_attack_pct - CA_effective_rate;
+	
+	// Normal Attacks + Skills
+	if(can_attack_crit(n_A_ActiveSkill))
+		NA_crits = current_attack_pct * w_Cri / 100;
+	NA_hits = (current_attack_pct - NA_crits) * w_HIT / 100;
+	NA_miss = current_attack_pct - NA_crits - NA_hits;
 
-	myInnerHtml("CRInum", w_Cri.toFixed(2) + SubName[0],0);
+	// Totals
+	total_miss = NA_miss + CA_miss + DA_miss + TA_miss;
+	w_HIT_HYOUJI = 100 - total_miss;
+	
+	if (w_Cri)
+		myInnerHtml("CRInum", w_Cri.toFixed(2) + SubName[0],0);
 
 	w_FLEE = n_A_FLEE + 20 - (n_B_HIT);
 	if(w_FLEE > 95){
@@ -8282,7 +8316,7 @@ function calc()
 
 	n_Max_DMG = 0;
 	n_Min_DMG = 9999999;
-	if((n_A_ActiveSkill==0  || (n_A_ActiveSkill==86 && (50 <= n_B[3] && n_B[3] < 60))) && w998G > 0){
+	if((n_A_ActiveSkill==0  || (n_A_ActiveSkill==86 && (50 <= n_B[3] && n_B[3] < 60))) && w_Cri > 0){
 		n_Min_DMG = n_A_CriATK[0];
 		n_Max_DMG = n_A_CriATK[2];
 	}
@@ -9082,30 +9116,36 @@ function ApplySkillAtkBonus(dmg)
 	if (Taijin && 1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 11) > -1)
 		skill_atk_bonus_ratio -= 10;
 	
-	// Scouter#1387#4th Bonus - Shotgun equipped: ASPD + 25%. 20% more damage with [Full Buster#435]. 50% more damage with [Spread Attack#436].
+	// Scouter#1387#4th Bonus - Shotgun Equipped: 20% more damage with [Spread Attack#436].
 	if (19 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 4) > -1)
 	{
-		if (435 == n_A_ActiveSkill)
+		if (436 == n_A_ActiveSkill)
 			skill_atk_bonus_ratio += 20;
-		else if (436 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 50;
 	}
 
-	// Scouter#1387#5th Bonus - Grenade Launcher equipped: 50% more damage with [Triple Action#418], PvP: 50% more damage with [Ground Drift]"
+	// Scouter#1387#5th Bonus - Grenade Launcher Equipped: 10% more damage with [Ground Drift#437] and [Triple Action#418]
 	if (21 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 5) > -1)
 	{
 		if (418 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 50;
-		else if (Taijin && 437 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 50;
+			skill_atk_bonus_ratio += 10;
+		else if (437 == n_A_ActiveSkill)
+			skill_atk_bonus_ratio += 10;
 	}
 	
-	// Scouter#1387#10th Bonus - Rifle equipped: 20% more damage with [Piercing Shot#432] and 25% with [Tracking#430]
-	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 10) > -1) {
-		if (430 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 25;
-		else if (432 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 20;
+	// Scouter#1387#8th Bonus - Rifle Equipped: 10% more damage with [Piercing Shot#432]
+	if (18 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 8) > -1)
+	{
+		if (432 == n_A_ActiveSkill)
+			skill_atk_bonus_ratio += 10;
+	}
+
+	// Scouter#1387#9th Bonus - Revolver Equipped: 10% more damage with [Rapid Shower#428] and [Desperado#429].
+	if (17 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 9) > -1)
+	{
+		if (428 == n_A_ActiveSkill)
+				skill_atk_bonus_ratio += 10;
+		else if (429 == n_A_ActiveSkill)
+				skill_atk_bonus_ratio += 10;
 	}
 
 	// Glorious Spear#1081
@@ -9147,17 +9187,17 @@ function ApplySkillAtkBonus(dmg)
 	return Math.floor(dmg);
 }
 
-function BattleCalc3(w998)
+function BattleCalc3(dmg)
 {
-	wBC3_3dan = w998B * TyouEnkakuSousa3dan;
-	wBC3_DA = w998E * w998 * 2;
-	wBC3_Cri = w998G * n_A_CriATK[1];
-	wBC3_Normal = w998I * w998;
-	wBC3_Miss = w998L * BattleCalc2(0);
+	wBC3_X = TA_hits * TyouEnkakuSousa3dan;
+	wBC3_X += DA_hits * dmg * 2;
+	wBC3_X += CA_crits * n_A_CriATK[1] * 2 * (1 - (.75 - SkillSearch(433) * .05));
+	wBC3_X += CA_hits * dmg * 2;
+	wBC3_X += NA_crits * n_A_CriATK[1];
+	wBC3_X += NA_hits * dmg;
+	wBC3_X += total_miss * BattleCalc2(0);
 
-	wBC3_X = (wBC3_3dan +wBC3_DA +wBC3_Cri +wBC3_Normal +wBC3_Miss) /100;
-
-	return tPlusLucky(wBC3_X);
+	return tPlusLucky(wBC3_X / 100);
 }
 
 
@@ -9955,27 +9995,27 @@ function is_a_combo_skill(skill_id)
 
 function get_triple_attack_rate()
 {
-	let triple_attack_rate = 0;
+	let wTA = 0;
 	let triple_attack_lv = SkillSearch(187);
 	
 	if (triple_attack_lv)
 	{
 		// Gertie Card#619 - [Triple Attack#187] Rate + 10%
 		// Champion Chen Card#625 - [Triple Attack#187] rate + skill lv%
-		triple_attack_rate = 30 - SkillSearch(187) + 10 * CardNumSearch(619) + triple_attack_lv * CardNumSearch(625);
+		wTA = 30 - SkillSearch(187) + 10 * CardNumSearch(619) + triple_attack_lv * CardNumSearch(625);
 		
 		// Glorious Claw#1096 - [Every Refine Level] - [Triple Attack#187] rate + 3%
-		triple_attack_rate += EquipNumSearch(1096) * n_A_Weapon_ATKplus * 3;
+		wTA += EquipNumSearch(1096) * n_A_Weapon_ATKplus * 3;
 		
 		// Sura's Rampage#1512 - [Triple Attack] Rate + 20%
-		triple_attack_rate += 20 * EquipNumSearch(1512);
+		wTA += 20 * EquipNumSearch(1512);
 		
 		// Sherwood Bow#1388#7th Bonus - [Triple Attack#187] Rate + 10%
 		if (1388 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 7) > -1)
-			triple_attack_rate += 10;
+			wTA += 10;
 	}
 	
-	return triple_attack_rate;
+	return wTA;
 }
 
 function can_attack_crit(active_skill)
