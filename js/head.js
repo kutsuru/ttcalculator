@@ -467,7 +467,7 @@ function BattleCalc999() {
 				str_bSUBname += "Double Attack chance<BR>";
 				str_bSUB += (wX * 2 + w_left_Minatk) + "~";
 			}
-			if (wX + w_left_Minatk < n_Min_DMG && w998G < 100)
+			if (wX + w_left_Minatk < n_Min_DMG && NA_crits < 100)
 				n_Min_DMG = wX + w_left_Minatk;
 			w_DMG[0] = n_Min_DMG;
 
@@ -480,7 +480,7 @@ function BattleCalc999() {
 				wX = (w_DMG[2] + EDP_DMG(2)) * 2 + w_left_Maxatk;
 				str_bSUB += wX + " (" + w998D + "%)<BR>";
 			}
-			if (wX > n_Max_DMG && w998G < 100)
+			if (wX > n_Max_DMG && NA_crits < 100)
 				n_Max_DMG = wX;
 			w_DMG[2] = n_Max_DMG;
 
@@ -616,18 +616,9 @@ function BattleCalc999() {
 			InnStr[0] += Last_DMG_A[0];
 			if (n_A_WeaponType == 11)
 				InnStr[0] = Last_DMG_A[0] + " (" + Last_DMG_B[0] + "+" + w_KATARU[0] + ")";
-			if (Last_DMG_A[0] < n_Min_DMG && w998G < 100)
+			if (Last_DMG_A[0] < n_Min_DMG && NA_crits < 100)
 				n_Min_DMG = Last_DMG_A[0];
-			if (w998D) {
-				if ((n_A_WeaponType == 17 || n_A_WeaponType == 21 )  && SkillSearch(427)) {
-					if (CardNumSearch(43) || EquipNumSearch(570))
-						str_bSUBname += "Double attack chance<BR>";
-					else
-						str_bSUBname += "Chain action chance<BR>";
-				} else
-					str_bSUBname += "Double attack chance<BR>";
-				str_bSUB += Last_DMG_A[0] * 2 + "~";
-			}
+			
 			w_DMG[0] = n_Min_DMG;
 
 			Last_DMG_B[2] = w_DMG[2] + EDP_DMG(2);
@@ -638,15 +629,35 @@ function BattleCalc999() {
 			n_Max_DMG += n_TAKA_DMG;
 			var wX = Last_DMG_A[2];
 			wX += n_TAKA_DMG;
-			if (n_Max_DMG < wX && w998G < 100)
+			if (n_Max_DMG < wX && NA_crits < 100)
 				n_Max_DMG = wX;
-			if (w998D) {
+		
+			if (DA_effective_rate){
+				str_bSUBname += "Double Attack Damage<BR>";
+				str_bSUB += Last_DMG_A[0] * 2 + "~";
 				var wX = (w_DMG[2] + EDP_DMG(2) + w_KATARU[2]) * 2;
-				str_bSUB += wX + " (" + w998D + "%)<BR>";
+				str_bSUB += wX + " (" + DA_effective_rate + "% Chance)<BR>";
 				wX += n_TAKA_DMG;
 				if (n_Max_DMG < wX)
 					n_Max_DMG = wX;
 			}
+			
+			if (CA_effective_rate) {
+				str_bSUBname += "Chain Action Damage<BR>";
+				str_bSUB += Last_DMG_A[0] * 2 + "~";
+				var wX = (w_DMG[2] + EDP_DMG(2) + w_KATARU[2]) * 2;
+				str_bSUB += wX + " (" + CA_effective_rate + "% Chance)<BR>";
+				wX += n_TAKA_DMG;
+				if (n_Max_DMG < wX)
+					n_Max_DMG = wX;
+
+				if(SkillSearch(433)){ //If GatlingFever#433 active, Chain Action can crit (with reduced damage)
+					str_bSUBname += "Chain Action CRITs<BR>";
+					str_bSUB += n_A_CriATK[2] * 2 * (1 - (.75 - SkillSearch(433) * .05));
+					//str_bSUB += " (" + CA_crits.toFixed(1) + "% Chance)<BR>";
+				}
+			}
+
 			w_DMG[2] = n_Max_DMG;
 
 			Last_DMG_B[1] = w_DMG[1] + EDP_DMG(1);
@@ -715,9 +726,9 @@ function BattleCalc999() {
 		for (var i = 0; i <= 2; i++)
 			n_A_CriATK[i] += EDP_DMG(i);
 
-		if (w998G >= 100)
+		if (w_Cri >= 100)
 			n_Min_DMG = n_A_CriATK[0];
-		if (w998G > 0)
+		if (w_Cri > 0)
 			n_Max_DMG = n_A_CriATK[2];
 		myInnerHtml("CRIATK", n_A_CriATK[0] + "~" + n_A_CriATK[2], 0);
 
@@ -729,9 +740,9 @@ function BattleCalc999() {
 			InnStr[i] += Last_DMG_A[i];
 		}
 
-		if (w998G >= 100)
+		if (w_Cri >= 100)
 			w_DMG[0] = n_Min_DMG;
-		if (w998G > 0)
+		if (w_Cri > 0)
 			w_DMG[2] = n_Max_DMG;
 
 
@@ -2958,8 +2969,7 @@ function BattleCalc998()
 	}
 
 	// amotion: n_Delay[1], cast time: wCast and minimum skil delay: n_Delay[4] are updating the canact tick at castbegin and not castend
-	// Apply hit ratio to dps computation as well
-	damage_per_second = 1 / (Math.max(Math.max(0, wCast - n_Delay[1]), wCast - n_Delay[4]) + wDelay) * w_DMG[1] * w_HIT_HYOUJI / 100;
+	damage_per_second = 1 / (Math.max(Math.max(0, wCast - n_Delay[1]), wCast - n_Delay[4]) + wDelay) * w_DMG[1];
 	
 	if (2 == n_Enekyori)
 	{
@@ -7925,7 +7935,13 @@ function calc()
 		w_HIT = w_HIT + (100 - w_HIT) * (StPlusCalc2(86)+StPlusCard(86)) / 100;
 
 	w_HIT = Math.floor(w_HIT *100)/100;
-	w_HIT_HYOUJI = w_HIT;
+
+	w_HIT_DA = n_A_HIT + 80 - (n_B_FLEE) + SkillSearch(13); // bonus hit for Double Attack of [Double Attack] skill Lvl
+	if(w_HIT_DA > 100){
+		w_HIT_DA = 100;
+	}else if(w_HIT_DA < 5){
+		w_HIT_DA = 5;
+	}
 	if(n_A_ActiveSkill==272)
 		n_A_CRI += 20;
 	if(n_A_ActiveSkill==401)
@@ -8004,45 +8020,43 @@ function calc()
 			wCA = wCA ? wCA + 10 * CardNumSearch(619) : wCA; 
 	}
 
-	// Combining wDA + wCA since its possible to have both combine in certain situations (gunslinger using revolver with sidewinder card). and only wDA is used in future calculations
-	wDA = wDA + wCA * (1 - wDA / 100);
-
-	// For basic attack and skills relying on crit rate, crit rate is giving perfect hit
-	let crit_rate = 0;
-	if (can_attack_crit(n_A_ActiveSkill))
-	{
-		let non_crit_rate = wDA;
-		
-		if (wDA && n_A_WeaponType != 17) // Increased HIT rate per Double Attack level
-			non_crit_rate *= SkillSearch(13) / 100;
-		non_crit_rate += triple_attack_rate;
-		non_crit_rate += (100 - non_crit_rate) * (1 - w_Cri / 100);
-			
-		// Trigger sequence
-		// HIT rate -> TA rate -> DA rate -> Crit rate
-		// So critical rate even at 100% should reflect that missed/TA/DA attacked cannot be counted as crit
-		crit_rate = Math.min(Math.max(0, 100 - non_crit_rate), w_Cri);
-
-		w_HIT = Math.round(100 * Math.min(100, crit_rate + non_crit_rate * w_HIT / 100)) / 100;
-		w_HIT_HYOUJI = w_HIT;
-	}
+	// For all normal attacks and skills. Starting with 100%, Determining % that are [Triple Attack], [Double Attack]/[Chain Action], hits that crit, hits that dont crit, misses
+	let current_attack_pct = 100;
 	
-	// For all normal attacks and skills. Starting with 100%, Determining % that are [Triple Attack], [Double Attack], hits that crit, hits that dont crit, misses
-	// triple_attack_rate = % of attacks that are [Triple Attack]
-	w998A = 100 - triple_attack_rate; // A = % of attacks that are not [Triple Attack]
-	w998B = triple_attack_rate * w_HIT /100; // B = % of attacks that are [Triple Attack] that hit
-	w998C = triple_attack_rate - w998B; // C = % of attacks that are [Triple Attack] that miss
-	w998D = w998A * wDA /100; // D = % of attacks that are [Double Attack]
-	w998E = w998D * w_HIT /100; // % of [Double Attacks] that hit
-	//w998F = w998D - w998E; // % of [Double Attacks] that miss
-	w998G = (100 - triple_attack_rate - w998D) * w_Cri /100; // G = % of attacks that are remaining (normal attacks) that crit. (used for Sharpshooting and skills that crit)
-	w998H = 100 - triple_attack_rate - w998D - crit_rate; // H = % of attacks that are non-TA,non-DA,non-crit
-	w998I = w998H * w_HIT /100; // I = % of attacks that are non-TA,non-DA,non-crit that hits
-	//w998J = w998H - w998I; // J = % of attacks that are non-TA,non-DA,non-crit that miss
-	//w998K = w998B +w998E +w998G +w998I; // K = % of all attacks that hit. TA hit + DA hit + crits + normal hits
-	w998L = 100 - w_HIT; // L = % chance to miss
+	// wTA = % of attacks that are [Triple Attack]
+	current_attack_pct = wTA;
+	TA_hits = current_attack_pct * w_HIT / 100;
+	TA_miss = current_attack_pct - TA_hits;
+	// remaining attacks at this point (non-TA)
+	current_attack_pct = 100 - wTA;
+	
+	// [Double Attack] procs before Chain Action hits (as per rA code rathena/blob/master/src/map/battle.cpp line 4324-4334)
+	DA_effective_rate = current_attack_pct * wDA / 100;
+	DA_hits = DA_effective_rate * (w_HIT_DA / 100); //uses w_HIT_DA which includes an extra +Hit bonus during Double Attack
+	DA_miss = DA_effective_rate - DA_hits;
+	// remaining attacks at this point (non-TA, non-DA)
+	current_attack_pct = current_attack_pct - DA_effective_rate;
+	
+	// [Chain Action]
+	CA_effective_rate = current_attack_pct * wCA / 100;
+	CA_crits = 0;
+	if(20 == n_A_WeaponType && SkillSearch(433))
+		CA_crits = CA_effective_rate * w_Cri / 100; // If Gatling Gun#20 && Gatling fever active, allow Chain Action crits
+	CA_hits =  (CA_effective_rate - CA_crits) * w_HIT /100;
+	CA_miss = CA_effective_rate - CA_crits - CA_hits;
+	// remaining attacks at this point (non-TA, non-DA, non-CA) which is all normal attacks
+	current_attack_pct = current_attack_pct - CA_effective_rate;
+	
+	// Normal Attacks
+	NA_crits = current_attack_pct * w_Cri / 100;
+	NA_hits = (current_attack_pct - NA_crits) * w_HIT / 100;
+	NA_miss = current_attack_pct - NA_crits - NA_hits;
 
-	if (crit_rate)
+	// Totals
+	total_miss = NA_miss + CA_miss + DA_miss + TA_miss;
+	w_HIT_HYOUJI = 100 - total_miss;
+	
+	if (w_Cri)
 		myInnerHtml("CRInum", w_Cri.toFixed(2) + SubName[0],0);
 
 	w_FLEE = n_A_FLEE + 20 - (n_B_HIT);
@@ -8105,7 +8119,7 @@ function calc()
 
 	n_Max_DMG = 0;
 	n_Min_DMG = 9999999;
-	if((n_A_ActiveSkill==0  || (n_A_ActiveSkill==86 && (50 <= n_B[3] && n_B[3] < 60))) && w998G > 0){
+	if((n_A_ActiveSkill==0  || (n_A_ActiveSkill==86 && (50 <= n_B[3] && n_B[3] < 60))) && w_Cri > 0){
 		n_Min_DMG = n_A_CriATK[0];
 		n_Max_DMG = n_A_CriATK[2];
 	}
@@ -8862,17 +8876,17 @@ function ApplySkillAtkBonus(dmg)
 	return Math.floor(dmg);
 }
 
-function BattleCalc3(w998)
+function BattleCalc3(dmg)
 {
-	wBC3_3dan = w998B * TyouEnkakuSousa3dan;
-	wBC3_DA = w998E * w998 * 2;
-	wBC3_Cri = w998G * n_A_CriATK[1];
-	wBC3_Normal = w998I * w998;
-	wBC3_Miss = w998L * BattleCalc2(0);
+	wBC3_X = TA_hits * TyouEnkakuSousa3dan;
+	wBC3_X += DA_hits * dmg * 2;
+	wBC3_X += CA_crits * n_A_CriATK[1] * 2 * (1 - (.75 - SkillSearch(433) * .05));
+	wBC3_X += CA_hits * dmg * 2;
+	wBC3_X += NA_crits * n_A_CriATK[1];
+	wBC3_X += NA_hits * dmg;
+	wBC3_X += total_miss * BattleCalc2(0);
 
-	wBC3_X = (wBC3_3dan +wBC3_DA +wBC3_Cri +wBC3_Normal +wBC3_Miss) /100;
-
-	return tPlusLucky(wBC3_X);
+	return tPlusLucky(wBC3_X / 100);
 }
 
 
