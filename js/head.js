@@ -3539,9 +3539,23 @@ function BattleMagicCalc(wBMC) {
 	if (SkillSearch(445) && (6 == target_element || 7 == target_element) && n_A_Weapon_zokusei > 0 && n_A_Weapon_zokusei < 5)
 		elemental_resistance = Math.min(elemental_resistance + 0.5, 1);
 
-	// [Prima's Vanity#1889] adds ignore 20% of Holy/Shadow element Fire/Water/Wind/Earth Resistance, limited to 100%.		
-	if (EquipNumSearch(1889) && (6 == target_element || 7 == target_element) && n_A_Weapon_zokusei > 0 && n_A_Weapon_zokusei < 5)
-		elemental_resistance = Math.min(elemental_resistance + 0.2, 1);
+	// Valkyrie gear resist ignore are not effective when the user has Wizard Spirit.
+	else{
+		if ((6 == target_element || 7 == target_element) && n_A_Weapon_zokusei > 0 && n_A_Weapon_zokusei < 5){
+			// Wearing both [Reginleif's Brand#1888] and [Prima's Vanity#1889] adds ignore 25% of Holy/Shadow element Fire/Water/Wind/Earth Resistance.
+			if (EquipNumSearch(1888) && EquipNumSearch(1889)){
+				elemental_resistance = Math.min(elemental_resistance + 0.25, 1);
+			}
+			// [Reginleif's Brand#1888] adds ignore 10% of Holy/Shadow element Fire/Water/Wind/Earth Resistance.
+			else if (EquipNumSearch(1888)){
+				elemental_resistance = Math.min(elemental_resistance + 0.1, 1);
+			}
+			// [Prima's Vanity#1889] adds ignore 20% of Holy/Shadow element Fire/Water/Wind/Earth Resistance.
+			else if (EquipNumSearch(1889)){
+				elemental_resistance = Math.min(elemental_resistance + 0.2, 1);
+			}
+		}
+	}
 	
 	wBMC2 = Math.floor(wBMC2 * elemental_resistance); // Apply elemental weakness
 	if (debug_dmg_avg)
