@@ -1945,7 +1945,7 @@ ItemOBJ = [
 ,[1885,60,0,6,0,1,100,80,"Kara's Blessing","","Ignore 10% of Magical Reflect Damage.<br>10% more physical and magical damage against Valkyrie Kara.<br>10% resistance against Valkyrie Kara.",194,1,7,1,58,5,155,100,0]
 ,[1886,61,1,3,0,1,50,65,"Brynhildr's Stand","",0,19,5,64,20,62,20,66,20,65,20,0]
 ,[1887,62,0,5,0,1,50,1,"Hildr's Veil","","10% more physical and magical damage against Valkyrie Hildr.<br>10% resistance against Valkyrie Hildr.",194,1,7,1,15,4,58,5,0]
-,[1888,62,0,5,0,1,50,1,"Reginleif's Brand","","5% more physical and magical damage against Valkyrie Reginlief and Valkyrie Prima.<br>10% resistance against Valkyrie Reginlief.",194,1,7,1,19,4,58,5,0]
+,[1888,62,0,5,0,1,50,1,"Reginleif's Brand","","Ignore 10% of Holy and Shadow elemental resistance with Fire/Water/Wind/Earth magic.<br>5% more physical and magical damage against Valkyrie Reginlief and Valkyrie Prima.<br>10% resistance against Valkyrie Reginlief.",194,1,7,1,19,4,58,5,0]
 ,[1889,63,0,3,0,1,100,70,"Prima's Vanity","","Fast movement all the time<br>Ignore 20% of Holy and Shadow elemental resistance with Fire/Water/Wind/Earth magic.<br>5% more physical and magical damage against Valkyrie Reginlief and Valkyrie Prima.<br>10% resistance against Valkyrie Prima.",194,1,7,1,58,5,0]
 ,[1890,63,0,3,0,1,100,70,"Sigrun's Journey","","Fast movement all the time<br>Ignore 20% of Magical Reflect Damage.<br>5% more physical and magical damage against Valkyrie Sigrun and Valkyrie Olrun.<br>10% resistance against Valkyrie Sigrun and Valkyrie Olrun.",194,1,7,1,0]
 ,[1891,100,0,0,0,0,0,0,"Herja's Fury and Hildr's Veil and Prima's Vanity","","5% more Physical and Magical damage against All BoTN Valkyries" ,7,1,0]
