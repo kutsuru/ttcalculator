@@ -810,17 +810,17 @@ sqi_bonus_db = {
 	// Scouter#1387
 	1387 : 	[["20% Magic Resistance",101,20,0]
 			,["Reduce SP Consumption of skills by 20%",72,-20,0]
-			,["CRIT + 15 (30 with Rifles) and 20% more damage with Critical Hits",10,15,70,20,0]
-			,["Shotgun Equipped: ASPD + 15%. 20% more damage with [Full Buster]. 50% more damage with [Spread Attack]",0]
-			,["Grenade Launcher Equipped: 50% more damage with [Triple Action]. [Ground Drift] Duration + 30s. PvP: 50% more damage with [Ground Drift], PvM: Add 4 more Mines, AoE becomes 5x5.",0]
-			,["Gatling Gun Equipped: 20% more damage with Long Range Attacks and Critical Hits. Ignore [Gatling Fever] FLEE and Movement Speed penalties, dispelled on unequip",0]
-			,["Enables use of level 1 [Hyper Spirit Sphere]",0]
-			,["5% chance to auto cast Stone Curse status when attacking",221,116,0]
-			,["Add a 25% chance to ignore ammo costs when using skills or attacking normally. Skills that consume more than 2 bullets only consume 2 bullets",0]
-			,["Rifle Equipped: 20% more damage with [Piercing Shot] and [Tracking]. 25% less cast time with [Tracking]",0]
-			,["Triple the duration of [Madness Canceller] and [Adjustment]",0]
-			,["15% Aftercast Reduction",74,15,0]
-			,["Immunity to Blind Status. Base AGI >= 87: Immunity to Stun Status. Base VIT >= 87: Immunity to Sleep Status",154,100,0]],
+			,["CRIT + 20",10,20,0]
+			,["Shotgun Equipped: 20% Short Range Resistance. 20% more damage with [Spread Attack]",0]
+			,["Grenade Launcher Equipped: Wipe [Ground Drift] mines on Scouter Equip. 10% more damage with [Ground Drift] and [Triple Action]",0]
+			,["Gatling Gun Equipped: 10% more damage with Long Range Attacks and [Chain Action] Rate + 10%.",0]
+			,["FLEE + 30",9,30,0]
+			,["Rifle Equipped: 25% less Cast Time when using [Tracking] (stacks multiplicatively with global cast redux gears, not additevely). 10% more damage with [Piercing Shot]",0]
+			,["Revolver Equipped: 20% Short Range Resistance. 10% more damage with [Rapid Shower] and [Desperado].",0]
+			,["25% chance to ignore ammo costs when using skills or attacking normally.",0]
+			,["Triple the duration of [Increasing Accuracy], [Madness Canceller], and [Adjustment].",0]
+			,["15% Aftercast Reduction.",74,15,0]
+			,["Triple the success rate of [Disarm].",0]],
 	// Sherwood Bow#1388
 	1388 : 	[["MaxSP + 10%. Add a 25% chance to ignore ammo costs when attacking normally or using skills",16,10,0]
 			,["Reduce SP Consumption of skills by 15%",72,-15,0]
