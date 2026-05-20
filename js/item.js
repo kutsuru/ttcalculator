@@ -1536,7 +1536,7 @@ ItemOBJ = [
 ,[1503,50,0,4,0,0,15,30,"Tasty Strawberry Hat","","<b>[Refine Rate 7-10]</b><br>ASPD + 4%",7,1,0]
 ,[1504,50,0,2,0,1,20,40,"Full Bloom Hairpin","","",9,4,11,4,19,4,0]
 ,[1505,50,1152,3,0,1,60,60,"Diadem Of Bruenhild","","Creates a chance of casting Level 8 Endure when you receive Physical damage<br>Consumes 100 HP every 4 seconds",59,5,60,5,194,1,0]
-,[1506,10,124,115,3,2,150,93,"Creeper Bow","","Has a chance of activating Fiber Lock while attacking",5,1,0]
+,[1506,10,1064,115,3,2,150,93,"Creeper Bow","","Has a chance of activating Fiber Lock while attacking",5,1,0]
 ,[1507,61,123,4,0,1,50,95,"Bible of Promise(2nd Vol.)","",0,19,5,91,5,94,5,0]
 ,[1508,9,132,40,3,"1/2",50,60,"Mental Stick","","<b>[Every Refine]</b><br>Increases [Fire Bolt], [Cold Bolt], [Lightning Bolt] damage by 2%",73,-10,89,15,0]
 ,[1509,64,1001,1,0,"0/1",20,60,"Telekinetic Orb","","",4,3,14,30,19,1,0]
