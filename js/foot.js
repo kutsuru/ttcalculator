@@ -8843,34 +8843,34 @@ function apply_faceworm_enchants() {
 			n_tok[script_bonus[i]] += script_bonus[i + 1];
 	}
 
-	// Manage unsafe refine bonus for complete 3rd enchant bonus - [Every 2 Unsafe Refines]
+	// Manage unsafe refine bonus for complete 3rd enchant bonus - [Every 2 refines +4 and up]
 	let third_enchant_index = eval(document.calcForm.faceworm_3rd_enchant_select.value);
 	if (third_enchant_index > 6) {
-		let unsafe_refine_bonus = Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 2) / 2));
+		let refine_bonus = Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 2) / 2));
 
 		switch (third_enchant_index) {
 			case 7: // Special STR - HIT + 4 - [Whitesmith] Total ATK + 1% - [Other Classes] Short Range ATK + 1%
-				n_tok[8] += unsafe_refine_bonus * 4;
+				n_tok[8] += refine_bonus * 4;
 
 				if (26 == n_A_JOB) // Whitesmith
-					n_tok[87] += unsafe_refine_bonus;
+					n_tok[87] += refine_bonus;
 				else
-					n_tok[88] += unsafe_refine_bonus;
+					n_tok[88] += refine_bonus;
 				break;
 			case 8: // Special AGI - FLEE + 3 - ASPD + 1%
-				n_tok[9] += unsafe_refine_bonus * 3;
-				n_tok[12] += unsafe_refine_bonus;
+				n_tok[9] += refine_bonus * 3;
+				n_tok[12] += refine_bonus;
 				break;
 			case 9: // Special VIT - MaxHP + 1% - Reduces Neutral property damage by 1%
-				n_tok[15] += unsafe_refine_bonus;
-				n_tok[60] += unsafe_refine_bonus;
+				n_tok[15] += refine_bonus;
+				n_tok[60] += refine_bonus;
 				break;
 			case 10: // Special INT - MaxSP + 1% - Min MATK + 10
-				n_tok[16] += unsafe_refine_bonus;
-				n_tok[202] += unsafe_refine_bonus * 10;
+				n_tok[16] += refine_bonus;
+				n_tok[202] += refine_bonus * 10;
 				break;
 			case 11: // Special DEX - Increases damage with Ranged Attacks by 1%.
-				n_tok[25] += unsafe_refine_bonus;
+				n_tok[25] += refine_bonus;
 				break;
 			case 12: // Special LUK - Increases Crit ATK/Skills Damage by 1%
 				// Managed later due to crit modifier applied to skills as well

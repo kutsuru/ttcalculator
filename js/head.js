@@ -8637,11 +8637,11 @@ function BaiCI(wBaiCI)
 			if (EquipNumSearch(1841) || 5 == enchant_category)
 				crit_dmg_modifier += Math.floor(SU_LUK / 19) * 3;
 
-			// Faceworm Special LUK enchant - [Every 2 Unsafe Refines] - Increases critical attack/skills attack by 1%
+			// Faceworm Special LUK enchant - [Every 2 refines +4 and up] - Increases critical attack/skills attack by 1%
 			third_enchant_index = eval(document.calcForm.faceworm_3rd_enchant_select.value);
 
 			if (EquipNumSearch(1869) || 12 == third_enchant_index)
-				crit_dmg_modifier += Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 4) / 2));
+				crit_dmg_modifier += Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 2) / 2));
 			
 			if (272 == n_A_ActiveSkill)  // Sharpshoot#272
 			{
