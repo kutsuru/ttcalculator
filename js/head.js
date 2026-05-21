@@ -3541,13 +3541,26 @@ function BattleMagicCalc(wBMC) {
 	let elemental_resistance = zokusei[n_B[3]][n_A_Weapon_zokusei];
 	let target_element = Math.floor(n_B[3] / 10);
 	
-	// [Wizard Link#445] adds ignore 50% of Holy/Shadow element Fire/Water/Wind/Earth Resistance, limited to 100%.		
-	if (SkillSearch(445) && (6 == target_element || 7 == target_element) && n_A_Weapon_zokusei > 0 && n_A_Weapon_zokusei < 5)
-		elemental_resistance = Math.min(elemental_resistance + 0.5, 1);
+	// Check for Holy/Shadow element Mobs while using a Fire/Water/Wind/Earth magic skill 
+	if ((6 == target_element || 7 == target_element) && n_A_Weapon_zokusei > 0 && n_A_Weapon_zokusei < 5)
+	{
+		// [Wizard Link#445] adds ignore 50% of Holy/Shadow element Fire/Water/Wind/Earth Resistance, limited to 100%.		
+		if (SkillSearch(445))
+			elemental_resistance = Math.min(elemental_resistance + 0.5, 1);
 
-	// [Prima's Vanity#1889] adds ignore 20% of Holy/Shadow element Fire/Water/Wind/Earth Resistance, limited to 100%.		
-	if (EquipNumSearch(1889) && (6 == target_element || 7 == target_element) && n_A_Weapon_zokusei > 0 && n_A_Weapon_zokusei < 5)
-		elemental_resistance = Math.min(elemental_resistance + 0.2, 1);
+		// Valkyrie gear resist ignore are not effective when the user has Wizard Spirit.
+		else {	
+			// Wearing both [Reginleif's Brand#1888] and [Prima's Vanity#1889] adds ignore 25% of Holy/Shadow element Fire/Water/Wind/Earth Resistance.
+			if (EquipNumSearch(1888) && EquipNumSearch(1889))
+				elemental_resistance = Math.min(elemental_resistance + 0.25, 1);
+			// [Reginleif's Brand#1888] adds ignore 10% of Holy/Shadow element Fire/Water/Wind/Earth Resistance.
+			else if (EquipNumSearch(1888))
+				elemental_resistance = Math.min(elemental_resistance + 0.1, 1);
+			// [Prima's Vanity#1889] adds ignore 20% of Holy/Shadow element Fire/Water/Wind/Earth Resistance.
+			else if (EquipNumSearch(1889))
+				elemental_resistance = Math.min(elemental_resistance + 0.2, 1);
+		}
+	}
 	
 	wBMC2 = Math.floor(wBMC2 * elemental_resistance); // Apply elemental weakness
 	if (debug_dmg_avg)
@@ -8639,11 +8652,11 @@ function BaiCI(wBaiCI)
 			if (EquipNumSearch(1841) || 5 == enchant_category)
 				crit_dmg_modifier += Math.floor(SU_LUK / 19) * 3;
 
-			// Faceworm Special LUK enchant - [Every 2 Unsafe Refines] - Increases critical attack/skills attack by 1%
+			// Faceworm Special LUK enchant - [Every 2 refines +4 and up] - Increases critical attack/skills attack by 1%
 			third_enchant_index = eval(document.calcForm.faceworm_3rd_enchant_select.value);
 
 			if (EquipNumSearch(1869) || 12 == third_enchant_index)
-				crit_dmg_modifier += Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 4) / 2));
+				crit_dmg_modifier += Math.max(0, Math.floor((n_A_SHOULDER_DEF_PLUS - 2) / 2));
 			
 			if (272 == n_A_ActiveSkill)  // Sharpshoot#272
 			{
