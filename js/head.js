@@ -33,6 +33,7 @@ b = 0;
 n_PerHIT_DMG = 0;
 n_Delay = [0,0,0,0,0,0,0];
 wDelay = 0;
+def_reduction = 0;
 n_tok = new Array();
 for(var i=0;i<=450;i++)
 	n_tok[i] = 0;
@@ -4358,8 +4359,8 @@ with(document.calcForm){
 		html_CS3SW_SKILL[6] = '<select name="A3_Skill6_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
 		html_CS3SW_SKILL[7] = '<select name="A3_Skill7"onChange="Click_A3(1)"></select>';
 		html_CS3SW_SKILL[8] = '<select name="A3_Skill8"onChange="Click_A3(1)"></select>';
-		html_CS3SW_SKILL[9] = '<select name="A3_Skill9"onChange="Click_A3(1)"></select>';
-		html_CS3SW_SKILL[10] = '<select name="A3_Skill10"onChange="Click_A3(1)"></select>';
+		html_CS3SW_SKILL[9] = '<select name="A3_Skill9"onChange="CheckSkill9and10(9)|Click_A3(1)"></select>';
+		html_CS3SW_SKILL[10] = '<select name="A3_Skill10"onChange="CheckSkill9and10(10)|Click_A3(1)"></select>';
 		for(i=0;i<=10;i++)
 			myInnerHtml("EN"+i+"_2",html_CS3SW_SKILL[i],0);
 
@@ -4414,6 +4415,16 @@ with(document.calcForm){
 	}
 	Click_A3(0);
 }}
+
+function CheckSkill9and10(changed) { //Ensure Drum and Rings cannot both be clicked
+    var skill9  = document.getElementsByName("A3_Skill9")[0];
+    var skill10 = document.getElementsByName("A3_Skill10")[0];
+
+    // If both have a non-zero value selected
+    if (skill9.value != 0 && skill10.value != 0) {
+        (changed == 9 ? skill10 : skill9).value = 0;
+    }
+}
 
 function Skill3SW_2(){
 with(document.calcForm){
@@ -7839,6 +7850,10 @@ Race - n_B[2] = raceID - example n_B[2] = 3, Plant
 	def_class_reduction = (n_B[19] ? n_tok[22] : n_tok[21]);
 	def_property_reduction = n_tok[280 + Math.floor(n_B[3] / 10)];
 	def_reduction = Math.min(100, def_race_reduction + def_class_reduction + def_property_reduction);
+	if(def_reduction && (n_A_PassSkill3[9] || n_A_PassSkill3[10])){
+		if(!(def_reduction == 100 && !CardNumSearch(166)))
+			def_reduction *= 0.75;
+	}
 
 	n_B[14] = Math.ceil(n_B[14] * (100 - def_reduction) / 100 * (100 - def_skill_reduction) / 100);
 	n_B[23] = Math.ceil(n_B[23] * (100 - def_reduction) / 100 * (100 - def_skill_reduction) / 100);
@@ -9300,17 +9315,17 @@ function BattleCalc4(wBC4,wBC4_2,wBC4_3){
 	if (Taijin == 0 && n_B_IJYOU[21]) // Eska increases the random part of the formula by 100
 		eska_vit_bonus = [0, 50, 100];
 
-	let def_reduction = 0
+	let def_reduction2 = 0
 	
 	// Suiken#1390#13th Bonus - Combo Skills ignore 30% of enemy Defense
 	if (1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 13) > -1 && is_a_combo_skill(n_A_ActiveSkill))
-		def_reduction = Math.floor(n_B[14] * 0.30);
+		def_reduction2 = Math.floor(n_B[14] * 0.30);
 
 	// Twin Fang#1375#10th Bonus - Enable bDefRatioAtkClass on Soul Breaker#263
 	if (n_tok[23] || (1375 == n_A_Equip[0] && 263 == n_A_ActiveSkill && SQI_Bonus_Effect.findIndex(x => x == 10) > -1))
 		wBC4 = Math.floor(wBC4 * (n_B_DEF2[2 - wBC4_2] + eska_vit_bonus[wBC4_2] + n_B[14])/100) +wBC4_3;
 	else
-		wBC4 = Math.floor(wBC4 * (100 - n_B[14] + def_reduction) /100) - n_B_DEF2[wBC4_2] - eska_vit_bonus[2 - wBC4_2] + wBC4_3;
+		wBC4 = Math.floor(wBC4 * (100 - n_B[14] + def_reduction2) /100) - n_B_DEF2[wBC4_2] - eska_vit_bonus[2 - wBC4_2] + wBC4_3;
 
 	return wBC4;
 }
