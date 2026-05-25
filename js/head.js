@@ -705,7 +705,7 @@ function BattleCalc999() {
 		myInnerHtml("CRIATKname", "Critical Hit", 0);
 		myInnerHtml("CRInumname", "Critical Attack chance", 0);
 
-		if (n_A_ActiveSkill == 272) { //Sharp Shooting#272
+		if (n_A_ActiveSkill == 272) { // Sharp Shooting#272
 			n_Enekyori = 1;
 			wbairitu += (1 + 0.5 * n_A_ActiveSkillLV);
 			wCast = 2 * n_A_CAST;
@@ -8210,7 +8210,7 @@ function calc()
 		w_Cri = 100;
 	}
 
-	//Tracking#430. Crit rate is completely defined by range select. Every cell greater than or equal to 5 give +10 Crit %. Other equips and stats are ignrored.
+	//Tracking#430. Crit rate is completely defined by range select. Every cell greater than or equal to 5 give +10 Crit %. Other equips and stats are ignored.
 	if (n_A_ActiveSkill == 430)
 		w_Cri = eval(document.calcForm.SkillSubNum.value);
 
