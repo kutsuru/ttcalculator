@@ -798,7 +798,7 @@ with(document.calcForm){
 	if (n_A_PassSkill3[9]) {
 		// Talon Tales Update 25.03.2026: Remove custom Drum nerf.  
 		// Reduce the effect of Defense Reduction coming from Item Scripts: See head.js 7853
-		// and Chain Action Critical Hits by 25%: 
+		// and Chain Action Critical Hits by 25%: See BattleCalc3
 		n_A_Weapon_ATK += 25 + 25 * n_A_PassSkill3[9];
 		n_A_Weapon2_ATK += 25 + 25 * n_A_PassSkill3[9] * n_Nitou;
 	}
@@ -807,7 +807,7 @@ with(document.calcForm){
 	if (n_A_PassSkill3[10] && n_A_WeaponLV == 4) {
 		// Talon Tales Update 25.03.2026: Remove custom Drum nerf.  
 		// Reduce the effect of Defense Reduction coming from Item Scripts: See head.js 7853
-		// and Chain Action Critical Hits by 25%: 
+		// and Chain Action Critical Hits by 25%: See BattleCalc3
 		n_A_Weapon_ATK += 50 + 25 * n_A_PassSkill3[10];
 		n_A_Weapon2_ATK += 50 + 25 * n_A_PassSkill3[10] * n_Nitou;
 	}
@@ -3604,12 +3604,8 @@ with(document.calcForm){
 	if (n_A_PassSkill3[2]) // Poem of Bragi, 3 * Skill LV + Musical Lesson LV + DEX / 10;
 		bragi_cast_reduction -= Math.min(1, (n_A_PassSkill3[2] * 3 + n_A_PassSkill3[32] + Math.floor(n_A_PassSkill3[22] / 10)) / 100);
 
-	// DEX and Bragi do not reduce Tracking#430 cast time
-	if (430 == n_A_ActiveSkill)
-		n_A_CAST = 1 + n_tok[73] / 100;
-	else
-		n_A_CAST *= (1 + n_tok[73] / 100) * bragi_cast_reduction;
-
+	n_A_CAST *= (1 + n_tok[73] / 100) * bragi_cast_reduction;
+	
 	// Skill cast time reduction script bonus
 	skill_cast_reduction = 100;
 
