@@ -3919,7 +3919,7 @@ with(document.calcForm){
 	for(i=0; i < MalangdoEnchantment.length; i++) {
 		var vME = MalangdoEnchantment[i];
 		if(vME >= 251 && vME <= 256) {
-				n_tok[25] += 1 * parseInt(vME.substr(-1));
+				n_tok[25] += parseInt(vME.substr(-1));
 		}
 	}
 

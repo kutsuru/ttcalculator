@@ -4394,8 +4394,8 @@ with(document.calcForm){
 		html_CS3SW_SKILL[6] = '<select name="A3_Skill6_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
 		html_CS3SW_SKILL[7] = '<select name="A3_Skill7"onChange="Click_A3(1)"></select>';
 		html_CS3SW_SKILL[8] = '<select name="A3_Skill8"onChange="Click_A3(1)"></select>';
-		html_CS3SW_SKILL[9] = '<select name="A3_Skill9"onChange="CheckSkill9and10(9)|Click_A3(1)"></select>';
-		html_CS3SW_SKILL[10] = '<select name="A3_Skill10"onChange="CheckSkill9and10(10)|Click_A3(1)"></select>';
+		html_CS3SW_SKILL[9] = '<select name="A3_Skill9"onChange="DrumAndRingSelect(9)|Click_A3(1)"></select>';
+		html_CS3SW_SKILL[10] = '<select name="A3_Skill10"onChange="DrumAndRingSelect(10)|Click_A3(1)"></select>';
 		for(i=0;i<=10;i++)
 			myInnerHtml("EN"+i+"_2",html_CS3SW_SKILL[i],0);
 
@@ -4451,13 +4451,13 @@ with(document.calcForm){
 	Click_A3(0);
 }}
 
-function CheckSkill9and10(changed) { //Ensure Drum and Rings cannot both be clicked
-    var skill9  = document.getElementsByName("A3_Skill9")[0];
-    var skill10 = document.getElementsByName("A3_Skill10")[0];
+function DrumAndRingSelect(changed) { //Ensure Drum and Rings cannot both be clicked
+    var DrumClicked  = document.getElementsByName("A3_Skill9")[0];
+    var RingClicked = document.getElementsByName("A3_Skill10")[0];
 
     // If both have a non-zero value selected
-    if (skill9.value != 0 && skill10.value != 0) {
-        (changed == 9 ? skill10 : skill9).value = 0;
+    if (DrumClicked.value != 0 && RingClicked.value != 0) {
+        (changed == 9 ? RingClicked : DrumClicked).value = 0;
     }
 }
 
@@ -7876,15 +7876,18 @@ Race - n_B[2] = raceID - example n_B[2] = 3, Plant
 		n_B[24] = 0;
 	}
 	
-	// Apply item script bonus affecting defense
-	def_skill_reduction = 0;
-	if (292 == n_A_ActiveSkill)
-		def_skill_reduction += 15 * CardNumSearch(627);
+	// Apply item script bonus affecting defense reduction
+	def_reduction = 0;
+	if (292 == n_A_ActiveSkill) //Arrow Vulcan#292 and Clown Alphoccio Card#627
+		def_reduction += 15 * CardNumSearch(627);
+
+	// Suiken#1390#13th Bonus - Combo Skills ignore 30% of enemy Defense
+	if (1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 13) > -1 && is_a_combo_skill(n_A_ActiveSkill))
+		def_reduction += 30;
 	
-	def_race_reduction = n_tok[180 + n_B[2]];
-	def_class_reduction = (n_B[19] ? n_tok[22] : n_tok[21]);
-	def_property_reduction = n_tok[280 + Math.floor(n_B[3] / 10)];
-	def_reduction = def_race_reduction + def_class_reduction + def_property_reduction;
+	def_reduction += n_tok[180 + n_B[2]];
+	def_reduction += (n_B[19] ? n_tok[22] : n_tok[21]);
+	def_reduction += n_tok[280 + Math.floor(n_B[3] / 10)];
 
 	//Full Buster#435: DEF reduction based on skill range. <=1 30%, 2 20%, >=3 10%. Doesnt stack with other DEF reductions scripts.
 	if(n_A_ActiveSkill == 435)
@@ -7893,16 +7896,16 @@ Race - n_B[2] = raceID - example n_B[2] = 3, Plant
 	if(def_reduction && (n_A_PassSkill3[9] || n_A_PassSkill3[10])){ //If Drum or Nibel active
 		//If def_reduction == 100 - do nothing. This is DEF ignore and it is not reduced
 		//Else reduce the current DEF reduction by 25%
-		//However if 100+ def_reduction is achieved through equips, it should in fact be reduced as well.
-		//The only plausible way to achieve 100+ def_reduction through equips is with Thanatos Card#166
+		//However if 100+ def_reduction is achieved through multiple equips, it should in fact be reduced as well.
+		//The only plausible way to achieve 100+ def_reduction through multiple equips is with Thanatos Card#166
 		if(!(def_reduction == 100 && !CardNumSearch(166)))
 			def_reduction *= 0.75;
 	}
 	def_reduction = Math.min(100, def_reduction);
 
-	n_B[14] = Math.ceil(n_B[14] * (100 - def_reduction) / 100 * (100 - def_skill_reduction) / 100);
-	n_B[23] = Math.ceil(n_B[23] * (100 - def_reduction) / 100 * (100 - def_skill_reduction) / 100);
-	n_B[24] = Math.max(n_B[23], Math.ceil(n_B[24] * (100 - def_reduction) / 100 * (100 - def_skill_reduction) / 100));
+	n_B[14] = Math.ceil(n_B[14] * (100 - def_reduction) / 100);
+	n_B[23] = Math.ceil(n_B[23] * (100 - def_reduction) / 100);
+	n_B[24] = Math.max(n_B[23], Math.ceil(n_B[24] * (100 - def_reduction) / 100));
 	
 	// Belmont Whip#1378 - Dancer/Gypsy
 	// #8th Bonus - [Ugly Dance] reduces enemy INT by 20% for 7 seconds
@@ -9262,7 +9265,6 @@ function BattleCalc3(dmg)
 	wBC3_X += NA_crits * n_A_CriATK[1];
 	wBC3_X += NA_hits * dmg;
 	wBC3_X += total_miss * BattleCalc2(0);
-	
 	return tPlusLucky(wBC3_X / 100);
 }
 
@@ -9366,17 +9368,11 @@ function BattleCalc4(wBC4,wBC4_2,wBC4_3){
 	if (Taijin == 0 && n_B_IJYOU[21]) // Eska increases the random part of the formula by 100
 		eska_vit_bonus = [0, 50, 100];
 
-	let def_reduction2 = 0
-	
-	// Suiken#1390#13th Bonus - Combo Skills ignore 30% of enemy Defense
-	if (1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 13) > -1 && is_a_combo_skill(n_A_ActiveSkill))
-		def_reduction2 = Math.floor(n_B[14] * 0.30);
-
 	// Twin Fang#1375#10th Bonus - Enable bDefRatioAtkClass on Soul Breaker#263
 	if (n_tok[23] || (1375 == n_A_Equip[0] && 263 == n_A_ActiveSkill && SQI_Bonus_Effect.findIndex(x => x == 10) > -1))
 		wBC4 = Math.floor(wBC4 * (n_B_DEF2[2 - wBC4_2] + eska_vit_bonus[wBC4_2] + n_B[14])/100) +wBC4_3;
 	else
-		wBC4 = Math.floor(wBC4 * (100 - n_B[14] + def_reduction2) /100) - n_B_DEF2[wBC4_2] - eska_vit_bonus[2 - wBC4_2] + wBC4_3;
+		wBC4 = Math.floor(wBC4 * (100 - n_B[14]) / 100) - n_B_DEF2[wBC4_2] - eska_vit_bonus[2 - wBC4_2] + wBC4_3;
 
 	return wBC4;
 }
@@ -10011,28 +10007,22 @@ function calc_base_atk(base_atk, is_critical_attack, is_left_hand_active, is_dex
 	if (is_critical_attack)
 		damage_min = damage_max;
 
-	if (is_dex_based && n_A_ActiveSkill != 76 && n_A_JOB != 45) // Add arrow base attack, except for Bowling Bash, and except for Gunslingers
-	{
+	if (is_dex_based && n_A_ActiveSkill != 76){ // Add arrow/bullet/sphere base attack, except for Bowling Bash
+		if (10 == n_A_WeaponType)
+			arrow_dmg = ArrowOBJ[n_A_Arrow][0];
+		else if (17 <= n_A_WeaponType && n_A_WeaponType <= 20)
+			arrow_dmg = BulletOBJ[n_A_Arrow][0];
+		else if (21 == n_A_WeaponType)
+			arrow_dmg = GrenadeOBJ[n_A_Arrow][0];
+	
 		if (is_critical_attack)
 		{
-			damage_min += ArrowOBJ[n_A_Arrow][0];
-			damage_max += ArrowOBJ[n_A_Arrow][0];
+			damage_min += arrow_dmg;
+			damage_max += arrow_dmg;
 		}
 		else
-			damage_max += ArrowOBJ[n_A_Arrow][0] - 1;
+			damage_max += arrow_dmg - 1;
 	}
-
-	if (is_dex_based && n_A_ActiveSkill != 76 && n_A_JOB == 45) // Add bullet base attack, except for Bowling Bash
-	{
-		if (is_critical_attack)
-		{
-			damage_min += BulletOBJ[n_A_Arrow][0];
-			damage_max += BulletOBJ[n_A_Arrow][0];
-		}
-		else
-			damage_max += BulletOBJ[n_A_Arrow][0] - 1;
-	}
-
 	return [damage_min, Math.floor((damage_min + damage_max) / 2), damage_max];
 }
 
