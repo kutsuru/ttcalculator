@@ -33,6 +33,7 @@ b = 0;
 n_PerHIT_DMG = 0;
 n_Delay = [0,0,0,0,0,0,0];
 wDelay = 0;
+def_reduction = 0;
 n_tok = new Array();
 for(var i=0;i<=450;i++)
 	n_tok[i] = 0;
@@ -378,7 +379,7 @@ function BattleCalc999() {
 	str_bSUBname = "";
 	InnStr = ["", "", ""];
 
-	if (n_A_ActiveSkill != 0 && n_A_ActiveSkill != 272 && n_A_ActiveSkill != 401 && !(n_A_ActiveSkill == 86 && (50 <= n_B[3] && n_B[3] < 60))) {
+	if (n_A_ActiveSkill != 0 && n_A_ActiveSkill != 272 && n_A_ActiveSkill != 401 && n_A_ActiveSkill != 430 && !(n_A_ActiveSkill == 86 && (50 <= n_B[3] && n_B[3] < 60))) {
 		myInnerHtml("CRIATK", "", 0);
 		myInnerHtml("CRInum", "", 0);
 		myInnerHtml("CRIATKname", "", 0);
@@ -656,7 +657,9 @@ function BattleCalc999() {
 
 				if(SkillSearch(433)){ //If GatlingFever#433 active, Chain Action can crit (with reduced damage)
 					str_bSUBname += "Chain Action CRITs<BR>";
-					str_bSUB += n_A_CriATK[2] * 2 * (1 - (.75 - SkillSearch(433) * .05));
+					//Chain Action CRIT damage is reduced by (75-Gatling Fever SkillLv*5)% add also
+					//ADDITIVELY with 25% damage reduction if Drum or Ring active
+					str_bSUB += (n_A_PassSkill3[9] || n_A_PassSkill3[10]) ? n_A_CriATK[1] * 2 * (.75 - (.75 - SkillSearch(433) * .05)) : n_A_CriATK[1] * 2 * (1 - (.75 - SkillSearch(433) * .05));
 					//str_bSUB += " (" + CA_crits.toFixed(1) + "% Chance)<BR>";
 				}
 			}
@@ -698,16 +701,31 @@ function BattleCalc999() {
 			alert(debug_atk);
 
 		return;
-	} else if (n_A_ActiveSkill == 272 || n_A_ActiveSkill == 401) { // Sharp Shooting#272, Shadow Slash#401
+	} else if (n_A_ActiveSkill == 272 || n_A_ActiveSkill == 401 || n_A_ActiveSkill == 430) { // Sharp Shooting#272, Shadow Slash#401, Tracking#430
 		myInnerHtml("CRIATKname", "Critical Hit", 0);
 		myInnerHtml("CRInumname", "Critical Attack chance", 0);
 
-		if (n_A_ActiveSkill == 272) {
+		if (n_A_ActiveSkill == 272) { // Sharp Shooting#272
 			n_Enekyori = 1;
 			wbairitu += (1 + 0.5 * n_A_ActiveSkillLV);
 			wCast = 2 * n_A_CAST;
 			n_Delay[2] = 1.5;
-		} else {
+		} else if (n_A_ActiveSkill == 430) { // Tracking#430
+			//if (n_A_Weapon_ATKplus > 8 && EquipNumSearch(1100)) { TCcast = 1.25; }
+			//else if (EquipNumSearch(926)) { TCcast = .75; }
+			//else { TCcast = 1; }
+			wCast = 1.5;
+			//cast_kotei = 1;
+			n_Enekyori = 1;
+			wbairitu += n_A_ActiveSkillLV * .7 + 2;
+			n_Delay[3] = 1;
+			
+			if (EquipNumSearch(1787)) // RAG203#1787
+			{
+				n_tok[23] = 1; // Enable bDefRatioAtkClass
+				n_Delay[3] = 1; // 1 second irreducible delay
+			}
+		} else { //Shadow Slash#401
 			n_Delay[0] = 1;
 			n_Enekyori = 0;
 			wbairitu = 1.4 * n_A_ActiveSkillLV
@@ -1033,26 +1051,6 @@ function BattleCalc999() {
 			wbairitu += n_A_ActiveSkillLV * 0.5 + 4;
 			n_Delay[2] = 1;
 
-		} else if (n_A_ActiveSkill == 430) { // Tracking#430
-			if (n_A_Weapon_ATKplus > 8 && EquipNumSearch(1100)) { TCcast = 1.25; }
-			else if (EquipNumSearch(926)) { TCcast = .75; }
-			else { TCcast = 1; }
-			wCast = (1 + (0.2 * n_A_ActiveSkillLV)) * TCcast;
-			//cast_kotei = 1;
-			n_Enekyori = 1;
-			wbairitu += n_A_ActiveSkillLV * 1 + 1;
-
-			w_HIT = w_HIT * 5 + 5;
-			if (w_HIT > 100)
-				w_HIT = 100;
-			w_HIT_HYOUJI = w_HIT;
-
-			if (EquipNumSearch(1787)) // RAG203#1787
-			{
-				n_tok[23] = 1; // Enable bDefRatioAtkClass
-				n_Delay[3] = 1; // 1 second irreducible delay
-			}
-
 		} else if (n_A_ActiveSkill == 431) { // Disarm#431
 			wCast = 2;
 			n_Delay[2] = 1;
@@ -1062,19 +1060,18 @@ function BattleCalc999() {
 			n_Enekyori = 1;
 			wbairitu += n_A_ActiveSkillLV * 0.2;
 		} else if (n_A_ActiveSkill == 434) { // Dust#434
-			wCast = 1;
 			n_Enekyori = 0;
-			wbairitu += n_A_ActiveSkillLV * 0.5;
-			n_Delay[3] = 1;
-		} else if (n_A_ActiveSkill == 435) {
+			wbairitu += n_A_ActiveSkillLV * 0.2;
+			n_Delay[2] = 1;
+		} else if (n_A_ActiveSkill == 435) { // Full Buster#435
 			n_Enekyori = 1;
-			wbairitu += n_A_ActiveSkillLV * 1 + 2;
+			wbairitu += n_A_ActiveSkillLV + 2;
 			n_Delay[2] = 1 + n_A_ActiveSkillLV * 0.2;
+			n_tok[134] += n_A_ActiveSkillLV *2;
 		} else if (n_A_ActiveSkill == 436) // Spread Attack#436
 		{
-			n_Delay[2] = 0.5;
 			n_Enekyori = 1;
-			wbairitu += n_A_ActiveSkillLV * 0.2 - 0.2;
+			wbairitu += n_A_ActiveSkillLV * 0.25;
 		}
 		else if (n_A_ActiveSkill == 437) // Ground Drift#437
 		{
@@ -1195,7 +1192,7 @@ function BattleCalc999() {
 			n_Enekyori = 0;
 			n_A_Weapon_zokusei = BulletOBJ[n_A_Arrow][1];
 			wbairitu += n_A_ActiveSkillLV * 0.5 - 0.5;
-			n_Delay[2] = 1;
+			n_Delay[2] = 0.75;
 			var DEATH = [1, 1.2, 1.6, 2, 2.4, 3, 3.6, 4, 5, 6, 7, 8, 9, 10];
 			wHITsuu = DEATH[eval(document.calcForm.SkillSubNum.value)];
 		}
@@ -2894,7 +2891,7 @@ function BattleCalc998()
 
 	myInnerHtml("bSUBname",str_bSUBname,0);
 	myInnerHtml("bSUB",str_bSUB,0);
-	myInnerHtml("BattleHIT",w_HIT_HYOUJI,0);
+	myInnerHtml("BattleHIT",w_HIT_HYOUJI.toFixed(2),0);
 
 	if(n_B[0]==44 && n_A_ActiveSkill != 0 && n_A_ActiveSkill != 325){
 		for(i=0;i<=2;i++){
@@ -4174,6 +4171,32 @@ with(document.calcForm){
 			SkillSubNum.options[i - 1] = new Option(i,i);
 		SkillSubNum.value = 1;
 	}
+	else if (n_A_ActiveSkill == 430) // Tracking#430
+	{
+		myInnerHtml("AASkillName","Range: ",0);
+		myInnerHtml("AASkill",'<select name="SkillSubNum"onChange="calc()"></select>',0);
+			SkillSubNum.options[0] = new Option("Target 0-4 Cells Away", 0);
+			SkillSubNum.options[1] = new Option("Target = 5 Cells Away", 10);
+			SkillSubNum.options[2] = new Option("Target = 6 Cells Away", 20);
+			SkillSubNum.options[3] = new Option("Target = 7 Cells Away", 30);
+			SkillSubNum.options[4] = new Option("Target = 8 Cells Away", 40);
+			SkillSubNum.options[5] = new Option("Target = 9 Cells Away", 50);
+			SkillSubNum.options[6] = new Option("Target = 10 Cells Away", 60);
+			SkillSubNum.options[7] = new Option("Target = 11 Cells Away", 70);
+			SkillSubNum.options[8] = new Option("Target = 12 Cells Away", 80);
+			SkillSubNum.options[9] = new Option("Target = 13 Cells Away", 90);
+			SkillSubNum.options[10] = new Option("Target = 14 Cells Away", 100);
+			SkillSubNum.value = 10;
+	}
+	else if (n_A_ActiveSkill == 435) // Full Buster#435
+	{
+		myInnerHtml("AASkillName","Range: ",0);
+		myInnerHtml("AASkill",'<select name="SkillSubNum"onChange="calc()"></select>',0);
+			SkillSubNum.options[0] = new Option("Target <= 1 Cell Away", 30);
+			SkillSubNum.options[1] = new Option("Target = 2 Cells Away", 20);
+			SkillSubNum.options[2] = new Option("Target >= 3 Cells Away", 10);
+		SkillSubNum.value = 10;
+	}
 	else if (n_A_ActiveSkill == 437) // Ground Drift#437
 	{
 		myInnerHtml("AASkillName","Under Entity :",0);
@@ -4371,8 +4394,8 @@ with(document.calcForm){
 		html_CS3SW_SKILL[6] = '<select name="A3_Skill6_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
 		html_CS3SW_SKILL[7] = '<select name="A3_Skill7"onChange="Click_A3(1)"></select>';
 		html_CS3SW_SKILL[8] = '<select name="A3_Skill8"onChange="Click_A3(1)"></select>';
-		html_CS3SW_SKILL[9] = '<select name="A3_Skill9"onChange="Click_A3(1)"></select>';
-		html_CS3SW_SKILL[10] = '<select name="A3_Skill10"onChange="Click_A3(1)"></select>';
+		html_CS3SW_SKILL[9] = '<select name="A3_Skill9"onChange="DrumAndRingSelect(9)|Click_A3(1)"></select>';
+		html_CS3SW_SKILL[10] = '<select name="A3_Skill10"onChange="DrumAndRingSelect(10)|Click_A3(1)"></select>';
 		for(i=0;i<=10;i++)
 			myInnerHtml("EN"+i+"_2",html_CS3SW_SKILL[i],0);
 
@@ -4427,6 +4450,16 @@ with(document.calcForm){
 	}
 	Click_A3(0);
 }}
+
+function DrumAndRingSelect(changed) { //Ensure Drum and Rings cannot both be clicked
+    var DrumClicked  = document.getElementsByName("A3_Skill9")[0];
+    var RingClicked = document.getElementsByName("A3_Skill10")[0];
+
+    // If both have a non-zero value selected
+    if (DrumClicked.value != 0 && RingClicked.value != 0) {
+        (changed == 9 ? RingClicked : DrumClicked).value = 0;
+    }
+}
 
 function Skill3SW_2(){
 with(document.calcForm){
@@ -7843,19 +7876,36 @@ Race - n_B[2] = raceID - example n_B[2] = 3, Plant
 		n_B[24] = 0;
 	}
 	
-	// Apply item script bonus affecting defense
-	def_skill_reduction = 0;
-	if (292 == n_A_ActiveSkill)
-		def_skill_reduction += 15 * CardNumSearch(627);
-	
-	def_race_reduction = n_tok[180 + n_B[2]];
-	def_class_reduction = (n_B[19] ? n_tok[22] : n_tok[21]);
-	def_property_reduction = n_tok[280 + Math.floor(n_B[3] / 10)];
-	def_reduction = Math.min(100, def_race_reduction + def_class_reduction + def_property_reduction);
+	// Apply item script bonus affecting defense reduction
+	def_reduction = 0;
+	if (292 == n_A_ActiveSkill) //Arrow Vulcan#292 and Clown Alphoccio Card#627
+		def_reduction += 15 * CardNumSearch(627);
 
-	n_B[14] = Math.ceil(n_B[14] * (100 - def_reduction) / 100 * (100 - def_skill_reduction) / 100);
-	n_B[23] = Math.ceil(n_B[23] * (100 - def_reduction) / 100 * (100 - def_skill_reduction) / 100);
-	n_B[24] = Math.max(n_B[23], Math.ceil(n_B[24] * (100 - def_reduction) / 100 * (100 - def_skill_reduction) / 100));
+	// Suiken#1390#13th Bonus - Combo Skills ignore 30% of enemy Defense
+	if (1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 13) > -1 && is_a_combo_skill(n_A_ActiveSkill))
+		def_reduction += 30;
+	
+	def_reduction += n_tok[180 + n_B[2]];
+	def_reduction += (n_B[19] ? n_tok[22] : n_tok[21]);
+	def_reduction += n_tok[280 + Math.floor(n_B[3] / 10)];
+
+	//Full Buster#435: DEF reduction based on skill range. <=1 30%, 2 20%, >=3 10%. Doesnt stack with other DEF reductions scripts.
+	if(n_A_ActiveSkill == 435)
+		def_reduction = Math.max(def_reduction, eval(document.calcForm.SkillSubNum.value));
+
+	if(def_reduction && (n_A_PassSkill3[9] || n_A_PassSkill3[10])){ //If Drum or Nibel active
+		//If def_reduction == 100 - do nothing. This is DEF ignore and it is not reduced
+		//Else reduce the current DEF reduction by 25%
+		//However if 100+ def_reduction is achieved through multiple equips, it should in fact be reduced as well.
+		//The only plausible way to achieve 100+ def_reduction through multiple equips is with Thanatos Card#166
+		if(!(def_reduction == 100 && !CardNumSearch(166)))
+			def_reduction *= 0.75;
+	}
+	def_reduction = Math.min(100, def_reduction);
+
+	n_B[14] = Math.ceil(n_B[14] * (100 - def_reduction) / 100);
+	n_B[23] = Math.ceil(n_B[23] * (100 - def_reduction) / 100);
+	n_B[24] = Math.max(n_B[23], Math.ceil(n_B[24] * (100 - def_reduction) / 100));
 	
 	// Belmont Whip#1378 - Dancer/Gypsy
 	// #8th Bonus - [Ugly Dance] reduces enemy INT by 20% for 7 seconds
@@ -8162,6 +8212,10 @@ function calc()
 	else if(w_Cri > 100){
 		w_Cri = 100;
 	}
+
+	//Tracking#430. Crit rate is completely defined by range select. Every cell greater than or equal to 5 give +10 Crit %. Other equips and stats are ignored.
+	if (n_A_ActiveSkill == 430)
+		w_Cri = eval(document.calcForm.SkillSubNum.value);
 
 	TyouEnkakuSousa3dan = 0;
 	let wTA = get_triple_attack_rate();
@@ -9204,12 +9258,13 @@ function BattleCalc3(dmg)
 {
 	wBC3_X = TA_hits * TyouEnkakuSousa3dan;
 	wBC3_X += DA_hits * dmg * 2;
-	wBC3_X += CA_crits * n_A_CriATK[1] * 2 * (1 - (.75 - SkillSearch(433) * .05));
+	//Chain Action CRIT damage is reduced by (75-Gatling Fever SkillLv*5)% add also
+	//ADDITIVELY with 25% damage reduction if Drum or Ring active
+	wBC3_X += (n_A_PassSkill3[9] || n_A_PassSkill3[10]) ? CA_crits * n_A_CriATK[1] * 2 * (.75 - (.75 - SkillSearch(433) * .05)) : CA_crits * n_A_CriATK[1] * 2 * (1 - (.75 - SkillSearch(433) * .05));
 	wBC3_X += CA_hits * dmg * 2;
 	wBC3_X += NA_crits * n_A_CriATK[1];
 	wBC3_X += NA_hits * dmg;
 	wBC3_X += total_miss * BattleCalc2(0);
-
 	return tPlusLucky(wBC3_X / 100);
 }
 
@@ -9313,17 +9368,11 @@ function BattleCalc4(wBC4,wBC4_2,wBC4_3){
 	if (Taijin == 0 && n_B_IJYOU[21]) // Eska increases the random part of the formula by 100
 		eska_vit_bonus = [0, 50, 100];
 
-	let def_reduction = 0
-	
-	// Suiken#1390#13th Bonus - Combo Skills ignore 30% of enemy Defense
-	if (1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 13) > -1 && is_a_combo_skill(n_A_ActiveSkill))
-		def_reduction = Math.floor(n_B[14] * 0.30);
-
 	// Twin Fang#1375#10th Bonus - Enable bDefRatioAtkClass on Soul Breaker#263
 	if (n_tok[23] || (1375 == n_A_Equip[0] && 263 == n_A_ActiveSkill && SQI_Bonus_Effect.findIndex(x => x == 10) > -1))
 		wBC4 = Math.floor(wBC4 * (n_B_DEF2[2 - wBC4_2] + eska_vit_bonus[wBC4_2] + n_B[14])/100) +wBC4_3;
 	else
-		wBC4 = Math.floor(wBC4 * (100 - n_B[14] + def_reduction) /100) - n_B_DEF2[wBC4_2] - eska_vit_bonus[2 - wBC4_2] + wBC4_3;
+		wBC4 = Math.floor(wBC4 * (100 - n_B[14]) / 100) - n_B_DEF2[wBC4_2] - eska_vit_bonus[2 - wBC4_2] + wBC4_3;
 
 	return wBC4;
 }
@@ -9493,8 +9542,7 @@ function CastAndDelay(){
 		}
 		else
 		{
-			if (n_A_ActiveSkill == 83 || n_A_ActiveSkill == 388 || n_A_ActiveSkill == 292 ||
-				n_A_ActiveSkill == 434 || n_A_ActiveSkill == 128 || n_A_ActiveSkill == 320)
+			if (n_A_ActiveSkill == 83 || n_A_ActiveSkill == 388 || n_A_ActiveSkill == 292 || n_A_ActiveSkill == 128 || n_A_ActiveSkill == 320)
 				strSUB2name += "<Font size=2>Delay (Forced Motion)</Font><BR>";
 			else
 				strSUB2name += "<Font size=2>Delay (Irreducible)</Font><BR>";
@@ -9959,17 +10007,22 @@ function calc_base_atk(base_atk, is_critical_attack, is_left_hand_active, is_dex
 	if (is_critical_attack)
 		damage_min = damage_max;
 
-	if (is_dex_based && n_A_ActiveSkill != 76) // Add arrow base attack, except for Bowling Bash
-	{
+	if (is_dex_based && n_A_ActiveSkill != 76){ // Add arrow/bullet/sphere base attack, except for Bowling Bash
+		if (10 == n_A_WeaponType)
+			arrow_dmg = ArrowOBJ[n_A_Arrow][0];
+		else if (17 <= n_A_WeaponType && n_A_WeaponType <= 20)
+			arrow_dmg = BulletOBJ[n_A_Arrow][0];
+		else if (21 == n_A_WeaponType)
+			arrow_dmg = GrenadeOBJ[n_A_Arrow][0];
+	
 		if (is_critical_attack)
 		{
-			damage_min += ArrowOBJ[n_A_Arrow][0];
-			damage_max += ArrowOBJ[n_A_Arrow][0];
+			damage_min += arrow_dmg;
+			damage_max += arrow_dmg;
 		}
 		else
-			damage_max += ArrowOBJ[n_A_Arrow][0] - 1;
+			damage_max += arrow_dmg - 1;
 	}
-
 	return [damage_min, Math.floor((damage_min + damage_max) / 2), damage_max];
 }
 
@@ -10033,7 +10086,7 @@ function get_triple_attack_rate()
 
 function can_attack_crit(active_skill)
 {
-	// Sharp Shooting#272, Shadow Slash#401, Poison React#86
-	return (!n_A_ActiveSkill || 272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill
+	// Sharp Shooting#272, Shadow Slash#401, Poison React#86, Tracking#430
+	return (!n_A_ActiveSkill || 272 == n_A_ActiveSkill || 401 == n_A_ActiveSkill || 430 == n_A_ActiveSkill
 		|| (86 == n_A_ActiveSkill && (50 <= n_B[3] && n_B[3] < 60)));
 }

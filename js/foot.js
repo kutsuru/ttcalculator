@@ -794,22 +794,22 @@ with(document.calcForm){
 	}
 	
 	// Manage weapon attack bonus, those bonus are impacted by the Size multiplier
-	// A Drum on the Battlefield - Weapon ATK + 25 + 25 * SkillLV
+	// A Drum on the Battlefield - Weapon ATK + 25 + 25 * SkillLV.
 	if (n_A_PassSkill3[9]) {
-		dmgReduction = 0;
-		// Talon Tales Update 01.05.21 Bows + Guns -50%
-		dmgReduction += (n_A_WeaponType == 10 || n_A_WeaponType==17 || 18 == n_A_WeaponType || 19 == n_A_WeaponType || 20 == n_A_WeaponType || 21 == n_A_WeaponType) ? 50 : 0;
-		n_A_Weapon_ATK += (25 + 25 * n_A_PassSkill3[9]) * (100 - dmgReduction) / 100;
-		n_A_Weapon2_ATK += (25 + 25 * n_A_PassSkill3[9]) * n_Nitou * (100 - dmgReduction) / 100;
+		// Talon Tales Update 25.03.2026: Remove custom Drum nerf.  
+		// Reduce the effect of Defense Reduction coming from Item Scripts: See head.js 7853
+		// and Chain Action Critical Hits by 25%: See BattleCalc3
+		n_A_Weapon_ATK += 25 + 25 * n_A_PassSkill3[9];
+		n_A_Weapon2_ATK += 25 + 25 * n_A_PassSkill3[9] * n_Nitou;
 	}
 	
 	// The Ring of Nibelugen - Weapon ATK + 50 + 25 * SkillLV
 	if (n_A_PassSkill3[10] && n_A_WeaponLV == 4) {
-		dmgReduction = 0;
-		// Talon Tales Update 01.05.21 Bows + Guns -50%
-		dmgReduction += (n_A_WeaponType == 10 || n_A_WeaponType==17 || 18 == n_A_WeaponType || 19 == n_A_WeaponType || 20 == n_A_WeaponType || 21 == n_A_WeaponType) ? 50 : 0;
-		n_A_Weapon_ATK += (50 + 25 * n_A_PassSkill3[10]) * (100 - dmgReduction) / 100;
-		n_A_Weapon2_ATK += (50 + 25 * n_A_PassSkill3[10]) * n_Nitou * (100 - dmgReduction) / 100;
+		// Talon Tales Update 25.03.2026: Remove custom Drum nerf.  
+		// Reduce the effect of Defense Reduction coming from Item Scripts: See head.js 7853
+		// and Chain Action Critical Hits by 25%: See BattleCalc3
+		n_A_Weapon_ATK += 50 + 25 * n_A_PassSkill3[10];
+		n_A_Weapon2_ATK += 50 + 25 * n_A_PassSkill3[10] * n_Nitou;
 	}
 	
 	// Volcano - ATK bonus on Fire Armor - Weapon ATK + 10 * SkillLV
@@ -3604,12 +3604,8 @@ with(document.calcForm){
 	if (n_A_PassSkill3[2]) // Poem of Bragi, 3 * Skill LV + Musical Lesson LV + DEX / 10;
 		bragi_cast_reduction -= Math.min(1, (n_A_PassSkill3[2] * 3 + n_A_PassSkill3[32] + Math.floor(n_A_PassSkill3[22] / 10)) / 100);
 
-	// DEX and Bragi do not reduce Tracking#430 cast time
-	if (430 == n_A_ActiveSkill)
-		n_A_CAST = 1 + n_tok[73] / 100;
-	else
-		n_A_CAST *= (1 + n_tok[73] / 100) * bragi_cast_reduction;
-
+	n_A_CAST *= (1 + n_tok[73] / 100) * bragi_cast_reduction;
+	
 	// Skill cast time reduction script bonus
 	skill_cast_reduction = 100;
 
@@ -3919,11 +3915,11 @@ with(document.calcForm){
 	if (EquipNumSearch(1545))
 		n_tok[78] += n_A_HEAD_DEF_PLUS - 5;
 
-	//[Custom Talon Tales 2018-06-15 - Malandgo Enchantment for Expert Archer] [Kato]
+	//[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for Expert Archer] [Kato]
 	for(i=0; i < MalangdoEnchantment.length; i++) {
 		var vME = MalangdoEnchantment[i];
 		if(vME >= 251 && vME <= 256) {
-				n_tok[25] += 2 * parseInt(vME.substr(-1));
+				n_tok[25] += parseInt(vME.substr(-1));
 		}
 	}
 
@@ -6422,6 +6418,7 @@ function KakutyouKansuu(){
 		B_MOD = 0;
 		SM_MOD = 0;
 		TU_MOD = 0; //[Custom Talon Tales - 2018-06-02 - New Attack Modifier for Turtles] [Kato]
+		DEF_MOD = def_reduction;
 		B_MOD += (2 == n_Enekyori ? n_tok[97] : n_tok[26] + n_tok[80]);
 
 		for(var i=0;i<=7;i++){
@@ -6532,6 +6529,10 @@ function KakutyouKansuu(){
 		CBIstr += "<td><b>" + "Satan Morroc</b></td><td><b>"+ SM_MOD +" %" + "</b></td>";
 		CBIstr += "<td><b>" + "Boss</b></td><td><b>"+ B_MOD +" %" + "</b></td>";
 		CBIstr += "<td><b>" + "Normal</b></td><td><b>"+ (2 == n_Enekyori ? n_tok[96] : n_tok[80]) +" %" + "</b></td></tr>";
+		CBIstr += "</table><center>----//----</center>";
+
+		CBIstr += "<table border=0 style='width:20%; text-align:left;'>";
+		CBIstr += "<td><b>" + "Total DEF Bypass</b></td><td><b>"+ DEF_MOD +" %" + "</b></td>";
 		CBIstr += "</table><center>----//----</center>";
 
 		CBIstr += "<table border=0>";
