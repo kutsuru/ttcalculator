@@ -785,23 +785,28 @@ AutoSpellSkill = [
 [139,1,76,5,1,1],
 [140,1,291,1,1,1], //[Custom Talon Tales - 2018-07-26 - Valorous Battle Fist change of casting DSS 1% in normal attack]
 [141,1,409,2,5,1],
-[142,1,128,2,2,1], //When performing a ATK based attack, there's a 2 % chance to cast the skill [Water Ball]Lv 2
-[143,1,124,2,0,4], //When performing a magical attack, there's a chance to cast the skill [Sightrasher]Lv 2
-[144,1,25,3,5,6],  //When receiving ATK based damage, there's a 5 % chance to cast the skill [Heal]Lv 3
-[145,1,134,1,1,6], //When receiving ATK based damage, there's a 1 % chance to cast the skill [Quagmire]Lv 1
-[146,0,8,5,5,1],   //When performing a ATK based attack, there's a 5 % chance to cast the skill [Provoke]Lv 5
-[147,0,15,1,4,1],  //When performing a ATK based attack, there's a 4 % chance to cast the skill [Steal]Lv 1
-[148,1,413,5,10,1],  //When performing a ATK based attack, there's a 10% chance to cast the skill [Wind Blade]Lv 5
-[149,1,57,5,15,1],  // When performing a ATK based attack, there's a 15% chance to cast the skill [Thunder Storm]Lv 5 up to Lv10 based on weapon refine
-[150,1,54,3,5,1],		//When performing a ATK based attack, there's a 5% chance to cast the skill [Fire Bolt]Lv 3
-[151,2,51,3,100,54],	//Upon casting [Cold Bolt], there's a 100% chance to cast the skill [Fire Bolt]Lv 3
-[152,2,56,3,100,51],	//Upon casting [Fire Bolt], there's a 100% chance to cast the skill [Lightning Bolt]Lv 3
-[153,2,132,3,100,56],	//Upon casting [Lightning Bolt], there's a 100% chance to cast the skill [Earth Spike]Lv 3
-[154,1,54,6,20,1],		//When performing a ATK based attack, there's a 20% chance to cast the skill [Cold Bolt] Lv 6
-[155,1,161,10,20,1],	//When performing a ATK based attack, there's a 20% chance to cast the skill [Holy Cross] Lv 10
-[156,1,414,2,30,1],	//When performing a ATK based attack, there's a 30% chance to cast the skill [Lightning Jolt] Lv 2
-[157,1,56,5,2,1], //When performing a ATK based attack, there's a 2 % chance to cast the skill [Lightning Bolt]Lv 10
-[158,1,57,5,2,1], //When performing a ATK based attack, there's a 2 % chance to cast the skill [Thunderstorm]Lv 10
+[142,1,128,2,2,1], //When performing a ATK based attack, there's a 2% chance to cast the skill [Water Ball] Lv2
+[143,1,124,2,0,4], //When performing a magical attack, there's a chance to cast the skill [Sightrasher] Lv2
+[144,1,25,3,5,6],  //When receiving ATK based damage, there's a 5% chance to cast the skill [Heal] Lv3
+[145,1,134,1,1,6], //When receiving ATK based damage, there's a 1% chance to cast the skill [Quagmire] Lv1
+[146,0,8,5,5,1],   //When performing a ATK based attack, there's a 5% chance to cast the skill [Provoke] Lv5
+[147,0,15,1,4,1],  //When performing a ATK based attack, there's a 4% chance to cast the skill [Steal] Lv1
+[148,1,413,5,10,1],  //When performing a ATK based attack, there's a 10% chance to cast the skill [Wind Blade] Lv5
+[149,1,57,5,15,1],  // When performing a ATK based attack, there's a 15% chance to cast the skill [Thunder Storm] Lv5 up to Lv10 based on weapon refine
+[150,1,54,3,5,1],		//When performing a ATK based attack, there's a 5% chance to cast the skill [Fire Bolt] Lv3
+[151,2,51,3,100,54],	//Upon casting [Cold Bolt], there's a 100% chance to cast the skill [Fire Bolt] Lv3
+[152,2,56,3,100,51],	//Upon casting [Fire Bolt], there's a 100% chance to cast the skill [Lightning Bolt] Lv3
+[153,2,132,3,100,56],	//Upon casting [Lightning Bolt], there's a 100% chance to cast the skill [Earth Spike] Lv3
+[154,1,54,6,20,1],		//When performing a ATK based attack, there's a 20% chance to cast the skill [Cold Bolt] Lv6
+[155,1,161,10,20,1],	//When performing a ATK based attack, there's a 20% chance to cast the skill [Holy Cross] Lv10
+[156,1,414,2,30,1],	//When performing a ATK based attack, there's a 30% chance to cast the skill [Lightning Jolt] Lv2
+[157,1,56,5,2,1], //When performing a ATK based attack, there's a 2% chance to cast the skill [Lightning Bolt] Lv10
+[158,1,57,5,2,1], //When performing a ATK based attack, there's a 2% chance to cast the skill [Thunderstorm] Lv10
+[159,1,428,1,5,1], //When performing a ATK based attack, there's a 5% chance to cast the skill [Rapid Shower] Lv1
+[160,1,430,5,3,1], //When performing a ATK based attack, there's a 3% chance to cast the skill [Tracking] Lv5
+[161,1,436,10,5,1], //When performing a ATK based attack, there's a 5% chance to cast the skill [Spread Attack] Lv10
+[162,1,436,6,3,1], //When performing a ATK based attack, there's a 3% chance to cast the skill [Spread Attack] Lv6
+[163,1,436,2,30,1], //When performing a ATK based attack, there's a 30% chance to cast the skill [Spread Attack] Lv2
 ];
 
 MAGICALSKILL_ELEMENTS = [

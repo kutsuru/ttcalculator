@@ -519,7 +519,7 @@ ITEM_SP_TIME_OBJ =[
 ,[20,"Valorous Huuma Front Shuriken","After using [Throw Shuriken] adds a 3% chance to increase ASPD by 15% for 10 seconds.",1,931,12,15,0]
 ,[21,"Naght Sieger Twin-Blade [Blue]","Ignore [Non-Boss] Monster Defense",1,932,21,100,0]
 ,[22,"Soldier Gatling Gun","ATK + 80",1,927,17,80,0]
-,[23,"Soldier Grenade Launcher","ATK + 300",1,929,17,300,0]
+,[23,"Soldier Grenade Launcher","ATK + (30 * Weapon Refine)",1,929,17,300,0]
 ,[24,"Soldier Revolver","ASPD + 100%",1,925,12,100,0]
 ,[25,"Tae Goo Lyeon [JobLV70]","ATK + 50",1,934,17,50,0]
 ,[26,"Brave Battle Fist","Asura Strike Cast Time -100%",1,916,7197,100,7321,100,0]
@@ -549,14 +549,13 @@ ITEM_SP_TIME_OBJ =[
 ,[50,"Ancient Horns","ATK + 100",1,1538,17,100,0] //custom Talon Tales,
 ,[51,"Duneyrr Card","Perfect Dodge + 10, [Lord Knight] Additional + 10 under Berserk",2,511,0]
 ,[52,"Rhyncho Card","Increase Resistance to Fire property by 10%",2,513,63,10,0]
-,[53,"Color Scope","[Every Refine Level] Add a 0.5% chance that you will increase Critical ATK by 10% for 15 seconds.",1,1786,70,10,0]
-,[54,"Brindle Eel [Rental]","When long range attacking, has a chance of adding ASPD + 10% for 7 seconds.",1,1807,12,10,0]
-,[55,"Saurel [Rental]","When using a melee attack, has a chance of adding ATK + 30 for 7 seconds.",1,1811,17,30,0]
-,[56,"Saurel [Rental]","When doing a magical attack, has a chance of adding MATK + 10% for 7 seconds.",1,1811,89,10,0]
-,[57,"Invective Robe", "Activate level 1 [Attention Concentrate].",1,1818,0]
-,[58,"Valorous Assassin Damascus", "Enable Ice Pick effect.",1,898,23,1,0]
-,[59,"Glorious Staff of Destruction", "MATK + 3% for each refine level for 6 seconds when using magic attacks at a 1% chance per refine.",1,1083,0]
-,[60,"Illusion of Faceworm Queen", "Ignores 50% defense and 30% MDEF of Insect race monsters.",1,1875,184,50,314,30,0]
+,[53,"Brindle Eel [Rental]","When long range attacking, has a chance of adding ASPD + 10% for 7 seconds.",1,1807,12,10,0]
+,[54,"Saurel [Rental]","When using a melee attack, has a chance of adding ATK + 30 for 7 seconds.",1,1811,17,30,0]
+,[55,"Saurel [Rental]","When doing a magical attack, has a chance of adding MATK + 10% for 7 seconds.",1,1811,89,10,0]
+,[56,"Invective Robe", "Activate level 1 [Attention Concentrate].",1,1818,0]
+,[57,"Valorous Assassin Damascus", "Enable Ice Pick effect.",1,898,23,1,0]
+,[58,"Glorious Staff of Destruction", "MATK + 3% for each refine level for 6 seconds when using magic attacks at a 1% chance per refine.",1,1083,0]
+,[59,"Illusion of Faceworm Queen", "Ignores 50% defense and 30% MDEF of Insect race monsters.",1,1875,184,50,314,30,0]
 ];
 //ITEM_SP_TIME_OBJ_SORT = [0,5,10,4,27,3,44,37,30,31,26,39,49,45,46,18,48,15,11,12,14,13,17,32,1,7,47,35,33,21,16,40,28,34,38,42,19,22,23,24,36,41,25,6,20,8,29,43];
 
