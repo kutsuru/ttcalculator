@@ -1835,7 +1835,7 @@ ItemOBJ = [
 ,[1783,16,58,300,3,0,0,1,"Huuma Calm Mind [Rental]","","Casting cannot be interrupted",89,20,5395,30,5396,30,0]
 // ---
 ,[1784,17,145,75,3,2,75,70,"Altea & Ares","","<br><b>[Every Refine Level]</b><br>1% less aftercast delay with [Rapid Shower].<br><b>[Every Refine +6~8]</b><br>Reduce [Rapid Shower] bullet cost by 1.",8,20,5428,10,74,10,0]
-,[1785,17,145,75,3,2,100,60,"Heaven's Feather & Hell's Fire","","<br><b>[Every Refine Level]</b><br>1% more damage with [Desperado].<br><b>[Refine +8 or Higher]</b><br>Add a 3% chance to auto cast level 5 [Providence] on yourself when attacked.",186,15,188,15,5429,10,0]
+,[1785,17,145,75,3,2,75,60,"Heaven's Feather & Hell's Fire","","<br><b>[Every Refine Level]</b><br>1% more damage with [Desperado].<br><b>[Refine +8 or Higher]</b><br>Add a 3% chance to auto cast level 5 [Providence] on yourself when attacked.",186,15,188,15,5429,10,0]
 ,[1786,18,145,125,4,3,120,70,"Color Scope","","<b>[Every Refine Level]</b><br>2% more damage with [Piercing Shot]",8,20,5432,10,0]
 ,[1787,18,145,100,3,1,150,70,"RAG203","","Decreases physical damage against other players by 75%.<br><br> [Tracking] no longer Critical Hits, but will instead deal more damage depending on the target's Defense<br><b>[Every Refine Level]</b><br>Reduce [Tracking] cast time by 3%.<br><b>[Every Refine Level +6 or Higher]</b><br>HIT +4",8,30,1576,-75,1063,-75,1064,-75,1065,-75,1575,-75,0]
 ,[1788,20,145,125,4,2,150,70,"Minigun","","<br><b>[Every Refine Level]</b><br>Reduce damage received from Non-Boss and Boss by 1%",10,25,77,10,79,10,0]
