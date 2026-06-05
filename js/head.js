@@ -711,20 +711,10 @@ function BattleCalc999() {
 			wCast = 2 * n_A_CAST;
 			n_Delay[2] = 1.5;
 		} else if (n_A_ActiveSkill == 430) { // Tracking#430
-			//if (n_A_Weapon_ATKplus > 8 && EquipNumSearch(1100)) { TCcast = 1.25; }
-			//else if (EquipNumSearch(926)) { TCcast = .75; }
-			//else { TCcast = 1; }
-			wCast = 1.5;
-			//cast_kotei = 1;
+			wCast = 1.5 * n_A_CAST;
 			n_Enekyori = 1;
 			wbairitu += n_A_ActiveSkillLV * .7 + 2;
 			n_Delay[3] = 1;
-			
-			if (EquipNumSearch(1787)) // RAG203#1787
-			{
-				n_tok[23] = 1; // Enable bDefRatioAtkClass
-				n_Delay[3] = 1; // 1 second irreducible delay
-			}
 		} else { //Shadow Slash#401
 			n_Delay[0] = 1;
 			n_Enekyori = 0;
@@ -3068,10 +3058,6 @@ function BattleCalc998()
 				(EquipNumSearch(1773) && (407 == n_A_ActiveSkill || 408 == n_A_ActiveSkill || 409 == n_A_ActiveSkill)))
 				sp_cost = Math.ceil(sp_cost * (1 - 0.03 * n_A_Weapon_ATKplus));
 				
-			// Rolling Thunder#1790 - [Every Refine Level] - 5% less SP cost with [Spread Attack#436]
-			if (436 == n_A_ActiveSkill && EquipNumSearch(1790))
-				sp_cost = Math.ceil(sp_cost * (1 - 0.05 * n_A_Weapon_ATKplus));
-			
 			myInnerHtml("average_sp_cost", "Average SP Cost" ,0);
 			myInnerHtml("average_sp_cost_value", sp_cost * w,0);
 		}
@@ -4055,10 +4041,6 @@ with(document.calcForm){
 	if (3067 == n_A_ActiveSkill && CardNumSearch(648))
 		additional_skill_lv_bonus = Math.max(0, SkillSearch(166) - 1);
 
-	// Rolling Thunder#1790 - [Every 2 Refine Level] - Increase [Thunderstorm#149] level by 1.
-	if (EquipNumSearch(1790) && 2149 == n_A_ActiveSkill)
-		additional_skill_lv_bonus = Math.floor(n_A_Weapon_ATKplus / 2);
-	
 	// Thunderstorm Cloud#1832 - Allows [Lightning Bolt#157] and [Thunderstorm#158] to level 10 for Mage/Suno classes.
 	if (EquipNumSearch(1832) && (2157 == n_A_ActiveSkill || 2158 == n_A_ActiveSkill) && (0 == current_class || 5 == current_class))
 		additional_skill_lv_bonus = 5;
@@ -7898,7 +7880,7 @@ Race - n_B[2] = raceID - example n_B[2] = 3, Plant
 		//Else reduce the current DEF reduction by 25%
 		//However if 100+ def_reduction is achieved through multiple equips, it should in fact be reduced as well.
 		//The only plausible way to achieve 100+ def_reduction through multiple equips is with Thanatos Card#166
-		if(!(def_reduction == 100 && !CardNumSearch(166)))
+		if(def_reduction != 100 || CardNumSearch(166))
 			def_reduction *= 0.75;
 	}
 	def_reduction = Math.min(100, def_reduction);
@@ -8216,6 +8198,12 @@ function calc()
 	//Tracking#430. Crit rate is completely defined by range select. Every cell greater than or equal to 5 give +10 Crit %. Other equips and stats are ignored.
 	if (n_A_ActiveSkill == 430)
 		w_Cri = eval(document.calcForm.SkillSubNum.value);
+	if (n_A_ActiveSkill == 430 && EquipNumSearch(1787)){ // RAG203#1787
+			w_Cri = 0; // [Tracking#430] no longer Critical Hits, but will instead deal more damage depending on the target's Defense
+			n_tok[23] = 1; // Enable bDefRatioAtkClass
+	}
+	if (EquipNumSearch(1671)) // Peace Breaker#1671 - Set CRIT rate to 0
+		w_Cri = 0;
 
 	TyouEnkakuSousa3dan = 0;
 	let wTA = get_triple_attack_rate();
@@ -8271,6 +8259,10 @@ function calc()
 	if (20 == n_A_WeaponType && 1387 == n_A_Equip[3] && SQI_Bonus_Effect.findIndex(x => x == 6) > -1)
 		wCA = wCA ? wCA + 10 : wCA;
 
+	// Western Outlaw#654 - [Chain Action#427] Rate + 10%
+	if (654 == n_A_Equip[0]) 
+		wCA = wCA ? wCA + 10 : wCA;
+
 	// Gertie Card#619
 	if (CardNumSearch(619))
 	{
@@ -8320,8 +8312,7 @@ function calc()
 	total_miss = NA_miss + CA_miss + DA_miss + TA_miss;
 	w_HIT_HYOUJI = 100 - total_miss;
 	
-	if (w_Cri)
-		myInnerHtml("CRInum", w_Cri.toFixed(2) + SubName[0],0);
+	myInnerHtml("CRInum", w_Cri.toFixed(2) + SubName[0],0);
 
 	w_FLEE = n_A_FLEE + 20 - (n_B_HIT);
 	if(w_FLEE > 95){
@@ -8989,14 +8980,6 @@ function ApplySkillAtkBonus(dmg)
 		skill_atk_bonus_ratio += 5;
 
 	/*
-		Soldier Grenade Launcher
-		[Refine level 6-10]
-		Increase damage of [Ground Drift] by 25%.
-	*/
-	if (n_A_Weapon_ATKplus >= 6 && n_A_ActiveSkill == 437 && EquipNumSearch(929))
-		skill_atk_bonus_ratio += 25;
-
-	/*
 		Brave Gladiator Blade - [Crusader, Rogue]
 	*/
 	if ((n_A_JobSearch2() == 13 || n_A_JobSearch2() == 14) && n_A_ActiveSkill == 161 && EquipNumSearch(900))
@@ -9018,13 +9001,8 @@ function ApplySkillAtkBonus(dmg)
 	if (n_A_ActiveSkill == 428 && n_A_Weapon_ATKplus >= 9 && EquipNumSearch(1099))
 		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus;
 	
-	if (n_A_ActiveSkill == 430 && n_A_Weapon_ATKplus >= 9 && EquipNumSearch(1100))
-		skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
-	
-	if (n_A_ActiveSkill == 436 && n_A_Weapon_ATKplus >= 9 && EquipNumSearch(1102))
-		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus;
-	
-	if (n_A_ActiveSkill == 437 && n_A_Weapon_ATKplus >= 9 && EquipNumSearch(1103))
+	// Glorious Grenade Launcher#1103 - [Every Refine Level] - 2% more damage with [Ground Drift#437] and [Triple Action#418]
+	if (EquipNumSearch(1103) && (n_A_ActiveSkill == 437 || n_A_ActiveSkill == 418))
 		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus;
 
 	if ((n_A_ActiveSkill == 6 || n_A_ActiveSkill == 76)
@@ -9077,19 +9055,6 @@ function ApplySkillAtkBonus(dmg)
 	// Glorious Flamberge#1077 - [Every Refine Level] Increase [Bash] and [Mammonite] damage by 5% [Amor]
 	if (n_A_ActiveSkill == 65 || n_A_ActiveSkill == 6)
 		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus * EquipNumSearch(1077);
-
-	// Glorious Grenade Launcher#1103 - [Every Refine Level] Increase [Ground Drift] damage by 2% [Amor]
-	if (n_A_ActiveSkill == 437)
-		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus * EquipNumSearch(1103);
-
-	if (n_A_ActiveSkill == 418) {
-		// Glorious Grenade Launcher#1103 - [Every Refine Level] Increase [Triple Action] damage by 1% [Amor]
-		skill_atk_bonus_ratio += n_A_Weapon_ATKplus * EquipNumSearch(1103);
-		
-		// Glorious Grenade Launcher#1103, Glorious Rifle#1100, Glorious Shotgun#1102 - [If Scouter Is Not Equipped] Increase [Triple Action] damage by 30%
-		if (!EquipNumSearch(1387))
-			skill_atk_bonus_ratio += 30 * (EquipNumSearch(1103) + EquipNumSearch(1100) + EquipNumSearch(1102));
-	}
 
 	// Glorious Huuma Shuriken#1098 - [Every Refine Level] Increase [Throw Huuma Shuriken] damage by 3% [Amor]
 	if (n_A_ActiveSkill == 396)
@@ -9167,17 +9132,17 @@ function ApplySkillAtkBonus(dmg)
 	if (396 == n_A_ActiveSkill && EquipNumSearch(1770))
 		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus;
 	
-	// Heaven's Feather & Hell's Fire#1785 - [Every Refine Level] - 2% more damage with [Desperado#429]
+	// Heaven's Feather & Hell's Fire#1785 - [Every Refine Level] - 1% more damage with [Desperado#429]
 	if (429 == n_A_ActiveSkill && EquipNumSearch(1785))
-		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus;
+		skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
 
-	// Color Scope#1786 - [Every Refine Level] - 2.5% more damage with [Piercing Shot#432]
+	// Color Scope#1786 - [Every Refine Level] - 2% more damage with [Piercing Shot#432]
 	if (432 == n_A_ActiveSkill && EquipNumSearch(1786))
-		skill_atk_bonus_ratio += Math.floor(2.5 * n_A_Weapon_ATKplus);
+		skill_atk_bonus_ratio += 2 * n_A_Weapon_ATKplus;
 	
-	// Rolling Thunder#1790 - [Every Refine Level] - 5% more damage with [Spread Attack#436]
+	// Rolling Thunder#1790 - [Every Refine Level] - 1% more damage with [Spread Attack#436]
 	if (436 == n_A_ActiveSkill && EquipNumSearch(1790))
-		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus;
+		skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
 	
 	// Suiken#1390#11th Bonus - PvP: Reduce [Investigate] bonus damage by 10%
 	if (Taijin && 1390 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 11) > -1)
@@ -9214,6 +9179,10 @@ function ApplySkillAtkBonus(dmg)
 		else if (429 == n_A_ActiveSkill)
 				skill_atk_bonus_ratio += 10;
 	}
+
+	// Southern Cross#1793 - [Every Refine Level] - 1% more damage with [Ground Drift#437]								  		
+	if (437 == n_A_ActiveSkill && EquipNumSearch(1793))
+		skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
 
 	// Glorious Spear#1081
 	if (EquipNumSearch(1081))

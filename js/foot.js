@@ -1310,10 +1310,6 @@ with(document.calcForm){
 	if(SkillSearch(420))
 		n_tok[17] += 100;
 
-	// Peace Breaker#1671 - [Every Refine Level] - ATK + 5
-	if (EquipNumSearch(1671))
-		n_tok[17] += 5 * n_A_Weapon_ATKplus;
-
 	//[Custom Talon Tales 2018-06-25 - Malangdo Enchantment for Fighting Spirit - ATK] [NattWara]
 	// Fighting Spirit n - ATK + n * 2 + 2 with n within [4..8]
 	for(i=0; i < MalangdoEnchantment.length; i++) {
@@ -1939,8 +1935,6 @@ with(document.calcForm){
 	if(n_A_HEAD_DEF_PLUS >= 7 && EquipNumSearch(1282)){n_A_DEF += 1;}
 	if(n_A_HEAD_DEF_PLUS >= 7 && EquipNumSearch(1286)){n_A_DEF += 1;}
 	if(n_A_HEAD_DEF_PLUS >= 7 && EquipNumSearch(1287)){n_A_DEF += 1;}
-	if(EquipNumSearch(658))
-		n_A_DEF += n_A_Weapon_ATKplus;
 	if(EquipNumSearch(715))
 		n_A_DEF += Math.floor(n_A_SHOES_DEF_PLUS /2);
 	if(EquipNumSearch(742) && n_A_JobSearch()==1)
@@ -2237,8 +2231,13 @@ with(document.calcForm){
 	// Spoon#1738 [Every Refine Level] - HIT + 3
 	n_tok[8] += n_A_Weapon_ATKplus * 3 * EquipNumSearch(1738);
 	
-	// Death Fire#1791 [Every Refine Level] - HIT + 4
-	n_tok[8] += n_A_Weapon_ATKplus * 4 * EquipNumSearch(1791);
+	// Death Fire#1791 [Every Refine Level +6 or Higher] - HIT + 8
+	if (EquipNumSearch(1791) && n_A_Weapon_ATKplus >= 6)
+		n_tok[8] += 8 * (n_A_Weapon_ATKplus - 5);
+
+	// RAG203#1787 - [Every Refine Level +6 or Higher] - HIT + 4
+	if (EquipNumSearch(1787) && n_A_Weapon_ATKplus >= 6)
+		n_tok[8] += 4 * (n_A_Weapon_ATKplus - 5);
 
 	// Faceworm Leg#1870 - [Every Refine Level] HIT + 2
 	if (1870 == n_A_Equip[0])
@@ -2248,8 +2247,8 @@ with(document.calcForm){
 
 	n_A_HIT += n_tok[8];
 
-	if(EquipNumSearch(656))
-		n_A_HIT -= Math.floor(SU_DEX / 3);
+	if(EquipNumSearch(656)) // Jungle Carbine#656 - [Every 3 Total DEX] HIT - 1
+		n_A_HIT -= Math.floor(n_A_DEX / 3);
 	if(n_A_WeaponType==3 || n_A_WeaponType==2)
 		n_A_HIT += CardNumSearch(464) * 5;
 	if(n_A_WeaponType==10)
@@ -2285,8 +2284,8 @@ with(document.calcForm){
 		n_A_HIT += 20;
 	n_A_HIT += 2 * SkillSearch(425);
 
-	if(EquipNumSearch(654))
-		n_A_HIT += Math.floor(SU_AGI / 10);
+	if(EquipNumSearch(654)) // Western Outlaw#654 - [Every 5 Total AGI]: HIT + 1
+		n_A_HIT += Math.floor(n_A_AGI / 5);
 
 	/*
 		ZoneSoldier - 2018-06-06
@@ -2785,6 +2784,9 @@ with(document.calcForm){
 	// Brave Huuma Front Shuriken#930 - [Refine Level >= 8] - CRIT + 30
 	if (n_A_Weapon_ATKplus >= 8 && EquipNumSearch(930))
 		n_tok[10] += 30;
+
+	if(EquipNumSearch(656)) // Jungle Carbine#656 - [Every 5 Total DEX] CRIT + 1
+		n_tok[10] += Math.floor(n_A_DEX / 5);
 
 	n_A_CRI += n_tok[10];
 
@@ -3334,8 +3336,8 @@ with(document.calcForm){
 		}
 	}
 
-	if (EquipNumSearch(654))
-		n_tok[12] += Math.floor(SU_AGI / 14);
+	if (EquipNumSearch(654)) // Western Outlaw#654 - [Every 9 Total AGI]: ASPD + 1%
+		n_tok[12] += Math.floor(n_A_AGI / 9);
 
 	if (n_A_Equip[0]==484 && SU_STR >= 50)
 		n_tok[12] += 5;
@@ -3554,6 +3556,9 @@ with(document.calcForm){
 	}
 
 	n_A_CAST = Math.max(0, 1 - n_A_DEX / 150);
+
+	if (n_A_ActiveSkill == 430) //Tracking#430 cast time is not affected by DEX, but it is affected by cast time reduction scripts
+		n_A_CAST = 1;
 
 	if(n_A_HEAD_DEF_PLUS >= 8 && EquipNumSearch(1279)) // Capricorn Diadem
 		n_tok[73] -= 3;
@@ -3978,6 +3983,14 @@ with(document.calcForm){
 	// Petal Card#606 - [Every 10 Base LUK] - Critical Attack + 2%
 	n_tok[70] += 2 * Math.floor(SU_LUK / 10) * CardNumSearch(606);
 
+	// Jungle Carbine#656 - 20% more damage with Critical Hits while normally attacking
+	if(n_A_ActiveSkill == 0 && EquipNumSearch(656))
+		n_tok[70] += 20;
+
+	// Tempest#1789 - [Every Refine Level] - 1% more damage with Critical Hits
+	if(EquipNumSearch(1789))
+		n_tok[70] += n_A_Weapon_ATKplus;
+
 	if(CardNumSearch(452) && n_A_JobSearch()==3){
 		n_tok[51] += 30;
 		n_tok[56] += 30;
@@ -4318,6 +4331,26 @@ with(document.calcForm){
 		AutoSpellSkill[143][4] = n_A_Weapon_ATKplus * 0.2;
 	}
 
+	// Rolling Thunder#1790
+	if (EquipNumSearch(1790)){
+		AutoSpellSkill[149][3] = 5 + Math.floor(n_A_Weapon_ATKplus / 2); // [Every 2 Refine Level] - Increase auto-cast [Thunderstorm] level by 1.
+		if(SU_INT >= 40)
+			AutoSpellSkill[149][4] = 30; // [Base INT >= 40] - Increase [Thunderstorm] rate by another 15%.
+		ClickB_Item(n_A_Equip[0]);
+	}
+
+	// Soldier Grenade Launcher#929
+	if (EquipNumSearch(929)){
+		ITEM_SP_TIME_OBJ[23][6] = 30 * n_A_Weapon_ATKplus; // Add a 5% chance to add ATK + (30 * Refine Rate).
+		ClickB_Item(n_A_Equip[0]);
+	}
+
+	// Peace Breaker#1671 - [Every Refine Level + 6 and Higher] - Increase [Spread Attack] chance further by another 4%
+	if (EquipNumSearch(1671) && n_A_Weapon_ATKplus >= 6){
+		AutoSpellSkill[163][4] = 30 + 4 * (n_A_Weapon_ATKplus - 5);
+		ClickB_Item(n_A_Equip[0]);
+	}
+
 	n_tok[70] += n_tok[320+n_B[2]];
 
 	if(EquipNumSearch(535)){
@@ -4385,6 +4418,12 @@ with(document.calcForm){
 	// RAG203#1787 - Decreases physical damage against players by 75%
 	if (Taijin && EquipNumSearch(1787))
 		n_tok[37] -= 75;
+
+	// Mini Gun#1788 - [Every Refine Level] - Reduce damage received from Non-Boss and Boss by 1%.
+	if(EquipNumSearch(1788)){
+		n_tok[77] += n_A_Weapon_ATKplus;
+		n_tok[79] += n_A_Weapon_ATKplus;
+	}
 
 	/*[Custom Talon Tales 2018-06-15 - Malangdo Enchantment for Spell Element] [Kato]
 		Well I couldn't find a n_tok for magical damage based on element.
@@ -4622,15 +4661,6 @@ with(document.calcForm){
 		n_tok[42] += n_A_BODY_DEF_PLUS;
 	}
 	
-	// Southern Cross#1793 - [+Sphere Ammunition] - Increases damage inflicted on Neutral Property by 40%
-	//										  		[Every Refine Level] - Ignore [Normal] and [Boss] class monsters defense by 2%
-	if (EquipNumSearch(1793))
-	{
-		n_tok[40] += 40;
-		n_tok[21] += n_A_Weapon_ATKplus * 2;
-		n_tok[22] += n_A_Weapon_ATKplus * 2;
-	}
-
 	if (0 == Taijin && document.calcForm.B_ENSKSW.checked) // Only applies to PvM [FIXME]
 	{
 		// Reduces Thanatos Card effect on long range attack by 5% on normal monsters and 10% on boss monsters for each equipped Thanatos Card
@@ -4900,6 +4930,10 @@ function StPlusCalc() {
 		n_tok[89] += 5;
 	}
 
+	if(EquipNumSearch(658)){ // Gate Keeper-DD#658 - [Every Refine Level] DEF + 1, DEX +1
+		n_tok[18] += n_A_Weapon_ATKplus;
+		n_tok[5] += n_A_Weapon_ATKplus;
+	}
 	/*
 	 * Soul Linker BG Set#1862
 	 * DEX + 3
