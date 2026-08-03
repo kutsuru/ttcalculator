@@ -1975,6 +1975,7 @@ ItemOBJ = [
 ,[1915,61,154,2,0,1,75,80,"Immune Shield","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br><b>[Every Refine Level]</b><br> Receive 2% less damage from [Asura Strike]<br><span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[BG ONLY]</span><br><b>[Every Refine Level]</b><br>Receive additional 10% more damage from All Elements except Neutral<br>Receive 30% less damage from [Asura Strike]",19,-10,61,-10,62,-10,63,-10,64,-10,65,-10,66,-10,67,-10,68,-10,69,-10,0]
 ,[1916,61,0,0,0,1,20,80,"Mad Bunny","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br><b>[Refine Level +7 or Higher]</b><br>ATK + 1%<br>MATK + 1%",87,2,89,2,78,-4,0]
 ,[1917,64,155,0,0,1,20,80,"Sound Amplifier","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br>Song and Dance Skills don't slow the user down<br>Lose 25% HP and SP when unequipping",4,2,5,1,0]
+,[1918,50,0,3,0,1,30,20,"Monkey Hat","",0,5,1,2,1,9,10,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3926,6 +3927,7 @@ ItemID = [
 ,[1915,1,2168]
 ,[1916,1,28902]
 ,[1917,1,2899]
+,[1918,1,18713]
 ];
 
 /*
