@@ -721,7 +721,7 @@ function BattleCalc999() {
 			n_Delay[0] = 1;
 			n_Enekyori = 0;
 			wbairitu = 1.4 * n_A_ActiveSkillLV
-			n_tok[10] += 50;
+			n_tok[10] += 25 + 5 * n_A_ActiveSkillLV;
 		}
 
 
