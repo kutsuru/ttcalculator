@@ -984,7 +984,7 @@ with(document.calcForm){
 	}
 	//Wakwak Card - For every 10 Base STR, ATK + 5
 	if(CardNumSearch(560)){
-		n_tok[17] += 5 * Math.floor(SU_STR / 10);
+		n_tok[17] += 5 * SU_STR / 10; // 04-Aug-2026: Removed Math.floor(SU_STR / 10) to match in game behavior
 	}
 	//Sakura Coronet + Romantic Flower - [Loa] - 2018-07-04
 	if(EquipNumSearch(1236) && n_A_HEAD_DEF_PLUS > 7){
@@ -1538,7 +1538,7 @@ with(document.calcForm){
 	n_tok[13] += SkillSearch(156) * 200; // Faith#156
 	
 	// Jejeling card#561 - MaxHP + 200 * Base VIT / 10 
-	n_tok[13] += 200 * Math.floor(SU_VIT/10) * CardNumSearch(561);
+	n_tok[13] += 200 * SU_VIT / 10 * CardNumSearch(561); // 04-Aug-2026: Removed Math.floor(SU_VIT/10) to match in-game behavior
 
 	if(n_A_BODY_DEF_PLUS >= 9 && CardNumSearch(225))
 		n_tok[13] += 800;

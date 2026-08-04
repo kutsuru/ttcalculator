@@ -1585,6 +1585,11 @@ function BattleCalc999() {
 		w_DMG[2] = Math.floor(n_A_MaxHP * 0.09 * (0.9 + 0.1 * n_A_ActiveSkillLV));
 		w_DMG[2] = BaiCI(w_DMG[2]);
 		w_DMG[2] = Math.floor(w_DMG[2] * zokusei[n_B[3]][0]);
+
+		// Glorious Spear#1081 - [Every Refine Level] - [Sacrifice#284] damage increased by 1%
+		if (EquipNumSearch(1081) && 284 == n_A_ActiveSkill)
+		w_DMG[2] = Math.floor(w_DMG[2] * (1 + n_A_Weapon_ATKplus / 100));
+		
 		w_DMG[0] = w_DMG[1] = w_DMG[2];
 		for (var i = 0; i <= 2; i++) {
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
@@ -8733,7 +8738,7 @@ function BaiCI(wBaiCI)
 		monster_dmg_modifier = StPlusCalc2(1000 + n_B[0]) + StPlusCard(1000 + n_B[0]);
 		
 		// Glorious Jamadhar#1091 - [Refine Rate 6-10] - Increases physical attack against Emperium#44 by 10%.
-		if (44 && EquipNumSearch(1091) && n_A_Weapon_ATKplus >= 6)
+		if (44 == n_B[0] && EquipNumSearch(1091) && n_A_Weapon_ATKplus >= 6)
 			monster_dmg_modifier += 10;
 
 		damage_modifier = Math.floor(damage_modifier * (1 + monster_dmg_modifier / 100));
@@ -9188,17 +9193,10 @@ function ApplySkillAtkBonus(dmg)
 	if (437 == n_A_ActiveSkill && EquipNumSearch(1793))
 		skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
 
-	// Glorious Spear#1081
-	if (EquipNumSearch(1081))
-	{
-		// [Every Refine Level] - [Sacrifice#284] damage increased by 1%
-		if (284 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
-		// [Every Refine Level] - [Pierce#70] damage increased by 3%
-		if (70 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
-	}
-
+	// Glorious Spear#1081 - [Every Refine Level] - [Pierce#70] damage increased by 3%
+	if (EquipNumSearch(1081) && 70 == n_A_ActiveSkill)
+		skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
+	
 	// Platinum Dagger#1849 - [Every Refine Level] - [Raid#171] damage increased by 5%
 	if (171 == n_A_ActiveSkill && EquipNumSearch(1849))
 		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus;
