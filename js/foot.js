@@ -3262,7 +3262,7 @@ with(document.calcForm){
 	}
 
 	// Entweihen Crothen#501 - [Every 10 Base INT] MATK + 10, limited to a maximum of 50 additional MATK
-	n_tok[98] += Math.min(50, Math.floor(n_A_INT / 10) * 10) * CardNumSearch(501);
+	n_tok[98] += Math.min(50, Math.floor(SU_INT / 10) * 10) * CardNumSearch(501);
 
 	n_A_MATK[0] += n_tok[98];
 	n_A_MATK[2] += n_tok[98];
