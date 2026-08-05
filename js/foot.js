@@ -7254,7 +7254,7 @@ function KakutyouKansuu(){
 		else // SP Recovery
 			bonus = 100 + n_A_INT*2 + sp_recovery_lv * 10 + learning_potion_lv * 5;
 
-		if (potion_rank && (selected_item && selected_item < 8))
+		if (potion_rank && ITEM_HEAL[selected_item][8])
 		{
 			bonus *= (1 + potion_rank * 0.25);
 			if (rogue_spirit && ITEM_HEAL[selected_item][1])
@@ -7301,6 +7301,21 @@ function KakutyouKansuu(){
 		
 		min_heal = Math.floor(ITEM_HEAL[selected_item][2] * bonus / 100);
 		max_heal = Math.floor(ITEM_HEAL[selected_item][3] * bonus / 100);
+
+		if(ITEM_HEAL[selected_item][7]){
+			if(ITEM_HEAL[selected_item][1])
+			{
+				min_heal = Math.floor(ITEM_HEAL[selected_item][2] * n_A_MaxHP / 100);
+				max_heal = Math.floor(ITEM_HEAL[selected_item][3] * n_A_MaxHP / 100);
+				bonus = "By MaxHP = " + ITEM_HEAL[selected_item][3];
+			}
+			else 
+			{
+				min_heal = Math.floor(ITEM_HEAL[selected_item][2] * n_A_MaxSP / 100);
+				max_heal = Math.floor(ITEM_HEAL[selected_item][3] * n_A_MaxSP / 100);
+				bonus = "By MaxSP = " + ITEM_HEAL[selected_item][3];		
+			}
+		}
 		
 		wkk18 =  '<table width=100% border=0><tr><td width=20%><b>Heal: </b>' + min_heal + '~' + max_heal + '</td>';
 		wkk18 += '<td width=31%><b>Total Item Healing Bonus: </b>' + bonus + '%</td>';

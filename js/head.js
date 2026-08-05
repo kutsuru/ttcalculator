@@ -1585,11 +1585,8 @@ function BattleCalc999() {
 		w_DMG[2] = Math.floor(n_A_MaxHP * 0.09 * (0.9 + 0.1 * n_A_ActiveSkillLV));
 		w_DMG[2] = BaiCI(w_DMG[2]);
 		w_DMG[2] = Math.floor(w_DMG[2] * zokusei[n_B[3]][0]);
+		w_DMG[2] = ApplySkillAtkBonus(w_DMG[2]);
 
-		// Glorious Spear#1081 - [Every Refine Level] - [Sacrifice#284] damage increased by 1%
-		if (EquipNumSearch(1081) && 284 == n_A_ActiveSkill)
-		w_DMG[2] = Math.floor(w_DMG[2] * (1 + n_A_Weapon_ATKplus / 100));
-		
 		w_DMG[0] = w_DMG[1] = w_DMG[2];
 		for (var i = 0; i <= 2; i++) {
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
@@ -9193,9 +9190,13 @@ function ApplySkillAtkBonus(dmg)
 	if (437 == n_A_ActiveSkill && EquipNumSearch(1793))
 		skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
 
-	// Glorious Spear#1081 - [Every Refine Level] - [Pierce#70] damage increased by 3%
-	if (EquipNumSearch(1081) && 70 == n_A_ActiveSkill)
-		skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
+	// Glorious Spear#1081
+	if (EquipNumSearch(1081)){
+		if(70 == n_A_ActiveSkill) // [Every Refine Level] - [Pierce#70] damage increased by 3%
+			skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
+		if(284 == n_A_ActiveSkill) // [Every Refine Level] - [Sacrifice#284] damage increased by 1%
+			skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
+	}
 	
 	// Platinum Dagger#1849 - [Every Refine Level] - [Raid#171] damage increased by 5%
 	if (171 == n_A_ActiveSkill && EquipNumSearch(1849))

@@ -1976,8 +1976,8 @@ ItemOBJ = [
 ,[1916,61,0,0,0,1,20,80,"Mad Bunny","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br><b>[Refine Level +7 or Higher]</b><br>ATK + 1%<br>MATK + 1%",87,2,89,2,78,-4,0]
 ,[1917,64,155,0,0,1,20,80,"Sound Amplifier","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br>Song and Dance Skills don't slow the user down<br>Lose 25% HP and SP when unequipping",4,2,5,1,0]
 ,[1918,50,0,3,0,1,30,20,"Monkey Hat","",0,5,1,2,1,9,10,0]
-,[1919,52,0,1,0,0,10,70,"Red Toy Syringe","","Increases HP recovery of WoE White Potions by 25%",0]
-,[1920,52,0,1,0,0,10,70,"Blue Toy Syringe","","Increases SP recovery of WoE Blue Potions by 25%",0]
+,[1919,52,0,1,0,0,10,70,"Red Toy Syringe","",0,218,[11503,25,0],0]
+,[1920,52,0,1,0,0,10,70,"Blue Toy Syringe","",0,219,[11504,25,0],0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
