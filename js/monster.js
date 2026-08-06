@@ -1106,14 +1106,14 @@ MonstersByName = MonsterOBJ.concat().sort(function(a,b){return a[1].localeCompar
 MonsterABC = MonstersByName.map(x => x[0])
 MonsterABC.push("N")
 
-var tiiki = ["All Regions","SQI Instances","GMC","Abyss Lake Dungeon","Amatsu","Ancient Tower","Ant Hell","Ayothaya","Battlegrounds","Bibilan",
-"Bio Labs","Bitfrost","Brasilis","Clock Tower","Coal Mine","Comodo Caves","Comodo Fields","Culverts","Dewata","Dimensional Crack","Eclage","Einbroch Dungeon",
-"Einbroch Fields","Elysian Garden","El Dicastes","Endless Tower Finale","Faceworm Nest","Geffenia","Geffen Dungeon","Geffen Fields","Glast Heim","Glast Heim Dungeons","Gonryun",
+var tiiki = ["All Regions","Abyss Lake Dungeon","Amatsu","Ancient Tower","Ant Hell","Ayothaya","Battlegrounds","Byalan",
+"Bio Labs","Bifrost","Brasilis","Clock Tower","Coal Mine","Comodo Caves","Comodo Fields","Dewata","Dimensional Gorge","Eclage","Einbech Dungeon",
+"Einbroch Fields","Elysian Garden","El Dicastes","Endless Tower Finale","Faceworm Nest","Geffenia","Geffen Dungeon","Geffen Fields","Glast Heim","Glast Heim Dungeons","GMC","Gonryun",
 "Guild Dungeon [Aldebaran]","Guild Dungeon [Arunafeltz]","Guild Dungeon [Geffen]","Guild Dungeon [Morroc]","Guild Dungeon [Payon]","Guild Dungeon [Prontera]",
 "Guild Dungeon [Schwartzvald]","Hidden Temple","Hugel Fields","Ice Cave","Juperos Dungeon","Kiel Dungeon","Lighthalzen Fields",
 "Louyang","Lutie & Toy Factory","Magma Dungeon","Malangdo","Malangdo Culvert","Manuk","Morroc Fields","Moscovia","Mt. Mjolnir","Mystic Tower","Nameless Island","Nidhoggr's Nest",
-"Niflheim","Odins Shrine","Old Glast Heim","Old Glast Heim Challenge","Orc Dungeon","Payon Dungeon","Payon Fields","Poring Island","Port Malaya Instance","Prontera Fields","Pyramid","Pyramid [Nightmare]","Rachel Fields",
-"Rachel Sanctuary","Sarah's Memory","Scaraba Hole","Sphinx","Splendide","Seals(Old)","Sunken Ship","Thanatos Tower","Thors Volcano","Turtle Island","Umbala Dungeon",
+"Niflheim","Odin Temple","Old Glast Heim (Normal)","Old Glast Heim (Hard)","Orc Dungeon","Payon Dungeon","Payon Fields","Poring Island","Port Malaya Instance","Prontera Culverts","Prontera Fields","Pyramid","Pyramid [Nightmare]","Rachel Fields",
+"Rachel Sanctuary","Sarah's Memory","Scaraba Hole","Sphinx","Splendide","SQI Instances","Seals (Old)","Sunken Ship","Thanatos Tower","Thor's Volcano","Turtle Island","Umbala Dungeon",
 "Umbala Fields","Valkyries' Realm","Veins Fields","War of Emperium","Yuno Fields","BotN Valkyries"];
 
 if(Taijin==0){
@@ -1123,27 +1123,24 @@ if(Taijin==0){
 
 MonMap = [
 [0],// All Regions
-Array.from({ length: 861 + 1 - 806},(_,k) => 806 + k),// SQI Instances
-[631,678,632,633,634,635,636,637,638,639,640,641,642,643,644,645,"N"],// GMC
 [265,298,401,402,405,406,407,408,409,410,411,412,"N"],// Abyss Lake Dungeon
 [21,53,61,70,73,74,124,140,239,241,271,274,299,"N"],// Amatsu
 [228,450,717,718,719,720,721,722,723,725,726,727,728,731,732,733,734,735,735,736,737,738,739,740,741,748,776,777,778,779,780,781,782,783,784,785,786,787,788,789,790,791,792,793,794,795,"N"],// Ancient Tower
 [5,14,18,67,191,236,237,244,281,282,"N"],// Ant Hell
 [26,30,85,103,161,235,307,342,344,345,428,"N"],// Ayothaya
 [573,574,575,576,"N"],// BG
-[60,71,86,157,166,192,226,230,241,248,254,284,285,286,287,571,578,579,580,581,"N"],// Bibilan,Byalan
+[60,71,86,157,166,192,226,230,241,248,254,284,285,286,287,571,578,579,580,581,"N"],// Byalan
 [357,358,359,360,,362,363,364,365,366,367,368,369,370,371,497,498,499,500,501,502,372,373,374,375,380,381,604,605,606,607,608,609,610,611,612,613,614,615,616,617,862,863,864,865,866,867,868,"N"],// LHZ
-[526,529,565,566,567,568,569,"N"],// Bitfrost
+[526,529,565,566,567,568,569,"N"],// Bifrost
 [241,284,254,591,592,577,86,"N"],// Brasilis
 [5,8,11,26,35,39,46,47,48,49,90,100,141,204,213,218,221,231,257,265,291,298,309,355,"N"],// Clock Tower
 [67,90,148,213,277,292,350,353,430,465,"N"],// Coal Mine
 [132,152,178,217,230,241,264,303,304,306,343,"N"],// Comodo Caves
 [7,8,12,58,59,62,71,72,75,96,113,119,121,122,127,131,133,153,155,185,203,214,219,240,258,264,267,269,271,300,317,321,"N"],// Comodo Fields
-[45,90,160,179,199,200,201,202,213,244,254,267,"N"],// Culverts
 [549,553,554,551,550,552,"N"],// Dewata
-[14,18,106,149,150,152,191,214,236,238,305,308,491,492,493,494,495,496,"N"],// Dimensional Crack
+[14,18,106,149,150,152,191,214,236,238,305,308,491,492,493,494,495,496,"N"],// Dimensional Gorge
 [692,693,694,695,696,697,698,699,700,"N"],// Eclage
-[347,348,349,350,351,352,353,354,355,356,"N"],// Einbroch Dungeon
+[347,348,349,350,351,352,353,354,355,356,"N"],// Einbech Dungeon
 [67,82,92,105,136,179,187,199,202,211,214,219,231,252,261,271,272,273,307,323,346,347,351,352,354,376,377,"N"],// Einbroch Fields
 [718,719,720,721,722,723,724,725,726,727,728,729,730,732,733,734,735,736,737,738,739,740,741,742,743,744,745,747,748,749,750,751,752,753,754,755,756,757,758,759,760,761,762,763,764,765,766,767,768,769,770,771,772,773,774,775,776,"N"],// Elysian Garden
 [528,530,531,555,541,"N"],// El Dicastes
@@ -1154,6 +1151,7 @@ Array.from({ length: 913 + 1 - 905 }, (_, k) => 905 + k),// Faceworm Nest
 [19,49,50,54,55,56,92,103,106,108,109,110,111,112,113,115,116,117,118,119,120,127,153,161,177,183,184,203,221,242,250,252,267,271,272,289,307,319,321,323,429,"N"],// Geffen Fields
 [13,22,24,26,28,46,47,48,62,66,79,83,85,90,129,142,144,147,163,170,171,173,174,175,232,249,253,283,291,298,309,310,312,313,314,323,"N"],// Glast Heim
 [5,8,26,62,90,107,154,213,297,"N"],// Glast Heim Dungeons
+[631,678,632,633,634,635,636,637,638,639,640,641,642,643,644,645,"N"],// GMC
 [101,102,145,180,182,197,198,227,271,318,"N"],// Gonryun
 [15,16,43,46,47,84,137,138,206,215,289,"N"],// Guild Dungeon [Aldebaran]
 [460,478,518,519,520,521,522,"N"],// Guild Dungeon [Arunafeltz]
@@ -1181,14 +1179,15 @@ Array.from({ length: 946 + 1 - 914 }, (_, k) => 914 + k).concat([39,414,417,423,
 [85,473,474,475,476,477,478,479,480,482,879,"N"],// Nameless Island
 [535,536,537,538,539,540,542,543,544,545,546,"N"],// Nidhoggr's Nest
 [324,325,326,327,328,329,330,331,332,"N"],// Niflheim
-[404,423,424,425,426,427,436,437,438,439,440,481,511,512,"N"],// Odins Shrine
-[679,680,681,682,683,684,685,686,687,688,689,690,691,"N"],// Old Glast Heim
-Array.from({ length: 888 + 1 - 880},(_,k) => 880 + k),// Old Glast Heim Challenge
+[404,423,424,425,426,427,436,437,438,439,440,481,511,512,"N"],// Odin Temple
+[679,680,681,682,683,684,685,686,687,688,689,690,691,"N"],// Old Glast Heim (Normal)
+Array.from({ length: 888 + 1 - 880},(_,k) => 880 + k),// Old Glast Heim (Hard)
 [49,51,52,,153,164,213,244,"N"],// Orc Dungeon
 [1,10,26,31,34,81,83,89,135,146,167,169,170,205,213,241,244,271,275,290,302,337,"N"],// Payon Dungeon
 [27,33,34,38,40,89,92,126,158,160,161,196,201,205,208,239,252,267,271,272,311,322,"N"],// Payon Fields
 [41,83,104,130,193,214,271,272,278,279,340,"N"],// Poring Island
 [671,672,673,674,675,676,677,"N"],// Port Malaya Instance
+[45,90,160,179,199,200,201,202,213,244,254,267,"N"],// Prontera Culverts
 [37,92,108,109,110,111,112,113,114,127,128,161,183,199,202,214,233,242,252,268,271,272,290,307,311,320,"N"],// Prontera Fields
 [1,5,20,42,57,66,169,213,244,266,271,276,280,297,298,333,484,"N"],// Pyramid
 [664,665,666,667,668,669,670,"N"],// Nightmare Pyramid
@@ -1198,6 +1197,7 @@ Array.from({ length: 893 + 1 - 889 }, (_, k) => 889 + k),// Sarah's Memory
 [556,557,558,559,560,561,562,563,564,582,583,584,585,586,587,588,589,590,"N"],// Scaraba Hole
 [122,165,213,224,245,276,288,297,298,316,484,"N"],// Sphinx
 [525,526,529,532,533,"N"],// Splendide
+Array.from({ length: 861 + 1 - 806},(_,k) => 806 + k),// SQI Instances
 [623,624,625,627,628,629,622,626,630,620,621,619,"N"],// Seals
 [26,83,86,104,129,190,212,222,241,265,267,283,298,"N"],// Sunken Ship
 [13,39,46,47,298,309,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,"N"],// Thanatos Tower

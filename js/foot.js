@@ -630,6 +630,7 @@ with(document.calcForm){
 		n_A_PassSkill8[31] = eval(A8_Skill31.checked);
 		n_A_PassSkill8[32] = eval(A8_Skill32.checked);
 		n_A_PassSkill8[35] = eval(A8_Skill35.checked);
+		n_A_PassSkill8[36] = eval(A8_Skill36.checked);
 		n_A_IJYOU[0] = eval(A_IJYOU0.value);
 		n_A_IJYOU[1] = eval(A_IJYOU1.value);
 		n_A_IJYOU[2] = eval(A_IJYOU2.checked);
@@ -983,7 +984,7 @@ with(document.calcForm){
 	}
 	//Wakwak Card - For every 10 Base STR, ATK + 5
 	if(CardNumSearch(560)){
-		n_tok[17] += 5 * Math.floor(SU_STR / 10);
+		n_tok[17] += 5 * SU_STR / 10; // 04-Aug-2026: Removed Math.floor(SU_STR / 10) to match in game behavior
 	}
 	//Sakura Coronet + Romantic Flower - [Loa] - 2018-07-04
 	if(EquipNumSearch(1236) && n_A_HEAD_DEF_PLUS > 7){
@@ -1381,6 +1382,22 @@ with(document.calcForm){
 		n_tok[12] += n_A_Weapon_ATKplus * nb_cards; // [Every Refine Level] - ASPD + 1%
 	}
 	
+	//Heroic Backback#1914 - If Refine >= 7
+	if (EquipNumSearch(1914) && n_A_SHOULDER_DEF_PLUS >= 7) {
+		n_tok[70] += SU_AGI >= 90 ? 3 : 0; // [Base AGI 90 or Higher]: CRIT Damage and Skill CRIT Damage + 3%
+		n_tok[37] += SU_STR >= 90 ? 3 : 0; // [Base STR 90 or Higher]: 3% more damage against Players
+		n_tok[89] += SU_INT >= 90 ? 2 : 0; // [Base INT 90 or Higher]: MATK + 2%
+		n_tok[296] += SU_INT >= 90 ? 3 : 0; // [Base INT 90 or Higher]: Ignore 3% of Player MDEF
+		n_tok[101] += SU_DEX >= 90 ? 5 : 0; // [Base DEX 90 or Higher]: Magical Resistance + 5%
+		n_tok[15] += SU_VIT >= 90 ? 5 : 0; // [Base VIT 90 or Higher]: MaxHP + 5%
+	}
+
+	//Mad Bunny#1916 - If Refine >= 7
+	if (EquipNumSearch(1916) && n_A_LEFT_DEF_PLUS >= 7) {
+		n_tok[87] += 1; // ATK + 1%
+		n_tok[89] += 1; // MATK + 1%
+	}
+
 	// Manage Eden crystal energy buff (stackable)
 	eden_crystal_buff_value = (eden_rough_crystal_buff ? 0.5 : 0) + (eden_purified_crystal_buff ? 1 : 0) + (eden_high_crystal_buff ? 1 : 0);
 	n_tok[17] += 6 * eden_crystal_buff_value;
@@ -1521,7 +1538,7 @@ with(document.calcForm){
 	n_tok[13] += SkillSearch(156) * 200; // Faith#156
 	
 	// Jejeling card#561 - MaxHP + 200 * Base VIT / 10 
-	n_tok[13] += 200 * Math.floor(SU_VIT/10) * CardNumSearch(561);
+	n_tok[13] += 200 * SU_VIT / 10 * CardNumSearch(561); // 04-Aug-2026: Removed Math.floor(SU_VIT/10) to match in-game behavior
 
 	if(n_A_BODY_DEF_PLUS >= 9 && CardNumSearch(225))
 		n_tok[13] += 800;
@@ -2364,6 +2381,9 @@ with(document.calcForm){
 
 	n_A_FLEE = n_A_BaseLV + n_A_AGI;
 	
+	if (n_A_PassSkill8[36]) // Wind Walk comes from bonused sniper [FLEE + 15]
+		n_tok[9] += 15;
+	
 	// Moscow Headless Mule Cocktail - FLEE +30, cannot be used while in Berserk
 	if (moscow_headless_mule_cocktail && !SkillSearch(12) && !SkillSearch(258))
 		n_tok[9] += 30;
@@ -2517,7 +2537,7 @@ with(document.calcForm){
 		n_tok[11] += 10;
 
 	// Duneyrr Card#511 - Perfect Dodge + 10, [Lord Knight] When activated during Frenzy, add another Perfect Dodge + 10.
-	if (TimeItemNumSearch(51))
+	if (TimeItemNumSearch(50))
 			n_tok[11] += 10 * CardNumSearch(511) * (SkillSearch(258) ? 2 : 1);
 
 	// #117 - Baby Skoll - [Extended Class] Perfect Dodge +3
@@ -2877,7 +2897,7 @@ with(document.calcForm){
 	}
 	
 	// Glorious Staff of Destruction#1083 - [Every Refine Level] - MATK + 3% for 6 seconds when using magic attacks at a 1% chance per refine.
-	if (TimeItemNumSearch(59))
+	if (TimeItemNumSearch(57))
 		n_tok[89] += 3 * n_A_Weapon_ATKplus;
 
 	//[Custom Talon Tales - 2018-07-27 Glorious Arc Wand - Every 2 refine 1% MATK for demi-human] [Amor]
@@ -3242,7 +3262,7 @@ with(document.calcForm){
 	}
 
 	// Entweihen Crothen#501 - [Every 10 Base INT] MATK + 10, limited to a maximum of 50 additional MATK
-	n_tok[98] += Math.min(50, Math.floor(n_A_INT / 10) * 10) * CardNumSearch(501);
+	n_tok[98] += Math.min(50, Math.floor(SU_INT / 10) * 10) * CardNumSearch(501);
 
 	n_A_MATK[0] += n_tok[98];
 	n_A_MATK[2] += n_tok[98];
@@ -3524,7 +3544,7 @@ with(document.calcForm){
 		n_tok[12] -= 25 - SkillSearch(165) * 5;
 	
 	if ((EquipNumSearch(1774) && EquipNumSearch(1777)) || (EquipNumSearch(1775) && EquipNumSearch(1778)) || (EquipNumSearch(1776) && EquipNumSearch(1779)))
-		n_tok[12] += n_A_BODY_DEF_PLUS;
+		n_tok[12] += n_A_LEFT_DEF_PLUS;
 	
 	// Spammers Heaven Cocktail - ASPD +10%
 	if (spammers_heaven_cocktail)
@@ -3744,6 +3764,10 @@ with(document.calcForm){
 	// Novice Figure#1116 - [STR > 90] - [Magnum Break#7] after-cast delay reduced by 10%
 	if (7 == n_A_ActiveSkill && EquipNumSearch(1116) && SU_STR > 90)
 		skill_delay_reduction += 10;
+
+	// Applause Sandals#1913 - [Every 2 Refine Levels] - 1% less aftercast delay
+	if (EquipNumSearch(1913))
+		skill_delay_reduction += Math.floor(n_A_SHOES_DEF_PLUS / 2);
 	
 	n_tok[74] = Math.floor(100 - (100 - n_tok[74]) * (1 - skill_delay_reduction / 100));
 
@@ -5262,7 +5286,7 @@ function StPlusCalc() {
 
 	// Improve Concentration#42
 	// Does not include cards bonus for % bonus computation
-	var ac_level = Math.max(SkillSearch(42), n_A_PassSkill6[3], TimeItemNumSearch(31) ? 2 : 0, (TimeItemNumSearch(4) || TimeItemNumSearch(57)) ? 1 : 0);
+	var ac_level = Math.max(SkillSearch(42), n_A_PassSkill6[3], TimeItemNumSearch(31) ? 2 : 0, (TimeItemNumSearch(4) || TimeItemNumSearch(55)) ? 1 : 0);
 	
 	// Enchants are considered as card slot as well, but applied later on, only midgear enchants need to be excluded here	
 	ic_dex_bonus_exclusion = StPlusCard(5) + StPlusCard(7);
@@ -5337,6 +5361,15 @@ function StPlusCalc() {
 	// Girl Sun Hat#1830 - [Every 3 Refine Levels] INT + 2
 	if (EquipNumSearch(1830))
 		n_tok[4] += Math.floor(n_A_HEAD_DEF_PLUS/3) * 2;
+
+	// Applause Sandals#1913 - [+Amon Ra Card#228] - All Stats except DEX + 1.
+	if (EquipNumSearch(1913) && CardNumSearch(228)) {
+		n_tok[1] += 1;
+		n_tok[2] += 1;
+		n_tok[3] += 1;
+		n_tok[4] += 1;
+		n_tok[6] += 1;
+	}
 
 	n_tok[1] += n_A_PassSkill2[0];
 	n_tok[4] += n_A_PassSkill2[0];
@@ -7221,7 +7254,7 @@ function KakutyouKansuu(){
 		else // SP Recovery
 			bonus = 100 + n_A_INT*2 + sp_recovery_lv * 10 + learning_potion_lv * 5;
 
-		if (potion_rank && (selected_item && selected_item < 8))
+		if (potion_rank && ITEM_HEAL[selected_item][8])
 		{
 			bonus *= (1 + potion_rank * 0.25);
 			if (rogue_spirit && ITEM_HEAL[selected_item][1])
@@ -7268,6 +7301,21 @@ function KakutyouKansuu(){
 		
 		min_heal = Math.floor(ITEM_HEAL[selected_item][2] * bonus / 100);
 		max_heal = Math.floor(ITEM_HEAL[selected_item][3] * bonus / 100);
+
+		if(ITEM_HEAL[selected_item][7]){
+			if(ITEM_HEAL[selected_item][1])
+			{
+				min_heal = Math.floor(ITEM_HEAL[selected_item][2] * n_A_MaxHP / 100);
+				max_heal = Math.floor(ITEM_HEAL[selected_item][3] * n_A_MaxHP / 100);
+				bonus = "By MaxHP = " + ITEM_HEAL[selected_item][3];
+			}
+			else 
+			{
+				min_heal = Math.floor(ITEM_HEAL[selected_item][2] * n_A_MaxSP / 100);
+				max_heal = Math.floor(ITEM_HEAL[selected_item][3] * n_A_MaxSP / 100);
+				bonus = "By MaxSP = " + ITEM_HEAL[selected_item][3];		
+			}
+		}
 		
 		wkk18 =  '<table width=100% border=0><tr><td width=20%><b>Heal: </b>' + min_heal + '~' + max_heal + '</td>';
 		wkk18 += '<td width=31%><b>Total Item Healing Bonus: </b>' + bonus + '%</td>';
@@ -11107,15 +11155,11 @@ for(i=0;i<=15;i++)
 	n_A_PassSkill7[i] = 0;
 
 n_A_PassSkill8 = new Array();
-for(i=0;i<=32;i++)
+for(i=0;i<=36;i++)
 	n_A_PassSkill8[i] = 0;
 
 n_A_PassSkill8[3] = 7; //[Custom Talon Tales - 6/4/2018 - Fixed the default value for BaseEXP to 8x] [Kato]
 n_A_PassSkill8[7] = 7; //[Custom Talon Tales - 6/4/2018 - Fixed the default value for JobEXP to 8x] [Kato]
-
-//updated def reduction when mobbed [Loa] 2018-07-24
-n_A_PassSkill8[33] = 0;
-n_A_PassSkill8[34] = 0;
 
 eden_rough_crystal_buff = 0;
 eden_purified_crystal_buff = 0;

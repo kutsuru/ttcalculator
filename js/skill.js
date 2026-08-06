@@ -400,7 +400,7 @@ SkillOBJ = [
 [398,5,'Reverse Tatami',15],
 [399,1,'Shadow Jump',5],
 [400,5,'Mist Slash',5],
-[401,5,'Shadow Slash',14,16,18,20,22],
+[401,5,'Shadow Slash',5],
 [402,5,'Cast-off Ciceda Shell',12,15,18,21,24],
 [403,10,'Cast-off Ciceda Shell',12,15,18,21,24,27,30,33,36,39],
 [404,5,'Soul',20,30,40,50,60],

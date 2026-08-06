@@ -174,40 +174,40 @@ KunaiOBJ = [
 ];
 
 JobEquipItemOBJ = [
-[0,50,69,90,93,94,95,96,99,100,999], //Novice
+[0,50,69,90,93,94,95,96,99,100,154,999], //Novice
 [0, 1, 51,101, 68, 69, 70, 71, 72, 74, 75,78,83,84,85,86,87,90,91,93,94,95,99,200,201,999], //Swordman
-[0, 1, 52,102, 68, 69, 72, 74, 75,78, 80,83,84,85,90,91,92,93,94,97,200,201,999], //Thief
-[0, 1, 53,103, 71, 73, 74, 77,78,85,89,95,96,152,200,201,999], //Acolyte
-[0, 1, 54,104, 68, 69, 75, 76,83,89,92,200,201,999], //Archer
-[0, 1, 55, 57,105, 68, 69, 71, 77, 89, 93, 96,152,200,201,999], //Mage
-[0, 1, 56,106, 68, 69, 70, 71, 72, 73, 74, 75,78,83,84,85,86,90,91,93,94,95,99,200,201,999], //Merchant
+[0, 1, 52,102, 68, 69, 72, 74, 75,78, 80,83,84,85,90,91,92,93,94,97,154,200,201,999], //Thief
+[0, 1, 53,103, 71, 73, 74, 77,78,85,89,95,96,152,154,200,201,999], //Acolyte
+[0, 1, 54,104, 68, 69, 75, 76,83,89,92,154,200,201,999], //Archer
+[0, 1, 55, 57,105, 68, 69, 71, 77, 89, 93, 96,152,154,200,201,999], //Mage
+[0, 1, 56,106, 68, 69, 70, 71, 72, 73, 74, 75,78,83,84,85,86,90,91,93,94,95,99,154,200,201,999], //Merchant
 [0, 1, 51, 61,107, 68, 69, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,99,200,201,999], //Knight
-[0, 1, 52, 62,108, 68, 69, 72, 74, 75,78,79,81,83,84,85,90,91,93,94,97,200,201,999], //Assassin
-[0, 1, 53, 63,109, 71, 73, 74, 77,78,79,81,85,89,95,96,200,201,999], //Priest
-[0, 1, 54, 60, 64, 68, 69,110, 75, 76,79,80,83,88,89,92,200,201,999], //Hunter
-[0, 1, 55, 57, 65,111, 68, 69, 71, 77,79,89,96,200,201,999], //Wizard
-[0, 1, 56, 66,112, 68, 69, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,99,200,201,999], //Blacksmith
+[0, 1, 52, 62,108, 68, 69, 72, 74, 75,78,79,81,83,84,85,90,91,93,94,97,154,200,201,999], //Assassin
+[0, 1, 53, 63,109, 71, 73, 74, 77,78,79,81,85,89,95,96,154,200,201,999], //Priest
+[0, 1, 54, 60, 64, 68, 69,110, 75, 76,79,80,83,88,89,92,154,200,201,999], //Hunter
+[0, 1, 55, 57, 65,111, 68, 69, 71, 77,79,89,96,154,200,201,999], //Wizard
+[0, 1, 56, 66,112, 68, 69, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,99,154,200,201,999], //Blacksmith
 [0, 1, 51, 61,113, 68, 69, 70, 71, 72, 74, 75,78,79,83,84,85,86,87,90,91,93,94,99,200,201,999], //Crusader
-[0, 1, 52, 62,114, 68, 69, 72, 74, 75, 76,78,79,80,83,84,85,88,91,92,93,94,97,200,201,999], //Rogue
-[0, 1, 53, 63,115, 71, 73, 74, 77,78,79,85,89,95,96,200,201,999], //Monk
-[0, 1, 54, 60,64,116, 74, 75, 76,79,83,89,92,200,201,999], //Bard
-[0, 1, 54, 60,64,117, 74, 75, 76,79,83,89,92,200,201,999], //Dancer
-[0, 1, 55, 57, 65,118, 68, 69, 71, 77,79,89,96,200,201,999], //Sage
-[0, 1, 56, 66,119, 68, 69, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,99,200,201,999], //Alchemist
-[0,50,69,90,93,94,95,96,99,120,1200,999], // Super Novice
+[0, 1, 52, 62,114, 68, 69, 72, 74, 75, 76,78,79,80,83,84,85,88,91,92,93,94,97,154,200,201,999], //Rogue
+[0, 1, 53, 63,115, 71, 73, 74, 77,78,79,85,89,95,96,154,200,201,999], //Monk
+[0, 1, 54, 60,64,116, 74, 75, 76,79,83,89,92,154,155,200,201,999], //Bard
+[0, 1, 54, 60,64,117, 74, 75, 76,79,83,89,92,154,155,200,201,999], //Dancer
+[0, 1, 55, 57, 65,118, 68, 69, 71, 77,79,89,96,154,200,201,999], //Sage
+[0, 1, 56, 66,119, 68, 69, 70, 71, 72, 73, 74, 75,78,79,83,84,85,86,90,91,93,94,95,99,154,200,201,999], //Alchemist
+[0,50,69,90,93,94,95,96,99,120,154,1200,999], // Super Novice
 [0, 1, 51, 61,107,121, 68, 69, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,99,135,200,201,999], //Lord Knight
-[0, 1, 52, 62,108,122, 68, 69, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,97,200,201,999], //Assassin Cross
-[0, 1, 53, 63,109,123, 71, 73, 74, 77,78,79,81,82,85,89,95,96,151,152,200,201,999], //High Priest
-[0, 1, 54, 60, 64,110,124, 68, 69, 75, 76,79,80,82,83,88,89,92,200,201,999], //Sniper
-[0, 1, 55, 57, 65,111,125, 68, 69, 71, 77,79,82,89,93,96,151,152,200,201,999], //High Wizard
-[0, 1, 56, 66,112,126, 68, 69, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,99,135,200,201,999], //Whitesmith
+[0, 1, 52, 62,108,122, 68, 69, 72, 74, 75,78,79,81,82,83,84,85,90,91,93,94,97,154,200,201,999], //Assassin Cross
+[0, 1, 53, 63,109,123, 71, 73, 74, 77,78,79,81,82,85,89,95,96,151,152,154,200,201,999], //High Priest
+[0, 1, 54, 60, 64,110,124, 68, 69, 75, 76,79,80,82,83,88,89,92,154,200,201,999], //Sniper
+[0, 1, 55, 57, 65,111,125, 68, 69, 71, 77,79,82,89,93,96,151,152,154,200,201,999], //High Wizard
+[0, 1, 56, 66,112,126, 68, 69, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,99,135,154,200,201,999], //Whitesmith
 [0, 1, 51, 61,113,127, 68, 69, 70, 71, 72, 74, 75,78,79,82,83,84,85,86,87,90,91,93,94,95,99,200,201,999], //Paladin
-[0, 1, 52, 62,114,128, 68, 69, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,97,200,201,999], //Stalker
-[0, 1, 53, 63,115,129, 71, 73, 74,77,78,79,82,85,89,95,96,152,200,201,999], //Champion
-[0, 1, 54, 60, 64,116,130, 74, 75, 76,79,82,83,89,153,92,134,200,201,999], //Clown
-[0, 1, 54, 60, 64,117,131, 74, 75, 76,79,82,83,89,153,92,134,200,201,999], //Gypsy
-[0, 1, 55, 57, 65,118,132, 68, 69, 71,77,79,82,89,152,96,200,201,999], //Professor
-[0, 1, 56, 66,119,133, 68, 69, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,99,200,201,999], //Creator
+[0, 1, 52, 62,114,128, 68, 69, 72, 74, 75, 76,78,79,80,82,83,84,85,88,91,92,93,94,97,154,200,201,999], //Stalker
+[0, 1, 53, 63,115,129, 71, 73, 74,77,78,79,82,85,89,95,96,152,154,200,201,999], //Champion
+[0, 1, 54, 60, 64,116,130, 74, 75, 76,79,82,83,89,153,92,134,154,155,200,201,999], //Clown
+[0, 1, 54, 60, 64,117,131, 74, 75, 76,79,82,83,89,153,92,134,154,155,200,201,999], //Gypsy
+[0, 1, 55, 57, 65,118,132, 68, 69, 71,77,79,82,89,152,96,154,200,201,999], //Professor
+[0, 1, 56, 66,119,133, 68, 69, 70, 71, 72, 73, 74, 75,78,79,82,83,84,85,86,90,91,93,94,95,99,154,200,201,999], //Creator
 [0],
 [0],
 [0],
@@ -215,11 +215,11 @@ JobEquipItemOBJ = [
 [0],
 [0],
 [0],
-[0, 1,141, 83,84,85,86,97,98,150,1200,999], //Taekwon Kid //custom
-[0, 1,142, 79,83,84,85,86,87,91,97,98,150,1200,999], //Star Gladiator
-[0, 1,143, 55, 57, 65, 69, 71, 77,79,89,93,96,98,1200,999], //Soul Linker
-[0, 1,144, 58, 52, 57, 69, 91, 93,1200,1201,999], //Ninja
-[0, 1,145, 59, 60, 83,145,1200,999], //Gunslinger
+[0, 1,141, 83,84,85,86,97,98,150,154,1200,999], //Taekwon Kid //custom
+[0, 1,142, 79,83,84,85,86,87,91,97,98,150,154,1200,999], //Star Gladiator
+[0, 1,143, 55, 57, 65, 69, 71, 77,79,89,93,96,98,154,1200,999], //Soul Linker
+[0, 1,144, 58, 52, 57, 69, 91, 93,154,1200,1201,999], //Ninja
+[0, 1,145, 59, 60, 83,145,154,1200,999], //Gunslinger
 ];
 
 /*
@@ -328,6 +328,8 @@ JobEquipItemOBJ = [
 		151 = priest, wizard
 		152 = mage ONLY, acolyte ONLY, high priest, high wizard, champion, professor
 		153 = clown/gypsy
+		154 = ALL except swordsman class
+		155 = bard/dancer
 
 		1200 = Rebirth + Extended
 		1201 = Rebirth + Ninja only
@@ -719,6 +721,7 @@ function BattleCalc999() {
 			n_Delay[0] = 1;
 			n_Enekyori = 0;
 			wbairitu = 1.4 * n_A_ActiveSkillLV
+			n_tok[10] += 25 + 5 * n_A_ActiveSkillLV;
 		}
 
 
@@ -1017,10 +1020,12 @@ function BattleCalc999() {
 		} else if (n_A_ActiveSkill == 398) {
 			wbairitu += (n_A_ActiveSkillLV * 0.1);
 			n_Delay[2] = 3;
-		} else if (n_A_ActiveSkill == 400) {
+		} else if (n_A_ActiveSkill == 400) { // Mist Slash#400
 			n_Delay[0] = 1;
 			wbairitu += (n_A_ActiveSkillLV * 0.4);
 			n_Delay[2] = 0;
+			w_HIT = 100;
+			w_HIT_HYOUJI = 100;
 		} else if (n_A_ActiveSkill == 419) {
 			not_use_card = 1;
 			wCast = 0.5;
@@ -1580,6 +1585,8 @@ function BattleCalc999() {
 		w_DMG[2] = Math.floor(n_A_MaxHP * 0.09 * (0.9 + 0.1 * n_A_ActiveSkillLV));
 		w_DMG[2] = BaiCI(w_DMG[2]);
 		w_DMG[2] = Math.floor(w_DMG[2] * zokusei[n_B[3]][0]);
+		w_DMG[2] = ApplySkillAtkBonus(w_DMG[2]);
+
 		w_DMG[0] = w_DMG[1] = w_DMG[2];
 		for (var i = 0; i <= 2; i++) {
 			Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
@@ -1722,10 +1729,6 @@ function BattleCalc999() {
 		// monsters_targeted_nb = eval(document.calcForm.SkillSubNum.value);
 		monsters_targeted_nb = 1;
 
-		// Huuma Swirling Petal#1770 - Hira Shurikat#1385#8th Bonus - [Throw Huuma Shuriken] no longer split damage.
-		if ((1385 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 8) > -1) || EquipNumSearch(1770))
-			monsters_targeted_nb = 1;
-
 		ATKbai02(wbairitu, 0);
 		for (var b = 0; b <= 2; b++) {
 			w_DMG[b] = BattleCalc(n_A_DMG[b], b);
@@ -1786,7 +1789,7 @@ function BattleCalc999() {
 		
 		// Apply def reduction
 		// Hira Shurikat#1385#6th Bonus - [Final Strike] Ignore enemy DEF
-		if (1385 != n_A_Equip[0] || SQI_Bonus_Effect.findIndex(x => x == 6) == -1)
+		if (1385 == n_A_Equip[0] && SQI_Bonus_Effect.findIndex(x => x == 6) == -1)
 		{
 			w_DMG[0] = w_DMG[0] * (100 - n_B[14]) / 100;
 			w_DMG[0] -= n_B[7];
@@ -5158,6 +5161,7 @@ with(document.calcForm){
 		str += '<TR><TD id="EN812"></TD><TD id="EN813"></TD></TR>';
 		str += '<TR><TD id="EN814"></TD><TD id="EN815"></TD></TR>';
 		str += '<TR><TD id="EN807"></TD></TR>';
+		str += '<TR><TD id="EN870"></TD></TR>';
 		str += '<TR><TD colspan="2"><Font size=2 color=black><B>New World Food</B></Font></TD></TR>';
 		str += '<TR><TD id="EN817"></TD></TR>';
 		str += '<TR><TD id="EN818"></TD></TR><TR><TD id="EN819"></TD></TR>';
@@ -5268,6 +5272,7 @@ with(document.calcForm){
 		for(i=1;i<=20;i++)
 			A8_Skill6.options[i] = new Option("+"+ (i*25) +"%",i);
 		myInnerHtml("EN807",'<input type="checkbox" name="A8_Skill4"onClick="Click_A8(1)">All Stats+1 [Supernovice Marriage Bonus]',0);
+		myInnerHtml("EN870",'<input type="checkbox" name="A8_Skill36"onClick="Click_A8(1)">Wind Walk comes from Bonused Sniper [+15 FLEE]',0);
 
 		str = '<Font size=2 color=black><b>Temporary Card/Item Effects</b></Font><BR>';
 		str += '<Font size=2>Duration and Chance are ignored, choose active Effects manually!</Font><BR>';
@@ -5387,6 +5392,7 @@ with(document.calcForm){
 		A8_Skill31.checked = n_A_PassSkill8[31];
 		A8_Skill32.checked = n_A_PassSkill8[32];
 		A8_Skill35.checked = n_A_PassSkill8[35];
+		A8_Skill36.checked = n_A_PassSkill8[36];
 		A_IJYOU0.value = n_A_IJYOU[0];
 		A_IJYOU1.value = n_A_IJYOU[1];
 		A_IJYOU2.checked = n_A_IJYOU[2];
@@ -8729,7 +8735,7 @@ function BaiCI(wBaiCI)
 		monster_dmg_modifier = StPlusCalc2(1000 + n_B[0]) + StPlusCard(1000 + n_B[0]);
 		
 		// Glorious Jamadhar#1091 - [Refine Rate 6-10] - Increases physical attack against Emperium#44 by 10%.
-		if (44 && EquipNumSearch(1091) && n_A_Weapon_ATKplus >= 6)
+		if (44 == n_B[0] && EquipNumSearch(1091) && n_A_Weapon_ATKplus >= 6)
 			monster_dmg_modifier += 10;
 
 		damage_modifier = Math.floor(damage_modifier * (1 + monster_dmg_modifier / 100));
@@ -9185,16 +9191,13 @@ function ApplySkillAtkBonus(dmg)
 		skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
 
 	// Glorious Spear#1081
-	if (EquipNumSearch(1081))
-	{
-		// [Every Refine Level] - [Sacrifice#284] damage increased by 1%
-		if (284 == n_A_ActiveSkill)
-			skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
-		// [Every Refine Level] - [Pierce#70] damage increased by 3%
-		if (70 == n_A_ActiveSkill)
+	if (EquipNumSearch(1081)){
+		if(70 == n_A_ActiveSkill) // [Every Refine Level] - [Pierce#70] damage increased by 3%
 			skill_atk_bonus_ratio += 3 * n_A_Weapon_ATKplus;
+		if(284 == n_A_ActiveSkill) // [Every Refine Level] - [Sacrifice#284] damage increased by 1%
+			skill_atk_bonus_ratio += n_A_Weapon_ATKplus;
 	}
-
+	
 	// Platinum Dagger#1849 - [Every Refine Level] - [Raid#171] damage increased by 5%
 	if (171 == n_A_ActiveSkill && EquipNumSearch(1849))
 		skill_atk_bonus_ratio += 5 * n_A_Weapon_ATKplus;
