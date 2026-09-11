@@ -802,6 +802,7 @@ AutoSpellSkill = [
 [156,1,414,2,30,1],	//When performing a ATK based attack, there's a 30% chance to cast the skill [Lightning Jolt] Lv 2
 [157,1,56,5,2,1], //When performing a ATK based attack, there's a 2 % chance to cast the skill [Lightning Bolt]Lv 10
 [158,1,57,5,2,1], //When performing a ATK based attack, there's a 2 % chance to cast the skill [Thunderstorm]Lv 10
+[159,1,410,3,15,1], //When performing a ATK based attack, there's a 15 % chance to cast the skill [Lightning Spear of Ice]Lv 3
 ];
 
 MAGICALSKILL_ELEMENTS = [
