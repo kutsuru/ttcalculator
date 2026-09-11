@@ -1724,7 +1724,7 @@ ItemOBJ = [
 ,[1679,60,135,6,0,1,300,80,"Engraved Armor","",0,78,10,0]
 ,[1680,3,107,300,4,2,250,70,"Heavy Sword","","50% chance to auto-cast level 1 or level learned [Head Crush] when using [Charge Attack].<br><b>[Every Refine Level]</b><br>ASPD + 1%<br>Decreases cast time of [Charge Attack] by 5%<br><b>[Refine Rate 7~10]</b><br>Reduces SP cost of [Charge Attack] by 30 and [Head Crush] by 10",5260,30,5308,50,0]
 // Akkoro Instance
-,[1681,5,51,190,4,1,200,48,"Undine Spear","","<b>[Every Refine Level]</b><br>MHP + 1%",20,1,89,15,0]
+,[1681,5,51,190,4,1,200,48,"Undine Spear","","<b>[Every Refine Level]</b><br>MHP + 1%",20,1,89,15,221,164,0]
 ,[1682,60,0,1,0,1,10,40,"Surfer Swimsuit","","<b>[Every Refine Level]</b><br>MSP + 2",14,30,15,5,152,30,0]
 ,[1683,62,0,1,0,1,50,40,"Oxygen Bottle","","<b>[Every Refine Level]</b><br>HIT + 1, FLEE + 1",12,2,0]
 ,[1684,100,0,0,0,0,0,0,"Oxygen Bottle + Scuba Mask","",0,12,3,0]
