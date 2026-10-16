@@ -8846,17 +8846,17 @@ function IsAKielDungeonMonster(){
 
 // Biolab Dungeon
 function IsABiolabMonster() {
-	return !Taijin && (MonMap[10].findIndex( (x) => x == n_B[0] ) > -1);
+	return !Taijin && (MonMap[8].findIndex( (x) => x == n_B[0] ) > -1);
 }
 
 // Faceworm Nest
 function IsAFacewormMonster() {
-	return !Taijin && (MonMap[26].findIndex((x) => x == n_B[0]) > -1);
+	return !Taijin && (MonMap[23].findIndex((x) => x == n_B[0]) > -1);
 }
 
-// Old Glast Heim & Old Glast Heim Challenge
+// Old Glast Heim Normal & Old Glast Heim Hard
 function IsAnOGHMonster() {
-	return !Taijin && ((MonMap[60].findIndex((x) => x == n_B[0]) > -1) || (MonMap[61].findIndex((x) => x == n_B[0]) > -1));
+	return !Taijin && ((MonMap[58].findIndex((x) => x == n_B[0]) > -1) || (MonMap[59].findIndex((x) => x == n_B[0]) > -1));
 }
 
 // BotN Valkyries
