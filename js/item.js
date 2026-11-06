@@ -1978,6 +1978,7 @@ ItemOBJ = [
 ,[1918,50,0,3,0,1,30,20,"Monkey Hat","",0,5,1,2,1,9,10,0]
 ,[1919,52,0,1,0,0,10,70,"Red Toy Syringe","",0,218,[11503,25,0],0]
 ,[1920,52,0,1,0,0,10,70,"Blue Toy Syringe","",0,219,[11504,25,0],0]
+,[1921,50,0,1,0,1,40,1,"Rune Cloth Circlet","","<b>Upper + Middle Headgear</b><br>Add a 10% chance of increasing HP/SP recovery rate by 50% when the user receives Physical Damage",8,5,60,3,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3932,6 +3933,7 @@ ItemID = [
 ,[1918,1,18713]
 ,[1919,1,21509]
 ,[1920,1,21510]
+,[1921,1,5585]
 ];
 
 /*
