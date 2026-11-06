@@ -1104,7 +1104,7 @@ ItemOBJ = [
 ,[1081,4,0,90,4,0,100,80,"Glorious Spear","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br><b>[Every Refine Level]</b><br>ASPD + 1%<br>3% more damage with [Pierce]<br>1% more damage with [Sacrifice]<br>Adds 1% defense bypassing on Demi-human monster.<br><br><b style='color: #333399;'>[Knight/Lord Knight]</b><br>Add a 1% chance to auto-cast to auto-cast level 1 [Critical Wounds] after using [Pierce].<br><b style='color: #333399;'>[Crusader/Paladin]</b><br>Add a 1% chance to auto-cast [Heal] at the level learned after using [Shield Chain]. If not learned, level 1 is used.",37,80,187,20,12,10,194,1,0]
 ,[1082,5,0,220,4,0,200,80,"Glorious Lance","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br><b>[Every Refine Level]</b><br>ASPD + 1%.<br><br><b style='color:#333399'>[Knight/Lord Knight]</b><br>Adds 1% defense bypassing on Demi-human monster.<br>Adds a 1% chance to auto-cast level 2 [Critical Wounds] after using [Pierce].<br><br><b style='color:#333399'>[Crusader/Paladin]</b><br>Adds a 1% chance to auto-cast level 1 [Pressure] when attacking normally.",37,95,187,20,57,20,194,1,0]
 ,[1083,9,77,70,4,0,0,80,"Glorious Staff Of Destruction","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br><b>[Every Refine Level]</b><br>INT + 1<br>ASPD + 2%<br>Decrease Cast Time by 2%.<br>Adds 1% magical defense bypassing on Demi-human monster.<br>Adds MATK + 3% for each refine level for 6 seconds when using magic attacks at a 1% chance per refine.<br><br><b>[Refine Rate 7~10]</b><br>30% Stun Resistance.<br>",4,3,5,5,89,20,177,20,317,25,194,1,195,1,0]
-,[1084,9,0,70,4,0,0,80,"Glorious Arc Wand","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'>[ONLY PvP/BG/WoE]</span><br><br><b>[Super Novice]</b><br>MATK + 20%<br><br><b>[Every Refine Level]</b><br>INT + 1<br>Decrease cast time by 1%.<br><b>[Every 2 Refine Levels]</b><br>Decreases after-cast delay by 1%.<br>Increase MATK against Demi-human monsters by 1%.",5,5,89,20,177,15,317,20,194,1,0]
+,[1084,9,0,70,4,0,0,80,"Glorious Arc Wand","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'>[ONLY PvP/BG/WoE]</span><br><br><b>[Super Novice]</b><br>MATK + 20%<br><br><b>[Every Refine Level]</b><br>INT + 1<br>Decrease cast time by 1%.<br><b>[Every 2 Refine Levels]</b><br>Decreases after-cast delay by 1%.<br>Increase MATK against Demi-human monsters by 1%.",5,5,89,20,177,20,317,20,194,1,0]
 ,[1085,9,77,70,4,0,0,80,"Glorious Staff of Recovery","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br><b style='color: #333399;'>[Priest/High Priest]</b><br>MATK + 15%<br><b style='color: #333399;'>[Monk/Champion]</b><br>Recovery increase does not apply.<br><b>[Every Refine Level]</b><br>Increases recovery amount of [Heal] and [Sanctuary] by 1%.<br><b style='color: #333399;'>[Priest/High Priest]</b><br>Adds a 1% chance to double cast [Heal] at the level learned when using [Heal].",5,5,74,10,91,10,94,10,194,1,0]
 ,[1086,8,0,130,4,0,0,80,"Glorious Morning Star","","<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br><b>[Every Refine Level]</b><br>ASPD + 1%<br>Adds an additional 1% chance to Stun opponents.<br><b>[Monk / Champion]</b><br>Increases physical damage against [Demi-Human] race monsters by 55% instead of 75%<br>",37,75,187,25,131,5,194,1,0]
 ,[1087,7,0,200,4,0,0,80,"Glorious Two-handed Axe",0,"<span style='font-size: 14px;color:#ff0000;font-weight: bold'><br>[ONLY PvP/BG/WoE]</span><br><br>Spend 20% less Zeny with all zeny based skills.<br><b style='color:#333399'>[Merchant Class]</b><br>ATK + 100<br><b>[Every Refine Level]</b><br>Adds a 1% defense bypassing on Demi-human monster.<br>Adds a 2% chance of auto-casting level 1 [Critical Wounds] when attacking normally<br>Increases [Mammonite] damage by 2%.<br>ASPD + 2%.<br><b>[Every Refine Level +6~10]</b><br>Long range damage resistance + 2%<br><b>[Refine Level > 8]</b><br>Casts [Critical Wounds] level 2 instead of 1",37,75,187,20,57,20,194,1,0]
@@ -1978,7 +1978,8 @@ ItemOBJ = [
 ,[1918,50,0,3,0,1,30,20,"Monkey Hat","",0,5,1,2,1,9,10,0]
 ,[1919,52,0,1,0,0,10,70,"Red Toy Syringe","",0,218,[11503,25,0],0]
 ,[1920,52,0,1,0,0,10,70,"Blue Toy Syringe","",0,219,[11504,25,0],0]
-,[1921,50,0,1,0,1,40,1,"Rune Cloth Circlet","","<b>Upper + Middle Headgear</b><br>Add a 10% chance of increasing HP/SP recovery rate by 50% when the user receives Physical Damage",8,5,60,3,0]
+,[1921,50,0,1,0,1,40,1,"Rune Cloth Circlet","","<b>Upper + Middle Headgear</b><br>When you receive physical damage, add a 10% chance of triggering: \"Every 2 seconds for 10s, recover 50HP & 50SP\"",8,5,60,3,0]
+,[1922,52,0,0,0,0,10,0,"Pirate Dagger [Reflect]","",0,71,1,0]
 ];
 
 //Test code for finding the values in Skill.js AutoSpellSkill
@@ -3934,6 +3935,7 @@ ItemID = [
 ,[1919,1,21509]
 ,[1920,1,21510]
 ,[1921,1,5585]
+,[1922,1,5532]
 ];
 
 /*
